@@ -1,25 +1,89 @@
 ﻿@using App.Domain.Entities.GlobalSetting
 @model App.Domain.Entities.Menu.MenuLink
-<section class="block-container">
-    <div class="breadcrumb">
-        <div class="container">
-            <ul class="list-inline">
-                <li>
-                    <a href="@Url.Action("Index", "Home", new {area = ""})" class="home-link">
-                        <i class="icon-home"></i>
-                    </a>
-                </li>
-                <li class="active">
-                    <span>@Model.MenuName</span>
-                </li>
-            </ul>
+
+<div class="vnt-page-slide">
+    <div id="vnt-page-slide">
+        <div class="item">
+            <div class="img"><a href="http://" target="_blank"><img src="../vnt_upload/weblink/banner_6.jpg" /></a></div>
         </div>
     </div>
-    <div class="content-container">
-        @{Html.RenderPartial("_ContactPartial", (ContactInfomation)ViewBag.Contact);}
-        <div class="bg-contact">
-            <img src="@Url.Content("~/" + Model.ImageUrl)"/>
+
+    <div id="vnt-navation" class="breadcrumb">
+        <div class="wrapper">
+            <div class="navation">
+                <ul class="list-inline text-left">
+                    <li class="home">
+                        <a href="@Url.Action("Index", "Home", new {area = ""})"><i class="icon-home"></i></a>
+                    </li>
+                    <li> Model.MenuName</li>
+                </ul>
+            </div>
         </div>
-        @{Html.RenderPartial("_ContactMap", (ContactInfomation)ViewBag.Contact);}
     </div>
-</section>
+
+</div>
+
+<div class="mod_content">
+    <div class="wrapper">
+        <div id="vnt-contact">
+
+            <div class="box_mid">
+                <div class="mid_title">
+                    <div class="titleL"><h1>CÔNG TY CỔ PHẦN ĐẦU TƯ DU LỊCH VÀ PHÁT TRIỂN THỦY SẢN (TRISEDCO)</h1></div>
+                    <div class="titleR"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="mid-content">
+
+                    <script language=javascript>
+                        $(document).ready(function () {
+                            // validate signup form on keyup and submit
+                            jQuery.validator.addMethod("security_code", function (value, element) {
+                                if (value == $("#h_code").val()) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }, "Mã bảo vệ không chính xác");
+
+                            var validator = $("#formContact").validate({
+                                rules: {
+                                    email: {
+                                        required: true,
+                                        email: true
+                                    }
+
+                                },
+                                messages: {
+                                    email: {
+                                        required: "Vui lòng nhập email",
+                                        email: "Email không hợp lệ"
+                                    }
+                                }
+
+                            });
+
+                        });
+
+                    </script>
+
+                    @{Html.RenderPartial("_ContactPartial", (ContactInfomation)ViewBag.Contact);}
+
+                    <div class="map-contact marginbottom">
+                        <div class="box">
+                            <div id="ext_maps">
+                                @{Html.RenderPartial("_ContactMap", (ContactInfomation)ViewBag.Contact);}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="clear"></div>
+
+<link rel="stylesheet" href="assets/modules/contact/css/contact.css" type="text/css" />

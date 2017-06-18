@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	$('#vnt-thumbnail-nav').slick({
 		slidesToShow: 1,
 		slidesToScroll: 1,
@@ -14,7 +15,7 @@ $(document).ready(function(){
 	  	focusOnSelect: true,
 	  	arrows:true,
 	});
-	$("#vnt-product-other").slick({
+	$("#vnt-product-other").slick({	
 		infinite: true,
 		slidesToShow: 4,
 		slidesToScroll: 4

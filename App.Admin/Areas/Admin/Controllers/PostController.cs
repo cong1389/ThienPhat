@@ -140,7 +140,7 @@ namespace App.Admin.Controllers
 										};
 										string str9 = string.Format("{0}-{1}.jpg", str6, Guid.NewGuid());
 										string str10 = string.Format("{0}-{1}.jpg", str6, Guid.NewGuid());
-										this._imagePlugin.CropAndResizeImage(item, string.Format("{0}{1}/", Contains.PostFolder, str2), str9, new int?(ImageSize.WithBigSize), new int?(ImageSize.WithBigSize), false);
+										this._imagePlugin.CropAndResizeImage(item, string.Format("{0}{1}/", Contains.PostFolder, str2), str9, new int?(ImageSize.WithBigSize), new int?(ImageSize.HeightBigSize), false);
 										this._imagePlugin.CropAndResizeImage(item, string.Format("{0}{1}/", Contains.PostFolder, str2), str10, new int?(ImageSize.WithThumbnailSize), new int?(ImageSize.HeightThumbnailSize), false);
 										galleryImageViewModel.ImageThumbnail = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str10);
 										galleryImageViewModel.ImagePath = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str9);

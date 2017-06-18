@@ -1,84 +1,51 @@
 ﻿@model App.Domain.Entities.GlobalSetting.ContactInfomation
-<div class="container">
-    <div class="row">
-        <div class="col-sm-5">
-            <div class="address">
-                <h2>Thông tin liên hệ</h2>
-                <div class="address-content">
-                    @if (Model != null)
-                    {
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="icon-item">
-                                    <span class="fa-stack fa-sms">
-                                        <i class="fa fa-circle-thin fa-stack-2x"></i>
-                                        <i class="fa fa-phone fa-stack-1x"></i>
-                                    </span>
-                                </div>
-                                <div class="content-item">
-                                    <div class="text">
-                                        <label>Điện thoại:</label>
-                                    </div>
-                                    <b>@Model.Hotline</b>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="icon-item">
-                                    <span class="fa-stack fa-sms">
-                                        <i class="fa fa-circle-thin fa-stack-2x"></i>
-                                        <i class="fa fa-map-marker fa-stack-1x"></i>
-                                    </span>
-                                </div>
-                                <div class="content-item">
-                                    <p>Địa chỉ:</p>
-                                    <p class="add">
-                                       @Model.Address
-                                    </p>
-                                    <b>@Model.MobilePhone</b>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="icon-item">
-                                    <span class="fa-stack fa-sms">
-                                        <i class="fa fa-circle-thin fa-stack-2x"></i>
-                                        <i class="fa fa-envelope-o fa-stack-1x"></i>
-                                    </span>
-                                </div>
-                                <div class="content-item">
-                                    <p>@Model.Email</p>
-                                </div>
-                            </li>
-                        </ul>
-                    }
-                    
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-7">
-            <div class="form-contact">
-                <h2>Gửi tin nhắn</h2>
-                <div class="form">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input type="text" placeholder="Họ tên:*" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input type="text" placeholder="Email:*" class="form-control" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" rows="5" placeholder="Nội dung:*"></textarea>
-                        <div class="icon-comment"></div>
-                    </div>
-                    <div class="form-action">
-                        <button type="button" class="btn btn-default">Gửi tin nhắn</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+<div class="info-company marginbottom">
+    <div class="img">
+        <img src="/Images/chart.png" />
     </div>
-</div> 
+    <ul>
+        <li class="fa-home" itemprop="address">
+            @Model.Address
+        </li>
+        <li class="fa-phone" itemprop="telephone">@Model.MobilePhone</li>
+        <li class="fa-print" itemprop="faxNumber">@Model.Fax</li>
+        <li class="fa-envelope" itemprop="email">@Model.Email</li>
+        <li class="fa-globe" itemprop="url">www.trisedco.vn</li>
+    </ul><a class="view-map" onclick="">Xem bản đồ</a><div class="clear"></div>
+</div>
+
+
+<div id="formContact" name="formContact" method="post" action="#" class="form validate">
+
+    <form id="formContact" name="formContact" method="post" action="#" class="form validate">
+        <p>Cảm ơn Quý Khách đã quan tâm tới dịch vụ của chúng tôi, Quý Khách vui lòng liên hệ trực tiếp tại bất kỳ chi nhánh thành viên gần nhất hoặc liên hệ qua form:</p>
+        <div class="form-group">
+            <label for="">Họ tên <span class="per">(*)</span></label>
+            <input type="text" name="name" id="name" class="icon1 form-control" />
+        </div>
+        <div class="form-group">
+            <label for="">Email <span class="per">(*)</span></label>
+            <input type="text" name="email" id="email" class="icon2 form-control" />
+        </div>
+        <div class="form-group">
+            <label for="">Điện thoại <span class="per">(*)</span></label>
+            <input type="text" name="phone" id="phone" class="icon3 form-control" />
+        </div>
+        <div class="form-group">
+            <label for="">Nội dung liên lạc <span class="per">(*)</span></label>
+            <textarea class="icon4 form-control" id="content" name="content"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="">Mã bảo vệ <span class="per">(*)</span></label>
+            <input type="text" name="security_code" id="security_code" class="icon5 form-control" />
+            @*<img class="security_ver" src="http://trisedco.com/includes/sec_image.php?code=jMTUyMIw" />*@
+        </div>
+        <div class="form-group">
+            <div class="col-right">
+                <button id="do_submit" name="do_submit" type="submit" class="btn" value="Gừi"><span>Gửi</span></button>
+                <button id="btnReset" name="btnReset" type="reset" class="btn" value="Nhập lại"><span>Làm lại</span></button>
+            </div>
+        </div>
+    </form>
+</div>

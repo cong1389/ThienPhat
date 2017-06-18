@@ -3,25 +3,33 @@
 @model App.Domain.Entities.Data.Post
 @if (Model != null)
 {
-
-    <div id="columns" class="container">
-        <!-- Breadcrumb -->
-        <div class="breadcrumb clearfix">
-            <a class="home" href="http://kute-themes.com/prestashop/kuteshop/option4/" title="Return to Home">Home</a>
-            <span class="navigation-pipe">&gt;</span>
-            Printed Dress
+    <div class="vnt-page-slide">
+        <div id="vnt-page-slide">
+            <div class="item"><div class="img"><a href="http://" target="_blank"><img src="../vnt_upload/weblink/banner_1.jpg" /></a></div></div>
         </div>
 
+        <div id="vnt-navation" class="breadcrumb" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+            <div class="wrapper">
+                <div class="navation">
+                    <ul class="list-inline text-left">
+                        <li><a href="trang-chu.html">Trang chủ</a></li>
+                        <li><a href='san-pham.html'>Sản phẩm</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-        <!-- /Breadcrumb -->
-        <div class="row">
-            <div class="col-md-9 col-md-push-3 col-sm-12" id="center_column">
-                <div>
+    </div>
 
-                    <div class="primary_block row">
+    <div id="vnt-product">
+        <div class="wrapper">
 
-                        <!-- left infos-->
-                        <div class="pb-left-column col-xs-12 col-sm-6">
+            <div class="box_mid">
+
+                <div class="mid-content">
+
+                    <div class="rowmn">
+                        <div class="col6">
                             <div class="gallery-image">
                                 <div id="gallery" class="royalSlider rsDefault">
                                     @if (Model.GalleryImages.IsAny())
@@ -31,7 +39,7 @@
                                         foreach (var item in gallery)
                                         {
                                             <a class="rsImg" data-rsBigImg="@Url.Content("~/" + item.ImagePath)" href="@Url.Content("~/" + item.ImagePath)">
-                                                <img width="195" height="350" class="rsTmb" src="@Url.Content("~/" + item.ImageThumbnail)" />
+                                                <img class="rsTmb" src="@Url.Content("~/" + item.ImageThumbnail)" />
                                             </a>
                                         }
                                     }
@@ -43,747 +51,82 @@
                                     }
                                 </div>
                             </div>
-
-
-                        </div> <!-- end pb-left-column -->
-                        <!-- end left infos-->
-                        <!-- center infos -->
-                        <div class="pb-right-column col-xs-12 col-sm-6">
-                            <h1 class="product-name" itemprop="name">Printed Dress</h1>
-
-                            <div class="clearfix clearBoth product-price-group">
-                                <!-- prices -->
-                                <div class="price_container">
-                                    <span>
-                                        <span id="our_price_display" class="price" itemprop="price" content="25.999852">
-                                            @if (Model.GalleryImages.IsAny())
-                                            {
-                                                if (Model.Price.HasValue && Model.Discount.HasValue)
-                                                {
-                                                    @Html.Raw(string.Format("{0:##,### VND}", Model.Price - Model.Price * Model.Discount / 100))
-                                                }
-                                                else if (Model.Price.HasValue && !Model.Discount.HasValue)
-                                                {
-                                                    @Html.Raw(string.Format("{0:##,### VND}", Model.Price))
-                                                }
-                                                else
-                                                {
-                                                    @Html.Raw("Liên hệ")
-                                                }
-                                            }
-                                            else
-                                            {
-                                                <span class="text text-danger">Liên hệ</span>
-                                            }
-                                        </span>
-                                    </span>
-                                    @if (Model.Discount.HasValue)
-                                    {
-                                        <span id="old_price" style="display: inline-block;">
-                                            <span id="old_price_display" style="display: inline;">
-                                                <span class="old-price">
-                                                    @Html.Raw(string.Format("{0:##,### VND}", Model.Price))
-                                                </span>
-                                            </span>
-                                        </span>
-                                    }
-                                    @if (Model.Discount.HasValue)
-                                    {
-                                        <span id="reduction_percent" style="display:none;"><span id="reduction_percent_display" class="discount"></span></span>
-                                        <span id="reduction_amount" style="display: inline-block;"><span id="reduction_amount_display" class="discount">@Html.Raw(Model.Discount.ToString() + "%")</span></span>
-                                    }
-
-                                </div>
-                                <!-- end prices -->
-
-                                <div class="clear"></div>
-                            </div> <!-- end content_prices -->
-
-                            <p id="product_reference">
-                                <label>Tình trạng: </label>
-                                @if (Model.OutOfStock)
-                                {
-                                    <span class="editable label-danger" content="demo_2">Hết hàng</span>
-                                }
-                                else
-                                {
-                                    <span class="editable label-success" content="demo_2">Còn hàng</span>
-                                }
-
-                            </p>
-
-                            <div id="short_description_block">
-                                <div id="short_description_content" class="rte align_justify" itemprop="description"><p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula</p></div>
-                                <p class="buttons_bottom_block">
-                                    <a href="javascript:{}" class="button">
-                                        More details
-                                    </a>
-                                </p>
-                            </div>
-
-                            <p class="warning_inline" id="last_quantities" style="display: none">Warning: Last items in stock!</p>
-                            <p id="availability_date" style="display: none;">
-                                <span id="availability_date_label">Availability date:</span>
-                                <span id="availability_date_value"></span>
-                            </p>
-                            <!-- Out of stock hook -->
-                            <div id="oosHook" style="display: none;">
-
-                            </div>
-                            <!-- add to cart form-->
-                            <form id="buy_block" action="http://kute-themes.com/prestashop/kuteshop/option4/en/cart" method="post">
-                                <!-- hidden datas -->
-                                <p class="hidden">
-                                    <input type="hidden" name="token" value="29cd3d607c389bf4202bd90f1d110441" />
-                                    <input type="hidden" name="id_product" value="3" id="product_page_product_id" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="id_product_attribute" id="idCombination" value="" />
-                                </p>
-                                <div class="box-info-product">
-                                    <div class="product_attributes clearfix">
-                                        <p class="option-title">Available Options:</p>
-                                        <!-- attributes -->
-                                        <div id="attributes">
-                                            <div class="clearfix"></div>
-                                            <fieldset class="attribute_fieldset clearfix clearBoth">
-                                                <label class="attribute_label" for="group_1">Size&#58;&nbsp;</label>
-                                                <div class="attribute_list">
-                                                    <select name="group_1" id="group_1" class="form-control attribute_select no-print">
-                                                        <option value="1" selected="selected" title="S">S</option>
-                                                        <option value="2" title="M">M</option>
-                                                        <option value="3" title="L">L</option>
-                                                    </select>
-                                                </div> <!-- end attribute_list -->
-
-                                            </fieldset>
-
-                                            <fieldset class="attribute_fieldset clearfix clearBoth">
-                                                <label class="attribute_label">Color&#58;&nbsp;</label>
-                                                <div class="">
-                                                    @if (Model.MenuLink.TemplateType == (int)TemplateContent.Product)
-                                                    {
-                                                        int i = 0;
-                                                        <div class="product-attr">
-                                                            <div class="pd-at-title">
-                                                                @foreach (var item in Model.AttributeValues.Select(x => x.Attribute).Distinct().ToList())
-                                                                {
-                                                                    <div class="conten-attr">
-                                                                        @foreach (var at in Model.AttributeValues.Where(x => x.AttributeId == item.Id))
-                                                                        {
-
-                                                                            string activeClass = "active";
-                                                                            if (i > 0)
-                                                                            {
-                                                                                activeClass = string.Empty;
-                                                                            }
-                                                                            i += 1;
-                                                                            <div class="item @activeClass">
-                                                                                @if (!string.IsNullOrEmpty(at.ColorHex))
-                                                                                {
-                                                                                    <div class="select-item">
-                                                                                        <label>
-                                                                                            <input data-post="@Model.Id" type="checkbox" name="color" value="@at.Id" data-id="@Model.Id" />
-                                                                                            <span class="bg" style="background-color: @at.ColorHex"></span>
-                                                                                            <span>@at.ValueName</span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    <div class="select-item size">
-                                                                                        <label>
-                                                                                            <input data-post="@Model.Id" type="checkbox" name="color" value="@at.Id" data-id="@Model.Id" />
-                                                                                            <span>@at.ValueName</span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                }
-                                                                            </div>
-                                                                        }
-                                                                    </div>
-                                                                }
-                                                            </div>
-                                                        </div>
-
-                                                    }
-                                                </div> <!-- end attribute_list -->
-                                            </fieldset>
-                                        </div> <!-- end attributes -->
-                                        <!-- quantity wanted -->
-                                        <p id="quantity_wanted_p">
-                                            <label for="quantity_wanted">Qty:</label>
-                                            <input type="text" min="1" name="qty" id="quantity_wanted" class="text" value="1" />
-                                            <span class="quantity_btn">
-                                                <a href="#" data-field-qty="qty" class="btn btn-default button-plus product_quantity_up">
-                                                    <span><i class="fa fa-caret-up"></i></span>
-                                                </a>
-                                                <a href="#" data-field-qty="qty" class="btn btn-default button-minus product_quantity_down">
-                                                    <span><i class="fa fa-caret-down"></i></span>
-                                                </a>
-                                            </span>
-                                            <span class="clearfix"></span>
-                                        </p>
-                                        <!-- minimal quantity wanted -->
-                                        <p id="minimal_quantity_wanted_p" style="display: none;">
-                                            The minimum purchase order quantity for the product is <b id="minimal_quantity_label">1</b>
-                                        </p>
-                                    </div> <!-- end product_attributes -->
-                                    <div class="box-cart-bottom">
-                                        <div>
-                                            <p id="add_to_cart" class="no-print">
-                                                <button type="submit" name="Submit" class="exclusive btn-add-cart button_111">
-                                                    <span>Add to cart</span>
-                                                </button>
-                                            </p>
-                                        </div>
-                                    </div> <!-- end box-cart-bottom -->
-                                    <div class="buttons_bottom_block no-print">
-                                        <a id="wishlist_button_nopop" href="#" onclick="WishlistCart('wishlist_block_list', 'add', '3', $('#idCombination').val(), document.getElementById('quantity_wanted').value); return false;" rel="nofollow" title="Add to my wishlist">
-                                            Wishlist
-                                        </a>
-                                        <div class="compare">
-                                            <a class="add_to_compare" href="3-printed-dress.html" data-id-product="3">Compare</a>
-                                        </div>
-                                    </div>
-                                    <!-- Productpaymentlogos module -->
-                                    <div id="product_payment_logos">
-                                        <div class="box-security">
-                                            <h5 class="product-heading-h5"></h5>
-                                            <img src="../../modules/productpaymentlogos/img/payment-logo.png" alt="" class="img-responsive" />
-                                        </div>
-                                    </div>
-                                    <!-- /Productpaymentlogos module -->
-                                    <!-- usefull links-->
-                                    <div id="usefull_link_block" class="clearfix no-print">
-                                        <div class="print">
-                                            <a href="javascript:print();" title="Print">
-                                                Print
-                                            </a>
-                                        </div>
-                                        <div class="sendtofriend">
-                                            <a id="send_friend_button" href="#send_friend_form" title="Send to a friend">
-                                                Send to a friend
-                                            </a>
-                                            <div style="display: none;">
-                                                <div id="send_friend_form">
-                                                    <h2 class="page-subheading">
-                                                        Send to a friend
-                                                    </h2>
-                                                    <div class="row">
-                                                        <div class="product clearfix col-xs-12 col-sm-6">
-                                                            <img src="../../1154-home_default/printed-dress.jpg" height="305" width="260" alt="Printed Dress" />
-                                                            <div class="product_desc">
-                                                                <p class="product_name">
-                                                                    <strong>Printed Dress</strong>
-                                                                </p>
-                                                                <p>100% cotton double printed dress. Black and white striped top and orange high waisted skater skirt bottom.</p>
-                                                            </div>
-                                                        </div><!-- .product -->
-                                                        <div class="send_friend_form_content col-xs-12 col-sm-6" id="send_friend_form_content">
-                                                            <div id="send_friend_form_error"></div>
-                                                            <div id="send_friend_form_success"></div>
-                                                            <div class="form_container">
-                                                                <p class="intro_form">
-                                                                    Recipient :
-                                                                </p>
-                                                                <p class="text">
-                                                                    <label for="friend_name">
-                                                                        Name of your friend <sup class="required">*</sup> :
-                                                                    </label>
-                                                                    <input id="friend_name" name="friend_name" type="text" value="" />
-                                                                </p>
-                                                                <p class="text">
-                                                                    <label for="friend_email">
-                                                                        E-mail address of your friend <sup class="required">*</sup> :
-                                                                    </label>
-                                                                    <input id="friend_email" name="friend_email" type="text" value="" />
-                                                                </p>
-                                                                <p class="txt_required">
-                                                                    <sup class="required">*</sup> Required fields
-                                                                </p>
-                                                            </div>
-                                                            <p class="submit">
-                                                                <button id="sendEmail" class="btn button button-small" name="sendEmail" type="submit">
-                                                                    <span>Send</span>
-                                                                </button>&nbsp;
-                                                                <a class="closefb btn button button-small" href="#">
-                                                                    <span>Cancel</span>
-                                                                </a>
-                                                            </p>
-                                                        </div> <!-- .send_friend_form_content -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="clearfix"></div>
-                                        <p class="socialsharing_product no-print">
-                                            <button data-type="twitter" type="button" class="btn btn-default btn-twitter social-sharing">
-                                                <i class="icon-twitter"></i> Tweet
-                                                <!-- <img src="http://kute-themes.com/prestashop/kuteshop/option4/modules/socialsharing/img/twitter.gif" alt="Tweet" /> -->
-                                            </button>
-                                            <button data-type="facebook" type="button" class="btn btn-default btn-facebook social-sharing">
-                                                <i class="icon-facebook"></i> Share
-                                                <!-- <img src="http://kute-themes.com/prestashop/kuteshop/option4/modules/socialsharing/img/facebook.gif" alt="Facebook Like" /> -->
-                                            </button>
-                                            <button data-type="google-plus" type="button" class="btn btn-default btn-google-plus social-sharing">
-                                                <i class="icon-google-plus"></i> Google+
-                                                <!-- <img src="http://kute-themes.com/prestashop/kuteshop/option4/modules/socialsharing/img/google.gif" alt="Google Plus" /> -->
-                                            </button>
-                                            <button data-type="pinterest" type="button" class="btn btn-default btn-pinterest social-sharing">
-                                                <i class="icon-pinterest"></i> Pinterest
-                                                <!-- <img src="http://kute-themes.com/prestashop/kuteshop/option4/modules/socialsharing/img/pinterest.gif" alt="Pinterest" /> -->
-                                            </button>
-                                        </p>
-                                    </div>
-                                </div> <!-- end box-info-product -->
-                            </form>
-                        </div> <!-- end pb-right-column-->
-                    </div> <!-- end primary_block -->
-                    <div id="product-tab-wrap">
-                        <!-- Nav tabs -->
-                        <ul id="product-tab" class="nav nav-tabs" role="tablist">
-                            <li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Product Description</a></li>
-                            <li role="presentation"><a href="#features" aria-controls="features" role="tab" data-toggle="tab">Data sheet</a></li>
-
-
-
-                            <li role="presentation" class="idTabHrefShort"><a href="#idTab5" aria-controls="idTab5" role="tab" data-toggle="tab">Reviews</a></li>
-                        </ul>
-                        <!-- Tab panes -->
-                        <div id="tab-content" class="tab-content">
-                            <div role="tabpanel" class="tab-pane" id="description">
-                                <div class="rte"><p>Fashion has been creating well-designed collections since 2010. The brand offers feminine designs delivering stylish separates and statement dresses which have since evolved into a full ready-to-wear collection in which every item is a vital part of a woman's wardrobe. The result? Cool, easy, chic looks with youthful elegance and unmistakable signature style. All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a range of accessories including shoes, hats, belts and more!</p></div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="features">
-                                <table class="table-data-sheet">
-                                    <tr class="odd">
-                                        <td>Compositions</td>
-                                        <td>Cotton</td>
-                                    </tr>
-                                    <tr class="even">
-                                        <td>Styles</td>
-                                        <td>Girly</td>
-                                    </tr>
-                                    <tr class="odd">
-                                        <td>Properties</td>
-                                        <td>Colorful Dress</td>
-                                    </tr>
-                                </table>
-                            </div>
-
-
-                            <div role="tabpanel" class="tab-pane" id="idTab5">
-                                <div id="product_comments_block_tab">
-                                    <div class="comment row" itemprop="review" itemscope itemtype="http://schema.org/Review">
-                                        <div class="comment_author col-sm-2">
-                                            <span>Grade&nbsp;</span>
-                                            <div class="star_content clearfix" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-                                                <div class="star star_on"></div>
-                                                <div class="star star_on"></div>
-                                                <div class="star star_on"></div>
-                                                <div class="star star_on"></div>
-                                                <div class="star"></div>
-                                                <meta itemprop="worstRating" content="0" />
-                                                <meta itemprop="ratingValue" content="4" />
-                                                <meta itemprop="bestRating" content="5" />
-                                            </div>
-                                            <div class="comment_author_infos">
-                                                <strong itemprop="author">sfsf</strong>
-                                                <meta itemprop="datePublished" content="2016-06-16" />
-                                                <em>06/16/2016</em>
-                                            </div>
-                                        </div> <!-- .comment_author -->
-                                        <div class="comment_details col-sm-10">
-                                            <p itemprop="name" class="title_block">
-                                                <strong>fs</strong>
-                                            </p>
-                                            <p itemprop="reviewBody">fsf</p>
-                                            <ul></ul>
-                                        </div><!-- .comment_details -->
-                                    </div> <!-- .comment -->
-                                    <p class="align_center">
-                                        <a id="new_comment_tab_btn" class="btn btn-default button button-small open-comment-form" href="#new_comment_form">
-                                            <span>Write your review!</span>
-                                        </a>
-                                    </p>
-                                </div> <!-- #product_comments_block_tab -->
-                            </div>
-                            <!-- Fancybox -->
-                            <div style="display: none;">
-                                <div id="new_comment_form">
-                                    <form id="id_new_comment_form" action="#">
-                                        <h2 class="page-subheading">
-                                            Write a review
-                                        </h2>
-                                        <div class="row">
-                                            <div class="product clearfix  col-xs-12 col-sm-6">
-                                                <img src="../../1154-medium_default/printed-dress.jpg" height="153" width="125" alt="Printed Dress" />
-                                                <div class="product_desc">
-                                                    <p class="product_name">
-                                                        <strong>Printed Dress</strong>
-                                                    </p>
-                                                    <p>100% cotton double printed dress. Black and white striped top and orange high waisted skater skirt bottom.</p>
-                                                </div>
-                                            </div>
-                                            <div class="new_comment_form_content col-xs-12 col-sm-6">
-                                                <div id="new_comment_form_error" class="error" style="display: none; padding: 15px 25px">
-                                                    <ul></ul>
-                                                </div>
-                                                <ul id="criterions_list">
-                                                    <li>
-                                                        <label>Quality:</label>
-                                                        <div class="star_content">
-                                                            <input class="star not_unifrom" type="radio" name="criterion[1]" value="1" />
-                                                            <input class="star not_unifrom" type="radio" name="criterion[1]" value="2" />
-                                                            <input class="star not_unifrom" type="radio" name="criterion[1]" value="3" />
-                                                            <input class="star not_unifrom" type="radio" name="criterion[1]" value="4" checked="checked" />
-                                                            <input class="star not_unifrom" type="radio" name="criterion[1]" value="5" />
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                </ul>
-                                                <label for="comment_title">
-                                                    Title: <sup class="required">*</sup>
-                                                </label>
-                                                <input id="comment_title" name="title" type="text" value="" />
-                                                <label for="content">
-                                                    Comment: <sup class="required">*</sup>
-                                                </label>
-                                                <textarea id="content" name="content"></textarea>
-                                                <label>
-                                                    Your name: <sup class="required">*</sup>
-                                                </label>
-                                                <input id="commentCustomerName" name="customer_name" type="text" value="" />
-                                                <div id="new_comment_form_footer">
-                                                    <input id="id_product_comment_send" name="id_product" type="hidden" value='3' />
-                                                    <p class="fl required"><sup>*</sup> Required fields</p>
-                                                    <p class="fr">
-                                                        <button id="submitNewMessage" name="submitMessage" type="submit" class="button button_111 button_111_hover">
-                                                            <span>Submit</span>
-                                                        </button>&nbsp;
-                                                        &nbsp;
-                                                        <a class="closefb button second_button_111 second_button_111_hover" href="#">
-                                                            Cancel
-                                                        </a>
-                                                    </p>
-                                                    <div class="clearfix"></div>
-                                                </div> <!-- #new_comment_form_footer -->
-                                            </div>
-                                        </div>
-                                    </form><!-- /end new_comment_form_content -->
-                                </div>
-                            </div>
-                            <!-- End fancybox -->
-
                         </div>
-                    </div>
 
-
-                    @*<script type="text/javascript">
-                            jQuery(document).ready(function () {
-                                var MBG = GoogleAnalyticEnhancedECommerce;
-                                MBG.setCurrency('USD');
-                                MBG.addProductDetailView({ "id": 3, "name": "\"Printed Dress\"", "category": "\"home\"", "brand": "false", "variant": "null", "type": "typical", "position": "0", "quantity": 1, "list": "product", "url": "", "price": "26.00" }); MBG.addProductClickByHttpReferal({ "id": 3, "name": "\"Printed Dress\"", "category": "\"home\"", "brand": "false", "variant": "null", "type": "typical", "position": "0", "quantity": 1, "list": "product", "url": "", "price": "26.00" });
-                            });
-                        </script>*@
-                </div> <!-- itemscope product wrapper -->
-
-            </div>
-            <div class="col-md-3 col-md-pull-9 col-sm-12 sidebar sidebar-left">
-                <!-- Block categories module -->
-                <div id="categories_block_left" class="block block-sidebar">
-                    <div class="title_block">
-                        Categories
-
-                    </div>
-                    <div class="block_content">
-                        <ul class="tree-menu">
-
-                            <li class=" ">
-                                <a href="../12-electronics.html" title="">
-                                    electronics
-                                </a>
-                                <ul class="childrens">
-
-                                    <li class=" ">
-                                        <a href="../22-computers-networking.html" title="">
-                                            computers &amp; networking
-                                        </a>
-                                    </li>
-
-                                    <li class=" ">
-                                        <a href="../26-cameras-photos.html" title="">
-                                            cameras &amp; photos
-                                        </a>
-                                    </li>
-
-                                    <li class="last ">
-                                        <a href="../27-television.html" title="">
-                                            television
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class=" ">
-                                <a href="../17-sports-outdoors.html" title="">
-                                    sports &amp; outdoors
-                                </a>
-                            </li>
-
-                            <li class=" ">
-                                <a href="../19-health-beauty-bags.html" title="">
-                                    health &amp; beauty bags
-                                </a>
-                            </li>
-
-                            <li class=" ">
-                                <a href="../20-shoes-accessories.html" title="">
-                                    shoes &amp; accessories
-                                </a>
-                            </li>
-
-                            <li class=" ">
-                                <a href="../24-jewelry-watches.html" title="">
-                                    jewelry &amp; watches
-                                </a>
-                            </li>
-
-                            <li class=" ">
-                                <a href="../63-fashion.html" title="">
-                                    fashion
-                                </a>
-                                <ul class="childrens">
-
-                                    <li class=" ">
-                                        <a href="../21-toys-hobbies.html" title="">
-                                            toys &amp; hobbies
-                                        </a>
-                                    </li>
-
-                                    <li class="last ">
-                                        <a href="../49-women.html" title="">
-                                            women
-                                        </a>
-                                        <ul class="childrens">
-
-                                            <li class=" ">
-                                                <a href="../102-bags-and-shoes.html" title="Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.">
-                                                    bags and shoes
-                                                </a>
-                                            </li>
-
-                                            <li class=" ">
-                                                <a href="../103-pants.html" title="Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.  Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus.">
-                                                    pants
-                                                </a>
-                                            </li>
-
-                                            <li class="last ">
-                                                <a href="../104-bouses.html" title="Donec rutrum congue leo eget malesuada. Cras ultricies ligula sed magna dictum porta. Donec rutrum congue leo eget malesuada. Proin eget tortor risus.">
-                                                    bouses
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class=" ">
-                                <a href="../75-furniture.html" title="">
-                                    furniture
-                                </a>
-                                <ul class="childrens">
-
-                                    <li class="last ">
-                                        <a href="../25-flashlights-lamps.html" title="">
-                                            flashlights &amp; lamps
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="last ">
-                                <a href="../105-keyboard-mouse.html" title="">
-                                    keyboard &amp; mouse
-                                </a>
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
-                <!-- /Block categories module -->
-                <!-- MODULE Block specials -->
-                <div id="special_block_right" class="block">
-                    <p class="title_block">
-                        <a href="../prices-drop.html" title="Specials">
-                            Specials
-                        </a>
-                    </p>
-                    <div class="block_content products-block">
-                        <ul>
-                            <li class="clearfix">
-                                <a class="products-block-image" href="183-shoes-.html">
-                                    <img class="replace-2x img-responsive"
-                                         src="../../876-small_default/shoes-.jpg"
-                                         alt="shoes "
-                                         title="shoes " />
-                                </a>
-                                <div class="product-content">
-                                    <h5>
-                                        <a class="product-name" href="183-shoes-.html" title="shoes ">
-                                            shoes
-                                        </a>
-                                    </h5>
-                                    <p class="product-description">
-                                        Donec sollicitudin molestie...
-                                    </p>
-                                    <div class="price-box">
-                                        <span class="price special-price">
-                                            $210.00
-                                        </span>
-                                        <span class="old-price">
-                                            $220.00
-                                        </span>
-
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <div>
-                            <a class="btn btn-default button button-small"
-                               href="../prices-drop.html"
-                               title="All specials">
-                                <span>All specials<i class="icon-chevron-right right"></i></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /MODULE Block specials -->
-                <!-- Block stores module -->
-                <div id="stores_block_left" class="block">
-                    <p class="title_block">
-                        <a href="../stores.html" title="Our stores">
-                            Our stores
-                        </a>
-                    </p>
-                    <div class="block_content blockstore">
-                        <p class="store_image">
-                            <a href="../stores.html" title="Our stores">
-                                <img class="img-responsive" src="../../modules/blockstore/47dd953a232cf12fae9f0ddfd209d6d9.jpg" alt="Our stores" />
-                            </a>
-                        </p>
-                        <div>
-                            <a class="btn btn-default button button-small"
-                               href="../stores.html"
-                               title="Our stores">
-                                <span>Discover our stores<i class="icon-chevron-right right"></i></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Block stores module -->
-            </div>
-        </div>
-    </div>
-
-
-    <div class="product-container">
-        @{Html.RenderPartial("_BreadCrumb");}
-        <div class="container">
-            <div class="main-product">
-                <h2>@Model.Title</h2>
-                <div class="row">
-                    <div class="col-sm-6">
-
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="product-content">
-
-                            <p class="status">
-                                <label>Tình trạng:</label>
-                                @if (Model.OutOfStock)
-                                {
-                                    <span class="label label-danger">Hết hàng</span>
-                                }
-                                else
-                                {
-                                    <span class="label label-success">Còn hàng</span>
-                                }
-                            </p>
-
-                            <div class="pd-desc">
-                                <div class="desc-content">
+                        <div class="col6">
+                            <div class="product-info">
+                                <div class="product-title"><h1>@Model.Title</h1></div>
+                                <div class="product-excerpt">
                                     @Html.Raw(Model.ShortDesc)
+                                    @if (!string.IsNullOrEmpty(Model.TechInfo))
+                                    {
+                                        @Html.Raw(Model.TechInfo)
+                                    }
                                 </div>
-                            </div>
-                            <div class="area_order">
-                                <a href="#" class="buy_now" rel="nofollow" data-toggle="modal" data-target="#callbackProduct" data-backdrop="static">Chúng tôi sẽ gọi bạn ngay</a>
-                            </div>
-                            @Html.Action("GetContactOrder", "Summary", new { area = "" })
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <div class="description">
-                            <div class="tabbable-line">
-                                <ul class="nav nav-tabs ">
-                                    <li class="active"><a href="#tab_0" rel="nofollow" data-toggle="tab">PHẢN HỒI</a></li>
-                                    <li><a href="#tab_1" rel="nofollow" data-toggle="tab">THÔNG SỐ</a></li>
-                                    @if (!string.IsNullOrEmpty(Model.TechInfo))
-                                    {
-                                        <li><a href="#tab_2" rel="nofollow" data-toggle="tab">TÍNH NĂNG</a></li>
-                                    }
-
-                                    <li><a href="#tab_3" rel="nofollow" data-toggle="tab">CHÍNH SÁCH ĐỔI TRẢ</a></li>
-                                    <li><a href="#tab_4" rel="nofollow" data-toggle="tab">ĐIỀU KHOẢN BẢO HÀNH</a></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab_0">
-                                        <div class="comment">
-                                            <div class="fb-comments" data-href="@HttpContext.Current.Request.Url" data-numposts="5" data-width="100%"></div>
-                                        </div>
-                                    </div>
-                                    @if (!string.IsNullOrEmpty(Model.TechInfo))
-                                    {
-                                        <div class="tab-pane" id="tab_1">
-                                            @Html.Raw(Model.TechInfo)
-                                        </div>
-                                    }
-                                    <div class="tab-pane" id="tab_2">
-                                        @Html.Raw(Model.Description)
-                                    </div>
-                                    <div class="tab-pane" id="tab_3">
-                                        <img src="/images/chinh_sach_doi_tra.png" alt="Chính sách đổi trả" style="width: 100%" />
-                                    </div>
-                                    <div class="tab-pane" id="tab_4">
-                                        @Html.Partial("_PartialWarranty")
-                                    </div>
+                                <a href="lien-he.html" class="product-to-cart"><span>liên hệ đặt hàng</span></a>
+                                <div class="product-share">
+                                    <table border="0" cellspacing="2" cellpadding="2" align="center"><tr><td><a title="Chia sẻ qua Facebook." href="https://www.facebook.com/sharer.php?u=http://trisedco.com/vn/da-ca.html" rel="nofollow" style="margin-right:20px" target="_blank"><img src="../skins/default/images/icon_facebook_share.gif" /></a></td><td><a title="Chia sẻ qua Google Plus." href="https://plus.google.com/share?url=http://trisedco.com/vn/da-ca.html" rel="nofollow" style="margin-right:20px" target="_blank"><img src="../skins/default/images/icon_google_share.gif" /></a></td><td><iframe src="http://www.facebook.com/plugins/like.php?href=http://trisedco.com/vn/da-ca.html&amp;layout=button_count&amp;show_faces=true&amp;width=90&amp;action=like&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:20px;" allowTransparency="true"></iframe></td><td><g:plusone href="da-ca.html" size="medium"></g:plusone></td></tr></table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3">
-                        @Html.Action("GetNewProductRelative2", "Post", new { area = "", virtualId = Model.MenuLink.VirtualId, productId = Model.Id })
-                    </div>
-                </div>
-                @Html.Action("GetNewProductRelative", "Post", new { area = "", price = Model.Price, productId = Model.Id })
 
+                    <div class="rowmn">
+                        <div class="col12">
+                            <div class="product-detail">
+                                <div class="pro-title">mô tả</div>
+                                @Html.Raw(Model.Description)
+                                <div class="pro-content desc">
+                                    <p><span style="color:#FF0000;"><strong><span style="font-size:22px;">Liên hệ</span></strong></span></p>
+
+                                    <p><span style="color:#008000;"><strong><span style="font-size:16px;">Để biết thêm thông tin về sản phẩm, vui lòng liên hệ với chúng tôi:</span></strong></span></p>
+
+                                    <p>
+                                        <strong>Mr.Lê Xuân Quế ( Tổng Giám Đốc )</strong><br />
+                                        Điện thoại: +84 (0) 913971343<br />
+                                        Email: xuanqueasm@gmail.com
+                                    </p>
+
+                                    <p>
+                                        <strong>Mr. Trần Bá Sơn ( Phó Tổng Giám Đốc )</strong><br />
+                                        Điện thoại: +84 (0) 908476786<br />
+                                        Email: sontrisedco@gmail.com
+                                    </p>
+
+                                    <p>
+                                        <strong>Mr. Lý Ngọc Anh ( Giám Đốc Kinh Doanh )</strong><br />
+                                        Điện thoại: +84 (0) 944375767<br />
+                                        Email: anhquocviet07@gmail.com&nbsp;
+                                    </p>
+                                </div>
+                            </div>
+                            @Html.Action("GetNewProductRelative2", "Post", new { area = "", virtualId = Model.MenuLink.VirtualId, productId = Model.Id })
+
+
+                            
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
+
         </div>
     </div>
-            }
+
+
+
+    <div class="clear"></div>
+
+}
+
 @section stylesheets
 {
-
     <link href="~/css/royalslider/royalslider.min.css" rel="stylesheet" />
     <link href="~/css/royalslider/rs-default.css" rel="stylesheet" />
 }
 
 @section jquerys{
-   
     <script src="~/js/royalslider/jquery.royalslider.min.js"></script>
     <script type="text/javascript">
         function initGallery() {
@@ -835,24 +178,7 @@
     </script>
 }
 
-@section facebook
-{
-    <div id="fb-root"></div>
-    <script>
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=743590089013725&version=v2.0";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-}
-@section google
-{
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-}
-@Html.Partial("_PartialModalProductContact")
+<link rel="stylesheet" href="assets/modules/product/css/product.css" type="text/css" />
+<script src="assets/modules/product/js/product.js" ></script>
 
 <!---/PostDetail---->

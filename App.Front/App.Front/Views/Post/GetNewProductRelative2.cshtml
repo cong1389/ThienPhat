@@ -2,39 +2,27 @@
 @model IEnumerable<App.Domain.Entities.Data.Post>
 @if (Model.IsAny())
 {
-    <div class="list-relative">
-        <h4>Giảm giá</h4>
-        <ul class="list-unstyled">
+    <div class="product-other">
+        <div class="pro-title">sản phẩm khác</div>
+        <div id="vnt-product-other">
             @foreach (var item in Model)
-                {
-                <li>
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <a href="@Url.Action("PostDetail", "Post", new {seoUrl = item.SeoUrl, area = ""})">
-                                <img src="@Url.Content("~/" + item.ImageMediumSize)" alt="@item.Title" />
-                            </a>
+            {
+                <div class="item">
+                    <div class="img">
+                        <a href="@Url.Action("PostDetail", "Post", new {seoUrl = item.SeoUrl, area = ""})" title='@item.Title'>
+                            <img src="@Url.Content("~/" + item.ImageMediumSize)" alt='@item.Title' title='@item.Title' />
+                        </a>
+                    </div>
+                    <div class="caption">
+                        <div class="tend">
+                            <a href="@Url.Action("PostDetail", "Post", new {seoUrl = item.SeoUrl, area = ""})" title='@item.Title'>@item.Title</a>
                         </div>
-                        <div class="col-sm-7">
-                            <h3>
-                                <a href="@Url.Action("PostDetail", "Post", new {seoUrl = item.SeoUrl, area = ""})">
-                                    @item.Title
-                                </a>
-                            </h3>
-                            @if (item.Discount > 0)
-                            {
-                                <strong class="price">@($"{item.Price - item.Price * item.Discount / 100:##,### VND}")</strong>
-                                <span class="line-strike">
-                                    @($"{item.Price:##,### VND}")
-                                </span>
-                            }
-                            else
-                            {
-                                <strong class="price">@($"{item.Price:##,### VND}")</strong>
-                            }
-                        </div>
-                    </div> 
-                </li>
-            }
-        </ul>
+                    </div>
+                </div>
+            }          
+
+        </div>
     </div>
+
+    
 }
