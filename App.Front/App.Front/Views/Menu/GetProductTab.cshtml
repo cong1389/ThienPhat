@@ -1,0 +1,1232 @@
+﻿<!--GetProductTab---->
+
+@using App.Utils
+@model IEnumerable<App.Domain.Entities.Menu.MenuLink>
+@if (Model.IsAny())
+{
+    var parent = Model.Where(x => !x.ParentId.HasValue).ToList();
+    string virtualId = string.Empty;
+
+    <section id="displayKSHomeTop-main" class="backgroud-white">
+        <div class="container">
+            <div class="displayKSHomeTop" id="displayKSHomeTop">
+
+                <div class="megabanner clearfix default">
+                    <div class="megabanner-item ">
+                        <div class="item-container" style="background-color:#E0D095">
+                            <a href="#" title="banner 1"><img src="../modules/megabanner/images/1455674275_b1.jpg" alt="banner 1" /></a>
+                            <div class="description-container">
+                                <div class="title">SHOP WOMEN</div>
+                                <div class="description">The Deals Shop Always Open</div>
+                                <div class="link style-1"><a href="#">Show now</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="megabanner-item ">
+                        <div class="item-container" style="background-color:#51B0A8">
+                            <a href="#" title="Banner 2"><img src="../modules/megabanner/images/1455675257_b2.jpg" alt="Banner 2" /></a>
+                            <div class="description-container">
+                                <div class="title"><span style="color: #ffffff;">SHOP WOMEN</span></div>
+                                <div class="description"><span style="color: #ffffff;">The Deals Shop Always Open</span></div>
+                                <div class="link style-2"><a href="#">Show now</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="md-margin"></div>
+        <div class="clearfix"></div>
+    </section>
+    <section id="displayKSHomeTab-main" class="">
+        <div class="md-margin"></div>
+        <div class="clearfix"></div>
+        <div class="container backgroud-white">
+            <div class="row clearfix">
+                <div id="displayKSHomeTab" class="col-sm-12">
+                    <div class="megadeal mega_deal_style1">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-4">
+                                <div class="hot-deals-tab clearfix">
+                                    <div class="hot-deals-title first_background_0088cc first_color_ffffff">
+                                        <div class="vertical-text">
+                                            <span class="">H</span>
+                                            <span class="">o</span>
+                                            <span class="">t</span>
+                                            <span class=""> </span>
+                                            <span class="c-org">d</span>
+                                            <span class="c-org">e</span>
+                                            <span class="c-org">a</span>
+                                            <span class="c-org">l</span>
+                                        </div>
+                                        <div class="horital-text">Hot deal</div>
+                                    </div>
+                                    <div class="tab-list-container">
+                                        <ul class="tab-list">
+                                            <li class="second_color_hover_0088cc active ">
+                                                <a data-toggle="tab" href="#mega_deal_style1_tab_181" class="tab-link" title="UP TO 40% OFF">UP TO 40% OFF</a>
+                                            </li>
+                                            <li class="second_color_hover_0088cc  ">
+                                                <a data-toggle="tab" href="#mega_deal_style1_tab_182" class="tab-link" title="UP TO 50% OFF">UP TO 50% OFF</a>
+                                            </li>
+                                            <li class="second_color_hover_0088cc  ">
+                                                <a data-toggle="tab" href="#mega_deal_style1_tab_183" class="tab-link" title="UP TO 60% OFF">UP TO 60% OFF</a>
+                                            </li>
+                                            <li class="second_color_hover_0088cc  ">
+                                                <a data-toggle="tab" href="#mega_deal_style1_tab_184" class="tab-link" title="UP TO 70% OFF">UP TO 70% OFF</a>
+                                            </li>
+                                            <li class="second_color_hover_0088cc  ">
+                                                <a data-toggle="tab" href="#mega_deal_style1_tab_202" class="tab-link" title="UP TO 80% OFF">UP TO 80% OFF</a>
+                                            </li>
+                                        </ul>
+                                        <div class="box-count-down">
+                                            <span class="countdown-style-2" data-cl="first_color_ffffff first_before_background_0088cc" data-year="2016" data-month="09" data-day="30" data-hours="00" data-minutes="09" data-seconds="00"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-8 tab-contents">
+                                <div class="tab-content ">
+                                    <div id="mega_deal_style1_tab_181" class="owl-carousel-style1  owl-carousel first_owl_hover_0088cc first_owl_color_hover_ffffff tab-pane fade in active" data-rtl="0" data-nav="0" data-loop="0" data-dots="0" data-lazyLoad="1" data-autoplayHoverPause="0" data-autoplay="0" data-autoplayTimeout="5000" data-margin="30" data-responsive='{"0":{"items":1, "nav":false}, "320":{"items":1, "nav":false}, "480":{"items":2, "nav":false}, "768":{"items":2, "nav":false}, "992":{"items":3, "nav":false}, "1200":{"items":4, "nav":false}}'>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/170-pro-bag-1.html" title="Pro Bag 1" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/846-home_default/pro-bag-1.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 1" title="Pro Bag 1" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=170&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="170" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/170-pro-bag-1.html" title="Pro Bag 1" itemprop="url">Pro Bag 1</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $35.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $40.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/174-pro-bag-5.html" title="Pro Bag 5" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/855-home_default/pro-bag-5.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 5" title="Pro Bag 5" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=174&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="174" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/174-pro-bag-5.html" title="Pro Bag 5" itemprop="url">Pro Bag 5</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $105.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $120.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/175-pro-bag-6.html" title="Pro Bag 6" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/857-home_default/pro-bag-6.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 6" title="Pro Bag 6" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=175&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="175" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/175-pro-bag-6.html" title="Pro Bag 6" itemprop="url">Pro Bag 6</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $30.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $50.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/178-pro-bag-9.html" title="Pro Bag 9" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/863-home_default/pro-bag-9.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 9" title="Pro Bag 9" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=178&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="178" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/178-pro-bag-9.html" title="Pro Bag 9" itemprop="url">Pro Bag 9</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $90.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $110.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/177-pro-bag-8.html" title="Pro Bag 8" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/861-home_default/pro-bag-8.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 8" title="Pro Bag 8" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=177&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="177" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/177-pro-bag-8.html" title="Pro Bag 8" itemprop="url">Pro Bag 8</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $200.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $210.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/173-pro-bag-4.html" title="Pro Bag 4" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/852-home_default/pro-bag-4.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 4" title="Pro Bag 4" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=173&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="173" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/173-pro-bag-4.html" title="Pro Bag 4" itemprop="url">Pro Bag 4</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $90.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $110.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="mega_deal_style1_tab_182" class="owl-carousel-style1  owl-carousel first_owl_hover_0088cc first_owl_color_hover_ffffff tab-pane fade in " data-rtl="0" data-nav="0" data-loop="0" data-dots="0" data-lazyLoad="1" data-autoplayHoverPause="0" data-autoplay="0" data-autoplayTimeout="5000" data-margin="30" data-responsive='{"0":{"items":1, "nav":false}, "320":{"items":1, "nav":false}, "480":{"items":2, "nav":false}, "768":{"items":2, "nav":false}, "992":{"items":3, "nav":false}, "1200":{"items":4, "nav":false}}'>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/4-printed-dress.html" title="New Printed Dress" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/999-home_default/printed-dress.jpg" src="../themes/kuteshop/loading.jpg" alt="New Printed Dress" title="New Printed Dress" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=4&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="4" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/4-printed-dress.html" title="New Printed Dress" itemprop="url">New Printed Dress</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $40.99
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $50.99
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="summer-dresses/5-printed-summer-dress.html" title="Printed Summer Dress" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/1005-home_default/printed-summer-dress.jpg" src="../themes/kuteshop/loading.jpg" alt="Printed Summer Dress" title="Printed Summer Dress" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=5&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="5" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="summer-dresses/5-printed-summer-dress.html" title="Printed Summer Dress" itemprop="url">Printed Summer Dress</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $30.51
+                                                    </span>
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/13-hair-accessories.html" title="Hair Style" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/894-home_default/hair-accessories.jpg" src="../themes/kuteshop/loading.jpg" alt="Hair Accessories" title="Hair Accessories" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=13&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="13" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/13-hair-accessories.html" title="Hair Style" itemprop="url">Hair Style</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $65.00
+                                                    </span>
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="jackets/16-jackets.html" title="Red Jackets" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/994-home_default/jackets.jpg" src="../themes/kuteshop/loading.jpg" alt="Red Jackets" title="Red Jackets" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=16&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="16" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="jackets/16-jackets.html" title="Red Jackets" itemprop="url">Red Jackets</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $40.00
+                                                    </span>
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="jackets/9-jackets.html" title="White Jackets" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/969-home_default/jackets.jpg" src="../themes/kuteshop/loading.jpg" alt="Jackets" title="Jackets" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=9&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="9" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="jackets/9-jackets.html" title="White Jackets" itemprop="url">White Jackets</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $42.00
+                                                    </span>
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="mega_deal_style1_tab_183" class="owl-carousel-style1  owl-carousel first_owl_hover_0088cc first_owl_color_hover_ffffff tab-pane fade in " data-rtl="0" data-nav="0" data-loop="0" data-dots="0" data-lazyLoad="1" data-autoplayHoverPause="0" data-autoplay="0" data-autoplayTimeout="5000" data-margin="30" data-responsive='{"0":{"items":1, "nav":false}, "320":{"items":1, "nav":false}, "480":{"items":2, "nav":false}, "768":{"items":2, "nav":false}, "992":{"items":3, "nav":false}, "1200":{"items":4, "nav":false}}'>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/185-shoes-red.html" title="Shoes Red" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/879-home_default/shoes-red.jpg" src="../themes/kuteshop/loading.jpg" alt="Shoes Red" title="Shoes Red" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=185&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="185" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/185-shoes-red.html" title="Shoes Red" itemprop="url">Shoes Red</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $190.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $210.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/184-shoes-21.html" title="Shoes 21" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/873-home_default/shoes-21.jpg" src="../themes/kuteshop/loading.jpg" alt="Shoes 21" title="Shoes 21" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=184&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="184" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/184-shoes-21.html" title="Shoes 21" itemprop="url">Shoes 21</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $100.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $110.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/183-shoes-.html" title="shoes " itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/876-home_default/shoes-.jpg" src="../themes/kuteshop/loading.jpg" alt="shoes " title="shoes " itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=183&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="183" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/183-shoes-.html" title="shoes " itemprop="url">shoes </a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $210.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $220.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/178-pro-bag-9.html" title="Pro Bag 9" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/863-home_default/pro-bag-9.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 9" title="Pro Bag 9" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=178&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="178" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/178-pro-bag-9.html" title="Pro Bag 9" itemprop="url">Pro Bag 9</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $90.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $110.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/177-pro-bag-8.html" title="Pro Bag 8" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/861-home_default/pro-bag-8.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 8" title="Pro Bag 8" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=177&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="177" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/177-pro-bag-8.html" title="Pro Bag 8" itemprop="url">Pro Bag 8</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $200.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $210.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/176-pro-bag-7.html" title="Pro Bag 7" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/859-home_default/pro-bag-7.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 7" title="Pro Bag 7" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=176&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="176" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/176-pro-bag-7.html" title="Pro Bag 7" itemprop="url">Pro Bag 7</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $185.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $200.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="mega_deal_style1_tab_184" class="owl-carousel-style1  owl-carousel first_owl_hover_0088cc first_owl_color_hover_ffffff tab-pane fade in " data-rtl="0" data-nav="0" data-loop="0" data-dots="0" data-lazyLoad="1" data-autoplayHoverPause="0" data-autoplay="0" data-autoplayTimeout="5000" data-margin="30" data-responsive='{"0":{"items":1, "nav":false}, "320":{"items":1, "nav":false}, "480":{"items":2, "nav":false}, "768":{"items":2, "nav":false}, "992":{"items":3, "nav":false}, "1200":{"items":4, "nav":false}}'>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/12-scarves.html" title="Rings" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/1163-home_default/scarves.jpg" src="../themes/kuteshop/loading.jpg" alt="Scarves" title="Scarves" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=12&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="12" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/12-scarves.html" title="Rings" itemprop="url">Rings</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $21.00
+                                                    </span>
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/181-perfume-red.html" title="Perfume Red" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/872-home_default/perfume-red.jpg" src="../themes/kuteshop/loading.jpg" alt="Perfume Red" title="Perfume Red" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=181&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="181" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/181-perfume-red.html" title="Perfume Red" itemprop="url">Perfume Red</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $325.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $330.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/182-perfume-green.html" title="Perfume Green" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/869-home_default/perfume-green.jpg" src="../themes/kuteshop/loading.jpg" alt="Perfume Green" title="Perfume Green" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=182&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="182" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/182-perfume-green.html" title="Perfume Green" itemprop="url">Perfume Green</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $200.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $220.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/180-perfume-blue.html" title="Perfume blue" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/868-home_default/perfume-blue.jpg" src="../themes/kuteshop/loading.jpg" alt="Perfume blue" title="Perfume blue" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=180&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="180" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/180-perfume-blue.html" title="Perfume blue" itemprop="url">Perfume blue</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $280.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $300.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div id="mega_deal_style1_tab_202" class="owl-carousel-style1  owl-carousel first_owl_hover_0088cc first_owl_color_hover_ffffff tab-pane fade in " data-rtl="0" data-nav="0" data-loop="0" data-dots="0" data-lazyLoad="1" data-autoplayHoverPause="0" data-autoplay="0" data-autoplayTimeout="5000" data-margin="30" data-responsive='{"0":{"items":1, "nav":false}, "320":{"items":1, "nav":false}, "480":{"items":2, "nav":false}, "768":{"items":2, "nav":false}, "992":{"items":3, "nav":false}, "1200":{"items":4, "nav":false}}'>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/174-pro-bag-5.html" title="Pro Bag 5" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/855-home_default/pro-bag-5.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 5" title="Pro Bag 5" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=174&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="174" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/174-pro-bag-5.html" title="Pro Bag 5" itemprop="url">Pro Bag 5</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $105.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $120.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/177-pro-bag-8.html" title="Pro Bag 8" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/861-home_default/pro-bag-8.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 8" title="Pro Bag 8" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=177&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="177" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/177-pro-bag-8.html" title="Pro Bag 8" itemprop="url">Pro Bag 8</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $200.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $210.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/178-pro-bag-9.html" title="Pro Bag 9" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/863-home_default/pro-bag-9.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 9" title="Pro Bag 9" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=178&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="178" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/178-pro-bag-9.html" title="Pro Bag 9" itemprop="url">Pro Bag 9</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $90.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $110.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/176-pro-bag-7.html" title="Pro Bag 7" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/859-home_default/pro-bag-7.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 7" title="Pro Bag 7" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=176&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="176" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/176-pro-bag-7.html" title="Pro Bag 7" itemprop="url">Pro Bag 7</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $185.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $200.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/175-pro-bag-6.html" title="Pro Bag 6" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/857-home_default/pro-bag-6.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 6" title="Pro Bag 6" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=175&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="175" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/175-pro-bag-6.html" title="Pro Bag 6" itemprop="url">Pro Bag 6</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $30.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $50.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/173-pro-bag-4.html" title="Pro Bag 4" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/852-home_default/pro-bag-4.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 4" title="Pro Bag 4" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=173&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="173" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/173-pro-bag-4.html" title="Pro Bag 4" itemprop="url">Pro Bag 4</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $90.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $110.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+                                        <div class="product-container product product-4 " itemscope itemtype="http://schema.org/Product">
+                                            <div class="left-block">
+                                                <div class="product-image-container">
+                                                    <a class="product_img_link" href="home/170-pro-bag-1.html" title="Pro Bag 1" itemprop="url">
+                                                        <img class="owl-lazy replace-2x img-responsive" data-src="http://kute-themes.com/prestashop/kuteshop/option4/846-home_default/pro-bag-1.jpg" src="../themes/kuteshop/loading.jpg" alt="Pro Bag 1" title="Pro Bag 1" itemprop="image" width="260" height="305" />
+                                                    </a>
+                                                </div>
+                                                <div class="add-to-cart  first_background_rgb_0088cc first_background_hover_0088cc first_color_ffffff">
+                                                    <a class="ajax_add_to_cart_button " href="quick-order.html?add=1&amp;id_product=170&amp;token=29cd3d607c389bf4202bd90f1d110441" data-rel="nofollow" title="Add to cart" data-id-product="170" data-minimal_quantity="1">
+                                                        <span>Add to cart</span>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="right-block">
+                                                <h5 class="name" itemprop="name">
+                                                    <a class="product-name mainLinkColor" href="home/170-pro-bag-1.html" title="Pro Bag 1" itemprop="url">Pro Bag 1</a>
+                                                </h5>
+                                                <div class="content_price">
+
+                                                    <span class="price product-price price_color pull-left">
+                                                        $35.00
+                                                    </span>
+
+                                                    <span class="old-price product-price pull-right">
+                                                        $40.00
+                                                    </span>
+
+
+
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-percent-reduction-container">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    if (parent.IsAny())
+    {
+        foreach (var item in parent)
+        {
+            <section id="displayKSHome-main" class="lg-margin">
+                <div class="container">
+                    <div id="displayKSHome">
+
+                        @Html.Action("GetCategoryHome", "MenuNav", new { virtualId = item.VirtualId, area = "" })
+
+                    </div>
+                </div>
+            </section>
+        }
+    }
+
+    <section id="displayKSHomeBottom-main" class="main-content">
+        <div class="container">
+            <div id="displayKSHomeBottom">
+                <div class="hidden">
+                    Lastest Posts
+
+                </div>
+                <div class="carousel-container">
+                    <h2 class="page-heading">
+                        <span class="page-heading-title button_001">From the blog</span>
+                    </h2>
+                    <div class="home-blogs">
+                        <div class="home-blogs-owl-carousel owl-style3 button_111_owl second_button_111_owl_hover">
+                            <article class="article">
+                                <div class="article-media-container post-thumb image-hover2"><a href="smartblog/16_share_the_love_for_prestashop_1_6.html"><img src="../modules/smartblog/images/16-home-default.jpg" class="img-responsive" alt="Share the Love for PrestaShop 1.6"></a></div>
+                                <div class="post-desc">
+                                    <h5 class="post-title">
+                                        <a class="mainLinkColor" href="smartblog/16_share_the_love_for_prestashop_1_6.html" title="Share the Love for PrestaShop 1.6">Share the Love for PrestaShop 1.6</a>
+                                    </h5>
+                                    <div class="post-meta">
+                                        <span class="date">20 Dec 2015</span>
+                                        <span class="comment"> Com</span>
+                                    </div>
+                                    <div class="readmore">
+                                        <a class="mainLinkColor" href="smartblog/16_share_the_love_for_prestashop_1_6.html">More</a>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="article">
+                                <div class="article-media-container post-thumb image-hover2"><a href="smartblog/13_answer_to_your_question_about_prestashop_1_6.html"><img src="../modules/smartblog/images/13-home-default.jpg" class="img-responsive" alt="Answers to your Questions about PrestaShop 1.6"></a></div>
+                                <div class="post-desc">
+                                    <h5 class="post-title">
+                                        <a class="mainLinkColor" href="smartblog/13_answer_to_your_question_about_prestashop_1_6.html" title="Answers to your Questions about PrestaShop 1.6">Answers to your Questions about PrestaShop 1.6</a>
+                                    </h5>
+                                    <div class="post-meta">
+                                        <span class="date">20 Dec 2015</span>
+                                        <span class="comment"> Com</span>
+                                    </div>
+                                    <div class="readmore">
+                                        <a class="mainLinkColor" href="smartblog/13_answer_to_your_question_about_prestashop_1_6.html">More</a>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="article">
+                                <div class="article-media-container post-thumb image-hover2"><a href="smartblog/11_what_is_bootstrap.html"><img src="../modules/smartblog/images/11-home-default.jpg" class="img-responsive" alt="What is Bootstrap? – The History and the Hype"></a></div>
+                                <div class="post-desc">
+                                    <h5 class="post-title">
+                                        <a class="mainLinkColor" href="smartblog/11_what_is_bootstrap.html" title="What is Bootstrap? – The History and the Hype">What is Bootstrap? – The History and the Hype</a>
+                                    </h5>
+                                    <div class="post-meta">
+                                        <span class="date">20 Dec 2015</span>
+                                        <span class="comment"> Com</span>
+                                    </div>
+                                    <div class="readmore">
+                                        <a class="mainLinkColor" href="smartblog/11_what_is_bootstrap.html">More</a>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="article">
+                                <div class="article-media-container post-thumb image-hover2"><a href="smartblog/10_from_now_we_are_certified_web_agency.html"><img src="../modules/smartblog/images/10-home-default.jpg" class="img-responsive" alt="From Now we are certified web agency"></a></div>
+                                <div class="post-desc">
+                                    <h5 class="post-title">
+                                        <a class="mainLinkColor" href="smartblog/10_from_now_we_are_certified_web_agency.html" title="From Now we are certified web agency">From Now we are certified web agency</a>
+                                    </h5>
+                                    <div class="post-meta">
+                                        <span class="date">20 Dec 2015</span>
+                                        <span class="comment"> Com</span>
+                                    </div>
+                                    <div class="readmore">
+                                        <a class="mainLinkColor" href="smartblog/10_from_now_we_are_certified_web_agency.html">More</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lg-margin"></div>
+        <div class="clearfix"></div>
+    </section>
+
+
+}
+
+<!--/GetProductTab---->

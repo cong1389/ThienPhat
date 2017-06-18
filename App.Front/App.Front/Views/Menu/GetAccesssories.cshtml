@@ -1,0 +1,66 @@
+﻿@using App.Utils
+@model IEnumerable<App.Domain.Entities.Menu.MenuLink>
+@if (Model.IsAny())
+{
+    var parent = Model.Where(x => !x.ParentId.HasValue).ToList();
+    var child = Model.Where(x => x.ParentId.HasValue).ToList();
+    int i = 0;
+    <div class="product-items">
+        <div class="nav-products">
+            <div class="container">
+                <div class="pull-left">
+                    <ul class="list-inline">
+                        @*<li>
+                            <a href="@Url.Action("Index","Home", new {area=""})" class="active"><i class="icon_home"></i></a>
+                        </li>*@
+                        @foreach (var item in parent)
+                        {
+                            <li>
+                                <a href="@Url.Action("GetContent", "Menu", new {menu = item.SeoUrl, area = ""})">
+                                    @item.MenuName
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                @if (child.IsAny())
+                {
+                    <div class="pull-right">
+                        <ul class="list-inline">
+                            @foreach (var item in child)
+                            {
+                                if (i == 0)
+                                {
+                                    <li>
+                                        <input type="hidden" id="Accessories" name="Accessories" value="@item.VirtualId" />
+                                        <a href="@Url.Action("GetContent", "Menu", new {menu = item.SeoUrl, area = ""})" class="active">
+                                            @item.MenuName
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a href="@Url.Action("GetContent", "Menu", new {menu = item.SeoUrl, area = ""})">
+                                            @item.MenuName
+                                        </a>
+                                    </li>
+                                }
+                                i++;
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="items">
+            <div class="container">
+                <div class="row">
+                    <div class="accessories-block animatedParent">
+                        @Html.Action("GetPostAccessory", "Post", new { area = "", virtualId = parent[0].VirtualId })
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+}

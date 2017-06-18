@@ -1,0 +1,57 @@
+﻿<!---GetHomeIntro--->
+@*<div id="vnt-home-about" class="lazyloading show">
+    <div class="wrapper">
+        <div class="rowmn">
+            <div class="col6">
+                <div class="portlet">
+                    <div class="title"><span>đôi nét về</span> <img alt="logo2" src="../vnt_upload/File/11_2016/logo2.jpg"></div>
+
+                    <div class="content desc">
+                        <p>Công ty cổ phần đầu tư du lịch và phát triển thủy sản ( TRISEDCO ) là một trong những công ty liên kết của tập đoàn Sao Mai. Được thành lập vào năm 2008.</p>
+
+                        <p>Với diện tích quy mô là 5.000 m2 công ty đã đầu tư 02 dây chuyền sản xuất bột cá và mỡ cá được chế biến từ phụ phẩm cá ( như đầu, xương, thịt vụn, nội tạng của cá ...)</p>
+
+                        <p>Từ đó đến nay công ty đã nổ lực và không ngừng phát triển. Ban Lãnh Đạo công ty đã tâm huyết và định hướng đề ra các chiến lược phát triển dài hạn từ nay đến năm 2020.</p>
+
+                        <p>* Là một nhà sản xuất và cung cấp bột cá, mỡ cá cho ngành chăn nuôi gia cầm và thủy sản đứng hàng đầu Việt Nam và thị trường quốc tế.</p>
+
+                        <p class="font">Khẳng định chất lượng vượt trội</p>
+                        <a class="view" href="http://trisedco.demo181.trust.vn/vn/gioi-thieu.html"><span>Xem thêm</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col6">
+                <div class="video">
+                    <div id="loadvideo" onclick="loadVideo();">
+                        <img src="../modules/main/images/main/video1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<div id="vnt-home-about1" class="lazyloading">
+    <div class="wrapper">
+        <div class="rowmn">
+            <div class="col6">
+                <div class="portlet">
+                    <div class="title"><span>@Model.Title</span><img alt="logo2" src="../vnt_upload/File/11_2016/logo2.jpg"></div>
+
+                    <div class="content desc">
+                        @Html.Raw(Model.ShortDesc)
+                        <a class="view" href="http://trisedco.demo181.trust.vn/vn/gioi-thieu.html"><span>Xem thêm</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col6">
+                <div class="video">
+                    <div id="loadvideo" onclick="loadVideo();">
+                        <img src="@Url.Content("~/"+ Model.ImagePath)" alt="@Model.Title" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---/GetHomeIntro--->

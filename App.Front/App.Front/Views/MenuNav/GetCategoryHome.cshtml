@@ -1,0 +1,55 @@
+﻿<!----GetCategoryHome--->
+@using App.Utils
+@model IEnumerable<App.Front.Models.MenuNav>
+@if (Model.IsAny())
+{
+    int i = 0;
+    int j = 0;
+
+    <div id="vnt-sidebar">
+        <div class="box">
+            <div class="box-content">
+
+                @foreach (var item in Model)
+                {
+                    if (item.ChildNavMenu.IsAny())
+                    {
+                        <div class="box-title">
+                            <div class="fTitle">@item.MenuName</div>
+                        </div>
+                        <ul>
+                            @foreach (var lv1 in item.ChildNavMenu)
+                            {
+                                <li>
+                                    <a href="@Url.Action("GetContent", "Menu", new {menu = lv1.SeoUrl, area = ""})">@lv1.MenuName</a>
+                                    <ul>
+                                        @foreach (var lv2 in lv1.ChildNavMenu)
+                                        {
+
+                                            <li>
+                                                <a href='@Url.Action("GetContent", "Menu", new {menu = lv2.SeoUrl, area = ""})'>@lv2.MenuName</a>
+                                                <ul>
+                                                    @foreach (var lv3 in lv2.ChildNavMenu)
+                                                    {
+                                                        <li>
+                                                            <a href='@Url.Action("GetContent", "Menu", new {menu = lv3.SeoUrl, area = ""})'>@lv3.MenuName</a>
+
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </li>
+
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+
+}
+<!----/GetCategoryHome--->

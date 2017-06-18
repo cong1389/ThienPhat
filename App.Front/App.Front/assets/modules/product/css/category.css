@@ -1,0 +1,62 @@
+div#vnt-category {
+    margin-bottom: 30px;
+}
+.category {
+    position: relative;
+    margin-bottom: 30px;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+}
+.category .img img {
+    width: 100%;
+    -webkit-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.category:hover .img img{
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.category .caption {
+    position: absolute;
+    bottom: 55px;
+    width: 365px;
+    height: 200px;
+    background: rgba(255,255,255,0.85);
+    padding: 30px;
+}
+.category .caption .tend {
+    margin-bottom: 20px;
+}
+.category .caption .tend a {
+    display: block;
+    color: #da251d;
+    font-size: 30px;
+    line-height: 38px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-bottom: 20px;
+    border-bottom: solid 3px #61a647;
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.category .caption .tend:hover a{
+    color:#61a647;
+    border-color: #da251d;
+}
+.category .caption .tomtat {
+    font-size: 16px;
+    line-height: 24px;
+    height: 72px;
+    overflow: hidden;
+}
+.category.left .caption{
+	left:30px;
+}
+.category.right .caption{
+	right:30px;
+}

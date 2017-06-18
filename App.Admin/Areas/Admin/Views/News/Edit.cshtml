@@ -1,0 +1,159 @@
+﻿@using App.Domain.Common
+@using App.Framework.Ultis
+@using Resources
+@model App.FakeEntity.News.NewsViewModel
+@{
+    ViewBag.Title = UI.CreateNew;
+    ViewBag.Toolbar = new[] { "Save", "SaveNew", "Divider", "Back" };
+}
+@using (Html.BeginForm("Edit", "News", FormMethod.Post, new { data_container = ViewContext.RouteData.Values["controller"], enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x=>x.Id) 
+
+    <div class="form-horizontal">
+        <div class="form-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger col-md-offset-3" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "help-block" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.MenuId, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    @Html.DropDownListFor(x => x.MenuId, new SelectList(ViewBag.MenuList, "Id", "MenuName"), "--Select--", new { @class = "form-control  select2" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.OrderDisplay, new {@class = "control-label col-md-3"})
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.OrderDisplay, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.OrderDisplay, "", new {@class = "help-block"})
+                </div>
+            </div>
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.Video, new {@class = "control-label col-md-3"})
+                <div class="col-md-5">
+                    @Html.CheckBoxFor(model => model.Video, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Video, "", new {@class = "help-block"})
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.OtherLink, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.OtherLink, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.OtherLink, "", new { @class = "help-block" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.VideoLink, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.VideoLink, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.VideoLink, "", new { @class = "help-block" })
+                </div>
+            </div>*@
+            <div class="form-group">
+                @Html.Label(FormUI.OptionDisplay, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    <div class="checkbox-list">
+                        <label>
+                            @Html.CheckBoxFor(x => x.SpecialDisplay) @FormUI.SpecialDisplay
+                        </label>
+                        <label>
+                            @Html.CheckBoxFor(x => x.HomeDisplay) @FormUI.HomeDisplay
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ShortDesc, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    @Html.TextAreaFor(model => model.ShortDesc, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ShortDesc, "", new { @class = "help-block" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control ckeditor" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "help-block" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.MetaTitle, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MetaTitle, "", new { @class = "help-block" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.MetaKeywords, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.MetaKeywords, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MetaKeywords, "", new { @class = "help-block" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.MetaDescription, new {@class = "control-label col-md-3"})
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.MetaDescription, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.MetaDescription, "", new {@class = "help-block"})
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SeoUrl, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.SeoUrl, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SeoUrl, "", new { @class = "help-block" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="input-group input-large">
+                            <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                <span class="fileinput-filename"> </span>
+                            </div>
+                            <span class="input-group-addon btn default btn-file">
+                                <span class="fileinput-new">@Resources.FormUI.SelectFile</span>
+                                <span class="fileinput-exists"> @Resources.FormUI.ChangeFile </span>
+                                @Html.TextBoxFor(model => model.Image, new { @type = "file" })
+                                @*<input type="file" name="FileUpload" />*@
+                            </span>
+                            <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "help-block" })
+                </div>
+                <div class="col-md-5 col-md-offset-3">
+                    @if (!string.IsNullOrEmpty(Model.ImageSmallSize))
+                    {
+                        <img src="@Url.Content("~/" + Model.ImageSmallSize)" width="80" />
+                    }
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    <div class="radio-list">
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(x => x.Status, (int)Status.Enable, new { @checked = "checked" }) @UI.Active
+                        </label>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(x => x.Status, (int)Status.Disable) @UI.InActive
+                        </label>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "help-block" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+    <script src="@Url.FakePathAdmin("scripts/plugins/ckeditor/ckeditor.js")"></script> 
+} 

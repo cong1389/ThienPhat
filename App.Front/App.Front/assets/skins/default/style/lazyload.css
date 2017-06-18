@@ -1,0 +1,160 @@
+.lazyloading {
+    overflow: hidden;
+}
+.lazyloading .ion {
+	transform-origin: center;
+    -webkit-transform:scale(0);
+    -ms-transform:scale(0);
+    -o-transform:scale(0);
+    transform:scale(0);
+
+    -webkit-transition: all 1s ease-in 0.2s;
+    -o-transition: all 1s ease-in 0.2s;
+    transition: all 1s ease-in 0.2s;
+}
+.lazyloading.show .ion{
+	-webkit-transform:scale(1);
+    -ms-transform:scale(1);
+    -o-transform:scale(1);
+    transform:scale(1);
+}
+
+/*=======================================================================*/
+
+div#vnt-home-about.lazyloading .portlet {
+    -webkit-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    opacity: 0;
+}
+
+div#vnt-home-about.lazyloading .video {
+    -webkit-transition: all 1s ease 1s;
+    -o-transition: all 1s ease 1s;
+    transition: all 1s ease 1s;
+    opacity: 0;
+}
+div#vnt-home-about.lazyloading.show .portlet, div#vnt-home-about.lazyloading.show .video{
+    opacity: 1;
+}
+
+/*==========================================================================*/
+
+div#vnt-home-my-product.lazyloading .content {
+    -webkit-transform:translate(-50%,100%);
+    -ms-transform:translate(-50%,100%);
+    -o-transform:translate(-50%,100%);
+    transform:translate(-50%,100%);
+    opacity: 0;
+
+    -webkit-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+div#vnt-home-my-product.lazyloading #vnt-slide-product1 {
+    -webkit-transform:translateX(-100%);
+    -ms-transform:translateX(-100%);
+    -o-transform:translateX(-100%);
+    transform:translateX(-100%);
+    opacity: 0;
+
+    -webkit-transition: all 1s ease 1s;
+    -o-transition: all 1s ease 1s;
+    transition: all 1s ease 1s;
+}
+div#vnt-home-my-product.lazyloading #vnt-slide-product2 {
+    -webkit-transform:translateX(100%);
+    -ms-transform:translateX(100%);
+    -o-transform:translateX(100%);
+    transform:translateX(100%);
+    opacity: 0;
+
+    -webkit-transition: all 1s ease 1s;
+    -o-transition: all 1s ease 1s;
+    transition: all 1s ease 1s;
+}
+div#vnt-home-my-product.lazyloading.show .content{
+	-webkit-transform:translate(-50%,0%);
+    -ms-transform:translate(-50%,0%);
+    -o-transform:translate(-50%,0%);
+    transform:translate(-50%,0%);
+    opacity: 1;
+}
+div#vnt-home-my-product.lazyloading.show #vnt-slide-product1 {
+    -webkit-transform:translateX(0%);
+    -ms-transform:translateX(0%);
+    -o-transform:translateX(0%);
+    transform:translateX(0%);
+    opacity: 1;
+}
+div#vnt-home-my-product.lazyloading.show #vnt-slide-product2 {
+    -webkit-transform:translateX(0%);
+    -ms-transform:translateX(0%);
+    -o-transform:translateX(0%);
+    transform:translateX(0%);
+    opacity: 1;
+}
+ 
+/*=========================================================*/
+#vnt-news-home .lazyloading .rowmn {
+    perspective: 1000px;
+}
+#vnt-news-home .lazyloading .news {
+    transform-origin: bottom;
+    -webkit-transform: rotate3d(1,0,0,90deg);
+    -ms-transform: rotate3d(1,0,0,90deg);
+    -o-transform: rotate3d(1,0,0,90deg);
+    transform: rotate3d(1,0,0,90deg);
+    -webkit-transition: all 1s ease 0.5s;
+    -o-transition: all 1s ease 0.5s;
+    transition: all 1s ease 0.5s;
+    opacity: 0
+}
+#vnt-news-home .lazyloading.show .news{
+	-webkit-transform: rotate3d(1,0,0,0deg);
+    -ms-transform: rotate3d(1,0,0,0deg);
+    -o-transform: rotate3d(1,0,0,0deg);
+    transform: rotate3d(1,0,0,0deg);
+    opacity: 1;
+}
+
+/*===========================================================*/
+div#vnt-home-partner.lazyloading .col2 {
+    -webkit-transform: translateY(160%);
+    -ms-transform: translateY(160%);
+    -o-transform: translateY(160%);
+    transform: translateY(160%);
+
+    -webkit-transition: all 1s ease 0.5s;
+    -o-transition: all 1s ease 0.5s;
+    transition: all 1s ease 0.5s;
+    opacity: 0;
+}
+
+div#vnt-home-partner.lazyloading .col10 {
+    -webkit-transform: translate(60%,100%);
+    -ms-transform: translate(60%,100%);
+    -o-transform: translate(60%,100%);
+    transform: translate(60%,100%);
+
+    -webkit-transition: all 1s ease 0.5s;
+    -o-transition: all 1s ease 0.5s;
+    transition: all 1s ease 0.5s;
+    opacity: 0;
+}
+
+div#vnt-home-partner.lazyloading.show .col2{
+	-webkit-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    transform: translateY(0%);
+    opacity: 1;
+}
+
+div#vnt-home-partner.lazyloading.show .col10{
+	-webkit-transform: translate(0%,0%);
+    -ms-transform: translate(0%,0%);
+    -o-transform: translate(0%,0%);
+    transform: translate(0%,0%);
+    opacity: 1;
+}

@@ -1,0 +1,58 @@
+﻿@using App.Utils
+@model IEnumerable<App.Domain.Entities.Data.News>
+<section class="block-container">
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="list-inline">
+                <li>
+                    <a href="@Url.Action("Index", "Home", new {area = ""})" class="home-link">
+                        <i class="icon-home"></i>
+                    </a>
+                </li>
+                <li class="active">
+                    <span>@ViewBag.Title</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-container">
+        <div class="bg-block">
+            <img src="~/images/customer.jpg" alt="Trung Tâm Khách Hàng"/>
+        </div>
+        <div class="title-block">
+            <h2>Hãy để chúng tôi giúp bạn</h2>
+        </div>
+        <div class="container">
+            <div class="news-list-block">
+                <div class="row"> 
+                    @if (Model.IsAny())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div class="col-sm-4">
+                                <div class="item-care">
+                                    <div class="img-item">
+                                        <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
+                                            <img src="@Url.Content("~/" + item.ImageBigSize)" alt="@item.Title" />
+                                        </a>
+                                    </div>
+                                    <div class="content-item">
+                                        <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
+                                            <h2>
+                                                @item.Title
+                                            </h2>
+                                        </a>
+                                        <p>
+                                            @item.ShortDesc
+                                        </p>
+                                    </div>
+                                </div>
+                            </div> 
+                        }
+                    }
+                </div>
+            </div>
+            @{ Html.RenderPartial("_PagedLinks"); }
+        </div>
+    </div>
+</section>

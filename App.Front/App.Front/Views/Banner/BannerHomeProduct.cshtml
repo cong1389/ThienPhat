@@ -1,0 +1,26 @@
+﻿@using App.Utils
+@model IEnumerable<App.Domain.Entities.Ads.Banner>
+@if (Model.IsAny())
+{
+    <div class="items-show">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-3">
+                        <div class="showitem">
+                            <div class="show-text">
+                                <h3>@item.Title</h3>
+                                <a href="@item.WebsiteLink">&lt; xem chi tiết &gt;</a>
+                            </div>
+                            <a href="@item.WebsiteLink">
+                                <img src="@Url.Content("~/"+item.ImgPath)" alt="@item.Title">
+                            </a>
+                        </div>
+                    </div>
+                } 
+            </div>
+        </div>
+    </div>
+
+}

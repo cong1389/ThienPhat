@@ -1,0 +1,14 @@
+﻿ <!---GetLogo--->
+
+@model App.Domain.Entities.GlobalSetting.SystemSetting
+@if (Model != null)
+{
+    <div class="logo">
+        <h1>
+            <a href='@Url.Action("Index", "Home", new { area = "" })' target='_self' title='@Model.Title'>
+                <img src='@Url.Content("~/" + Model.LogoImage)' alt='@Model.Title' class='png' />
+            </a>
+        </h1>
+    </div>
+}
+<!---/GetLogo--->

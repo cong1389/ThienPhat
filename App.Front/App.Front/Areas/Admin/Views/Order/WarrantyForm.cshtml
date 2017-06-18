@@ -1,0 +1,6 @@
+﻿ @{
+     Layout = null;
+ }
+@using App.Utils
+@model App.FakeEntity.Order.OrderViewModel
+@Html.EditorForMany(x => x.OrderItems, x => x.Index)   

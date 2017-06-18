@@ -1,0 +1,238 @@
+﻿@using App.Domain.Common
+@using App.Framework.Ultis
+@using Resources
+@using Brand = App.Domain.Entities.Brandes.Brand
+@model App.FakeEntity.Assessments.AssessmentViewModel
+@{
+    ViewBag.Title = UI.CreateNew;
+    ViewBag.Toolbar = new[] { "Save", "SaveNew", "Divider", "Back" };
+}
+@using (Html.BeginForm("Create", "Assessment", FormMethod.Post, new { data_container = ViewContext.RouteData.Values["controller"], enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="horizontal-form">
+        <div class="form-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger col-md-offset-3" })
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FullName)
+                        @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "help-block" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address)
+                        @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password)
+                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>@FormUI.IdentityCard</label>                        
+                        @Html.TextBoxFor(model => model.IdentityCard, new { @class = "form-control" })
+                  
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PhoneNumber)
+                        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "help-block" })
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>@FormUI.Warranty</label>
+                        <select id="Warranty" name="Warranty" class="form-control select2">
+                            <option value="1">Đang kiểm tra</option>
+                            <option value="2">Đang sửa</option>
+                            <option value="3">Đã hoàn thành</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.Label("Từ ngày bảo hành")
+                        <div class="input-group input-large date-picker input-daterange" data-date-format="mm/dd/yyyy">
+                            @Html.TextBoxFor(model => model.FromWarranty, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.Label("Đến ngày bảo hành")
+                        <div class="input-group input-large date-picker input-daterange" data-date-format="mm/dd/yyyy">
+                            @Html.TextBoxFor(model => model.ToWarranty, "{0:MM/dd/yyyy}", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>@FormUI.Brand</label>
+                        @Html.DropDownListFor(m => m.BrandId, new SelectList(ViewBag.Brand ?? string.Empty, "Id", "Name"), "--Select--", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Branch)
+                        @Html.TextBoxFor(model => model.Branch, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Model)
+                        @Html.TextBoxFor(model => model.Model, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Imei)
+                        @Html.TextBoxFor(model => model.Imei, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ICloudPassword)
+                        @Html.TextBoxFor(model => model.ICloudPassword, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AppleId)
+                        @Html.TextBoxFor(model => model.AppleId, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RepairTypeId)
+                        <select id="RepairTypeId" name="RepairTypeId" class="form-control select2">
+                            <option value="1">Sửa chữa</option>
+                            <option value="2">Kiểm tra tình trạng máy</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RepairStatus)
+                        @Html.TextAreaFor(model => model.RepairStatus, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StoreId)
+                        <select id="StoreId" name="StoreId" class="form-control select2">
+                            <option value="1">Quận 1</option>
+                            <option value="2">Quận 8</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StatusCurrent)
+                        @Html.TextAreaFor(model => model.StatusCurrent, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description)
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.OrderDisplay)
+                        @Html.TextBoxFor(model => model.OrderDisplay, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Accessories)
+                        @Html.TextAreaFor(model => model.Accessories, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Image)
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="input-group input-large">
+                                <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                    <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                    <span class="fileinput-filename"> </span>
+                                </div>
+                                <span class="input-group-addon btn default btn-file">
+                                    <span class="fileinput-new">@Resources.FormUI.SelectFile</span>
+                                    <span class="fileinput-exists"> @Resources.FormUI.ChangeFile </span>
+                                    @Html.TextBoxFor(model => model.Image, new { @type = "file" })
+                                </span>
+                                <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "help-block" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Status)
+                        <div class="radio-list">
+                            <label class="radio-inline">
+                                @Html.RadioButtonFor(x => x.Status, (int)Status.Enable, new { @checked = "checked" }) @UI.Active
+                            </label>
+                            <label class="radio-inline">
+                                @Html.RadioButtonFor(x => x.Status, (int)Status.Disable) @UI.InActive
+                            </label>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "help-block" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@section scripts{
+    <script src="@Url.FakePathAdmin("scripts/plugins/daterangepicker/moment.min.js")"></script>
+    <script src="@Url.FakePathAdmin("scripts/plugins/daterangepicker/daterangepicker.js")"></script>
+    <script src="@Url.FakePathAdmin("scripts/plugins/daterangepicker/bootstrap-datepicker.js")"></script>
+    <script src="@Url.FakePathAdmin("scripts/components-date-time-pickers.js")"></script>
+}
+@section style{
+    <link href="@Url.FakePathAdmin("content/plugins/daterangepicker/daterangepicker-bs3.css")" rel="stylesheet" />
+}
+
+

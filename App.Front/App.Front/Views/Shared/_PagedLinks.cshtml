@@ -1,0 +1,86 @@
+﻿@using App.Framework.Ultis
+@{
+    Helper.PageInfo pi = Model is Helper.PageInfo ? Model : ViewBag.PageInfo as Helper.PageInfo;
+    if (pi == null)
+    {
+        return;
+    }
+    var total = pi.ItemsPerPage > 0 ? (int)Math.Ceiling((decimal)pi.TotalItems / pi.ItemsPerPage) : 0;
+}
+
+@if (pi.TotalPage > 1)
+{
+    <div class="paging">
+        <ul class="pagination">
+            @if (pi.CurrentPage > 1)
+                {
+                <li>
+                    <a href="@pi.Url(pi.CurrentPage - 1)" title="Trang @pi.CurrentPage">
+                        Trang trước
+                    </a>
+                </li>
+            }
+            @for (var i = 1; i <= total; i++)
+            {
+                if (pi.CurrentPage > pi.Leave && pi.CurrentPage <= total - pi.Leave)
+                {
+                    if (i == pi.Leave - 1 || i == total)
+                    {
+                        <li>
+                            <a href="#" title="...">
+                                ...
+                            </a>
+                        </li>
+                    }
+                    if ((i > 1 && i < pi.CurrentPage - 1) || (i > pi.CurrentPage + pi.Leave - 1 && i < total))
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    if ((pi.CurrentPage <= pi.Leave && i > pi.Leave + 1) || (pi.CurrentPage > total - pi.Leave && i < total - pi.Leave))
+                    {
+                        if (i == pi.Leave - 1 || i == total)
+                        {
+                            <li>
+                                <a href="#" title="...">
+                                    ...
+                                </a>
+                            </li>
+                        }
+                        if (i > 1 && i < total)
+                        {
+                            continue;
+                        }
+                    }
+                }
+                if (i == pi.CurrentPage)
+                {
+                    <li class="active">
+                        <a rel="nofollow" href="javascript:void(0)" title="Trang @i" >
+                            @i
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="@pi.Url(i)" title="Trang @i">
+                            @i
+                        </a>
+                    </li>
+                }
+            }
+            @if (pi.CurrentPage < total)
+            {
+                <li>
+                    <a href="@pi.Url(pi.CurrentPage + 1)" title="Trang @(pi.CurrentPage + 1)" class="next">
+                        Trang kế
+                    </a>
+                </li>
+
+            }
+        </ul>
+    </div>
+}

@@ -1,0 +1,75 @@
+﻿@using App.Admin.Helpers
+@using App.Domain.Common
+@using Resources
+@model IEnumerable<App.Domain.Entities.Menu.MenuLink>
+@{
+    ViewBag.Title = FormUI.MenuLink;
+    ViewBag.Toolbar = new[] { "Create", "Edit", "Delete", "Divider", "Reset" };
+}
+
+    <table id="@ViewContext.RouteData.Values["controller"]" class="tableSort app-grid table table-color table-bordered table-striped table-condensed flip-content">
+        <thead >
+            <tr>
+                <th class="text-center">@FormUI.Image</th>
+                <th class="text-center"> @FormUI.Title </th>
+                <th class="text-center"> @FormUI.ParentMenu </th>
+                <th class="text-center"> @FormUI.TypeMenu </th>
+                <th class="text-center"> @FormUI.Position </th>
+                <th class="text-center"> @FormUI.TemplateType </th>
+                <th class="text-center"> @FormUI.OrderDisplay </th>
+                <th class="text-center"> @FormUI.Status </th>
+                <th class="text-center">
+                    <input onclick="AppCore.handleCheckAll(this) " type="checkbox">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img alt="@item.MetaTitle" src="@Url.Content("~/" + item.ImageUrl)" class="imgDatatable center-block" />
+                        </td>
+                        <td>
+                            <a class="highlight0" href="@Url.Action("Edit", new {id = item.Id, ReturnUrl = Request.Url.PathAndQuery})">@item.MenuName</a>
+                        </td>
+                        <td>@Html.Raw(item.ParentId != null ? item.ParentMenu.MenuName : FormUI.CurrentMenu)</td>
+                        <td>@Common.GetTypeMenu(item.TypeMenu)</td>
+                        <td>@Common.GetPosition(item.Position)</td>
+                        <td>@Common.GetTypeTemplateMenu(item.TemplateType)</td>
+                        <td>@item.OrderDisplay</td>
+                        <td>@Html.Raw(item.Status == (int)Status.Disable ? "<span class='label label-sm label-warning'>" + UI.InActive + "</span>" : "<span class='label label-sm label-success'>" + UI.Active + "</span>")</td>
+                        <td class="text-center">
+                            <input type="checkbox" value="@item.Id">
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="odd">
+                    <td class="dataTables_empty text-center" colspan="8" valign="top">
+                        @MessageUI.EmptyItem
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+@{ Html.RenderPartial("_PageLinks"); }
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.tableSort').DataTable(
+                {
+                    "lengthChange": false,
+                    "paging": false,
+                    "info": false,
+                    "responsive": true
+                });
+        });
+    </script>
+}

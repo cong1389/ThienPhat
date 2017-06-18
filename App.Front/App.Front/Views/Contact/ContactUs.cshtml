@@ -1,0 +1,25 @@
+﻿@using App.Domain.Entities.GlobalSetting
+@model App.Domain.Entities.Menu.MenuLink
+<section class="block-container">
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="list-inline">
+                <li>
+                    <a href="@Url.Action("Index", "Home", new {area = ""})" class="home-link">
+                        <i class="icon-home"></i>
+                    </a>
+                </li>
+                <li class="active">
+                    <span>@Model.MenuName</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-container">
+        @{Html.RenderPartial("_ContactPartial", (ContactInfomation)ViewBag.Contact);}
+        <div class="bg-contact">
+            <img src="@Url.Content("~/" + Model.ImageUrl)"/>
+        </div>
+        @{Html.RenderPartial("_ContactMap", (ContactInfomation)ViewBag.Contact);}
+    </div>
+</section>

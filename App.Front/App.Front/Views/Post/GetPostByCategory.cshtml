@@ -1,0 +1,145 @@
+﻿@using App.Domain.Common
+@using App.Domain.Entities.Data
+@using App.Utils
+@model IEnumerable<App.Domain.Entities.Data.Post>
+<div class="product-container">
+    @Html.Partial("_BreadCrumb")
+    <div class="container">
+        <div class="list-product">
+            <div id="content-ajax"></div>
+            <div class="row">
+                <div class="col-sm-3">
+                    @Html.Action("SearchBoxSideBar", "SearchBox", new { area = "", attributes = ViewBag.Attributes, prices = ViewBag.Prices, proids = ViewBag.ProAttributes })
+                </div>
+                <div class="col-sm-9">
+                    <h2 class="title">
+                        @ViewBag.Title
+                    </h2>
+                    <div class="block-items">
+                        <div class="row">
+                            @if (Model.IsAny())
+                            {
+                                int i = 0;
+                                int j = 0;
+                                var listHot = (List<Post>)ViewBag.HotCard;
+                                foreach (var item in Model)
+                                {
+                                    <div class="col-sm-3">
+                                        <div class="product-card animated growIn go">
+                                            <div class="product-img">
+                                                <a href="@Url.Action("PostDetail","Post", new {seoUrl =item.SeoUrl,area=""})">
+                                                    <img src="@Url.Content("~/" + item.ImageMediumSize)" alt="@item.Title" />
+                                                </a>
+                                            </div>
+                                            <div class="product-description">
+                                                <h2>
+                                                    <a href="@Url.Action("PostDetail", "Post", new {seoUrl = item.SeoUrl, area = ""})">
+                                                        @item.Title
+                                                    </a>
+                                                </h2>
+                                                <p class="product-price">
+                                                    @if (item.Price.HasValue && item.Discount.HasValue)
+                                                    {
+                                                        @Html.Raw(string.Format("{0:##,### VND}", item.Price - item.Price * item.Discount / 100))
+                                                    }
+                                                    else if (item.Price.HasValue && !item.Discount.HasValue)
+                                                    {
+                                                        @Html.Raw(string.Format("{0:##,### VND}", item.Price))
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Raw("Liên hệ")
+                                                    }
+                                                    @if (item.Discount.HasValue)
+                                                    {
+                                                        <span class="product-discount">
+                                                            @Html.Raw(item.Discount.ToString() + "%")
+                                                        </span>
+                                                    }
+                                                </p>
+                                                @if (item.Discount.HasValue)
+                                                {
+                                                    <p class="product-old-price">
+                                                        @Html.Raw(string.Format("{0:##,### VND}", item.Price))
+                                                    </p>
+                                                }
+
+                                            </div>
+                                            <div class="quick-buy">
+                                                <a href="@Url.Action("PostDetail", "Post", new {seoUrl = item.SeoUrl, area = ""})" class="btn-buy">
+                                                    Xem chi tiết
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    if (i % 4 == 0)
+                                    {
+                                        if (listHot.IsAny())
+                                        {
+                                            if (j < listHot.Count)
+                                            {
+                                                var hotcard = listHot[j];
+                                                <div class="col-sm-10 col-sm-offset-1">
+                                                    <div class="product-hotcard animated growIn go">
+                                                        <div class="col-sm-6 col-xs-12 product-img">
+                                                            <a href="@Url.Action("PostDetail","Post", new {seoUrl =hotcard.SeoUrl,area=""})">
+                                                                <img src="@Url.Content("~/" + hotcard.ImageMediumSize)" alt="@item.Title" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-desc col-sm-6 col-xs-12 ">
+                                                            <h2>
+                                                                <a href="@Url.Action("PostDetail", "Post", new {seoUrl = hotcard.SeoUrl, area = ""})">
+                                                                    @hotcard.Title
+                                                                </a>
+                                                            </h2>
+                                                            <div class="product-price">
+                                                                @if (hotcard.Price.HasValue && hotcard.Discount.HasValue)
+                                                                {
+                                                                    @Html.Raw(string.Format("{0:##,### VND}", hotcard.Price - hotcard.Price * hotcard.Discount / 100))
+                                                                }
+                                                                else if (hotcard.Price.HasValue && !hotcard.Discount.HasValue)
+                                                                {
+                                                                    @Html.Raw(string.Format("{0:##,### VND}", hotcard.Price))
+                                                                }
+                                                                else
+                                                                {
+                                                                    @Html.Raw("Liên hệ")
+                                                                }
+                                                                @if (hotcard.Discount.HasValue)
+                                                                {
+                                                                    <span class="product-discount">
+                                                                        @Html.Raw(hotcard.Discount.ToString() + "%")
+                                                                    </span>
+                                                                }
+                                                            </div>
+                                                            <div class="quick-buy">
+                                                                <a href="@Url.Action("PostDetail", "Post", new {seoUrl = hotcard.SeoUrl, area = ""})" class="btn-buy">
+                                                                    Xem chi tiết
+                                                                </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                        j++;
+                                    }
+                                    i++;
+                                }
+                            }
+                            else
+                            {
+                                <p class="text-danger">
+                                    Nội dung đang cập nhật
+                                </p>
+                            }
+                        </div>
+                    </div>
+                    @{ Html.RenderPartial("_PagedLinks"); }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

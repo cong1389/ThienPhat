@@ -1,0 +1,326 @@
+/*===========BEGIN ICON===========*/
+div#vnt-home-icon {
+    background: #f3f3f3;
+    padding: 34px 0px;
+}
+div#vnt-home-icon .ion {
+    margin: 0 auto;
+    text-align: center;
+}
+div#vnt-home-icon .ion .img {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border: solid 1px #61a647;
+    margin: 0 auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -webkit-transform-origin: bottom;
+    -moz-transform-origin: bottom;
+    -ms-transform-origin: bottom;
+    -o-transform-origin: bottom;
+    transform-origin: bottom;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+}
+div#vnt-home-icon .ion .img p {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #61a647;
+    left: -5px;
+    top: -5px;
+    border-radius: 5px;
+    transform-origin: bottom;
+    -webkit-transform-origin: bottom;
+    -moz-transform-origin: bottom;
+    -ms-transform-origin: bottom;
+    -o-transform-origin: bottom;
+    transform-origin: bottom;
+}
+div#vnt-home-icon .ion .img:hover {
+    -webkit-transform:scale(1.1);
+    -ms-transform:scale(1.1);
+    -o-transform:scale(1.1);
+    transform:scale(1.1);
+}
+div#vnt-home-icon .ion .title {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 auto;
+    width: 170px;
+}
+/*========END ICON===============*/
+/*===========BEGIN ABOUT==============*/
+div#vnt-home-about {
+    padding: 65px 0px;
+}
+div#vnt-home-about .portlet .title span {
+    font-size: 35px;
+    line-height: 31px;
+    text-transform: uppercase;
+    margin-right: 15px;
+}
+div#vnt-home-about .portlet .title {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+div#vnt-home-about .portlet .content {
+    font-size: 16px;
+    line-height: 24px;
+}
+div#vnt-home-about .portlet .content p {
+    padding: 3px 0px;
+}
+div#vnt-home-about .portlet .content .font {
+    font-family: "aicap";
+    font-style: italic;
+    font-size: 35px;
+    line-height: 43px;
+    color: #333;
+    margin-bottom: 15px;
+}
+div#vnt-home-about .portlet .content a.view {
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: uppercase;
+    background: #da251d;
+    color: #fff;
+    padding: 11px 33px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+div#vnt-home-about .portlet .content a.view span {
+    position: relative;
+}
+div#vnt-home-about .portlet .content a.view:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right:100%;
+    bottom:0;
+    width:100%;
+    background: #61a647;
+    -webkit-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+div#vnt-home-about .portlet .content a.view:hover:before {
+    right:0;
+}
+div#vnt-home-about .portlet .content a.view:after {
+    content: "\f105";
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 22px;
+    line-height: 30px;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+#vnt-home-about .video {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+#vnt-home-about .video img{
+    -webkit-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+#vnt-home-about .video #loadvideo:after {
+    content: "\f04b";
+    font: normal normal normal 14px/1 FontAwesome;
+    width: 78px;
+    height: 78px;
+    border-radius: 100%;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    font-size: 25px;
+    line-height: 33px;
+    color: #000;
+    text-align: Center;
+    padding-top: 23px;
+}
+#vnt-home-about .video:hover img {
+    -webkit-transform:scale(1.1);
+    -ms-transform:scale(1.1);
+    -o-transform:scale(1.1);
+    transform:scale(1.1);
+}
+#vnt-home-about .video:hover #loadvideo:after{
+    -webkit-transform:translate(-50%,-50%) scale(0.9);
+    -ms-transform:translate(-50%,-50%) scale(0.9);
+    -o-transform:translate(-50%,-50%) scale(0.9);
+    transform:translate(-50%,-50%) scale(0.9);
+}
+/*=============END ABOUT===============*/
+/*============BEGIN: MY PRODUCT==============*/
+#vnt-home-my-product {
+    height: 335px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 60px;
+}
+#vnt-slide-product1 .item .img img, #vnt-slide-product2 .item .img img{
+    width:100%;
+}
+div#vnt-home-my-product .content {
+    position: absolute;
+    height: 100%;
+    width: 830px;
+    left: 50%;
+    background: url(../images/main/main-bg-hard.png) no-repeat center;
+    top: 0;
+    z-index: 9999;
+    text-align: Center;
+    color:#fff;
+
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+
+}
+div#vnt-home-my-product .content .title {
+    font-size: 30px;
+    line-height: 38px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 50px;
+}
+div#vnt-home-my-product .content .cont {
+    margin-top: 35px;
+    padding: 0px 100px;
+    font-size: 18px;
+    line-height: 26px;
+}
+div#vnt-home-my-product .content .view {
+    margin-top: 35px;
+    display: inline-block;
+    background: #f7f7f7;
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: uppercase;
+    padding: 8px 42px;
+    box-shadow: 4px 6px 10px rgba(0,0,0,0.27);
+    color: #666666;
+    position: relative;
+    overflow: hidden;
+}
+div#vnt-home-my-product .content .view:hover {
+    color: #da251d;
+}
+div#vnt-home-my-product .content .view:after {
+    content: "\f105";
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 22px;
+    line-height: 30px;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+/*============END: MY PRODUCT================*/
+/*===============BEGIN: NEWS=================*/
+div#vnt-news-home {
+    margin-bottom: 70px;
+}
+div#vnt-news-home .news {
+    border-bottom: solid 3px #61a647;
+    cursor: pointer;
+}
+div#vnt-news-home .news:hover{
+    border-color:#da251d; 
+}
+div#vnt-news-home .portlet .portlet-header {
+    border-top: solid 1px #dcdcdc;
+    margin-bottom: 53px;
+    position: relative;
+}
+div#vnt-news-home .portlet .portlet-title {
+    text-align: Center;
+    font-size: 30px;
+    line-height: 38px;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    top: -20px;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 0px 20px;
+}
+div#vnt-news-home .news .img {
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+div#vnt-news-home .news .img img {
+    width: 100%;
+    -webkit-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+div#vnt-news-home .news:hover .img img {
+    -webkit-transform:scale(1.1);
+    -ms-transform:scale(1.1);
+    -o-transform:scale(1.1);
+    transform:scale(1.1);
+}
+div#vnt-news-home .news .caption .date {
+    color: #888888;
+    margin-bottom: 8px;
+}
+div#vnt-news-home .news .caption .tend a {
+    color: #333333;
+    font-size: 16px;
+    line-height: 24px;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+div#vnt-news-home .news:hover .caption .tend a {
+    color: #da251d;
+}
+
+
+
+div#vnt-home-about.lazyloading .video .detail_video{
+    height: 400px;
+}
+
+
+
+
+
+
+/*=================END: NEWS=================*/

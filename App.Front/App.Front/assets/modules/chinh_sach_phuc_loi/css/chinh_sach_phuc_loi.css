@@ -1,0 +1,84 @@
+.policy-content.desc {
+    margin-bottom: 60px;
+}
+.policy .img {
+    width: 100px;
+    height: 100px;
+    float: left;
+    background: #61a647;
+    border-radius: 100%;
+    -webkit-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+    position: relative;
+    overflow: hidden;
+}
+.policy .img img{
+    -webkit-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+.policy .img:hover{
+    background: #da251d;
+}
+.policy {
+    margin-bottom: 55px;
+}
+.policy .caption {
+    float: left;
+    width: 320px;
+    padding-left: 20px;
+}
+.policy .tend a {
+    font-size: 19px;
+    line-height: 27px;
+    color: #333;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 5px;
+    display: block;
+}
+.policy .tend a:hover{
+    color:#f00;
+}
+.policy .tomtat {
+    font-size: 15px;
+    line-height: 23px;
+    margin-bottom: 18px;
+    height: 69px;
+    overflow: hidden;
+}
+.policy .view {
+    font-size: 15px;
+    line-height: 23px;
+    color: #da251d;
+    padding-left: 15px;
+    position: relative;
+}
+.policy .view:hover{
+    color: #333;
+}
+.policy .view:before {
+    content: "\f105";
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 18px;
+    line-height: 26px;
+}
+.policy-content.desc {
+    font-size: 15px;
+    line-height: 23px;
+}

@@ -1,0 +1,216 @@
+#List_View { }
+
+/*----------------- VIEW 1 ----------------*/
+#List_View .View1 {
+	float: left; 
+	margin-bottom: 15px;
+}
+
+#List_View div.View1 div.item {
+	float: left;
+	margin: 0px;
+	margin-right: 20px;
+	text-align: center;
+	width: 190px;
+	background:url(../images/box_service.html) no-repeat;
+	height:250px;
+	
+}
+#List_View div.View1 div.item.last {
+	margin-right:0px;	
+}
+#List_View .View1 .box-item {
+ padding-top:4px;
+ padding-left:7px;
+}
+#List_View .img {  
+	text-align: center;
+	margin-bottom:5px;
+	width:178px;
+	height:178px;
+}
+
+#List_View .View1 .name { height:50px ; color:#880015; font-weight:bold; text-transform:uppercase; padding:10px; text-align:center;}
+#List_View .View1 .name a { color:#880015; text-decoration:none;}
+ 
+
+#List_View .View1 .last {
+	margin: 0px;
+	margin-right: 0px;
+}
+
+#List_View .viewMore {
+	text-align: right;
+	padding-right: 10px;
+}
+
+#List_View .noItem {
+	padding: 50px;
+	text-align: center;
+	color: #ff0000;
+}
+
+/*----------------- VIEW 2 ----------------*/
+.box-item {
+	padding-bottom:10px;
+	margin-bottom:10px;
+	border-bottom:1px solid #ccc;
+}
+.box-item.last {
+	border-bottom:none;	
+}
+
+.box-item p {
+	margin: 0px;
+	padding: 5px 0px;
+}
+
+.box-item h3 {
+
+	font-weight: bold;
+	padding: 0px 0px 0px 0px;
+	vertical-align: top;
+	text-align: left
+}
+
+.box-item h3 a {
+	text-align: left;	 
+}
+  
+.box-item .img_left {
+	border: 1px solid #d4d4d4;
+	padding: 2px;
+	text-align: center;
+	float:left;
+	margin-right:5px;	
+}
+.box-item .img_right {
+	border: 1px solid #d4d4d4;
+	padding: 2px;
+	text-align: center;
+	float:right;
+	margin-left:5px;	
+}
+
+.box-item .short {
+	text-align: justify;
+}
+
+.box-item p.more {
+	margin: 0px;
+	padding: 2px 0px;
+	text-align: right;
+}
+
+.hr {
+	background: url(../images/hr.gif) repeat-x center;
+	padding: 0px;
+	margin: 0px;
+	overflow: hidden;
+}
+
+/*DETAL*/
+.boxDetail  {}
+.boxDetail .title { 
+	font-family:"Times New Roman";
+	font-size:14pt;
+	font-weight:bold; 
+	margin-bottom:5px;
+	background:url(../images/hr.gif) bottom repeat-x;
+	padding-bottom:7px;
+}
+.boxDetail .imgDetail_left {
+	display:block;
+	float:left;
+	margin-right:7px;
+}
+.boxDetail .imgDetail_right {
+	display:block;
+	float:right;
+	margin-left:7px;
+}
+.boxDetail .fDespic {
+	font-size:9px;
+	color:#999999;
+	text-align:center;
+}
+.font_date{ font-family:Arial; padding:0px;margin:0px; color:#989a9b; font-weight:normal;font-size:10px;}
+
+.tools {
+	margin:10px 0px; 
+	border-top:1px dotted #ccc;
+	border-bottom:1px dotted #ccc;
+	padding:5px; 
+} 
+.tools .plugin { 
+	white-space: nowrap;
+}
+.tools img { vertical-align:middle;}
+ 
+.tools ul {list-style:none; float:right;}
+.tools li { 
+	float:left;
+	padding-left:20px;
+}
+.toots a {	 
+	text-decoration:none;
+	color:#ca0d00;
+	display:block;
+	line-height:18px;
+	font-size:11px;
+}
+.tools li.feedback a { padding-left:20px; background:url(../images/icon_feedback.png) left no-repeat;}
+.tools li.tellfriend a  { padding-left:20px; background:url(../images/icon_email.png) left no-repeat;}
+.tools li.print a { padding-left:20px; background:url(../images/icon_print.png) left no-repeat;}
+.tools li.bookmark a { padding-left:20px; background:url(../images/icon_bookmark.png) left no-repeat;}
+.tools li.back a { padding-left:20px; background:url(../images/icon_back.png) left no-repeat;}
+ 
+
+
+ 
+/*OTHER*/
+
+.list_other { padding-top:20px;}
+.list_other h3 {  font-size:11px;padding-left:0px; font-weight:bold; font-size:14px; margin-bottom:10px; text-transform:uppercase;}
+.list_other ul { list-style:none;}
+.list_other li { background:url(../images/icon_other_news.gif) 0 6px no-repeat ; padding-left:20px; line-height:18px; }
+.list_other li a { text-decoration:none  }
+.list_other li a:hover {  text-decoration:underline;}
+
+
+
+.about-content {
+    margin-bottom: 50px;
+}
+.about-content p {
+    padding-top: 0;
+    padding-bottom: 5px;
+}
+.about-content p.t1 {
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: bold;
+    color: #da251d;
+}
+.about-content p.t2 {
+    font-size: 28px;
+    line-height: 36px;
+    color: #666666;
+    font-weight: bold;
+}
+.about-content p.t3 {
+    margin-bottom: 30px;
+}
+.about-content .col-ta {
+    border-left: solid 4px #61a647;
+    min-height: 110px;
+    padding:0px 10px;
+}
+
+
+
+
+
+
+
+

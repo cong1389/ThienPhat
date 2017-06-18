@@ -1,0 +1,56 @@
+﻿@using App.Utils
+@model IEnumerable<App.Front.Models.MenuNav>
+@if (Model.IsAny())
+{
+
+    foreach (var item in Model)
+    {
+        <h2>
+            <a href="@Url.Action("GetContent", "Menu", new {area = "", menu = item.SeoUrl})">
+                @item.MenuName
+            </a>
+        </h2>
+        if (item.ChildNavMenu.IsAny())
+        {
+            var products = (List<int>) ViewBag.ProIds;
+            <ul class="list-unstyled sub-child">
+                @foreach (var child in item.ChildNavMenu)
+                {
+                    if (products != null)
+                    {
+                        if (products.Any(x => x == child.MenuId))
+                        {
+                            <li>
+                                <a href="@Url.Action("GetContent", "Menu", new {area = "", menu =child.SeoUrl })">
+                                    @child.MenuName
+                                </a>
+                                <input id="@child.MenuId" type="checkbox" name="pro-attr" value="@child.MenuId" checked="checked"/>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="@Url.Action("GetContent", "Menu", new {area = "", menu =child.SeoUrl })">
+                                    @child.MenuName
+                                </a>
+                                <input id="@child.MenuId" type="checkbox" name="pro-attr" value="@child.MenuId" />
+                            </li>
+                        }
+
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="@Url.Action("GetContent", "Menu", new {area = "", menu =child.SeoUrl })">
+                                @child.MenuName
+                            </a>
+                            <input id="@child.MenuId" type="checkbox" name="pro-attr" value="@child.MenuId" />
+                        </li>
+                    }
+
+                }
+            </ul>
+        }
+    }
+
+}

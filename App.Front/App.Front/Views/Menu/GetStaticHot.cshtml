@@ -1,0 +1,20 @@
+﻿@using App.Utils
+@model IEnumerable<App.Domain.Entities.Menu.MenuLink>
+@if (Model.IsAny())
+{
+    <div class="sidebar-menu">
+        <h2>Danh mục</h2>
+        <ul class="list-unstyled">
+            @foreach (var item in Model)
+                {
+                <li>
+                    <h3>
+                        <a href="@Url.Action("GetContent","Menu", new {area="", menu=item.SeoUrl})">
+                            @item.MenuName
+                        </a>
+                    </h3>
+                </li>
+            }
+        </ul>
+    </div>
+}

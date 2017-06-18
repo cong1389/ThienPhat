@@ -1,0 +1,55 @@
+﻿@using App.Domain.Entities.Menu
+@using App.Utils
+@using Resources
+@model App.Domain.Entities.Data.StaticContent
+
+@if (Model != null)
+{
+<div class="wrapper">
+    <div class="mod_content">
+
+        @Html.Action("GetCategoryHome", "MenuNav", new { MenuId = ViewBag.VirtualId, area = "" })
+
+        <div id="vnt-main">
+
+            <div class="box_mid">
+                <div class="mid_title">
+                    <div class="titleL"><h1>@ViewBag.TitleNews</h1></div>
+                    @foreach (var item in (IEnumerable<MenuLink>)ViewBag.ListItems)
+                    {
+                        <div class="col-sm-3">
+                            <a href="@Url.Action("GetContent", "Menu", new { menu = item.SeoUrl, area = "" })">
+                                <img src="@Url.Content("~/" + item.ImageUrl)" alt="@item.MenuName" />
+                            </a>
+                            <h3>
+                                <a href="@Url.Action("GetContent", "Menu", new { menu = item.SeoUrl, area = "" })">
+                                    @item.MenuName
+                                </a>
+                            </h3>
+                        </div>
+                    }
+                    <div class="titleR"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="mid-content">
+                    <div class="about-content desc">
+                        @Html.Raw(Model.Description)
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+</div>
+
+}
+else
+{
+    <div class="container">
+        <p class="text-danger">@MessageUI.EmptyData</p>
+    </div>
+
+}

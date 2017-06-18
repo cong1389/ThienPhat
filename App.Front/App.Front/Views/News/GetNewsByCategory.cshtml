@@ -1,0 +1,67 @@
+﻿<!--GetNewsByCategory---->
+@using App.Domain.Entities.Data
+@using App.Domain.Common
+@using App.Domain.Entities.Menu
+@using App.Utils
+@model IEnumerable<App.Domain.Entities.Data.News>
+@if (Model.IsAny())
+{
+    <div class="vnt-page-slide">
+        @Html.Action("BannerTopOfNewsPage", "Banner", new { menuId = ViewBag.MenuId })
+    </div>
+
+    <div class="wrapper">
+        <div class="mod_content">
+
+            @Html.Action("GetCategoryHome", "MenuNav", new { virtualId = ViewBag.VirtualId, area = "" })
+
+            <div id="vnt-main">
+
+                <div class="box_mid">
+                    <div class="mid_title">
+                        <div class="titleL"><h1>12 </h1></div>
+                        <div class="titleR"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="mid-content">
+
+                        <div class="news-content">
+
+                            @foreach (var item in Model)
+                            {
+                                <div class="box-news">
+                                    <div class="img">
+                                        <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
+                                        <img src="@Url.Content("~/" + item.ImageMediumSize)" alt='@item.Title' title='@item.Title' /></a>
+                                    </div>
+                                    <div class="caption">
+                                        <div class="date">@item.CreatedDate.ToString("dd/MM/yyyy")</div>
+                                        <div class="title"><h3><a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
+                                            @item.Title</a> </h3></div>
+                                        <div class="tomtat">@item.ShortDesc</div>
+                                        <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})" class="view"><span>xem thêm</span></a>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            }                          
+
+                            @{Html.RenderPartial("_PagedLinks");}
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="clear"></div>
+
+        </div>
+    </div>
+
+
+    <div class="clear"></div>
+
+}
+<link rel="stylesheet" href="assets/modules/news/css/news.css" type="text/css" />
+
+<!--/GetNewsByCategory---->

@@ -1,0 +1,466 @@
+.box-shareholder {
+    border-bottom:dashed 1px #cac9c9;
+    padding-bottom: 20px; 
+    margin-bottom: 20px;
+}
+.shareholder-content {
+    margin-bottom: 60px;
+}
+.box-shareholder .img {
+    float: left;
+    overflow: hidden;
+}
+.box-shareholder .img img{
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.box-shareholder .img:hover img {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.box-shareholder .caption {
+    float: right;
+    width: 500px;
+    padding: 0px 30px;
+}
+.box-shareholder .caption .date {
+    color: #61a647;
+    margin-bottom: 5px;
+}
+.box-shareholder .caption .title a {
+    display: block;
+    font-size: 20px;
+    line-height: 28px;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.box-shareholder .caption .title a:hover {
+    color: #da251d;
+}
+.box-shareholder .caption .tomtat {
+    color: #666666;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 30px;
+    height: 96px;
+    overflow: hidden;
+}
+.box-shareholder .caption .view {
+    background: #da251d;
+    color: #fff;
+    text-transform: Capitalize;
+    padding: 9px 32px;
+    position: relative;
+    display: inline-block;
+}
+.box-shareholder .caption .view span{
+    position: relative;
+}
+.box-shareholder .caption .view:after {
+    content: "\f105";
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    font-size: 20px;
+    line-height: 28px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.box-shareholder .caption .view:before {
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #61a647;
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    position: absolute;
+}
+.box-shareholder .caption .view:hover:before{
+    width:100%;
+}
+.box-shareholder .caption .view:hover:after{
+    left:105px;
+}
+.shareholder-content .box-shareholder:last-child {
+    border: none;
+    padding-bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+.investor-content {
+    margin-bottom: 60px;
+}
+.investor-info {
+    background: #f8f8f8;
+    padding: 20px 25px;
+    margin-bottom: 30px;
+}
+.investor-info .title {
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 28px;
+    color: #333;
+    font-weight: bold;
+    padding: 0;
+    margin-bottom: 20px;
+}
+.investor-info p {
+    padding: 0px 0px 10px 0px;
+    font-size: 17px;
+    line-height: 25px;
+}
+.investor-info a {
+    color: #da251d;
+}
+.investor-info a:hover{
+    color:#61a647;
+}
+/*================BEGIN: BOX===============*/
+.box-investor {
+    padding-bottom: 70px;
+    margin-bottom: 60px;
+    background: url(../images/shareholder/bg-bot.html) no-repeat bottom center;
+}
+.box-investor .img {
+    float: left;
+}
+.box-investor .caption {
+    width: 600px;
+    float: right;
+    padding-left: 30px;
+}
+.box-investor .name {
+    font-size: 24px;
+    line-height: 32px;
+    color: #da251d;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.box-investor .cos {
+    color: #999999;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 15px;
+}
+.box-investor .info {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 20px;
+    height: 72px;
+    overflow: hidden;
+}
+.box-investor .phone, .box-investor .email {
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 24px;
+}
+.box-investor .phone i {
+    color: #959595;
+    width: 24px;
+    height: 24px;
+    border: solid 1px #959595;
+    border-radius: 100%;
+    text-align: Center;
+    padding-top: 4px;
+    margin-right: 10px;
+}
+.box-investor .email i {
+    color: #959595;
+    font-size: 20px;
+    text-align: Center;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+.box-investor .email a {
+    color: #da251d;
+}
+.investor-content .box-investor:last-child {
+    background: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+/*============ENG BOX================*/
+
+
+
+
+
+
+
+div#vnt-finace {
+    margin-bottom: 60px;
+}
+.finace-report {
+    margin-bottom: 60px;
+}
+.finace-report .deli{
+    font-size: 16px;
+    line-height: 24px;
+    padding:0;
+    margin-bottom:20px;
+}
+.finace-report .nav-tabs {
+    border: none;
+}
+/*==============BEGIN: TAB=============*/
+.finace-report .nav-tabs {
+    border: none;
+}
+.finace-report .nav-tabs>li>a {
+    background: #f7f7f7;
+    border-radius: 0;
+    padding: 4px 17px;
+    color: #666;
+    margin-right: 8px;
+    border: none;
+}
+.finace-report .nav-tabs>li.active>a, .finace-report .nav-tabs>li:hover>a {
+    border: none;
+    background: #da251d;
+    color: #fff;
+}
+.finace-report .tab-content {
+    padding-top: 30px;
+}
+/*==============END: TAB================*/
+/*==============BEGIN TAB CHILD================*/
+.finace-tab-child .nav-tabs > li{
+    border-right: 1px solid #AAAAAA;
+}
+.finace-tab-child .nav-tabs > li > a {
+    background: none;
+    font-size: 16px;
+    line-height: 13px;
+    padding: 0px 15px 0px 15px;
+}
+.finace-tab-child .nav-tabs > li:first-child > a{
+    padding-left:0;
+}
+.finace-tab-child .nav-tabs>li.active>a, .finace-tab-child .nav-tabs>li:hover>a {
+    background: none;
+    color: #da251d;
+    text-transform: uppercase;
+    border: initial;
+}
+/*==============END TAB-CHILD================*/
+/*=============BEGIN TABLE=================*/
+.finace-list thead tr {
+    background: #ededed;
+}
+.finace-list thead tr th {
+    font-weight: normal;
+}
+.finace-list thead tr th:first-child {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.finace-list tbody tr td {
+    border: none;
+}
+.finace-list tbody tr td:first-child {
+    color: #da251d;
+    font-size: 15px;
+    line-height: 23px;
+}
+.finace-list tbody tr td:nth-child(2) img {
+    margin-left: 25px;
+}
+.finace-list tbody tr td:last-child {
+    color: #888888;
+}
+.finace-list tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+.finace-list {
+    margin: 0;
+}
+/*============END: TABLE==================*
+/*==============BEGIN BOX-INFO================*/
+.investor-info-content {
+    margin-bottom: 60px;
+}
+.box-info .caption {
+    background: #f7f7f7;
+    padding: 20px 20px;
+}
+.box-info .img{
+    overflow: hidden;
+}
+.box-info .img img{
+    -webkit-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+    overflow: hidden;
+}
+.box-info:hover .img img{
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.box-info .tend {
+    margin-bottom: 15px;
+}
+.box-info .tend a {
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 33px;
+    text-transform: uppercase;
+    color: #333;
+    display: block;
+}
+.box-info:hover .tend a{
+    color:#da251d;
+}
+.box-info .tomtat {
+    font-size: 16px;
+    line-height: 24px;
+    color: #777777;
+    height: 72px;
+    overflow: hidden;
+}
+/*===============END BOX-INFO===============*/
+/*===============BEGIN BOX-INFO-NEWS==================*/
+.box-info-news {
+    border-bottom: dashed 1px #cac9c9;
+    margin-bottom: 30px;
+}
+.box-info-news .img img {
+    width: 100%;
+    -webkit-transition: all 0.8s ease;
+    -o-transition: all 0.8s ease;
+    transition: all 0.8s ease;
+}
+.box-info-news .img {
+    margin-bottom: 20px;
+}
+.box-info-news .tend{
+    margin-bottom: 15px;
+        height: 52px;
+    overflow: hidden;
+}
+.box-info-news .tend a {
+    display: block;
+    font-size: 18px;
+    line-height: 26px;
+    color: #333;
+}
+.box-info-news:hover .tend a{
+    color:#da251d;
+}
+.box-info-news .tomtat {
+    color: #777777;
+    font-size: 15px;
+    line-height: 23px;
+    margin-bottom: 30px;
+    height: 69px;
+    overflow: hidden;
+    display: none;
+}
+/*===============END BOX-INFO-NEWS==================*/
+/*=======OTHER=======*/
+.shareholder-other {
+    margin-bottom: 55px;
+}
+.shareholder-other .she-title{
+    font-size: 25px;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #da251d;
+    margin-bottom: 30px;
+}
+div#vnt-shareholder-other .slick-list {
+    margin: 0 -15px;
+}
+div#vnt-shareholder-other .item {
+    padding: 0px 15px;
+}
+div#vnt-shareholder-other .slick-arrow {
+    position: absolute;
+    top: -70px;
+    right: 0;
+    background: none;
+    border: none;
+    font-size: 0;
+    padding: 0;
+    color:#b9b9b9;
+    width: 25px;
+}
+div#vnt-shareholder-other  .slick-prev:before {
+    content: "\f104";
+    font-size: 40px !important;
+    font: normal normal normal 14px/1 FontAwesome;
+    line-height: 48px;
+    font-weight: bold;
+}
+div#vnt-shareholder-other  .slick-next:before {
+    content: "\f105";
+    font-size: 40px !important;
+    font: normal normal normal 14px/1 FontAwesome;
+    line-height: 48px;
+    font-weight: bold;
+}
+div#vnt-shareholder-other .slick-prev {
+    right: 70px;
+}
+div#vnt-shareholder-other .slick-arrow:hover:before {
+    color: #da251d;
+}
+
+
+
+
+div#vnt-shareholder-other {
+    margin-bottom: 30px;
+}
+div#vnt-shareholder-other .img img {
+    width: 100%;
+    -webkit-transition: all 0.8s ease;
+    -o-transition: all 0.8s ease;
+    transition: all 0.8s ease;
+}
+div#vnt-shareholder-other .img {
+    margin-bottom: 20px;
+}
+div#vnt-shareholder-other .tend{
+    margin-bottom: 15px;
+}
+div#vnt-shareholder-other .tend a {
+    display: block;
+    font-size: 18px;
+    line-height: 26px;
+    color: #333;
+}
+div#vnt-shareholder-other .item:hover .tend a{
+    color:#da251d;
+}
+div#vnt-shareholder-other .tomtat {
+    color: #777777;
+    font-size: 15px;
+    line-height: 23px;
+    height: 69px;
+    overflow: hidden;
+}
+/*=======END OTHER=======*/

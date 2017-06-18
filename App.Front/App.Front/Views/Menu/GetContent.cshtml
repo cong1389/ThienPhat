@@ -1,0 +1,98 @@
+﻿<!---GetContent--->
+
+@using App.Domain.Common
+@if (ViewBag.TemplateType != null && ViewBag.TemplateType == (int)TemplateContent.Static || ViewBag.TemplateType == (int)TemplateContent.FixItem)
+{
+    @Html.Action("GetStaticContent", "Menu", new { MenuId= ViewBag.MenuId, virtualId = ViewBag.VirtualId, title = ViewBag.Title, area = "" })
+}
+else
+{
+    if (ViewBag.TemplateType != null && ViewBag.TemplateType == (int)TemplateContent.Product || ViewBag.TemplateType == (int)TemplateContent.Accessories)
+    {
+        @section jquerys{
+            <script src="~/js/pricerange/bootstrap-slider.js"></script>
+        }
+        @section scripts{
+            <script src="~/js/range-price.min.js"></script>
+        }
+        @section stylesheets{
+            <link href="~/css/pricerange/slider.css" rel="stylesheet" />
+        }
+        @Html.Action("GetPostByCategory", "Post", new { virtualCategoryId = ViewBag.VirtualId, page = ViewBag.PageNumber, title = ViewBag.Title, attrs= ViewBag.Attrs, proattrs= ViewBag.ProAttrs, prices=ViewBag.Prices, keywords = ViewBag.Keywords, area = "" })
+    }
+    if (ViewBag.TemplateType != null && ViewBag.TemplateType == (int)TemplateContent.News)
+    {
+        @Html.Action("GetNewsByCategory", "News", new { virtualCategoryId = ViewBag.VirtualId, menuId = ViewBag.MenuId, page = ViewBag.PageNumber, area = "" })
+    }
+    if (ViewBag.TemplateType != null && ViewBag.TemplateType == (int)TemplateContent.SaleOff)
+    {
+        @Html.Action("GetSaleOffByCategory", "SaleOff", new { virtualCategoryId = ViewBag.VirtualId, page = ViewBag.PageNumber, title = ViewBag.Title, area = "" })
+    }
+    if (ViewBag.TemplateType != null && ViewBag.TemplateType == (int)TemplateContent.AboutUs)
+    {
+        @*@section stylesheets
+            {
+                <link href="~/css/profile.css" rel="stylesheet" />
+            }*@
+        @Html.Action("GetProfileCategory", "Profile", new { virtualCategoryId = ViewBag.VirtualId, page = ViewBag.PageNumber, title = ViewBag.Title, area = "" })
+    }
+    @*if (ViewBag.TemplateType != null && ViewBag.TemplateType == (int)TemplateContent.Blog)
+        {
+            @section stylesheets
+                        {
+                <link href="~/css/news.css" rel="stylesheet" />
+            }
+            @Html.Action("GetBlogByCategory", "News", new { virtualCategoryId = ViewBag.VirtualId, page = ViewBag.PageNumber, title = ViewBag.Title, area = "" })
+        }*@
+    @*if (ViewBag.TemplateType != null && ViewBag.TemplateType == (int)TemplateContent.CustomerCare)
+        {
+            @section stylesheets
+                        {
+                <link href="~/css/customercare.css" rel="stylesheet" />
+            }
+            @Html.Action("GetCustomerCareCategory", "CustomerCare", new { virtualCategoryId = ViewBag.VirtualId, page = ViewBag.PageNumber, title = ViewBag.Title, area = "" })
+        }*@
+if (ViewBag.TemplateType != null && ViewBag.TemplateType == (int)TemplateContent.Contact)
+{
+    @section stylesheets
+                    {
+        <link href="~/css/contact.css" rel="stylesheet" />
+    }
+    @section scripts
+        {
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRQ1sJOBf7ZBQuAFZK-Oq9e5a1aVZrpbY"></script>
+
+        <script src="~/js/googlemap.js"></script>
+    }
+    @Html.Action("ContactUs", "Contact", new { Id = ViewBag.MenuId, area = "" })
+}
+    @*if (ViewBag.TemplateType != null && ViewBag.TemplateType == (int)TemplateContent.StoreList)
+        {
+            @section stylesheets
+                        {
+                <link href="~/css/storelist.css" rel="stylesheet" />
+            }
+            @section scripts
+            {
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRQ1sJOBf7ZBQuAFZK-Oq9e5a1aVZrpbY"></script>
+                <script src="~/js/storelist/googlemap.js"></script>
+                <script src="~/js/storelist/storelist.js"></script>
+            }
+            <div class="bg-block">
+                <img src="@Url.Content("~/"+ViewBag.ImgePath)" alt="@ViewBag.Title"/>
+            </div>
+            @Html.Action("Index", "StoreList", new { Id = ViewBag.MenuId, area = "" })
+        }*@
+    @*if (ViewBag.TemplateType != null && ViewBag.TemplateType == (int)TemplateContent.Career)
+        {
+            @section stylesheets
+                        {
+                <link href="~/css/news.css" rel="stylesheet" />
+            }
+            <div class="bg-block">
+                <img src="@Url.Content("~/"+ViewBag.ImgePath)" alt="@ViewBag.Title" />
+            </div>
+            @Html.Action("GetCareerByCategory", "News", new { virtualCategoryId = ViewBag.VirtualId, page = ViewBag.PageNumber, title = ViewBag.Title, area = "" })
+        }*@
+}
+<!---/GetContent--->

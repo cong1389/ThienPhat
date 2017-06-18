@@ -1,0 +1,30 @@
+﻿@using App.Utils
+@model IEnumerable<App.Domain.Entities.Data.News>
+@if (Model.IsAny())
+{
+    <div class="relative-news">
+        <h3 class="relative-title">Tin liên quan</h3>
+        <ul class="list-unstyled">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
+                                <img src="@Url.Content("~/" + item.ImageMediumSize)" alt="@item.Title" />
+                            </a>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2>
+                                <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
+                                    @item.Title
+                                </a>
+                            </h2>
+                            <p>@string.Format("{0:dd/MM/yyyy}", item.CreatedDate)</p>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+}

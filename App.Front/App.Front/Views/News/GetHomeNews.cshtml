@@ -1,0 +1,32 @@
+﻿<!---GetHomeNews--->
+@using App.Domain.Entities.Data
+{
+<div id="vnt-news-home1">
+    <div class="wrapper">
+        <div class="portlet">
+            <div class="portlet-header">
+                <h2 class="portlet-title">thông tin truyền thông</h2>
+            </div>
+            <div class="portlet-content lazyloading">
+                <div class="rowmn">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col3">
+                            <div class="news">
+                                <div class="img"><img src="@Url.Content("~/" + item.ImageMediumSize)" alt='@item.Title' title='@item.Title' /></div>
+                                <div class="caption">
+                                    <div class="date">26/10/2016</div>
+                                    <div class="tend"><a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">@item.Title</a> </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+<!---/GetHomeNews--->

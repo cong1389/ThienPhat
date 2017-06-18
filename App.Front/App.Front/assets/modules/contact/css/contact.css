@@ -1,0 +1,206 @@
+.box {
+    text-align: left;
+}
+.info-company, .form-contact .map-contact {
+    text-align: left;
+}
+.info-company .img {
+        float: left;
+    width: 160px;
+    height: 160px;
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+.info-company {
+    position: relative;
+    margin-bottom: 35px;
+}
+.info-company ul {
+    float: right;
+    width: 1002px;
+    margin-top: 5px;
+    padding-left: 35px;
+}
+.info-company ul li {
+    color: #666;
+    padding: 0px 0px 10px 40px;
+    position: relative;
+}
+.info-company ul li:before {
+    font-family: FontAwesome;
+    position: absolute;
+    left: 0;
+}
+.info-company ul li:after {
+    content: ":";
+    position: absolute;
+    left: 25px;
+}
+.info-company ul li a {
+    color: #666;
+}
+.info-company ul li a:hover {
+    color: #f00;
+}
+.info-company a.view-map {
+    color: #333;
+    border: solid 1px #cccccc;
+    font-weight: bold;
+    padding: 5px 28px;
+    margin-top: 5px;
+    display: inline-block;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 1;
+}
+.info-company a.view-map:before {
+    content:"\f041";
+    color:#e3030d;
+    font-size: 16px;
+    line-height: 24px;
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.info-company a.view-map:hover:before{
+    color:#333;
+}
+.info-company a.view-map:hover{
+    color:#e3030d;
+}
+/*=================BEGIN: FORM CONTACT=================*/
+form#formContact p {
+    padding: 0px 0px 20px 0px;
+}
+div#form-contact {
+    background: url(../images/contact/bg.html) no-repeat right #fafafa;
+    background-size: contain;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+form#formContact {
+    width: 50%;
+    text-align: left;
+}
+form#formContact label {
+    width: 20%;
+    float: left;
+    font-weight: initial;
+}
+form#formContact input, form#formContact textarea {
+    width: 80%;
+    float: right;
+    border-radius: 0;
+    border: none;
+    border-top: solid 1px #cecece;
+    border-left: solid 1px #cecece;
+    background: #efefef;
+    font: normal normal normal 14px/1 FontAwesome;
+    padding-left: 30px;
+}
+form#formContact .form-group {
+    margin-bottom: 10px;
+}
+form#formContact .form-group:after {
+    content: "";
+    clear: both;
+    width: 100%;
+    display: block;
+}
+form#formContact #security_code {
+    width: 60%;
+    float: left;
+}
+form#formContact .security_ver {
+    width: 20%;
+    height: 33px;
+}
+form#formContact .col-right {
+    width: 80%;
+    float: right;
+}
+form#formContact #do_submit, form#formContact #btnReset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    padding: 7px 40px;
+    height:initial;
+    float: left;
+    background: #878787;
+    -moz-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 10px;
+}
+form#formContact #do_submit span, form#formContact #btnReset span{
+    color:#fff;
+}
+form#formContact #do_submit:hover, form#formContact #btnReset:hover{
+    background: #da251d;
+}
+form#formContact .col-right:after {
+    content: "";
+    clear: both;
+    width: 100%;
+    display: block;
+}
+form#formContact .icon1 {
+    background-image: url(../images/contact/icon1.html);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position-x: 10px;
+}
+form#formContact .icon2 {
+    background-image: url(../images/contact/icon2.html);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position-x: 10px;
+}
+form#formContact .icon3 {
+    background-image: url(../images/contact/icon3.html);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position-x: 10px;
+}
+form#formContact .icon4 {
+    background-image: url(../images/contact/icon4.html);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position-x: 10px;
+}
+form#formContact .icon5 {
+    background-image: url(../images/contact/icon5.html);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position-x: 10px;
+}
+/*===========BEGIN : MAP CONTACT=========*/
+.map-contact .box-header {
+    background: #6e6e6e;
+    display: inline-block;
+    padding: 9px 30px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: uppercase;
+}
+.map-contact {
+    margin-bottom: 60px;
+}

@@ -1,0 +1,74 @@
+﻿@using App.Utils
+@model IEnumerable<App.Domain.Entities.Attribute.Attribute>
+@{ var lstAttrIds = (List<int>) ViewBag.Attributes; }
+@if (Model.IsAny())
+{
+    <div class="conten-attr">
+        @foreach (var item in Model)
+        {
+            <h2>@item.AttributeName</h2>
+            if (item.AttributeValues.IsAny())
+            {
+                <div class="attr-items">
+                    @foreach (var at in item.AttributeValues.OrderByDescending(x=>x.OrderDisplay))
+                    {
+                        if (!string.IsNullOrEmpty(at.ColorHex))
+                        {
+                            if (lstAttrIds.Exists(x => x == at.Id))
+                            {
+                                <div id="color_item" class="item active">
+                                    <div class="select-item">
+                                        <label>
+                                            <input id="@at.Id" type="checkbox" name="attr" value="@at.Id" checked="checked"/>
+                                            <span class="bg" style="background-color: @at.ColorHex"></span>
+                                            <span>@at.ValueName</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div id="color_item" class="item">
+                                    <div class="select-item">
+                                        <label>
+                                            <input id="@at.Id" type="checkbox" name="attr" value="@at.Id"/>
+                                            <span class="bg" style="background-color: @at.ColorHex"></span>
+                                            <span>@at.ValueName</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            } 
+                        }
+                        else
+                        {
+                            if (lstAttrIds.Exists(x => x == at.Id))
+                            {
+                                <div class="item active">
+                                    <div class="select-item size active">
+                                        <label>
+                                            <input id="@at.Id" type="checkbox" name="attr" value="@at.Id" checked="checked"/>
+                                            <span>@at.ValueName</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="item">
+                                    <div class="select-item size">
+                                        <label>
+                                            <input id="@at.Id" type="checkbox" name="attr" value="@at.Id"/>
+                                            <span>@at.ValueName</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            }
+            <a rel="nofollow" href="javascript:void(0)" id="showmore" style="display: none">Hiện thêm @item.AttributeName.ToLower()</a>
+        }
+       
+    </div>
+}

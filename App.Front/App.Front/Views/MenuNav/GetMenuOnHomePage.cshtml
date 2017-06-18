@@ -1,0 +1,20 @@
+﻿@using App.Utils
+@model IEnumerable<App.Domain.Entities.Menu.MenuLink>
+    @if (Model.IsAny())
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="block-item">
+                        <img src="@Url.Content("~/"+item.ImageUrl)" alt="@item.MenuName">
+                        <div class="item-title">
+                            <h2 class="biliboard">
+                                <a href="@Url.Action("GetContent", "Menu", new { menu = item.SeoUrl, area = "" })">@item.MenuName</a>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }

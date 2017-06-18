@@ -1,0 +1,12 @@
+﻿@using App.Utils
+@model IEnumerable<App.Domain.Entities.Data.Post>
+@if (Model.IsAny())
+{
+    <h2 class="title">
+        Sản phẩm mới
+    </h2>
+    <div class="item-preview">
+        @Html.Partial("_PartialPostItems", Model)
+    </div>
+}
+

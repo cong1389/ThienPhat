@@ -1,0 +1,20 @@
+﻿@using App.Domain.Common
+@using Resources
+@model App.Domain.Entities.Data.StaticContent
+@if (Model != null)
+{
+    @Html.Action("BannerTopOfNewsPage", "Banner", new { menuId = Model.MenuId })
+    @Html.Partial("_BreadCrumb")
+
+    if (Model.MenuLink.TemplateType == (int)TemplateContent.FixItem)
+    {
+        @Html.Action("GetStaticContentParent", "Menu", new { title = Model.Title, menuId = Model.MenuId, virtualId = Model.MenuLink.VirtualId })
+    }
+    else
+    {
+        <div class="content-desc">
+            @Html.Raw(Model.Description)
+        </div>
+    }
+
+}

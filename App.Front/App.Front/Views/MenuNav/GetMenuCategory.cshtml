@@ -1,0 +1,183 @@
+﻿<!---GetMenuCategory--->
+
+@using App.Domain.Common
+@using App.Front.Models
+@using App.Utils
+@model IEnumerable<MenuNav>
+
+@if (Model != null)
+{
+    <div id="nav-top-menu" class="nav-top-menu">
+        <div class="container relative">
+            <div class="row">
+                <div class="main-categories static col-md-3 col-sm-12">
+                    <div class="md-relative widget-categories">
+
+                        <nav class="megamenus nav-vertical-left-megamenu style-2">
+                            <h3 class="widget-title clearfix">
+                                <span class="title">Categories</span>
+                                <a class="link-open-dropdown" href="javascript:void(0)">
+                                    <span class="fa fa-reorder pull-right vertical-none-toggle-menu"></span>
+                                </a>
+                            </h3>
+
+                            <a class="responsive-btn vertical-responsive" href="javascript:void(0)">
+                                <span class="responsive-btn-text">Categories</span>
+                                <span class="fa fa-angle-down pull-right"></span>
+                            </a>
+                            <ul class="desktop-nav vertical-left-megamenu menu clearfix">                               
+                                
+                                @foreach (MenuNav item in Model)
+                                {
+                                    <li class="megamenu-2349 megamenu-container megamenu-rows  menu-parent">
+                                        <a href="@Url.Action("GetContent","Menu",new {menu = item.SeoUrl, area = "" }) " data-rel="#" title="Smartphone & Tablets">
+                                            <img src="/assets/modules/megamenus/images/icons/1458714162_smatphone.png" alt="@item.MenuName" />
+                                            <span>@item.MenuName</span>
+                                        </a>
+                                        @if (item.ChildNavMenu != null && item.ChildNavMenu.Any())
+                                        {
+                                            <a class="link-open-submenu hidden-lg hidden-md"></a>
+                                            <div class="megamenu menu-megacontent " style="" data-background_image="">
+                                                <div class="row  clearfix">
+
+                                                    @foreach (var child in item.ChildNavMenu)
+                                                    {
+                                                        <div class="col-md-4  megamenu_group">
+                                                            <h4 class="mega-group-header">
+                                                                <a href="#" class="group-title megamenu-title">@child.MenuName</a>
+                                                            </h4>
+                                                            @if (child.ChildNavMenu.IsAny())
+                                                            {
+                                                                <ul class="menuitems">
+
+                                                                    @foreach (var sub in child.ChildNavMenu)
+                                                                    {
+                                                                    <li class="">
+                                                                        <a href="#" title="Tennis">@sub.MenuName</a>
+
+                                                                    </li>
+                                                                    }
+                                                                </ul>
+                                                            }
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                    </li>
+                                }
+                              
+                            </ul>
+                        </nav>
+
+
+                    </div>
+                </div>
+                <div class="main-menus col-md-9 col-sm-12">
+                    <div class="desktop-search dasfdsfds">
+                        <div class=" pagelink-widget currency_language pull-right col-lg-3 col-md-4 col-sm-3 col-xs-5 col-ts-12 padding-none">
+                            <ul class="pagelink">
+                                <li class="currency-dropdown dropdown ">
+                                    <a title="Currenct" href="#" class="visible-md visible-lg">
+                                        <span class="long-name">Dollar</span>
+                                        <span class="short-name">USD</span>
+                                        <span class="fa fa-angle-down"></span>
+                                    </a>
+                                    <a title="Currenct" class="dropdown-toggle visible-sm visible-xs" data-toggle="dropdown" href="javascript:void(0)">
+                                        <span class="long-name">Dollar</span>
+                                        <span class="short-name">USD</span>
+                                        <span class="fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="javascript:setCurrency(1);">
+                                                <span class="long-name">Dollar</span>
+                                                <span class="short-name">USD</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:setCurrency(2);">
+                                                <span class="long-name">Euro</span>
+                                                <span class="short-name">EUR</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+
+                                <li class="language-dropdown dropdown ">
+                                    <a title="Language" class="visible-md visible-lg" href="#">
+                                        <img src="../img/l/1.jpg" alt="en" width="16" height="11" />
+                                        <span class="long-name">English</span>
+                                        <span class="short-name">en</span>
+                                        <span class="fa fa-angle-down"></span>
+                                    </a>
+                                    <a title="Language" class="dropdown-toggle visible-sm visible-xs" data-toggle="dropdown" href="javascript:void(0)">
+                                        <img src="../img/l/1.jpg" alt="en" width="16" height="11" />
+                                        <span class="long-name">English</span>
+                                        <span class="short-name">en</span>
+                                        <span class="fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="selected_language">
+                                            <a href="index.html">
+                                                <img src="../img/l/1.jpg" alt="en" width="16" height="11" />
+                                                <span class="long-name">English</span>
+                                                <span class="short-name">en</span>
+                                            </a>
+
+                                        </li>
+                                        <li>
+                                            <a href="http://kute-themes.com/prestashop/kuteshop/option4/fr/">
+                                                <img src="../img/l/2.jpg" alt="fr" width="16" height="11" />
+                                                <span class="long-name">Français</span>
+                                                <span class="short-name">fr</span>
+                                            </a>
+
+                                        </li>
+
+                                    </ul>
+                                </li>
+
+
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="categorysearch header-search-box">
+
+                            <div class="categorysearch-inner">
+                                <form class="form-inline" method="get" action="http://kute-themes.com/prestashop/kuteshop/option4/en/categorysearch">
+                                    <input type="hidden" id="search_url" value="categorysearch.html" />
+                                    <input type="hidden" name="fc" value="module" />
+                                    <input type="hidden" name="module" value="categorysearch" />
+                                    <input type="hidden" name="controller" value="catesearch" />
+                                    <input type="hidden" name="search_category" id="search_category_id" value="0" />
+                                    <input type="hidden" name="orderby" value="position" />
+                                    <input type="hidden" name="orderway" value="desc" />
+                                    <div class="relative">
+                                        <div class="form-group form-category search_category">
+                                            <select id="search_category" name="search_category" class="chosen-select" style="width: 200px"><option value="0">All Categories</option><option value="12">|- Electronics</option><option value="22">|- |- Computers & Networking</option><option value="26">|- |- Cameras & Photos</option><option value="27">|- |- Television</option><option value="29">|- |- Speaker</option><option value="17">|- Sports & Outdoors</option><option value="37">|- |- Tent</option><option value="38">|- |- Hiking Shoes</option><option value="39">|- |- Cycling Jerseys</option><option value="40">|- |- Boxing</option><option value="42">|- |- Basketball Shoes</option><option value="43">|- |- Carp Fishing</option><option value="44">|- |- Bike Light</option><option value="45">|- |- Sunglasses</option><option value="48">|- |- Camping Stoves</option><option value="19">|- Health & Beauty Bags</option><option value="20">|- Shoes & Accessories</option><option value="24">|- Jewelry & Watches</option><option value="92">|- |- Pearl Jewelry</option><option value="93">|- |- Friendship</option><option value="96">|- |- Body Chains</option><option value="100">|- |- Dress Watches</option><option value="63">|- Fashion</option><option value="21">|- |- Toys & Hobbies</option><option value="49">|- |- Women</option><option value="50">|- |- |- Tops</option><option value="51">|- |- |- Dresses</option><option value="102">|- |- |- Bags and Shoes</option><option value="103">|- |- |- Pants</option><option value="104">|- |- |- Bouses</option><option value="64">|- |- Summer Dresses</option><option value="65">|- |- Casual dresses</option><option value="66">|- |- Blouses</option><option value="68">|- |- Jumpsuits</option><option value="69">|- |- T-Shirts</option><option value="70">|- |- Jackets</option><option value="71">|- |- Bikinis</option><option value="72">|- |- Sunglasses</option><option value="75">|- Furniture</option><option value="25">|- |- Flashlights & Lamps</option><option value="83">|- |- Wall  Decor</option><option value="86">|- |- Home storage</option><option value="87">|- |- Pest Control</option><option value="105">|- Keyboard & mouse</option></select>
+                                        </div>
+                                        <div class="form-group input-search input-serach">
+                                            <input type="text" name="search_query" id="search_query_top" tabindex="1" placeholder="Search..." class="search_query" value="" />
+                                            <i class="button-search-icon"></i>
+                                        </div>
+                                        <button type="submit" class="kt-btn-search">
+                                            <i class="button-search-icon"></i>
+                                        </button>
+                                        <a href="javascript:void(0)" class="open-categorysearch-inner"></a>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+<!---/GetMenuCategory--->

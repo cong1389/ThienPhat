@@ -1,0 +1,97 @@
+﻿<section class="form-block">
+    <div class="form-title">
+        <h2>ĐĂNG KÝ NGAY</h2>
+        <h3>ĐỂ NHẬN THÔNG TIN ƯU ĐÃI MỚI NHẤT</h3>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="bd-form">
+                    <img src="~/images/bg.png" alt="" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-content">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Họ tên</label>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <input type="text" class="form-control" placeholder="Nhập họ và tên">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Giới tính</label>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <select class="form-control">
+                                        <option value="Nữ">Nữ</option>
+                                        <option value="Nam">Nam</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Số điện thoại</label>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <input type="text" class="form-control" placeholder="Nhập số điện thoại của bạn">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Ngày sinh</label>
+                            <div class="col-sm-3">
+                                <select class="form-control">
+                                    <option>Ngày</option>
+                                    @for (int i = 1; i <= 31; i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control">
+                                    <option>Tháng</option>
+                                    @for (int i = 1; i <= 12; i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control">
+                                    <option>Năm</option>
+                                    @for (int i = 2000; i >= 1945; i--)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Email</label>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <input type="text" class="form-control" placeholder="Nhập email hợp lệ">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Khu vực</label>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    @Html.DropDownList("Province", new SelectList(ViewBag.Provinces ?? string.Empty, "Id", "Name"), "Chọn tỉnh/Thành phố", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group no-boder">
+                            <button type="submit" class="btn btn-default">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

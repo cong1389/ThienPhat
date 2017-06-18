@@ -1,0 +1,19 @@
+﻿@model App.Domain.Entities.GlobalSetting.ContactInfomation
+@if (Model != null)
+{
+    <p>@Model.Title</p>
+    <p>
+        Điện thoại: @Model.Hotline
+        @if (!string.IsNullOrEmpty(Model.MobilePhone))
+        {
+            @Html.Raw(" - " + Model.MobilePhone)
+        }
+        @if (!string.IsNullOrEmpty(Model.Fax))
+        {
+            @Html.Raw(" - Fax: " + Model.Fax)
+        }
+    </p>
+    <p>Email : @Model.Email</p>
+    <p>Địa chỉ: @Model.Address</p>
+
+}

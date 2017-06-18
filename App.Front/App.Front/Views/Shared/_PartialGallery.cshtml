@@ -1,0 +1,13 @@
+﻿@using App.Utils
+@model IEnumerable<App.Domain.Entities.Data.GalleryImage>
+@if (Model.IsAny())
+{
+   foreach (var item in Model)
+   {
+    <a class="rsImg" data-rsBigImg="@Url.Content("~/" + item.ImagePath)" href="@Url.Content("~/" + item.ImagePath)">
+        <img width="195" height="350" class="rsTmb" src="@Url.Content("~/" + item.ImageThumbnail)" />
+    </a>
+   }
+}
+
+

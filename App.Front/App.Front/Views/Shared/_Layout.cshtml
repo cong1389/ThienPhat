@@ -1,0 +1,190 @@
+﻿@using App.Utils
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>
+        @ViewBag.Title
+    </title>
+    <meta name="keywords" content="@ViewBag.KeyWords" />
+    <meta name="description" content="@ViewBag.Description" />
+    <meta name="generator" content="WebsiteViet.net" />
+    <link rel="canonical" href="@ViewBag.SiteUrl" />
+    <link rel="alternate" hreflang="vi_vn" href="@ViewBag.SiteUrl" />
+    <meta name="robots" content="index, follow, noodp" />
+    <meta name="googlebot" content="index,archive,follow,noodp" />
+    <meta name="msnbot" content="all,index,follow" />
+    <meta name="copyright" content="@Utils.CurrentHost" />
+    @Html.Action("GetMetaTagsSeo", "Summary", new { area = "" })
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:site_name" content="@ViewBag.Title" />
+    <meta property="og:title" content="@ViewBag.Title" />
+    <meta property="og:description" content="@ViewBag.Description" />
+    <meta property="og:url" content="@ViewBag.SiteUrl/">
+    <meta property="og:type" content="Website" />
+    <meta property="og:image" content="@ViewBag.Image" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <script language="javascript">
+       
+
+    </script>
+
+    @Html.Partial("_StyleSheet")
+    @Html.Partial("_Scripts")
+
+    @RenderSection("stylesheets", false)
+    @RenderSection("styles", false)
+</head>
+<body>
+
+    <div id="vnt-wrapper">
+        <div id="vnt-container">
+
+            @Html.Action("GetMenuTopHead", "MenuNav", new { area = "" })
+
+            @Html.Action("GetMenuLink", "MenuNav", new { area = "" })
+
+
+            <div id="vnt-content">
+               
+
+
+                @RenderBody()
+              
+
+                
+
+
+
+
+
+
+
+                
+
+
+
+
+                <div class="clear"></div>
+            </div>
+
+
+            <div id="vnt-footer">
+                <!--= BEGIN PARTNER =-->
+                <div id="vnt-home-partner" class="lazyloading">
+                    <div class="wrapper">
+                        <div class="rowmn">
+                            <div class="col2">
+                                <div class="title">công ty thành viên</div>
+                                <div class="content">
+                                    <p>Danh sách các công ty thuộc tập đoàn</p>
+                                    <p>Sao Mai An Giang</p>
+                                </div>
+                            </div>
+                            <div class="col10">
+                                <div id="vnt-home-partner-slider" style="cursor: move; width: 970px; height: 113px; position: relative;">
+                                    <div data-u="slides" style="cursor: move; width: 970px; height: 113px;
+                        overflow: hidden;">
+                                        <div class="item"><a href="http://saomaiag.vn/" target="_blank"><img data-u="image" src="../vnt_upload/weblink/doitac1.jpg" /></a></div><div class="item"><a href="http://idiseafood.com/" target="_blank"><img data-u="image" src="../vnt_upload/weblink/doitac2.jpg" /></a></div><div class="item"><a href="http://trisedco.vn/" target="_blank"><img data-u="image" src="../vnt_upload/weblink/doitac3.jpg" /></a></div><div class="item"><a href="http://ranee.com.vn/" target="_blank"><img data-u="image" src="../vnt_upload/weblink/doitac4.jpg" /></a></div><div class="item"><a href="http://dongthaptourist.com/" target="_blank"><img data-u="image" src="../vnt_upload/weblink/doitac5.jpg" /></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--= END PARTNER =-->
+                <!--= BEGIN FOOT =-->
+                <div id="vnt-foot" class="lazyloading">
+                    <div class="wrapper">
+                        <div class="rowmn">
+                            <div class="col9 pull-left">
+                                <div class="copyright">
+                                    <p class="txt"><img src="../skins/default/images/logo3.png" alt="" /><span class="did">|</span>Copyright © 2016 <strong>TRISEDCO</strong></p>
+                                    <p class="footer-address">
+                                        <strong>Địa chỉ</strong> : Quốc lộ 80, Cụm CN Vàm Cống, ấp An Thạnh, xã Bình Thành, huyện Lấp Vò, Đồng Tháp.  -
+                                        <strong>Điện thoại/Fax</strong> : 0673 680 660
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col3 pull-right">
+                                <div class="soc">
+                                    <ul class="list-inline text-right"><li><a target='_blank' href="http://" title="envelope"><i class="fa fa-envelope-square"></i></a></li><li><a target='_blank' href="http://" title="twitter"><i class="fa fa-twitter-square"></i></a></li><li><a target='_blank' href="http://facebook.com/" title="facebook"><i class="fa fa-facebook-square"></i></a></li><li><a target='_blank' href="http://google/" title="google"><i class="fa fa-google-plus-square"></i></a></li></ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--= END FOOT =-->
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="floating_banner_left" style="overflow: hidden; position: absolute; top: 0px; ">
+        <div id="floating_banner_left_content"></div>
+    </div>
+    <div id="floating_banner_right" style="overflow: hidden; position: absolute; top: 0px;">
+        <div id="floating_banner_right_content"></div>
+    </div>
+
+
+    
+
+    
+    
+
+    <script type="text/javascript">
+
+        var slideTime = 700;
+        var rootWidth = 1170;
+        var floatAtBottom = false;
+        function Ad_floating_init() {
+            xMoveTo('floating_banner_right', rootWidth - (rootWidth - screen.width), 0);
+            xMoveTo('floating_banner_left', rootWidth - (screen.width), 0);
+            winOnResize(); // set initial position
+            xAddEventListener(window, 'resize', winOnResize, false);
+            xAddEventListener(window, 'scroll', winOnScroll, false);
+        }
+        function winOnResize() {
+            checkScreenWidth();
+            winOnScroll(); // initial slide
+        }
+        function winOnScroll() {
+            var y = xScrollTop();
+            if (y <= 135) y = 135;
+            if (floatAtBottom) {
+                y += xClientHeight() - xHeight('floating_banner_left');
+            }
+            xSlideTo('floating_banner_left', (screen.width - rootWidth) / 2 - (110 + 15), y, slideTime);
+            xSlideTo('floating_banner_right', (screen.width + rootWidth) / 2 - 2, y, slideTime);
+        }
+        function checkScreenWidth() {
+            if (screen.width <= 1230) {
+                document.getElementById('floating_banner_left').style.display = 'none';
+                document.getElementById('floating_banner_right').style.display = 'none';
+            }
+        }
+
+        Ad_floating_init();
+    </script>
+
+
+
+
+
+ 
+
+    @RenderSection("jquerys", false)
+
+    @RenderSection("scripts", false)
+    @RenderSection("google", false)
+
+
+    @RenderSection("facebook", false)
+</body>
+</html>

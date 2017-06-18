@@ -1,0 +1,35 @@
+﻿@using App.Utils
+@model IEnumerable<App.Front.Models.MenuNav>
+@if (Model.IsAny())
+{
+    int i = 0;
+    foreach (var item in Model)
+    {
+        <div class="col-sm-3">
+            <h3>@item.MenuName</h3>
+            <div class="hr"></div>
+            @if (item.ChildNavMenu.IsAny())
+            {
+                <ul class="list-unstyled">
+                    @foreach (var child in item.ChildNavMenu)
+                    {
+                        if (!string.IsNullOrEmpty(child.OtherLink))
+                        {
+                            <li><a href="@child.OtherLink">@child.MenuName</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("GetContent", "Menu", new {menu = child.SeoUrl, area = ""})">@child.MenuName</a></li>
+
+                        }
+                    }
+
+                    
+                </ul>
+
+            }
+
+        </div>
+        i++;
+    }
+}

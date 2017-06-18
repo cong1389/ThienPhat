@@ -1,0 +1,92 @@
+﻿<!----GetFixedHomePage--->
+@using App.Utils
+@model IEnumerable<App.Front.Models.MenuNav>
+@if (Model.IsAny())
+{
+    int i = 0;
+    int j = 0;
+
+
+    <div class="megacategory mega_tab2" id="megacategory-605">
+        <nav class="navbar nav-menu show-brand">
+            <div class="widget-title">
+                @foreach (var item in Model)
+                {
+                    if (i == 0)
+                    {
+                        <a href="index6a2f.html" class="first_border_bottom_ff3300 pull-left">
+                            @item.MenuName
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="index6a2f.html" class="first_border_bottom_ff3300 pull-left">
+                            @item.MenuName
+                        </a>
+                    }
+                    i++;
+                }
+
+                <span class="toggle-menu"></span>
+                <div class="group-links pull-right menu-collapse">
+                    <ul class="tab-list">
+                        @foreach (var item in Model)
+                        {
+                            if (item.ChildNavMenu.IsAny())
+                            {
+                                foreach (var child in item.ChildNavMenu)
+                                {
+                                    if (j == 0)
+                                    {
+                                        <li class="active">
+                                            <a class="first_before_background_ff3300 second_after_color_ff3300 second_after_color_hover_ff3300" data-toggle="tab" data-id="@child.VirtualId" href="#@child.MenuId">@child.MenuName</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a class="first_before_background_ff3300 second_after_color_ff3300 second_after_color_hover_ff3300" data-toggle="tab" data-id="@child.VirtualId" href="#@child.MenuId" title="Women">@child.MenuName</a>
+                                        </li>
+                                    }
+                                    j++;
+                                }
+                            }
+
+                        }
+
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </nav>
+        <div class="widget-contents clearfix">
+
+            <div class="widget-banners part-1 pull-left">
+                <div class="owl-carousel-style2 owl-banners first_owl_hover_ff3300 first_owl_color_hover_">
+                    <div class="">
+                        <div class="banner-img">
+                            <a href="#">
+                                <img alt="" src="http://kute-themes.com/prestashop/kuteshop/option4//modules/megacategory/images/2e26552b92478b97fc22924dbbaef9af_adv1.jpg">
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="">
+                        <div class="banner-img">
+                            <a href="#">
+                                <img alt="" src="http://kute-themes.com/prestashop/kuteshop/option4//modules/megacategory/images/2e26552b92478b97fc22924dbbaef9af_adv1.jpg">
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget-products tab-content  part-2 is-banner leftProductContent">
+            </div>
+
+        </div>
+    </div>
+
+}
+<!----/GetFixedHomePage--->

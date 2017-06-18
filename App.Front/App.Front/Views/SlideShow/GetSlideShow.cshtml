@@ -1,0 +1,27 @@
+﻿<!--GetSlideShow -->
+
+@using App.Utils
+@model IEnumerable<App.Domain.Entities.Slide.SlideShow>
+@if (Model.IsAny())
+{
+    <divs id="vnt-home-slide">
+
+        @foreach (var item in Model)
+        {
+            <div class="item">
+                <div class="img"><a href="@item.WebsiteLink" target="_blank" title="@item.Title"><img src="@Url.Content("~/"+item.ImgPath)" alt="@item.Title"  /></a></div><div class="i-des">
+                    <div class="title">@item.Title</div>
+                    <div class="content">@Html.Raw(item.Description)</div>
+                    <a arget="_blank" href="@item.WebsiteLink" class="btn" title=""><span>xem chi tiết</span></a>
+                </div>
+            </div>
+        }
+
+
+        
+
+    </divs>
+
+}
+
+<!--/GetSlideShow -->

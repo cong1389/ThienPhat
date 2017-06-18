@@ -1,0 +1,112 @@
+﻿@using Resources
+<ul class="nav navbar-nav">
+    <li class="menu-dropdown classic-menu-dropdown ">
+        <a href="@Url.Action("Index", "Home")"> Dashboard</a>
+    </li>
+    <li class="menu-dropdown mega-menu-dropdown  ">
+        <a href="javascript:;">
+            <i class="fa fa-cogs"></i> Cấu hình hệ thống
+            <span class="arrow"></span>
+        </a>
+        <ul class="dropdown-menu" style="min-width: 710px">
+            <li>
+                <div class="mega-menu-content">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <ul class="mega-menu-submenu">
+                                <li>
+                                    <a href="@Url.Action("Index", "MailSetting")" class="nav-link"> @FormUI.ServerMailSetting </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "ContactInfomation")" class="nav-link"> @FormUI.ContactInfomation </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "SystemSetting")" class="nav-link"> @FormUI.SystemSetting </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "SeoSetting")" class="nav-link"> @FormUI.SettingSeoGlobal </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Menu")" class="nav-link"> @FormUI.MenuLink </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <ul class="mega-menu-submenu">
+                                <li>
+                                    <a href="@Url.Action("Index", "PageBanner")" class="nav-link"> Vị trí hiển thị quảng cáo</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Banner")" class="nav-link"> Danh sách quảng cáo </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "SlideShow")" class="nav-link"> Danh sách slide </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Province")" class="nav-link"> Danh sách tỉnh thành </a>
+                                </li> 
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <ul class="mega-menu-submenu">
+                                <li>
+                                    <a href="@Url.Action("Index", "FlowStep")" class="nav-link">Quy trình</a>
+                                </li> 
+                                <li>
+                                    <a href="@Url.Action("Index", "Brand")" class="nav-link">Hãng sản xuất</a>
+                                </li>
+                            </ul>
+                        </div> 
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </li> 
+    <li class="menu-dropdown classic-menu-dropdown ">
+        <a href="javascript:;">
+            <i class="fa fa-map-marker"></i> Quản lý thuộc tính
+            <span class="arrow"></span>
+        </a>
+        <ul class="dropdown-menu pull-left">
+            <li>
+                <a href="@Url.Action("Index", "Attribute")" class="nav-link"> @FormUI.Attribute </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "AttributeValue")" class="nav-link"> @FormUI.AttributeValue </a>
+            </li>
+        </ul>
+    </li>
+    <li class="menu-dropdown classic-menu-dropdown">
+        <a href="javascript:;">
+            <i class="fa fa-file-archive-o"></i>Quản lý bài viết<span class="arrow"></span>
+        </a>
+        <ul class="dropdown-menu pull-left">
+            <li>
+                <a href="@Url.Action("Index", "Order")" class="nav-link"> @FormUI.Order </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Post")" class="nav-link"> @FormUI.PostManagement </a>
+            </li> 
+            <li>
+                <a href="@Url.Action("Index", "News")" class="nav-link"> @FormUI.NewsManagement </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "StaticContent")" class="nav-link"> @FormUI.StaticContent </a>
+            </li>
+            
+        </ul>
+    </li>
+    <li class="menu-dropdown classic-menu-dropdown">
+        <a href="javascript:;">
+            <i class="fa fa-users"></i>Quản lý thành viên<span class="arrow"></span>
+        </a>
+        <ul class="dropdown-menu pull-left">
+            <li>
+                <a href="@Url.Action("Index", "Account")" class="nav-link"> @FormUI.Users </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Role")" class="nav-link"> @FormUI.Roles </a>
+            </li>
+        </ul>
+    </li> 
+</ul>

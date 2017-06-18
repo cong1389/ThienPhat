@@ -1,0 +1,42 @@
+﻿<h2 class="title">LỌC THEO NGÀNH HÀNG</h2>
+<div class="box-search">
+    <div class="box-category"> 
+        @Html.Action("GetMenuLinkSideBar", "MenuNav", new { area = "", Ids= ViewBag.ProAttrs })
+    </div>
+    <div class="price-box">
+        <h2 class="title-box">Giá tiền</h2>
+        <div class="range-block">
+            <div class="text">
+                <span>300.000</span>
+                <span>50.000.000</span>
+            </div>
+            @{
+                var fromPrice = 300000D;
+                var toPrice = 50000000D;
+
+                var price = (List<double>)ViewBag.Prices;
+                if (price != null && price.Count > 0)
+                {
+                    fromPrice = price.FirstOrDefault();
+                    toPrice = price.LastOrDefault();
+                } 
+            }
+            <input type="text" id="block-slider" value="" data-slider-tooltip="hide" data-slider-min="300000" data-slider-max="50000000" data-slider-step="1000000" data-slider-value="[@fromPrice,@toPrice]">
+            <div class="show-range">
+                <div class="s-control">
+                    <input id="from-price" type="number" class="form-control" value="@fromPrice" />
+                </div>
+                <span>–</span>
+                <div class="s-control">
+                    <input id="to-price" type="number" class="form-control" value="@toPrice" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="att-tag">
+        @Html.Action("GetAttributeSearchBox", "SearchBox", new { area = "", ViewBag.Attributes })
+    </div>
+    <input type="hidden" id="attribute" />
+    <input type="hidden" id="proattribute" />
+    <input type="hidden" id="price" />
+</div>

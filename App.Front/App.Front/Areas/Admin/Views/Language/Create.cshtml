@@ -1,0 +1,65 @@
+﻿@using App.Domain.Common
+@using Resources
+@model App.FakeEntity.Language.LanguageFormViewModel
+@{
+    ViewBag.Title = UI.CreateNew;
+    ViewBag.Toolbar = new[] { "Save", "SaveNew", "Divider", "Back"};
+}
+
+@using (Html.BeginForm("Create", "Language", FormMethod.Post, new { data_container = @ViewContext.RouteData.Values["controller"], @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger col-md-offset-3" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "help-block" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Code, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    @Html.TextBoxFor(model => model.Code, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Code, "", new { @class = "help-block" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    @Html.DropDownList("Status", new List<SelectListItem>
+                    {
+                        new SelectListItem {Text = UI.Active, Value = ((int)Status.Enable).ToString()},
+                        new SelectListItem {Text = UI.InActive, Value = ((int)Status.Disable).ToString()}
+                    }, new { @class = "form-control", id = "Status", name = "Status" })
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "help-block" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.File, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="input-group input-large">
+                            <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                <span class="fileinput-filename"> </span>
+                            </div>
+                            <span class="input-group-addon btn default btn-file">
+                                <span class="fileinput-new">@Resources.FormUI.SelectFile</span>
+                                <span class="fileinput-exists"> @Resources.FormUI.ChangeFile </span>
+                                @Html.TextBoxFor(model => model.File, new { @type = "file" })
+                            </span>
+                            <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.File, "", new { @class = "help-block" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

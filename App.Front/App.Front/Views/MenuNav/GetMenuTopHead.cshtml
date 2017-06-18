@@ -1,0 +1,60 @@
+﻿<!---GetMenuTopHead--->
+
+@using App.Front.Models
+@model IEnumerable<MenuNav>
+@if (Model != null)
+{
+    <div id="vnt-header">
+        <div class="wrapper">
+
+            @Html.Action("GetLogo", "Summary", new { area = "" } )
+
+            <div class="header-tool">
+                <div class="language">
+                    <ul class="list-inline text-right">
+                        <li class='active'><a href="trang-chu.html"><img src="../vnt_upload/lang/flag-vn.png" /><p>Tiếng Việt</p></a></li>
+                        <li><a href="http://trisedco.com/en/main.html"><img src="../vnt_upload/lang/flag-en.png" /><p>English</p></a></li>
+                        <li><a href="http://trisedco.com/cn/main.html"><img src="../vnt_upload/lang/flag-cn.png" /><p>中国</p></a></li>
+
+                    </ul>
+                </div>
+                <div class="search">
+
+                    <script language="javascript">
+                        function check_search(f) {
+                            var key_default = "Từ khóa";
+                            var keyword = f.keyword.value;
+                            var key_len = f.keyword.value.length;
+                            if ((keyword == key_default) || (keyword == '')) {
+                                alert("Vui lòng nhập từ khóa");
+                                f.keyword.focus();
+                                return false;
+                            }
+                            if (key_len < 2) {
+                                alert("Từ khóa tới thiểu là 2 ký tự");
+                                f.keyword.focus();
+                                return false;
+                            }
+                            return true;
+                        }
+
+                    </script>
+
+                    <form id="formSearch" name="formSearch" method="post" action="http://trisedco.com/vn/tim-kiem.html" onSubmit="return check_search(this);" class="box_search">
+
+                        <input name="keyword" id="keyword" type="text" class="text_search form-control" onfocus="if(this.value=='Từ khóa') this.value='';" onBlur="if(this.value=='') this.value='Từ khóa';" value="" placeholder="tìm kiếm" />
+
+                        <button id="btn-search" name="btn-search" type="submit" class="btn" value="Tìm"></button>
+                        <input name="do_search" value="1" type="hidden" />
+                    </form>
+
+
+
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+}
+
+<!---/GetMenuTopHead--->

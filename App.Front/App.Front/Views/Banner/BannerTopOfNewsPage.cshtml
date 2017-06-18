@@ -1,0 +1,13 @@
+﻿@model App.Domain.Entities.Ads.Banner
+@if (Model != null)
+{
+    <div class="vnt-page-slide">
+        <div id="vnt-page-slide">
+            <div class="item">
+
+                <div class="img"><a href="http://" target="_blank"><img src="@Url.Content("~/"+Model.ImgPath)" alt="@Model.Title" /></a></div>
+
+            </div>
+        </div>
+    </div>
+}

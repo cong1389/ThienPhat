@@ -1,0 +1,57 @@
+﻿@using App.Utils
+@model IEnumerable<App.Domain.Entities.Data.Post>
+@if (Model.IsAny())
+{
+    foreach (var item in Model)
+    {
+        <div class="col-sm-3">
+            <div class="product-card animated growIn go">
+                <div class="product-img">
+                    <a href="@Url.Action("PostDetail","Post", new {seoUrl =item.SeoUrl,area=""})">
+                        <img src="@Url.Content("~/" + item.ImageMediumSize)" alt="@item.Title" />
+                    </a>
+                </div>
+                <div class="product-description">
+                    <h2>
+                        <a href="@Url.Action("PostDetail", "Post", new {seoUrl = item.SeoUrl, area = ""})">
+                            @item.Title
+                        </a>
+                    </h2>
+                    <p class="product-price">
+                        @if (item.Price.HasValue && item.Discount.HasValue)
+                        {
+                            @Html.Raw(string.Format("{0:##,### VND}", item.Price - item.Price * item.Discount / 100))
+                        }
+                        else if (item.Price.HasValue && !item.Discount.HasValue)
+                        {
+                            @Html.Raw(string.Format("{0:##,### VND}", item.Price))
+                        }
+                        else
+                        {
+                            @Html.Raw("Liên hệ")
+                        }
+                        @if (item.Discount.HasValue)
+                        {
+                            <span class="product-discount">
+                                @Html.Raw(item.Discount.ToString() + "%")
+                            </span>
+                        }
+                    </p>
+                    @if (item.Discount.HasValue)
+                    {
+                        <p class="product-old-price">
+                            @Html.Raw(string.Format("{0:##,### VND}", item.Price))
+                        </p>
+                    }
+
+                </div>
+                <div class="quick-buy">
+                    <a href="@Url.Action("PostDetail", "Post", new {seoUrl = item.SeoUrl, area = ""})" class="btn-buy">
+                        Xem chi tiết
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+}
+
