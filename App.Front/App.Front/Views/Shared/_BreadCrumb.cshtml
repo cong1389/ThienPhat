@@ -4,37 +4,35 @@
 @using App.Utils
 @{
     List<BreadCrumb> breadCrumbs = Model is List<BreadCrumb> ? Model : ViewBag.BreadCrumb as List<BreadCrumb>;
-    
-    <div class="breadcrumb">
-        <div class="container">
-            <ul class="list-inline">
-                <li>
-                    <a href="@Url.Action("Index", "Home", new {area = ""})" class="home-link">
-                        <i class="icon_home"></i>
-                    </a>
-                </li>
-               @if (breadCrumbs.IsAny())
-               {
-                   foreach (var item in breadCrumbs)
-                   {
-                       if (!item.Current)
-                       {
-                        <li>
-                            <a href="@item.Url" class="home-link">
-                               @item.Title
-                            </a>
-                        </li>
-                       }
-                       else
-                       {
-                        <li class="active">
-                            <span>@item.Title</span>
-                        </li>
-                       }
-                   }
-               }
-               
-            </ul>
+
+    <div id="vnt-navation" class="breadcrumb" >
+        <div class="wrapper">
+            <div class="navation">
+                <ul class="list-inline text-left">
+                    <li>
+                        <a href="@Url.Action("Index", "Home", new {area = ""})"><i class="icon_home"></i></a>
+                    </li>
+                    @if (breadCrumbs.IsAny())
+                    {
+                        foreach (var item in breadCrumbs)
+                        {
+                            if (!item.Current)
+                            {
+                                <li>
+                                    <a href='@item.Url'>@item.Title</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="active">
+                                    <a href='@item.Url'>@item.Title</a>
+                                </li>
+                            }
+                        }
+                    }
+
+                </ul>
+            </div>
         </div>
     </div>
 }

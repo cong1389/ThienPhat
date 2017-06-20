@@ -1,7 +1,8 @@
 ﻿<!---GetMenuTopHead--->
-
 @using App.Front.Models
+@using App.Front.Helpers
 @model IEnumerable<MenuNav>
+
 @if (Model != null)
 {
     <div id="vnt-header">
@@ -12,9 +13,9 @@
             <div class="header-tool">
                 <div class="language">
                     <ul class="list-inline text-right">
-                        <li class='active'><a href="trang-chu.html"><img src="../vnt_upload/lang/flag-vn.png" /><p>Tiếng Việt</p></a></li>
-                        <li><a href="http://trisedco.com/en/main.html"><img src="../vnt_upload/lang/flag-en.png" /><p>English</p></a></li>
-                        <li><a href="http://trisedco.com/cn/main.html"><img src="../vnt_upload/lang/flag-cn.png" /><p>中国</p></a></li>
+                        <li class='active'><a href="@Url.Action("SetCulture", "Home", new {culture ="es", area = ""})"><img src="assets/vnt_upload/lang/flag-vn.png" /><p>Tiếng Việt</p></a></li>
+                        <li><a href="@Url.Action("SetCulture", "Home", new {culture = "en-us", area = ""})"><img src="assets/vnt_upload/lang/flag-en.png" /><p>English</p></a></li>
+                        <li><a href="http://trisedco.com/cn/main.html"><img src="assets/vnt_upload/lang/flag-cn.png" /><p>中国</p></a></li>
 
                     </ul>
                 </div>
@@ -56,5 +57,12 @@
         </div>
     </div>
 }
+<script type="text/javascript">
+        (function ($) {
+            $("input[type = 'radio']").click(function () {
+                $(this).parents("form").submit(); // post form
+            });
 
+        })(jQuery);
+</script>
 <!---/GetMenuTopHead--->

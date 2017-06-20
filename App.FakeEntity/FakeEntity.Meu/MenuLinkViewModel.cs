@@ -14,7 +14,7 @@ namespace App.FakeEntity.Meu
 			set;
 		}
 
-		[Display(Name="DisplayOnHomePage", ResourceType=typeof(FormUI))]
+        [Display(Name= "DisplayOnHomePage", ResourceType=typeof(Resources.Resource))]
 		public bool DisplayOnHomePage
 		{
 			get;

@@ -69,12 +69,12 @@ a{
     transition: all 0.5s ease;
 }
 a:hover{
-    color:#da251d;
+    color:#3023cb;
 }
 /*===============BEGIN: HEADER==============*/
 div#vnt-header {
     padding: 20px 0px;
-    border-top: solid 2px #da251d;
+    border-top: solid 2px #3023cb;
 }
 .logo {
     float: left;
@@ -145,7 +145,7 @@ div#vnt-header {
     transition: all 0.5s ease;
 }
 .search .btn:hover {
-    background: #da251d;
+    background: #3023cb;
     box-shadow: none;
 }
 .search .btn:before {
@@ -176,7 +176,7 @@ div#vnt-header {
 /*==================END: HEADER===================*/
 /*================BEGIN: MENU TOP================*/
 div#vnt-menutop {
-    background: #da251d;
+    background: #3023cb;
 }
 .menutop ul li{
     float:left;
@@ -189,14 +189,14 @@ div#vnt-menutop {
     font-size: 18px;
     line-height: 26px;
     padding: 12px 19px;
-    border-right: solid 1px #e56761;
+    border-right: solid 1px #fff;
 }
 .menutop ul li:last-child a{
     border:none;
 }
 .menutop ul li:hover a, .menutop ul li.current a {
     background: #fff;
-    color: #da251d;
+    color: #3023cb;
 }
 .menutop ul li.home a {
     padding: 12px 25px 12px 45px;
@@ -242,7 +242,7 @@ div#vnt-menutop {
 #vnt-home-slide .item .i-des .btn {
     position: absolute;
     z-index: 9;
-    background: #da251d;
+    background: #3023cb;
     border-radius: 0;
     font-size: 16px;
     line-height: 24px;
@@ -262,7 +262,7 @@ div#vnt-menutop {
     left: 0;
     width: 0;
     height: 100%;
-    background-color: #da251d;
+    background-color: #3023cb;
     transition: all 0.5s ease;
 }
 #vnt-home-slide .item .i-des .btn:hover:before {
@@ -413,8 +413,8 @@ div#vnt-home-partner-slider .item img {
 /*==============END BREADCRUMB==============*/
 /*===============BEGIN PAGINATION================*/
 .pagination ul li a:hover, .pagination ul li span.pagecur{
-    background: #da251d;
-    border-color: #da251d;
+    background: #3023cb;
+    border-color: #3023cb;
 }
 .pagination ul li {
     margin-right: 15px;
@@ -426,7 +426,7 @@ div#vnt-sidebar {
     float:left;
 }
 #vnt-sidebar .box-title {
-    background: #da251d;
+    background: #3023cb;
 }
 #vnt-sidebar .box-title .fTitle {
     text-align: left;
@@ -473,7 +473,7 @@ div#vnt-sidebar ul li ul {
     border-top: 1px solid #e0e0e0;
 }
 div#vnt-sidebar ul li:hover > a, div#vnt-sidebar ul li.current > a {
-    color: #da251d;
+    color: #3023cb;
 }
 div#vnt-main {
     width: 870px;
@@ -506,7 +506,7 @@ div#vnt-main {
 /*================END BOX MID=============*/
 /*============BEGIN FOOTER===============*/
 div#vnt-foot {
-    background: #da251d;
+    background: #3023cb;
     padding: 10px 0px;
 }
 .copyright .txt {
@@ -559,7 +559,7 @@ div#vnt-foot {
     position: fixed;
     width: 27px;
     height: 27px;
-    background: #da251d;
+    background: #3023cb;
     color: #fff;
     border: solid 1px #fff;
     border-radius: 100%;

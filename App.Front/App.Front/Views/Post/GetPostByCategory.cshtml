@@ -5,20 +5,8 @@
 @model IEnumerable<App.Domain.Entities.Data.Post>
 
 <div class="vnt-page-slide">
-    <div id="vnt-page-slide" class="slick-initialized slick-slider">
-        <div aria-live="polite" class="slick-list draggable"><div class="slick-track" role="listbox" style="opacity: 1; width: 1349px; transform: translate3d(0px, 0px, 0px);"><div class="item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00" style="width: 1349px;"><div class="img"><a href="http://" target="_blank" tabindex="0"><img src="/vnt_upload/weblink/banner_1.jpg"></a></div></div></div></div>
-    </div>
-
-    <div id="vnt-navation" class="breadcrumb" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-        <div class="wrapper">
-            <div class="navation">
-                <ul class="list-inline text-left">
-                    <li><a href="/vn/trang-chu.html">Trang chủ</a></li>
-                    <li><a href="/vn/san-pham.html">Sản phẩm</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    @Html.Action("BannerTop", "Banner", new { menuId = ViewBag.MenuId })
+    @Html.Partial("_BreadCrumb")
 </div>
 <div class="wrapper">
     @if (Model.IsAny())

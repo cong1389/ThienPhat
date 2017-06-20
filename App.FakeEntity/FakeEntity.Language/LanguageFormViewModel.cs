@@ -8,7 +8,7 @@ namespace App.FakeEntity.Language
 {
 	public class LanguageFormViewModel
 	{
-		[Display(Name="Code", ResourceType=typeof(FormUI))]
+		[Display(Name="Code", ResourceType=typeof(Resources.FormUI))]
 		public string Code
 		{
 			get;

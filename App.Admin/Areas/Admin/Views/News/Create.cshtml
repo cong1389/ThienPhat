@@ -14,6 +14,12 @@
         <div class="form-body">
             @Html.ValidationSummary(true, "", new { @class = "text-danger col-md-offset-3" })
             <div class="form-group">
+                @Html.LabelFor(model => model.Language, new { @class = "control-label col-md-3" })
+                <div class="col-md-5">
+                    @Html.DropDownListFor(x => x.Language, new SelectList(ViewBag.AllLanguage, "Id", "LanguageName"), "--Select--", new { @class = "form-control  select2" })
+                </div>
+            </div>
+            <div class="form-group">
                 @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-3" })
                 <div class="col-md-5">
                     @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
@@ -27,46 +33,46 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.OrderDisplay, new {@class = "control-label col-md-3"})
+                @Html.LabelFor(model => model.OrderDisplay, new { @class = "control-label col-md-3" })
                 <div class="col-md-5">
-                    @Html.TextBoxFor(model => model.OrderDisplay, new {@class = "form-control"})
-                    @Html.ValidationMessageFor(model => model.OrderDisplay, "", new {@class = "help-block"})
+                    @Html.TextBoxFor(model => model.OrderDisplay, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.OrderDisplay, "", new { @class = "help-block" })
                 </div>
             </div>
             @*<div class="form-group">
-                @Html.LabelFor(model => model.Video, new {@class = "control-label col-md-3"})
-                <div class="col-md-5">
-                    @Html.CheckBoxFor(model => model.Video, new {@class = "form-control"})
-                    @Html.ValidationMessageFor(model => model.Video, "", new {@class = "help-block"})
-                </div>
-            </div>*@
-            @*<div class="form-group">
-                @Html.LabelFor(model => model.OtherLink, new { @class = "control-label col-md-3" })
-                <div class="col-md-5">
-                    @Html.TextBoxFor(model => model.OtherLink, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.OtherLink, "", new { @class = "help-block" })
-                </div>
-            </div>*@
-            @*<div class="form-group">
-                @Html.LabelFor(model => model.VideoLink, new { @class = "control-label col-md-3" })
-                <div class="col-md-5">
-                    @Html.TextBoxFor(model => model.VideoLink, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.VideoLink, "", new { @class = "help-block" })
-                </div>
-            </div>*@
-            @*<div class="form-group">
-                @Html.Label(FormUI.OptionDisplay, new { @class = "control-label col-md-3" })
-                <div class="col-md-5">
-                    <div class="checkbox-list">
-                        <label>
-                            @Html.CheckBoxFor(x => x.SpecialDisplay) @FormUI.SpecialDisplay
-                        </label>
-                        <label>
-                            @Html.CheckBoxFor(x => x.HomeDisplay) @FormUI.HomeDisplay
-                        </label>
+                    @Html.LabelFor(model => model.Video, new {@class = "control-label col-md-3"})
+                    <div class="col-md-5">
+                        @Html.CheckBoxFor(model => model.Video, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.Video, "", new {@class = "help-block"})
                     </div>
-                </div>
-            </div>*@
+                </div>*@
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.OtherLink, new { @class = "control-label col-md-3" })
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(model => model.OtherLink, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.OtherLink, "", new { @class = "help-block" })
+                    </div>
+                </div>*@
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.VideoLink, new { @class = "control-label col-md-3" })
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(model => model.VideoLink, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.VideoLink, "", new { @class = "help-block" })
+                    </div>
+                </div>*@
+            @*<div class="form-group">
+                    @Html.Label(FormUI.OptionDisplay, new { @class = "control-label col-md-3" })
+                    <div class="col-md-5">
+                        <div class="checkbox-list">
+                            <label>
+                                @Html.CheckBoxFor(x => x.SpecialDisplay) @FormUI.SpecialDisplay
+                            </label>
+                            <label>
+                                @Html.CheckBoxFor(x => x.HomeDisplay) @FormUI.HomeDisplay
+                            </label>
+                        </div>
+                    </div>
+                </div>*@
             <div class="form-group">
                 @Html.LabelFor(model => model.ShortDesc, new { @class = "control-label col-md-3" })
                 <div class="col-md-5">
@@ -142,7 +148,7 @@
 }
 @section scripts{
     <script src="@Url.FakePathAdmin("scripts/plugins/ckeditor/ckeditor.js")"></script>
-<script src="@Url.FakePathAdmin("scripts/plugins/ckeditor/config.js")"></script>
+    <script src="@Url.FakePathAdmin("scripts/plugins/ckeditor/config.js")"></script>
 }
 
 

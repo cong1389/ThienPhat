@@ -1,3 +1,7 @@
 ﻿.box-news .img img {
     width:356px !important;
 }
+
+#vnt-news-home .news img {
+    max-height:183px;
+}

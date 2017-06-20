@@ -33,7 +33,7 @@ div#vnt-category {
 }
 .category .caption .tend a {
     display: block;
-    color: #da251d;
+    color: #3023cb;
     font-size: 30px;
     line-height: 38px;
     font-weight: bold;
@@ -46,7 +46,7 @@ div#vnt-category {
 }
 .category .caption .tend:hover a{
     color:#61a647;
-    border-color: #da251d;
+    border-color: #3023cb;
 }
 .category .caption .tomtat {
     font-size: 16px;

@@ -51,8 +51,8 @@ div#vnt-news-slider .slick-dots li button {
     margin-right: 15px;
 }
 div#vnt-news-slider .slick-dots li.slick-active button {
-    background: #da251d;
-    border-color: #da251d;
+    background: #3023cb;
+    border-color: #3023cb;
     color: #fff;
 }
 .box-news{
@@ -95,7 +95,7 @@ div#vnt-news-slider .slick-dots li.slick-active button {
     margin-bottom: 10px;
 }
 .box-news .caption .title a:hover {
-    color: #da251d;
+    color: #3023cb;
 }
 .box-news .caption .tomtat {
     color: #666666;
@@ -106,7 +106,7 @@ div#vnt-news-slider .slick-dots li.slick-active button {
     overflow: hidden;
 }
 .box-news .caption .view {
-    background: #da251d;
+    background: #3023cb;
     color: #fff;
     text-transform: Capitalize;
     padding: 9px 32px;

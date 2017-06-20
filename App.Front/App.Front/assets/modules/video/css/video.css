@@ -113,14 +113,14 @@ div#vnt-video {
     color: #333;
 }
 .tool-print a:hover {
-    color: #da251d;
+    color: #3023cb;
 }
 /*=======OTHER=======*/
 .vid-title {
     font-size: 25px;
     line-height: 33px;
     text-transform: uppercase;
-    color: #da251d;
+    color: #3023cb;
     padding: 0px 0px 12px 0px;
     border-bottom: solid 1px #d9d9d9;
     margin-bottom: 15px;
@@ -229,6 +229,6 @@ div#vnt-video-other .slick-prev {
     right: 70px;
 }
 div#vnt-video-other .slick-arrow:hover:before {
-    color: #da251d;
+    color: #3023cb;
 }
 /*=======END OTHER=======*/

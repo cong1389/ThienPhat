@@ -104,13 +104,15 @@ namespace App.Front.Controllers
 				PageSize = base._pageSize,
 				TotalRecord = 0
 			};
-			IEnumerable<News> news = this._newsService.FindAndSort((News x) => !x.Video && x.Status == 1 && x.VirtualCategoryId.Contains(virtualCategoryId), sortBuilder, paging);
+			IEnumerable<News> news = this._newsService.FindAndSort((News x) => !x.Video && x.Status == 1 
+            && x.VirtualCategoryId.Contains(virtualCategoryId) && x.Language=="2"
+            , sortBuilder, paging);
 			if (news.IsAny<News>())
 			{
                 Helper.PageInfo pageInfo = new Helper.PageInfo(ExtentionUtils.PageSize, page, paging.TotalRecord, (int i) => base.Url.Action("GetContent", "Menu", new { page = i }));
 				((dynamic)base.ViewBag).PageInfo = pageInfo;
-				((dynamic)base.ViewBag).CountItem = pageInfo.TotalItems;
-			}
+				((dynamic)base.ViewBag).CountItem = pageInfo.TotalItems;                
+            }
 			return base.PartialView(news);
 		}
 

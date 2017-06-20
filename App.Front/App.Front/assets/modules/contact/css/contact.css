@@ -153,7 +153,7 @@ form#formContact #do_submit span, form#formContact #btnReset span{
     color:#fff;
 }
 form#formContact #do_submit:hover, form#formContact #btnReset:hover{
-    background: #da251d;
+    background: #3023cb;
 }
 form#formContact .col-right:after {
     content: "";

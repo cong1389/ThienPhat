@@ -22,8 +22,8 @@ using System.Web.Mvc;
 
 namespace App.Front.Controllers
 {
-	public class PostController : FrontBaseController
-	{
+    public class PostController : FrontBaseController
+    {
         private readonly IPostService _postService;
 
         private readonly IMenuLinkService _menuLinkService;
@@ -240,6 +240,7 @@ namespace App.Front.Controllers
                 Helper.PageInfo pageInfo = new Helper.PageInfo(ExtentionUtils.PageSize, page, paging.TotalRecord, (int i) => base.Url.Action("GetContent", "Menu", new { page = i }));
                 ((dynamic)base.ViewBag).PageInfo = pageInfo;
                 ((dynamic)base.ViewBag).CountItem = pageInfo.TotalItems;
+                ((dynamic)base.ViewBag).MenuId = posts.ElementAt(0).MenuId;
             }
             ((dynamic)base.ViewBag).Title = title;
             return base.PartialView(posts);

@@ -3,6 +3,8 @@
 @using App.Domain.Common
 @using App.Front.Models
 @using App.Utils
+@using App.Domain.Entities.Menu
+@using Resources
 @model IEnumerable<MenuNav>
 
 @if (Model != null)
@@ -14,8 +16,10 @@
                 <ul>
                     @foreach (MenuNav item in Model)
                     {
-                        <li class='home' >
-                    <a href="@Url.Action("GetContent", "Menu", new {menu = item.SeoUrl, area = ""})" target="_self">@item.MenuName</a></li>
+                        var home = i == 0 ? "home" : "";
+                        <li class='@home'>
+                            <a href="@Url.Action("GetContent", "Menu", new {menu = item.SeoUrl, area = ""})" target="_self">@item.MenuName</a>
+                        </li>
                         i++;
                     }
                 </ul>

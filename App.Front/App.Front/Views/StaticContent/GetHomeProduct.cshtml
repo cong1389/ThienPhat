@@ -2,7 +2,29 @@
 @model App.Domain.Entities.Data.StaticContent
 @if (Model != null)
 {
-
-    @Html.Raw(Model.ShortDesc)
+    <div id="vnt-home-my-product" class="lazyloading">
+        <div class="rowmn">
+            <div class="col6">
+                <div id="vnt-slide-product1">
+                    <div class="item">
+                        <div class="img"><img src="/Images/slide-ion2.jpg" /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col6">
+                <div id="vnt-slide-product2">
+                    <div class="item">
+                        <div class="img"><img src="/Images/slide-ion2.jpg" /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="title">@Model.Title</div>
+                <div class="cont">@Html.Raw(Model.ShortDesc)</div>
+                <a class="view" href="#"><span>xem sản phẩm</span></a>
+            </div>
+        </div>
+    </div>
+   
 }
 <!--/GetHomeProduct----->

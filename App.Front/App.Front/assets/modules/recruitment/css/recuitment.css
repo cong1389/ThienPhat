@@ -12,7 +12,7 @@
     font-size: 25px;
     font-weight: normal;
     text-transform: uppercase;
-    color: #da251d;
+    color: #3023cb;
 }
 .recuit .box-title {
     margin-bottom: 15px;
@@ -51,7 +51,7 @@
     font-size: 25px;
     font-weight: normal;
     text-transform: uppercase;
-    color: #da251d;
+    color: #3023cb;
 }
 .recuit-contact .box-title {
     margin-bottom: 15px;
@@ -64,7 +64,7 @@
     font-size: 20px;
     text-transform: uppercase;
     line-height: 28px;
-    color: #da251d;
+    color: #3023cb;
     margin-bottom: 20px;
 }
 ul.address-recuit li p {
@@ -164,14 +164,14 @@ ul.address-recuit li {
     margin-bottom: 20px !important;
 }
 .recuit-form .fTitle h2 {
-    color: #da251d;
+    color: #3023cb;
     font-weight: normal;
     text-transform: uppercase;
     padding-bottom: 15px;
     border-bottom: solid 1px #cfd0d1;
 }
 .recuit-form .per {
-    color: #da251d;
+    color: #3023cb;
 }
 .recuit-form input, .recuit-form select, .recuit-form textarea {
     border-radius: 0;
@@ -189,7 +189,7 @@ ul.address-recuit li {
     margin-right: 10px;
 }
 .recuit-form .send {
-    background: #da251d;
+    background: #3023cb;
     border: none;
     color: #fff;
     font-size: 16px;
@@ -223,7 +223,7 @@ ul.address-recuit li {
     font-size: 25px;
     font-weight: normal;
     text-transform: uppercase;
-    color: #da251d;
+    color: #3023cb;
 }
 .recuit-other .box-title {
     margin-bottom: 10px;

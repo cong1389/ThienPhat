@@ -4,21 +4,8 @@
 @if (Model != null)
 {
     <div class="vnt-page-slide">
-        <div id="vnt-page-slide">
-            <div class="item"><div class="img"><a href="http://" target="_blank"><img src="../vnt_upload/weblink/banner_1.jpg" /></a></div></div>
-        </div>
-
-        <div id="vnt-navation" class="breadcrumb" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-            <div class="wrapper">
-                <div class="navation">
-                    <ul class="list-inline text-left">
-                        <li><a href="trang-chu.html">Trang chủ</a></li>
-                        <li><a href='san-pham.html'>Sản phẩm</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
+        @Html.Action("BannerTop", "Banner", new { menuId = ViewBag.MenuId })
+        @Html.Partial("_BreadCrumb")
     </div>
 
     <div id="vnt-product">

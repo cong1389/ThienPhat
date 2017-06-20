@@ -8,6 +8,8 @@
 {
     <div class="vnt-page-slide">
         @Html.Action("BannerTopOfNewsPage", "Banner", new { menuId = ViewBag.MenuId })
+      @Html.Partial("_BreadCrumb")
+
     </div>
 
     <div class="wrapper">
@@ -32,18 +34,24 @@
                                 <div class="box-news">
                                     <div class="img">
                                         <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
-                                        <img src="@Url.Content("~/" + item.ImageMediumSize)" alt='@item.Title' title='@item.Title' /></a>
+                                            <img src="@Url.Content("~/" + item.ImageMediumSize)" alt='@item.Title' title='@item.Title' />
+                                        </a>
                                     </div>
                                     <div class="caption">
                                         <div class="date">@item.CreatedDate.ToString("dd/MM/yyyy")</div>
-                                        <div class="title"><h3><a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
-                                            @item.Title</a> </h3></div>
+                                        <div class="title">
+                                            <h3>
+                                                <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
+                                                    @item.Title
+                                                </a>
+                                            </h3>
+                                        </div>
                                         <div class="tomtat">@item.ShortDesc</div>
                                         <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})" class="view"><span>xem thêm</span></a>
                                     </div>
                                     <div class="clear"></div>
                                 </div>
-                            }                          
+                            }
 
                             @{Html.RenderPartial("_PagedLinks");}
                         </div>
@@ -61,7 +69,7 @@
 
     <div class="clear"></div>
 
-}
+                                }
 <link rel="stylesheet" href="assets/modules/news/css/news.css" type="text/css" />
 
 <!--/GetNewsByCategory---->
