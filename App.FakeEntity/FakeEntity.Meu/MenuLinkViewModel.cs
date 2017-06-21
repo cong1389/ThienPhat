@@ -14,7 +14,7 @@ namespace App.FakeEntity.Meu
 			set;
 		}
 
-        [Display(Name= "DisplayOnHomePage", ResourceType=typeof(Resources.Resource))]
+        [Display(Name= "DisplayOnHomePage", ResourceType=typeof(Resources.labels))]
 		public bool DisplayOnHomePage
 		{
 			get;

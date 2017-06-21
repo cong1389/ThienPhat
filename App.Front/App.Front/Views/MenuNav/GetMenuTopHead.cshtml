@@ -5,6 +5,7 @@
 
 @if (Model != null)
 {
+  
     <div id="vnt-header">
         <div class="wrapper">
 
@@ -13,8 +14,8 @@
             <div class="header-tool">
                 <div class="language">
                     <ul class="list-inline text-right">
-                        <li class='active'><a href="@Url.Action("SetCulture", "Home", new {culture ="es", area = ""})"><img src="assets/vnt_upload/lang/flag-vn.png" /><p>Tiếng Việt</p></a></li>
-                        <li><a href="@Url.Action("SetCulture", "Home", new {culture = "en-us", area = ""})"><img src="assets/vnt_upload/lang/flag-en.png" /><p>English</p></a></li>
+                        <li class='active'><a href="@Url.Action("SetCulture", "Home", new { culture = "vi-VN", returnUrl = this.Request.RawUrl }, null)"><img src="assets/vnt_upload/lang/flag-vn.png" /><p>Tiếng Việt</p></a></li>
+                        <li><a href="@Url.Action("SetCulture", "Home", new {culture = "en-us", returnUrl =this.Request.RawUrl},null)"><img src="assets/vnt_upload/lang/flag-en.png" /><p>English</p></a></li>
                         <li><a href="http://trisedco.com/cn/main.html"><img src="assets/vnt_upload/lang/flag-cn.png" /><p>中国</p></a></li>
 
                     </ul>

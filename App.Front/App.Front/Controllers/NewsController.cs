@@ -104,8 +104,20 @@ namespace App.Front.Controllers
 				PageSize = base._pageSize,
 				TotalRecord = 0
 			};
-			IEnumerable<News> news = this._newsService.FindAndSort((News x) => !x.Video && x.Status == 1 
-            && x.VirtualCategoryId.Contains(virtualCategoryId) && x.Language=="2"
+
+            string currentCulture = Helpers.CultureHelper.GetCurrentCulture();
+            string languageId=string.Empty;
+            switch (currentCulture)
+            {
+                case "vi-VN":
+                    languageId = "1";
+                    break;
+                case "en-US":
+                    languageId = "2";
+                    break;
+            }
+            IEnumerable<News> news = this._newsService.FindAndSort((News x) => !x.Video && x.Status == 1 
+            && x.VirtualCategoryId.Contains(virtualCategoryId) && x.Language== languageId
             , sortBuilder, paging);
 			if (news.IsAny<News>())
 			{

@@ -5,10 +5,14 @@
 @using App.Utils
 @using App.Domain.Entities.Menu
 @using Resources
+@using App.Front.Helpers
 @model IEnumerable<MenuNav>
 
 @if (Model != null)
 {
+    @CultureHelper.GetCurrentCulture();
+    @labels.DisplayOnHomePage
+
     int i = 0;
     <div id="vnt-menutop">
         <div class="wrapper">
