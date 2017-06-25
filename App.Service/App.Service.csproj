@@ -73,6 +73,8 @@
     <Compile Include="Service.Assessments\IAssessmentService.cs" />
     <Compile Include="Service.Brandes\IBrandService.cs" />
     <Compile Include="Service.Brandes\BrandService.cs" />
+    <Compile Include="Service.Language\ILocalizedPropertyService.cs" />
+    <Compile Include="Service.Language\LocalizedPropertyService.cs" />
     <Compile Include="Service.Locations\DistrictService.cs" />
     <Compile Include="Service.Locations\IDistrictService.cs" />
     <Compile Include="Service.Attribute\AttributeService.cs">

@@ -60,11 +60,12 @@ namespace App.Framework.Ioc
 			builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerRequest<UserRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
 			builder.RegisterType<RoleRepository>().As<IRoleRepository>().InstancePerRequest<RoleRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
 			builder.RegisterType<ExternalLoginRepository>().As<IExternalLoginRepository>().InstancePerRequest<ExternalLoginRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
-
             builder.RegisterType<AssessmentRepository>().As<IAssessmentRepository>().InstancePerRequest<AssessmentRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<BrandRepository>().As<IBrandRepository>().InstancePerRequest<BrandRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<OrderRepository>().As<IOrderRepository>().InstancePerRequest<OrderRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<OrderGalleryRepository>().As<IOrderGalleryRepository>().InstancePerRequest<OrderGalleryRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+            builder.RegisterType<OrderItemRepository>().As<IOrderItemRepository>().InstancePerRequest<OrderItemRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+
             builder.RegisterType<OrderItemRepository>().As<IOrderItemRepository>().InstancePerRequest<OrderItemRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
         }
 	}

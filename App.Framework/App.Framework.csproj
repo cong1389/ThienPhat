@@ -107,6 +107,7 @@
   <ItemGroup>
     <Compile Include="Framework.ValidateEntity\AssessmentValidator.cs" />
     <Compile Include="Framework.ValidateEntity\BranchValidator.cs" />
+    <Compile Include="Framework.ValidateEntity\LocalizedPropertyValidator.cs" />
     <Compile Include="Framework.ValidateEntity\OrderValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>false</AutoGen>

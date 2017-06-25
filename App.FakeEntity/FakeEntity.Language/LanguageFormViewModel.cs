@@ -8,9 +8,9 @@ namespace App.FakeEntity.Language
 {
 	public class LanguageFormViewModel
 	{
-		[Display(Name="Code", ResourceType=typeof(Resources.FormUI))]
-		public string Code
-		{
+		[Display(Name= "LanguageCode", ResourceType=typeof(Resources.FormUI))]
+		public string LanguageCode
+        {
 			get;
 			set;
 		}
@@ -35,9 +35,9 @@ namespace App.FakeEntity.Language
 			set;
 		}
 
-		[Display(Name="FullName", ResourceType=typeof(FormUI))]
-		public string Title
-		{
+		[Display(Name= "LanguageName", ResourceType=typeof(FormUI))]
+		public string LanguageName
+        {
 			get;
 			set;
 		}

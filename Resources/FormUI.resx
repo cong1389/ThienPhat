@@ -147,8 +147,8 @@
   <data name="ChangeFile" xml:space="preserve">
     <value>Change</value>
   </data>
-  <data name="Code" xml:space="preserve">
-    <value>Code</value>
+  <data name="LanguageCode" xml:space="preserve">
+    <value>LanguageCode</value>
   </data>
   <data name="ColorHex" xml:space="preserve">
     <value>Color hex value</value>
@@ -473,5 +473,8 @@
   </data>
   <data name="Width" xml:space="preserve">
     <value>Width</value>
+  </data>
+  <data name="LanguageName" xml:space="preserve">
+    <value>LanguageName</value>
   </data>
 </root>

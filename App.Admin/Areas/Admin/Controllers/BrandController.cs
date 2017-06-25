@@ -88,7 +88,7 @@ namespace App.Admin.Controllers
 			return base.RedirectToAction("Index");
 		}
 
-		[RequiredPermisson(Roles="ViewBrand")]
+		
 		public ActionResult Edit(int Id)
 		{
 			BrandViewModel BrandViewModel = Mapper.Map<Brand, BrandViewModel>(this._BrandService.GetById(Id));

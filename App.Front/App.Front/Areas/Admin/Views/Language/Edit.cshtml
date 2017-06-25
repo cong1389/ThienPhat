@@ -1,8 +1,8 @@
 ﻿@model App.FakeEntity.Language.LanguageFormViewModel
-@{
-    Layout = null;
-    ViewBag.Title = @Resources.UI.CreateNew;
-    ViewBag.Toolbar = new[] { "Save", "SaveNew", "Divider", "Back"};
+@using Resources
+@{ 
+    ViewBag.LanguageName = UI.CreateNew;
+    ViewBag.Toolbar = new[] { "Save", "SaveNew", "Divider", "Back" };
 }
 
 @functions{
@@ -22,19 +22,19 @@
         <div class="form-body">
             @Html.ValidationSummary(true, "", new { @class = "text-danger col-md-offset-3" })
             <div class="form-group">
-                @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-3" })
+                @Html.LabelFor(model => model.LanguageName, new { @class = "control-label col-md-3" })
                 <div class="col-md-5">
-                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "help-block" })
+                    @Html.TextBoxFor(model => model.LanguageName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LanguageName, "", new { @class = "help-block" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Code, new { @class = "control-label col-md-3" })
+                @Html.LabelFor(model => model.LanguageCode, new { @class = "control-label col-md-3" })
                 <div class="col-md-5">
-                    @Html.TextBoxFor(model => model.Code, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Code, "", new { @class = "help-block" })
+                    @Html.TextBoxFor(model => model.LanguageCode, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LanguageCode, "", new { @class = "help-block" })
                 </div>
-            </div> 
+            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-3" })
                 <div class="col-md-5">
@@ -58,16 +58,16 @@
                             <span class="input-group-addon btn default btn-file">
                                 <span class="fileinput-new"> Select file </span>
                                 <span class="fileinput-exists"> Change </span>
-                                @Html.TextBoxFor(model => model.File, new { @type = "file" }) 
+                                @Html.TextBoxFor(model => model.File, new { @type = "file" })
                             </span>
                             <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
                         </div>
                     </div>
-                    @Html.ValidationMessageFor(model => model.File, "", new {@class = "help-block"})
+                    @Html.ValidationMessageFor(model => model.File, "", new { @class = "help-block" })
                 </div>
             </div>
         </div>
     </div>
 }
- 
-    
+
+

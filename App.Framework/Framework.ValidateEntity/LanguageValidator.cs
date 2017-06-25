@@ -13,8 +13,8 @@ namespace App.Framework.ValidateEntity
 	{
 		public LanguageValidator()
 		{
-			base.RuleFor<string>((LanguageFormViewModel x) => x.Title).NotEmpty<LanguageFormViewModel, string>().WithMessage<LanguageFormViewModel, string>("Vui lòng nhập tên ngôn ngữ.");
-			base.RuleFor<string>((LanguageFormViewModel x) => x.Code).NotEmpty<LanguageFormViewModel, string>().WithMessage<LanguageFormViewModel, string>("Vui lòng nhập mã ngôn ngữ.");
+			base.RuleFor<string>((LanguageFormViewModel x) => x.LanguageName).NotEmpty<LanguageFormViewModel, string>().WithMessage<LanguageFormViewModel, string>("Vui lòng nhập tên ngôn ngữ.");
+			base.RuleFor<string>((LanguageFormViewModel x) => x.LanguageCode).NotEmpty<LanguageFormViewModel, string>().WithMessage<LanguageFormViewModel, string>("Vui lòng nhập mã ngôn ngữ.");
 			base.RuleFor<HttpPostedFileBase>((LanguageFormViewModel x) => x.File).Must<LanguageFormViewModel, HttpPostedFileBase>(new Func<HttpPostedFileBase, bool>(LanguageValidator.IsValidFileType)).WithMessage<LanguageFormViewModel, HttpPostedFileBase>("Hình ảnh không đúng định dạng");
 		}
 

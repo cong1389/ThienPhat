@@ -48,7 +48,7 @@ namespace App.Framework.Mappings
 
 		protected override void Configure()
 		{
-			Mapper.CreateMap<Language, LanguageFormViewModel>();
+			Mapper.CreateMap<Language, LocalizedPropertyViewModel>();
 			Mapper.CreateMap<ServerMailSetting, ServerMailSettingViewModel>();
 			Mapper.CreateMap<ContactInfomation, ContactInformationViewModel>();
 			Mapper.CreateMap<SystemSetting, SystemSettingViewModel>();
@@ -67,12 +67,13 @@ namespace App.Framework.Mappings
 			Mapper.CreateMap<AttributeValue, AttributeValueViewModel>();
 			Mapper.CreateMap<Domain.Entities.Attribute.Attribute, AttributeViewModel>();
 			Mapper.CreateMap<SlideShow, SlideShowViewModel>();
-
             Mapper.CreateMap<Assessment, AssessmentViewModel>();
             Mapper.CreateMap<Brand, BrandViewModel>();
             Mapper.CreateMap<Order, OrderViewModel>();
             Mapper.CreateMap<OrderGallery, OrderGalleryViewModel>();
             Mapper.CreateMap<OrderItem, OrderItemViewModel>();
+
+            Mapper.CreateMap<LocalizedProperty, LocalizedPropertyViewModel>();
         }
 	}
 }

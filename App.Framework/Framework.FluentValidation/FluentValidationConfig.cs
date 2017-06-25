@@ -35,7 +35,7 @@ namespace App.Framework.FluentValidation
 
 		public void AddBinding()
 		{
-			this._validators.Add(typeof(IValidator<LanguageFormViewModel>), new LanguageValidator());
+			this._validators.Add(typeof(IValidator<LocalizedPropertyViewModel>), new LanguageValidator());
 			this._validators.Add(typeof(IValidator<ServerMailSettingViewModel>), new MailSettingValidator());
 			this._validators.Add(typeof(IValidator<ContactInformationViewModel>), new ContactInformationValidator());
 			this._validators.Add(typeof(IValidator<SystemSettingViewModel>), new SystemSettingValidator());
@@ -53,10 +53,11 @@ namespace App.Framework.FluentValidation
 			this._validators.Add(typeof(IValidator<AttributeValueViewModel>), new AttributeValueValidator());
 			this._validators.Add(typeof(IValidator<LandingPageViewModel>), new LandingPageValidator());
 			this._validators.Add(typeof(IValidator<FlowStepViewModel>), new FlowStepValidator());
-
             this._validators.Add(typeof(IValidator<AssessmentViewModel>), new AssessmentValidator());
             this._validators.Add(typeof(IValidator<BrandViewModel>), new BrandValidator());
             this._validators.Add(typeof(IValidator<OrderViewModel>), new OrderValidator());
+
+            this._validators.Add(typeof(IValidator<LocalizedPropertyViewModel>), new LocalizedPropertyValidator());
         }
 
 		public override IValidator CreateInstance(Type validatorType)

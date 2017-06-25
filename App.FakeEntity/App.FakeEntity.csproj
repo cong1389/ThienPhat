@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="FakeEntity.Assessments\AssessmentViewModel.cs" />
     <Compile Include="FakeEntity.Brandes\BrandViewModel.cs" />
+    <Compile Include="FakeEntity.Language\LanguageFormViewModel.cs" />
     <Compile Include="FakeEntity.Order\OrderGalleryViewModel.cs" />
     <Compile Include="FakeEntity.Order\OrderItemViewModel.cs" />
     <Compile Include="FakeEntity.Order\OrderViewModel.cs" />
@@ -68,7 +69,7 @@
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="FakeEntity.Language\LanguageFormViewModel.cs">
+    <Compile Include="FakeEntity.Language\LocalizedPropertyViewModel.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>

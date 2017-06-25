@@ -184,6 +184,12 @@ namespace App.Infra.Data.Context
             set;
         }
 
+        public virtual IDbSet<LocalizedProperty> LocalizedProperty
+        {
+            get;
+            set;
+        }
+
         public AppContext() : base("AppConnect")
 		{
 			base.Configuration.LazyLoadingEnabled = true;
@@ -274,6 +280,7 @@ namespace App.Infra.Data.Context
             modelBuilder.Configurations.Add<Order>(new OrderConfiguration());
             modelBuilder.Configurations.Add<OrderGallery>(new OrderGalleryConfiguration());
             modelBuilder.Configurations.Add<OrderItem>(new OrderItemConfiguration());
+            modelBuilder.Configurations.Add<LocalizedProperty>(new LocalizedPropertyConfiguration());
         }
 	}
 }

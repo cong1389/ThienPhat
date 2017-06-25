@@ -26,6 +26,7 @@ using Autofac;
 using Autofac.Builder;
 using System;
 using App.Service.Order;
+using App.Service.LocalizedProperty;
 
 namespace App.Framework.Ioc
 {
@@ -69,6 +70,7 @@ namespace App.Framework.Ioc
             builder.RegisterType<OrderService>().As<IOrderService>().InstancePerRequest<OrderService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<OrderGalleryService>().As<IOrderGalleryService>().InstancePerRequest<OrderGalleryService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<OrderItemService>().As<IOrderItemService>().InstancePerRequest<OrderItemService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+            builder.RegisterType<LocalizedPropertyService>().As<ILocalizedPropertyService>().InstancePerRequest<LocalizedPropertyService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
         }
 	}
 }

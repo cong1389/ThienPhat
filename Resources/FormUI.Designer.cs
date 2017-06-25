@@ -151,15 +151,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Code.
-        /// </summary>
-        public static string Code {
-            get {
-                return ResourceManager.GetString("Code", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Color hex value.
         /// </summary>
         public static string ColorHex {
@@ -498,6 +489,24 @@ namespace Resources {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LanguageCode.
+        /// </summary>
+        public static string LanguageCode {
+            get {
+                return ResourceManager.GetString("LanguageCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LanguageName.
+        /// </summary>
+        public static string LanguageName {
+            get {
+                return ResourceManager.GetString("LanguageName", resourceCulture);
             }
         }
         

@@ -60,6 +60,8 @@
     <Compile Include="Infra.Data.Repository.Assessments\IAssessmentRepository.cs" />
     <Compile Include="Infra.Data.Repository.Brandes\BrandRepository.cs" />
     <Compile Include="Infra.Data.Repository.Brandes\IBrandRepository.cs" />
+    <Compile Include="Infra.Data.Repository.Language\ILocalizedPropertyRepository.cs" />
+    <Compile Include="Infra.Data.Repository.Language\LocalizedPropertyRepository.cs" />
     <Compile Include="Infra.Data.Repository.Order\IOrderGalleryRepository.cs" />
     <Compile Include="Infra.Data.Repository.Order\IOrderRepository.cs" />
     <Compile Include="Infra.Data.Repository.Order\OrderGalleryRepository.cs" />
