@@ -40,7 +40,7 @@
     margin-bottom: 10px;
 }
 .box-shareholder .caption .title a:hover {
-    color: #3023cb;
+    color: #3B5998;
 }
 .box-shareholder .caption .tomtat {
     color: #666666;
@@ -51,7 +51,7 @@
     overflow: hidden;
 }
 .box-shareholder .caption .view {
-    background: #3023cb;
+    background: #3B5998;
     color: #fff;
     text-transform: Capitalize;
     padding: 9px 32px;
@@ -131,7 +131,7 @@
     line-height: 25px;
 }
 .investor-info a {
-    color: #3023cb;
+    color: #3B5998;
 }
 .investor-info a:hover{
     color:#61a647;
@@ -153,7 +153,7 @@
 .box-investor .name {
     font-size: 24px;
     line-height: 32px;
-    color: #3023cb;
+    color: #3B5998;
     font-weight: bold;
     margin-bottom: 5px;
 }
@@ -194,7 +194,7 @@
     margin-right: 10px;
 }
 .box-investor .email a {
-    color: #3023cb;
+    color: #3B5998;
 }
 .investor-content .box-investor:last-child {
     background: none;
@@ -238,7 +238,7 @@ div#vnt-finace {
 }
 .finace-report .nav-tabs>li.active>a, .finace-report .nav-tabs>li:hover>a {
     border: none;
-    background: #3023cb;
+    background: #3B5998;
     color: #fff;
 }
 .finace-report .tab-content {
@@ -260,7 +260,7 @@ div#vnt-finace {
 }
 .finace-tab-child .nav-tabs>li.active>a, .finace-tab-child .nav-tabs>li:hover>a {
     background: none;
-    color: #3023cb;
+    color: #3B5998;
     text-transform: uppercase;
     border: initial;
 }
@@ -280,7 +280,7 @@ div#vnt-finace {
     border: none;
 }
 .finace-list tbody tr td:first-child {
-    color: #3023cb;
+    color: #3B5998;
     font-size: 15px;
     line-height: 23px;
 }
@@ -332,7 +332,7 @@ div#vnt-finace {
     display: block;
 }
 .box-info:hover .tend a{
-    color:#3023cb;
+    color:#3B5998;
 }
 .box-info .tomtat {
     font-size: 16px;
@@ -368,7 +368,7 @@ div#vnt-finace {
     color: #333;
 }
 .box-info-news:hover .tend a{
-    color:#3023cb;
+    color:#3B5998;
 }
 .box-info-news .tomtat {
     color: #777777;
@@ -388,7 +388,7 @@ div#vnt-finace {
     font-size: 25px;
     font-weight: normal;
     text-transform: uppercase;
-    color: #3023cb;
+    color: #3B5998;
     margin-bottom: 30px;
 }
 div#vnt-shareholder-other .slick-list {
@@ -426,7 +426,7 @@ div#vnt-shareholder-other .slick-prev {
     right: 70px;
 }
 div#vnt-shareholder-other .slick-arrow:hover:before {
-    color: #3023cb;
+    color: #3B5998;
 }
 
 
@@ -454,7 +454,7 @@ div#vnt-shareholder-other .tend a {
     color: #333;
 }
 div#vnt-shareholder-other .item:hover .tend a{
-    color:#3023cb;
+    color:#3B5998;
 }
 div#vnt-shareholder-other .tomtat {
     color: #777777;

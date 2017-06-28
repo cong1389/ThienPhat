@@ -12,7 +12,9 @@ namespace App.Service.LocalizedProperty
 
 		App.Domain.Entities.Language.LocalizedProperty GetLocalizedPropertyById(int Id);
 
-		IEnumerable<App.Domain.Entities.Language.LocalizedProperty> PagedList(SortingPagingBuilder sortBuider, Paging page);
+        IEnumerable<App.Domain.Entities.Language.LocalizedProperty> GetLocalizedPropertyByEntityId(int entityId);
+
+        IEnumerable<App.Domain.Entities.Language.LocalizedProperty> PagedList(SortingPagingBuilder sortBuider, Paging page);
 
 		int SaveLocalizedProperty();
 	}

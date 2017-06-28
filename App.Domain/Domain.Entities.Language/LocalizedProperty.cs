@@ -14,16 +14,14 @@ namespace App.Domain.Entities.Language
 			set;
 		}
 
-		[MaxLength(50)]
-		[Required]
+		[MaxLength(50)]		
 		public string LocaleKey
         {
 			get;
 			set;
 		}
 
-		[MaxLength(250)]
-		[Required]
+		[MaxLength(250)]	
 		public string LocaleKeyGroup
         {
 			get;
@@ -41,6 +39,7 @@ namespace App.Domain.Entities.Language
             get;
             set;
         }
+        
 
         public LocalizedProperty()
 		{

@@ -93,7 +93,7 @@ div#vnt-home-about .portlet .content a.view {
     font-size: 16px;
     line-height: 24px;
     text-transform: uppercase;
-    background: #3023cb;
+    background: #3B5998;
     color: #fff;
     padding: 11px 33px;
     position: relative;
@@ -233,7 +233,7 @@ div#vnt-home-my-product .content .view {
     overflow: hidden;
 }
 div#vnt-home-my-product .content .view:hover {
-    color: #3023cb;
+    color: #3B5998;
 }
 div#vnt-home-my-product .content .view:after {
     content: "\f105";
@@ -258,7 +258,7 @@ div#vnt-news-home .news {
     cursor: pointer;
 }
 div#vnt-news-home .news:hover{
-    border-color:#3023cb; 
+    border-color:#3B5998; 
 }
 div#vnt-news-home .portlet .portlet-header {
     border-top: solid 1px #dcdcdc;
@@ -309,7 +309,7 @@ div#vnt-news-home .news .caption .tend a {
     margin-bottom: 25px;
 }
 div#vnt-news-home .news:hover .caption .tend a {
-    color: #3023cb;
+    color: #3B5998;
 }
 
 

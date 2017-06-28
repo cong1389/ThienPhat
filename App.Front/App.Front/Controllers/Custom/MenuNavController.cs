@@ -24,34 +24,35 @@ namespace App.Front.Controllers.Custom
 
         private List<MenuNav> CreateMenuNav(int? parentId, IEnumerable<MenuNav> source)
         {
-            return (
-                from x in source
-                orderby x.OrderDisplay descending
-                select x).Where<MenuNav>((MenuNav x) =>
-                {
-                    int? nullable1 = x.ParentId;
-                    int? nullable = parentId;
-                    if (nullable1.GetValueOrDefault() != nullable.GetValueOrDefault())
-                    {
-                        return false;
-                    }
-                    return nullable1.HasValue == nullable.HasValue;
-                }).Select<MenuNav, MenuNav>((MenuNav x) => new MenuNav()
-                {
-                    MenuId = x.MenuId,
-                    ParentId = x.ParentId,
-                    MenuName = x.MenuName,
-                    SeoUrl = x.SeoUrl,
-                    OrderDisplay = x.OrderDisplay,
-                    ImageUrl = x.ImageUrl,
-                    CurrentVirtualId = x.CurrentVirtualId,
-                    VirtualId = x.VirtualId,
-                    TemplateType = x.TemplateType,
-                    OtherLink = x.OtherLink,
-                    IconNav = x.IconNav,
-                    IconBar = x.IconBar,
-                    ChildNavMenu = this.CreateMenuNav(new int?(x.MenuId), source)
-                }).ToList<MenuNav>();
+            List<MenuNav> ieMenuNav = (from x in source
+                                             orderby x.OrderDisplay descending
+                                             select x).Where<MenuNav>((MenuNav x) =>
+                                             {
+                                                 int? nullable1 = x.ParentId;
+                                                 int? nullable = parentId;
+                                                 if (nullable1.GetValueOrDefault() != nullable.GetValueOrDefault())
+                                                 {
+                                                     return false;
+                                                 }
+                                                 return nullable1.HasValue == nullable.HasValue;
+                                             }).Select<MenuNav, MenuNav>((MenuNav x) => new MenuNav()
+                                             {
+                                                 MenuId = x.MenuId,
+                                                 ParentId = x.ParentId,
+                                                 MenuName = x.MenuName,
+                                                 SeoUrl = x.SeoUrl,
+                                                 OrderDisplay = x.OrderDisplay,
+                                                 ImageUrl = x.ImageUrl,
+                                                 CurrentVirtualId = x.CurrentVirtualId,
+                                                 VirtualId = x.VirtualId,
+                                                 TemplateType = x.TemplateType,
+                                                 OtherLink = x.OtherLink,
+                                                 IconNav = x.IconNav,
+                                                 IconBar = x.IconBar,
+                                                 ChildNavMenu = this.CreateMenuNav(new int?(x.MenuId), source)
+                                             }).ToList<MenuNav>();
+
+            return ieMenuNav;
         }
 
         public ActionResult GetFixedHomePage()

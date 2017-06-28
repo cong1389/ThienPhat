@@ -15,37 +15,48 @@ namespace App.FakeEntity.Language
 			set;
 		}
 
-        [Display(Name = "LocaleKey", ResourceType = typeof(Resources.FormUI))]
+        [Display(Name = "LocaleValue", ResourceType = typeof(Resources.FormUI))]
         public string LocaleKey
         {
             get;
             set;
         }
 
-        [Display(Name = "LocaleKeyGroup", ResourceType = typeof(FormUI))]
+        [Display(Name = "LocaleValue", ResourceType = typeof(FormUI))]
         public string LocaleKeyGroup
         {
             get;
             set;
         }
 
-        [Display(Name = "EntityId", ResourceType = typeof(FormUI))]
+        [Display(Name = "LocaleValue", ResourceType = typeof(FormUI))]
         public int EntityId
         {
 			get;
 			set;
 		}
 
-		[Display(Name= "LanguageId", ResourceType=typeof(FormUI))]
+        public int Id
+        {
+            get;
+            set;
+        }
+
+        [Display(Name= "LocaleValue", ResourceType=typeof(FormUI))]
 		public int LanguageId
         {
 			get;
 			set;
 		}
 
-		
+        
+        public App.FakeEntity.Language.LanguageFormViewModel Language
+        {
+            get;
+            set;
+        }
 
-		public LocalizedPropertyViewModel()
+        public LocalizedPropertyViewModel()
 		{
 		}
 	}

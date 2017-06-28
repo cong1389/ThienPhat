@@ -1,9 +1,11 @@
 using App.Core.Common;
 using App.Domain.Entities.Ads;
 using App.Domain.Entities.Data;
+using App.Domain.Entities.Language;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 
 namespace App.Domain.Entities.Menu
@@ -182,8 +184,14 @@ namespace App.Domain.Entities.Menu
 			get;
 			set;
 		}
+      
+        //public virtual ICollection<LocalizedProperty> LocalizedProperty
+        //{
+        //    get;
+        //    set;
+        //}        
 
-		public MenuLink()
+        public MenuLink()
 		{
 		}
 	}

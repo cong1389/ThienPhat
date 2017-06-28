@@ -15,7 +15,9 @@ namespace App.Infra.Data.Mapping
 		{
 			base.ToTable("News");
 			base.HasKey<int>((News x) => x.Id).Property<int>((News x) => x.Id).HasColumnName("Id").HasColumnType("int").HasDatabaseGeneratedOption(new DatabaseGeneratedOption?(DatabaseGeneratedOption.Identity)).IsRequired();
-			base.HasRequired<MenuLink>((News x) => x.MenuLink).WithMany((MenuLink x) => x.News).HasForeignKey<int>((News x) => x.MenuId);
+			base.HasRequired<MenuLink>((News x) => x.MenuLink)
+                .WithMany((MenuLink x) => x.News)
+                .HasForeignKey<int>((News x) => x.MenuId);
 		}
 	}
 }

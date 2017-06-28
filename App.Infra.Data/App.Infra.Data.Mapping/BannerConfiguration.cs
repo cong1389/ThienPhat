@@ -16,8 +16,11 @@ namespace App.Infra.Data.Mapping
 		{
 			base.ToTable("Banner");
 			base.HasKey<int>((Banner x) => x.Id).Property<int>((Banner x) => x.Id).HasColumnName("Id").HasColumnType("int").HasDatabaseGeneratedOption(new DatabaseGeneratedOption?(DatabaseGeneratedOption.Identity)).IsRequired();
-			base.HasRequired<PageBanner>((Banner x) => x.PageBanner).WithMany((PageBanner x) => x.Banners).HasForeignKey<int>((Banner x) => x.PageId);
-			base.HasOptional<MenuLink>((Banner x) => x.MenuLink).WithMany((MenuLink x) => x.Banners).Map((ForeignKeyAssociationMappingConfiguration m) => m.MapKey(new string[] { "MenuId" }));
+			base.HasRequired<PageBanner>((Banner x) => x.PageBanner).WithMany((PageBanner x) => x.Banners)
+                .HasForeignKey<int>((Banner x) => x.PageId);
+			base.HasOptional<MenuLink>((Banner x) => x.MenuLink)
+                .WithMany((MenuLink x) => x.Banners)
+                .Map((ForeignKeyAssociationMappingConfiguration m) => m.MapKey(new string[] { "MenuId" }));
 		}
 	}
 }

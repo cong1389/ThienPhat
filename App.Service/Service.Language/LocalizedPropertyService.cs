@@ -10,36 +10,42 @@ using System.Collections.Generic;
 
 namespace App.Service.LocalizedProperty
 {
-	public class LocalizedPropertyService : BaseService<App.Domain.Entities.Language.LocalizedProperty>, ILocalizedPropertyService, IBaseService<App.Domain.Entities.Language.LocalizedProperty>, IService
-	{
-		private readonly ILocalizedPropertyRepository _localizedPropertyRepository;
+    public class LocalizedPropertyService : BaseService<App.Domain.Entities.Language.LocalizedProperty>, ILocalizedPropertyService, IBaseService<App.Domain.Entities.Language.LocalizedProperty>, IService
+    {
+        private readonly ILocalizedPropertyRepository _localizedPropertyRepository;
 
-		private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-		public LocalizedPropertyService(IUnitOfWork unitOfWork, ILocalizedPropertyRepository LocalizedPropertyRepository) : base(unitOfWork, LocalizedPropertyRepository)
-		{
-			this._unitOfWork = unitOfWork;
-			this._localizedPropertyRepository = LocalizedPropertyRepository;
-		}
+        public LocalizedPropertyService(IUnitOfWork unitOfWork, ILocalizedPropertyRepository LocalizedPropertyRepository) : base(unitOfWork, LocalizedPropertyRepository)
+        {
+            this._unitOfWork = unitOfWork;
+            this._localizedPropertyRepository = LocalizedPropertyRepository;
+        }
 
-		public void CreateLocalizedProperty(App.Domain.Entities.Language.LocalizedProperty LocalizedProperty)
-		{
-			this._localizedPropertyRepository.Add(LocalizedProperty);
-		}
+        public void CreateLocalizedProperty(App.Domain.Entities.Language.LocalizedProperty LocalizedProperty)
+        {
+            this._localizedPropertyRepository.Add(LocalizedProperty);
+        }
 
-		public App.Domain.Entities.Language.LocalizedProperty GetLocalizedPropertyById(int Id)
-		{
-			return this._localizedPropertyRepository.GetId(Id);
-		}
+        public App.Domain.Entities.Language.LocalizedProperty GetLocalizedPropertyById(int Id)
+        {
+            return this._localizedPropertyRepository.GetId(Id);
+        }
 
-		public IEnumerable<App.Domain.Entities.Language.LocalizedProperty> PagedList(SortingPagingBuilder sortbuBuilder, Paging page)
-		{
-			return this._localizedPropertyRepository.PagedSearchList(sortbuBuilder, page);
-		}
+        public IEnumerable<App.Domain.Entities.Language.LocalizedProperty> GetLocalizedPropertyByEntityId(int entityId)
+        {
+            IEnumerable<App.Domain.Entities.Language.LocalizedProperty> localizedProperty = this._localizedPropertyRepository.FindBy((App.Domain.Entities.Language.LocalizedProperty x) => x.EntityId == entityId, false);
+            return localizedProperty;
+        }
 
-		public int SaveLocalizedProperty()
-		{
-			return this._unitOfWork.Commit();
-		}
-	}
+        public IEnumerable<App.Domain.Entities.Language.LocalizedProperty> PagedList(SortingPagingBuilder sortbuBuilder, Paging page)
+        {
+            return this._localizedPropertyRepository.PagedSearchList(sortbuBuilder, page);
+        }
+
+        public int SaveLocalizedProperty()
+        {
+            return this._unitOfWork.Commit();
+        }
+    }
 }

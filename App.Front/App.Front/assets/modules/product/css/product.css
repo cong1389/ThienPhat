@@ -21,7 +21,7 @@ div#vnt-thumbnail-for .item .img img {
     border: solid 1px #c3c3c3;
 }
 div#vnt-thumbnail-for .item.slick-current .img img {
-    border: solid 2px #3023cb;
+    border: solid 2px #3B5998;
 }
 div#vnt-thumbnail-for .slick-arrow {
     position: absolute;
@@ -58,14 +58,14 @@ div#vnt-thumbnail-for .slick-next:before {
     font-weight: bold;
 }
 div#vnt-thumbnail-for .slick-arrow:hover:before {
-    color: #3023cb;
+    color: #3B5998;
 }
 .product-title {
     font-size: 35px;
     line-height: 43px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #3023cb;
+    color: #3B5998;
     padding: 0px 0px 15px 0px;
     border-bottom: solid 1px #d9d9d9;
     margin-bottom: 15px;
@@ -90,7 +90,7 @@ div#vnt-thumbnail-for .slick-arrow:hover:before {
 }
 a.product-to-cart {
     display: inline-block;
-    background: #3023cb;
+    background: #3B5998;
     color: #fff;
     font-size: 20px;
     line-height: 28px;
@@ -123,7 +123,7 @@ a.product-to-cart:hover {
     line-height: 33px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #3023cb;
+    color: #3B5998;
     padding: 0px 0px 12px 0px;
     border-bottom: solid 1px #d9d9d9;
     margin-bottom: 15px;
@@ -164,7 +164,7 @@ div#vnt-product-other .item .tend a {
     font-weight: bold;
     padding: 10px 0px 10px 0px;
     border-bottom: solid 2px #61a647;
-    color: #3023cb;
+    color: #3B5998;
 }
 div#vnt-product-other .item:hover .img img{
     -webkit-transform: scale(1.1);
@@ -204,7 +204,7 @@ div#vnt-product-other .slick-prev {
     right: 70px;
 }
 div#vnt-product-other .slick-arrow:hover:before {
-    color: #3023cb;
+    color: #3B5998;
 }
 div#vnt-product-other.slick-initialized .item, div#vnt-product-other .item:first-child{
     display: block; 

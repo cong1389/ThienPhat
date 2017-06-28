@@ -26,7 +26,7 @@
     transform: translate(-50%,-50%);
 }
 .policy .img:hover{
-    background: #3023cb;
+    background: #3B5998;
 }
 .policy {
     margin-bottom: 55px;
@@ -58,7 +58,7 @@
 .policy .view {
     font-size: 15px;
     line-height: 23px;
-    color: #3023cb;
+    color: #3B5998;
     padding-left: 15px;
     position: relative;
 }

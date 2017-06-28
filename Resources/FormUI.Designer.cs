@@ -520,6 +520,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LocaleValue.
+        /// </summary>
+        public static string LocaleValue {
+            get {
+                return ResourceManager.GetString("LocaleValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logo.
         /// </summary>
         public static string LogoImage {

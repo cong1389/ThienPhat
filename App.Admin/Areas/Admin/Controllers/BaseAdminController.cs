@@ -1,4 +1,7 @@
+using App.FakeEntity.Language;
+using App.Service.Language;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.IO;
@@ -9,7 +12,26 @@ namespace App.Admin.Controllers
 {
 	public class BaseAdminController : Controller
 	{
-		public int _pageSize
+        protected virtual void AddLocales<TLocalizedPropertyViewModelLocal>(ILanguageService languageService, IList<TLocalizedPropertyViewModelLocal> locales) where TLocalizedPropertyViewModelLocal : LocalizedPropertyViewModel
+        {
+            AddLocales(languageService, locales, null);
+        }
+
+        protected virtual void AddLocales<TLocalizedPropertyViewModelLocal>(ILanguageService languageService, IList<TLocalizedPropertyViewModelLocal> locales, Action<TLocalizedPropertyViewModelLocal, int> configure) where TLocalizedPropertyViewModelLocal : LocalizedPropertyViewModel
+        {
+            foreach (var language in languageService.GetAll())
+            {
+                var locale = Activator.CreateInstance<TLocalizedPropertyViewModelLocal>();
+                locale.LanguageId = language.Id;
+                if (configure != null)
+                {
+                    configure.Invoke(locale, locale.LanguageId);
+                }
+                locales.Add(locale);
+            }
+        }
+
+        public int _pageSize
 		{
 			get
 			{

@@ -66,7 +66,7 @@ namespace App.Framework.Ioc
             builder.RegisterType<OrderGalleryRepository>().As<IOrderGalleryRepository>().InstancePerRequest<OrderGalleryRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<OrderItemRepository>().As<IOrderItemRepository>().InstancePerRequest<OrderItemRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
 
-            builder.RegisterType<OrderItemRepository>().As<IOrderItemRepository>().InstancePerRequest<OrderItemRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+            builder.RegisterType<LocalizedPropertyRepository>().As<ILocalizedPropertyRepository>().InstancePerRequest<LocalizedPropertyRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
         }
 	}
 }

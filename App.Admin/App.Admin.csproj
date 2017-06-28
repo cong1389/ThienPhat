@@ -880,6 +880,7 @@
     <Content Include="Areas\Admin\Views\Order\EditorTemplates\OrderItemViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Order\EditorTemplates\OrderViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Order\WarrantyForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\_CreateOrUpdate.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\admin.pubxml" />
     <Content Include="Content\Site.css" />
@@ -941,6 +942,7 @@
     <Compile Include="Areas\Admin\Helpers\Common.cs" />
     <Compile Include="Areas\Admin\Helpers\ImageSize.cs" />
     <Compile Include="Areas\Admin\Helpers\LandingPageExport.cs" />
+    <Compile Include="Areas\Admin\Helpers\LocalizationExtentions.cs" />
     <Compile Include="Areas\Admin\Helpers\RequiredPermisson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

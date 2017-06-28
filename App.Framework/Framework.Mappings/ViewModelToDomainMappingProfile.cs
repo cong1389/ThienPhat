@@ -73,6 +73,8 @@ namespace App.Framework.Mappings
             => (Contains.FolderLanguage + vm.File.FileName.NonAccent()) + Path.GetExtension(vm.File.FileName)));
 
             Mapper.CreateMap<LocalizedPropertyViewModel, LocalizedProperty>()
+                 .ForMember((LocalizedProperty x) => x.Id, (IMemberConfigurationExpression<LocalizedPropertyViewModel> map)
+               => map.MapFrom<int>((LocalizedPropertyViewModel vm) => vm.Id))
                .ForMember((LocalizedProperty x) => x.EntityId, (IMemberConfigurationExpression<LocalizedPropertyViewModel> map)
                => map.MapFrom<int>((LocalizedPropertyViewModel vm) => vm.EntityId))
            .ForMember((LocalizedProperty x) => (object)x.LanguageId, (IMemberConfigurationExpression<LocalizedPropertyViewModel> map)

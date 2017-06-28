@@ -1,5 +1,7 @@
+using App.FakeEntity.Language;
 using Resources;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using System.Web;
@@ -188,8 +190,15 @@ namespace App.FakeEntity.Meu
 			set;
 		}
 
-		public MenuLinkViewModel()
+        public List<LocalizedPropertyViewModel> LocalizedProperty
+        {
+            get;
+            set;
+        }
+
+        public MenuLinkViewModel()
 		{
-		}
+            this.LocalizedProperty = new List<LocalizedPropertyViewModel>();
+        }
 	}
 }

@@ -35,7 +35,7 @@ namespace App.Framework.FluentValidation
 
 		public void AddBinding()
 		{
-			this._validators.Add(typeof(IValidator<LocalizedPropertyViewModel>), new LanguageValidator());
+			this._validators.Add(typeof(IValidator<LanguageFormViewModel>), new LanguageValidator());
 			this._validators.Add(typeof(IValidator<ServerMailSettingViewModel>), new MailSettingValidator());
 			this._validators.Add(typeof(IValidator<ContactInformationViewModel>), new ContactInformationValidator());
 			this._validators.Add(typeof(IValidator<SystemSettingViewModel>), new SystemSettingValidator());

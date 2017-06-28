@@ -44,6 +44,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App.Core.Infrastructure\EngineContext.cs" />
+    <Compile Include="App.Core.Infrastructure\Singleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>

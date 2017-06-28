@@ -477,4 +477,7 @@
   <data name="LanguageName" xml:space="preserve">
     <value>LanguageName</value>
   </data>
+  <data name="LocaleValue" xml:space="preserve">
+    <value>LocaleValue</value>
+  </data>
 </root>
