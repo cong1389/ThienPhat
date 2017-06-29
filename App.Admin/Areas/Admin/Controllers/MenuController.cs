@@ -187,7 +187,6 @@ namespace App.Admin.Controllers
             MenuLinkViewModel menuLinkViewModel = Mapper.Map<MenuLink, MenuLinkViewModel>(this._menuLinkService.GetById(Id));
 
             //Add Localized
-
             IEnumerable<LocalizedProperty> ieLocalizedProperty = _localizedPropertyService.GetLocalizedPropertyByEntityId(Id);
             List<LocalizedProperty> lst = ieLocalizedProperty.Cast<LocalizedProperty>().ToList();
             foreach (LocalizedProperty item in lst)

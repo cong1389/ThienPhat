@@ -195,7 +195,7 @@ namespace App.FakeEntity.Meu
             get;
             set;
         }
-
+        
         public MenuLinkViewModel()
 		{
             this.LocalizedProperty = new List<LocalizedPropertyViewModel>();

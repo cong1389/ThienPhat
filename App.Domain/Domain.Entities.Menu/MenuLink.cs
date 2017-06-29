@@ -184,7 +184,7 @@ namespace App.Domain.Entities.Menu
 			get;
 			set;
 		}
-      
+
         //public virtual ICollection<LocalizedProperty> LocalizedProperty
         //{
         //    get;

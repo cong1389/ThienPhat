@@ -12,7 +12,7 @@
             <div class="col-md-5">
 
                 @Html.HiddenFor(model => model.LocalizedProperty[0].Id)
-                @Html.TextBoxFor(model => model.LocalizedProperty[0].LocaleValue, new { @datalanguage = "1", @class = "form-control" })
+                @Html.TextBoxFor(model => model.LocalizedProperty[0].LocaleValue, new { @class = "form-control" })
                 @Html.HiddenFor(model => model.LocalizedProperty[0].LanguageId)
 
                 @Html.HiddenFor(model => model.LocalizedProperty[1].Id)
