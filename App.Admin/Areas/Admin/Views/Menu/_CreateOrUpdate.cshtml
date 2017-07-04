@@ -7,11 +7,58 @@
 <div class="form-horizontal">
     <div class="form-body">
         @Html.ValidationSummary(true, "", new { @class = "text-danger col-md-offset-3" })
+
+        <div class="tabbable-line">
+            <ul class="nav nav-tabs ">
+                <li class="active">
+                    <a href="#tab_1" data-toggle="tab">Thông tin sản phẩm</a>
+                </li>
+                <li>
+                    <a href="#tab_2" data-toggle="tab">Thuộc tính sản phẩm</a>
+                </li>
+                <li>
+                    <a href="#tab_3" data-toggle="tab">Thuộc tính sản phẩm</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+
+                @{
+                    for (int i = 0; i < Model.Locales.Count; i++)
+                    {
+                        <div class="tab-pane" id="tab_@(i+1)">
+                            <div class="row">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Locales[i].MenuName, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-5">
+
+                                        @*@Html.HiddenFor(model => model.LocalizedProperty[i].Id)
+                                        @Html.TextBoxFor(model => model.LocalizedProperty[i].LocaleValue, new { @class = "form-control" })
+                                        @Html.HiddenFor(model => model.LocalizedProperty[0].LanguageId)*@
+
+                                        @Html.TextBoxFor(model => model.Locales[i].MenuName, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Locales[i].MenuName, "", new { @class = "help-block" })
+
+                                        @Html.HiddenFor(model => model.Locales[i].LocalesId)
+                                        @Html.HiddenFor(model => model.Locales[i].LanguageId)
+
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    }
+                }                
+                
+            </div>
+        </div>
+
+
         <div class="form-group">
             @Html.LabelFor(model => model.MenuName, new { @class = "control-label col-md-3" })
             <div class="col-md-5">
 
-                @Html.HiddenFor(model => model.LocalizedProperty[0].Id)
+                @*@Html.HiddenFor(model => model.LocalizedProperty[0].Id)
                 @Html.TextBoxFor(model => model.LocalizedProperty[0].LocaleValue, new { @class = "form-control" })
                 @Html.HiddenFor(model => model.LocalizedProperty[0].LanguageId)
 
@@ -21,12 +68,13 @@
 
                 @Html.HiddenFor(model => model.LocalizedProperty[2].Id)
                 @Html.TextBoxFor(model => model.LocalizedProperty[2].LocaleValue, new { @class = "form-control" })
-                @Html.HiddenFor(model => model.LocalizedProperty[2].LanguageId)
+                @Html.HiddenFor(model => model.LocalizedProperty[2].LanguageId)*@
 
                 @Html.TextBoxFor(model => model.MenuName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MenuName, "", new { @class = "help-block" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.ParentId, new { @class = "control-label col-md-3" })
             <div class="col-md-5">

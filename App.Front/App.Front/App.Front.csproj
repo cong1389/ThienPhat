@@ -336,8 +336,6 @@
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerCareController.cs" />
-    <Compile Include="Controllers\Custom\Article.cs" />
-    <Compile Include="Controllers\Custom\ArticleTranslation.cs" />
     <Compile Include="Controllers\Custom\MenuNavController.cs" />
     <Compile Include="Controllers\FlowStepController.cs" />
     <Compile Include="Controllers\FrontBaseController.cs" />

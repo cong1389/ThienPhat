@@ -189,18 +189,30 @@ namespace App.Admin.Controllers
             //Add Localized
             IEnumerable<LocalizedProperty> ieLocalizedProperty = _localizedPropertyService.GetLocalizedPropertyByEntityId(Id);
             List<LocalizedProperty> lst = ieLocalizedProperty.Cast<LocalizedProperty>().ToList();
+
             foreach (LocalizedProperty item in lst)
             {
-                menuLinkViewModel.LocalizedProperty.Add(new LocalizedPropertyViewModel
+                menuLinkViewModel.Locales.Add(new MenuLinkLocalesViewModel
                 {
                     Id = item.Id,
-                    EntityId = item.EntityId,
-                    LanguageId = item.LanguageId,
-                    LocaleKeyGroup = item.LocaleKeyGroup,
-                    LocaleKey = item.LocaleKey,
-                    LocaleValue = item.LocaleValue
+                    LocalesId=item.Id,
+                    MenuName = item.LocaleValue,
+                    LanguageId = item.LanguageId                    
                 });
             }
+
+            //foreach (LocalizedProperty item in lst)
+            //{                
+            //    menuLinkViewModel.LocalizedProperty.Add(new LocalizedPropertyViewModel
+            //    {
+            //        Id = item.Id,
+            //        EntityId = item.EntityId,
+            //        LanguageId = item.LanguageId,
+            //        LocaleKeyGroup = item.LocaleKeyGroup,
+            //        LocaleKey = item.LocaleKey,
+            //        LocaleValue = item.LocaleValue
+            //    });
+            //}
 
             return base.View(menuLinkViewModel);
         }
@@ -277,20 +289,33 @@ namespace App.Admin.Controllers
                     this._menuLinkService.Update(byId);
 
                     //Update Localized                   
-                    for (int i = 0; i < model.LocalizedProperty.Count; i++)
+                    for (int i = 0; i < model.Locales.Count; i++)
                     {
                         LocalizedPropertyViewModel localizedPropertyViewModel = new LocalizedPropertyViewModel()
                         {
-                            Id = model.LocalizedProperty[i].Id,
+                            Id = model.Locales[i].LocalesId,
                             EntityId = menuLink1.Id,
-                            LanguageId = model.LocalizedProperty[i].LanguageId,
+                            LanguageId = model.Locales[i].LanguageId,
                             LocaleKeyGroup = RouteData.Values["controller"].ToString(),
                             LocaleKey = model.MenuName,
-                            LocaleValue = model.LocalizedProperty[i].LocaleValue
+                            LocaleValue = model.Locales[i].MenuName
                         };
-                        
+
                         LocalizedProperty localizedProperty = Mapper.Map<LocalizedPropertyViewModel, LocalizedProperty>(localizedPropertyViewModel);
                         _localizedPropertyService.Update(localizedProperty);
+
+                        //LocalizedPropertyViewModel localizedPropertyViewModel = new LocalizedPropertyViewModel()
+                        //{
+                        //    Id = model.LocalizedProperty[i].Id,
+                        //    EntityId = menuLink1.Id,
+                        //    LanguageId = model.LocalizedProperty[i].LanguageId,
+                        //    LocaleKeyGroup = RouteData.Values["controller"].ToString(),
+                        //    LocaleKey = model.MenuName,
+                        //    LocaleValue = model.LocalizedProperty[i].LocaleValue
+                        //};
+
+                        //LocalizedProperty localizedProperty = Mapper.Map<LocalizedPropertyViewModel, LocalizedProperty>(localizedPropertyViewModel);
+                        //_localizedPropertyService.Update(localizedProperty);
                     }
 
                     base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.UpdateSuccess, FormUI.MenuLink)));
