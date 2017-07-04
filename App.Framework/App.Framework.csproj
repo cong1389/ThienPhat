@@ -262,5 +262,11 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\App.Aplication\App.Aplication.csproj">
+      <Project>{4145F94E-D953-47DB-A33E-102B26692790}</Project>
+      <Name>App.Aplication</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

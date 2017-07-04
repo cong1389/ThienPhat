@@ -1,21 +1,23 @@
 ﻿<!---GetHomeIntro--->
 <div id="vnt-home-about" class="lazyloading">
     <div class="wrapper">
-        <div class="rowmn">
-            <div class="col6">
-                <div class="portlet">
-                    <div class="title"><span>@Model.Title</span></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="portlet">
+                        <div class="title"><span>@Model.Title</span></div>
 
-                    <div class="content desc">
-                        @Html.Raw(Model.ShortDesc)
-                        <a class="view" href="/gioi-thieu.html"><span>Xem thêm</span></a>
+                        <div class="content desc">
+                            @Html.Raw(Model.ShortDesc)
+                            <a class="view" href="/gioi-thieu.html"><span>Xem thêm</span></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col6">
-                <div class="video">
-                    <div id="loadvideo" onclick="loadVideo();">
-                        <img src="@Url.Content("~/"+ Model.ImagePath)" alt="@Model.Title" />
+                <div class="col-sm-6">
+                    <div class="video">
+                        <div id="loadvideo" onclick="loadVideo();">
+                            <img src="@Url.Content("~/"+ Model.ImagePath)" alt="@Model.Title" />
+                        </div>
                     </div>
                 </div>
             </div>

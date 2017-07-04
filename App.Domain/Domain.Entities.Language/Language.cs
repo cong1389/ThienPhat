@@ -30,7 +30,7 @@ namespace App.Domain.Entities.Language
 			set;
 		}
 
-		public int Status
+        public int Status
 		{
 			get;
 			set;

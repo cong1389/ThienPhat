@@ -1,7 +1,205 @@
 ﻿.box-news .img img {
-    width:356px !important;
+    width: 356px !important;
 }
 
 #vnt-news-home .news img {
-    max-height:183px;
+    max-height: 183px;
+}
+
+.navbar {
+    margin-bottom: 0px;
+    padding: .5rem 4rem;
+}
+
+#vnt-menutop {
+    background: #3B5998 !important;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+
+.menutopHeade .search {
+    margin-top: 33px;
+}
+
+/* ================================================ */
+/* Responsive - Media queries                       */
+/* Based on:                                        */
+/* http://lab.maltewassermann.com/viewport-resizer/ */
+/* ================================================ */
+
+
+/* ============================================== */
+/* HDTV                                           */
+/*                                      1920x1080 */
+/* ============================================== */
+@media screen and (min-width: 1080px) and (max-width: 1920px) {
+}
+
+/* ============================================== */
+/* Widescreen                                     */
+/*                                       1280x800 */
+/* ============================================== */
+@media screen and (min-width: 800px) and (max-width: 1280px) {
+}
+
+/* ============================================== */
+/* Twitter Bootstrap                              */
+/*                                       980x     */
+/* ============================================== */
+@media screen and (min-width: 980px) {
+}
+
+/* ============================================== */
+/* Twitter Bootstrap                              */
+/*                                       x979     */
+/* ============================================== */
+@media screen and (max-width: 979px) {
+}
+
+/* ============================================== */
+/* iPad Landscape & Portrait                      */
+/*                                       1024x768 */
+/* ============================================== */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+}
+
+/* ============================================== */
+/* iPad Landscape                                 */
+/*                                       1024x768 */
+/* ============================================== */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:landscape) {
+}
+
+/* ============================================== */
+/* iPad Portrait                                  */
+/*                                       768x1024 */
+/* ============================================== */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:portrait) {
+}
+
+/* ============================================== */
+/* Small Tablet Landscape/Portrait                */
+/*                                        800x600 */
+/* ============================================== */
+@media screen and (min-width: 600px) and (max-width: 800px) {
+    .category .caption {
+        position: relative !important;
+        bottom: 20px !important;
+    }
+
+    div#vnt-home-my-product .content .cont {
+        padding: 0px !important;
+    }
+
+    div#vnt-home-my-product .content {
+        width: 100% !important;
+    }
+}
+
+
+/* ============================================== */
+/* iPhone6/Android landscape (& narrow browser)   */
+/*                                        568x320 */
+/* ============================================== */
+@media screen and (min-width: 320px) and (max-width:568px) {
+    .category .caption {
+        position: relative !important;
+        bottom: 20px !important;
+    }
+
+    div#vnt-home-my-product .content .cont {
+        padding: 0px !important;
+    }
+
+    div#vnt-home-my-product .content {
+        width: 100% !important;
+    }
+}
+
+/* ============================================== */
+/* iPhone4/Android landscape (& narrow browser)   */
+/*                                        480x320 */
+/* ============================================== */
+@media screen and (min-width: 320px) and (max-width:480px) {
+    .category .caption {
+        position: relative !important;
+        bottom: 20px !important;
+    }
+
+    div#vnt-home-my-product .content .cont {
+        padding: 0px !important;
+    }
+
+    div#vnt-home-my-product .content {
+        width: 100% !important;
+    }
+}
+
+/* ============================================== */
+/* iPhone4/Android portrait               320x480 */
+/* iPhone5 portrait                       320x568 */
+/* ============================================== */
+@media screen and (max-width:320px) {
+    .category .caption {
+        position: relative !important;
+        bottom: 20px !important;
+    }
+
+    div#vnt-home-my-product .content .cont {
+        padding: 0px !important;
+    }
+
+    div#vnt-home-my-product .content {
+        width: 100% !important;
+    }
+}
+
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+    color: #808080;
+    background-color: transparent; 
+}
+
+.logoText {
+    font-size:17px;
+        color: #3023cb;
+}
+
+/* ============================================== */
+/* Smaller devices                                */
+/* Android Landscape                      320x240 */
+/* ============================================== */
+@media screen and (min-width:240px) and (max-width:320px) {
+    .category .caption {
+        position: relative !important;
+        bottom: 20px !important;
+    }
+
+    div#vnt-home-my-product .content .cont {
+        padding: 0px !important;
+    }
+
+    div#vnt-home-my-product .content {
+        width: 100% !important;
+    }
+}
+
+/* ============================================== */
+/* Smaller devices                                */
+/* Android Portrait                       240x320 */
+/* ============================================== */
+@media screen and (max-width:240px) {
+    .category .caption {
+        position: relative !important;
+        bottom: 20px !important;
+    }
+
+    div#vnt-home-my-product .content .cont {
+        padding: 0px !important;
+    }
+
+    div#vnt-home-my-product .content {
+        width: 100% !important;
+    }
 }

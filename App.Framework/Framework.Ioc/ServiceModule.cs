@@ -1,4 +1,4 @@
-using App.AsyncService.Post;
+﻿using App.AsyncService.Post;
 using App.Domain.Interfaces.Services;
 using App.ImagePlugin;
 using App.Infra.Data.Common;
@@ -27,6 +27,9 @@ using Autofac.Builder;
 using System;
 using App.Service.Order;
 using App.Service.LocalizedProperty;
+using App.Service.Common;
+using App.Aplication;
+using App.Service.GenericAttribute;
 
 namespace App.Framework.Ioc
 {
@@ -36,6 +39,10 @@ namespace App.Framework.Ioc
 		{
 		}
 
+        /// <summary>
+        /// Đăng ký AutoFac
+        /// </summary>
+        /// <param name="builder"></param>
 		protected override void Load(ContainerBuilder builder)
 		{
 			builder.RegisterGeneric(typeof(BaseService<>)).As(new Type[] { typeof(IBaseService<>) });
@@ -64,13 +71,17 @@ namespace App.Framework.Ioc
 			builder.RegisterType<UserService>().As<IUserService>().InstancePerRequest<UserService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
 			builder.RegisterType<RoleService>().As<IRoleService>().InstancePerRequest<RoleService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
 			builder.RegisterType<App.ImagePlugin.ImagePlugin>().As<IImagePlugin>().InstancePerRequest<App.ImagePlugin.ImagePlugin, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
-
             builder.RegisterType<AssessmentService>().As<IAssessmentService>().InstancePerRequest<AssessmentService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<BrandService>().As<IBrandService>().InstancePerRequest<BrandService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<OrderService>().As<IOrderService>().InstancePerRequest<OrderService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<OrderGalleryService>().As<IOrderGalleryService>().InstancePerRequest<OrderGalleryService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<OrderItemService>().As<IOrderItemService>().InstancePerRequest<OrderItemService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<LocalizedPropertyService>().As<ILocalizedPropertyService>().InstancePerRequest<LocalizedPropertyService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+
+            builder.RegisterType<CommonServices>().As<ICommonServices>().InstancePerRequest<CommonServices, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+            builder.RegisterType<WebWorkContext>().As<IWorkContext>().InstancePerRequest<WebWorkContext, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+            builder.RegisterType<GenericAttributeService>().As<IGenericAttributeService>().InstancePerRequest<GenericAttributeService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+
         }
-	}
+    }
 }

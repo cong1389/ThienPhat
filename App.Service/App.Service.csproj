@@ -65,6 +65,9 @@
     <Reference Include="System.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Service.Common\CommonServices.cs" />
+    <Compile Include="Service.Common\ICommonServices.cs" />
+    <Compile Include="Service.Common\IWorkContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
@@ -73,7 +76,10 @@
     <Compile Include="Service.Assessments\IAssessmentService.cs" />
     <Compile Include="Service.Brandes\IBrandService.cs" />
     <Compile Include="Service.Brandes\BrandService.cs" />
+    <Compile Include="Service.Common\WebWorkContext.cs" />
+    <Compile Include="Service.GenericAttribute\IGenericAttributeService.cs" />
     <Compile Include="Service.Language\ILocalizedPropertyService.cs" />
+    <Compile Include="Service.GenericAttribute\GenericAttributeService.cs" />
     <Compile Include="Service.Language\LocalizedPropertyService.cs" />
     <Compile Include="Service.Locations\DistrictService.cs" />
     <Compile Include="Service.Locations\IDistrictService.cs" />

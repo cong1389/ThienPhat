@@ -1,3 +1,4 @@
+using App.Service.Common;
 using System;
 using System.Threading;
 using System.Web;
@@ -6,7 +7,7 @@ using System.Web.Mvc;
 
 namespace App.Front.Controllers
 {
-	public class FrontBaseController : Controller
+	public  class FrontBaseController : Controller
 	{
 		public int _pageSize
 		{
@@ -15,8 +16,12 @@ namespace App.Front.Controllers
 				return 20;
 			}
 		}
-
-		public FrontBaseController()
+        public ICommonServices Services
+        {
+            get;
+            set;
+        }
+        public FrontBaseController()
 		{
 		}
 

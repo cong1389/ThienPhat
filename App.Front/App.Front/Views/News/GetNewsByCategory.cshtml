@@ -8,7 +8,7 @@
 {
     <div class="vnt-page-slide">
         @Html.Action("BannerTopOfNewsPage", "Banner", new { menuId = ViewBag.MenuId })
-      @Html.Partial("_BreadCrumb")
+        @Html.Partial("_BreadCrumb")
 
     </div>
 
@@ -17,7 +17,7 @@
 
             @Html.Action("GetCategoryHome", "MenuNav", new { virtualId = ViewBag.VirtualId, area = "" })
 
-            <div id="vnt-main">
+            <div id="vnt-main"  class="col-sm-9">
 
                 <div class="box_mid">
                     <div class="mid_title">
@@ -31,26 +31,26 @@
 
                             @foreach (var item in Model)
                             {
-                                <div class="box-news">
-                                    <div class="img">
-                                        <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
-                                            <img src="@Url.Content("~/" + item.ImageMediumSize)" alt='@item.Title' title='@item.Title' />
-                                        </a>
-                                    </div>
-                                    <div class="caption">
-                                        <div class="date">@item.CreatedDate.ToString("dd/MM/yyyy")</div>
-                                        <div class="title">
-                                            <h3>
-                                                <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
-                                                    @item.Title
-                                                </a>
-                                            </h3>
-                                        </div>
-                                        <div class="tomtat">@item.ShortDesc</div>
-                                        <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})" class="view"><span>xem thêm</span></a>
-                                    </div>
-                                    <div class="clear"></div>
+                            <div class="box-news">
+                                <div class="img">
+                                    <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
+                                        <img src="@Url.Content("~/" + item.ImageMediumSize)" alt='@item.Title' title='@item.Title' />
+                                    </a>
                                 </div>
+                                <div class="caption">
+                                    <div class="date">@item.CreatedDate.ToString("dd/MM/yyyy")</div>
+                                    <div class="title">
+                                        <h3>
+                                            <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
+                                                @item.Title
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div class="tomtat">@item.ShortDesc</div>
+                                    <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})" class="view"><span>xem thêm</span></a>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
                             }
 
                             @{Html.RenderPartial("_PagedLinks");}

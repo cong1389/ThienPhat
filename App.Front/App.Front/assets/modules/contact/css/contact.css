@@ -6,20 +6,20 @@
 }
 .info-company .img {
         float: left;
-    width: 160px;
-    height: 160px;
-    padding: 15px;
-    border: 1px solid #ccc;
+        width: 160px;
+        height: 160px;
+        padding: 15px;
+        border: 1px solid #ccc;
 }
 .info-company {
     position: relative;
     margin-bottom: 35px;
 }
 .info-company ul {
-    float: right;
-    width: 1002px;
-    margin-top: 5px;
-    padding-left: 35px;
+    /* float: right; */
+    /* width: 1002px; */
+    /* margin-top: 5px; */
+    /* padding-left: 35px; */
 }
 .info-company ul li {
     color: #666;
@@ -90,7 +90,7 @@ div#form-contact {
     margin-bottom: 30px;
 }
 form#formContact {
-    width: 50%;
+    /* width: 50%; */
     text-align: left;
 }
 form#formContact label {

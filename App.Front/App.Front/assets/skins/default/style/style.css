@@ -52,9 +52,9 @@ body{
     outline: 0;
 }
 #vnt-container{
-    max-width: 1900px; 
-    min-width: 1200px;
-    margin:0 auto;
+    /* max-width: 1900px; */
+    /* min-width: 1200px; */
+    /* margin:0 auto; */
 }
 .wrapper{
     max-width:  1170px;
@@ -422,8 +422,8 @@ div#vnt-home-partner-slider .item img {
 /*===========END PAGINATION==============*/
 /*=============BEGIN SIDEBAR================*/
 div#vnt-sidebar {
-    width: 270px;
-    float:left;
+    /* width: 270px; */
+    /* float:left; */
 }
 #vnt-sidebar .box-title {
     background: #3B5998;
@@ -476,8 +476,8 @@ div#vnt-sidebar ul li:hover > a, div#vnt-sidebar ul li.current > a {
     color: #3B5998;
 }
 div#vnt-main {
-    width: 870px;
-    float: right;
+    /* width: 870px; */
+    /* float: right; */
 }
 /*=============END SIDEBAR=================*/
 /*=============BEGIN BOX MID===================*/

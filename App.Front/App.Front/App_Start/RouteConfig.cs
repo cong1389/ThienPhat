@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Http.Routing.Constraints;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -51,7 +52,14 @@ namespace App.Front
             routes.MapRoute(null, "{menu}.html", new { controller = "Menu", action = "GetContent", menu = UrlParameter.Optional, page = 1 }, new string[] { "App.Front.Controllers" });
             routes.MapRoute(null, "{menu}/trang-{page}.html", new { controller = "Menu", action = "GetContent", menu = UrlParameter.Optional, page = UrlParameter.Optional }, new string[] { "App.Front.Controllers" });
             routes.MapRoute(null, "{catUrl}/{parameters}.html", new { controller = "Post", action = "SearchResult", catUrl = UrlParameter.Optional, parameters = UrlParameter.Optional, page = 1 }, new string[] { "App.Front.Controllers" });
-            routes.MapRoute(null, "{catUrl}/{parameters}/trang-{page}.html", new { controller = "Post", action = "SearchResult", catUrl = UrlParameter.Optional, parameters = UrlParameter.Optional, page = UrlParameter.Optional }, new string[] { "App.Front.Controllers" });
+            routes.MapRoute(null, "{catUrl}/{parameters}/trang-{page}.html"
+                , new { controller = "Post", action = "SearchResult", catUrl = UrlParameter.Optional, parameters = UrlParameter.Optional
+                , page = UrlParameter.Optional }
+                , new string[] { "App.Front.Controllers" });
+                       
+            routes.MapRoute(null, "changelanguage/{langid}",
+                new { controller = "Common", action = "SetLanguage",langId=UrlParameter.Optional },                
+                new[] { "App.Front.Controllers" });
 
             routes.MapRoute("Default", "{controller}/{action}/{id}"
               , new { controller = "Home", action = "Index", id = UrlParameter.Optional }

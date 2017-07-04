@@ -9,14 +9,14 @@
     </div>
 
     <div id="vnt-product">
-        <div class="wrapper">
+        <div class="container">
 
             <div class="box_mid">
 
                 <div class="mid-content">
 
-                    <div class="rowmn">
-                        <div class="col6">
+                    <div class="row">
+                        <div class="col-sm-6">
                             <div class="gallery-image">
                                 <div id="gallery" class="royalSlider rsDefault">
                                     @if (Model.GalleryImages.IsAny())
@@ -40,7 +40,7 @@
                             </div>
                         </div>
 
-                        <div class="col6">
+                        <div class="col-sm-6">
                             <div class="product-info">
                                 <div class="product-title"><h1>@Model.Title</h1></div>
                                 <div class="product-excerpt">
@@ -58,8 +58,8 @@
                         </div>
                     </div>
 
-                    <div class="rowmn">
-                        <div class="col12">
+                    <div class="row">
+                        <div class="col-sm-12">
                             <div class="product-detail">
                                 <div class="pro-title">mô tả</div>
                                 @Html.Raw(Model.Description)
@@ -87,13 +87,11 @@
                                     </p>
                                 </div>
                             </div>
+
                             @Html.Action("GetNewProductRelative2", "Post", new { area = "", virtualId = Model.MenuLink.VirtualId, productId = Model.Id })
-
-
-                            
+                                                        
                         </div>
                     </div>
-
 
                 </div>
             </div>

@@ -57,6 +57,10 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="App.Aplication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\App.Aplication\bin\Debug\App.Aplication.dll</HintPath>
+    </Reference>
     <Reference Include="App.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\App.Core\bin\Debug\App.Core.dll</HintPath>
@@ -329,6 +333,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BannerController.cs" />
     <Compile Include="Controllers\BaseAccessUserController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerCareController.cs" />
     <Compile Include="Controllers\Custom\Article.cs" />
@@ -1620,6 +1625,7 @@
     <Folder Include="images\post\23032017\" />
     <Folder Include="images\post\26022017\" />
     <Folder Include="images\post\28022017\" />
+    <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

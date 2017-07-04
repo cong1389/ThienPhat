@@ -4,6 +4,7 @@ using App.Domain.Entities.Menu;
 using App.Domain.Interfaces.Services;
 using App.Front.Controllers;
 using App.Front.Models;
+using App.Service.Common;
 using App.Service.LocalizedProperty;
 using App.Service.Menu;
 using System;
@@ -17,14 +18,17 @@ namespace App.Front.Controllers.Custom
 {
     public class MenuNavController : FrontBaseController
     {
+        private readonly IWorkContext _workContext;
+
         private readonly IMenuLinkService _menuLinkService;
 
         private readonly ILocalizedPropertyService _localizedPropertyService;
 
-        public MenuNavController(IMenuLinkService menuLinkService, ILocalizedPropertyService localizedPropertyService)
+        public MenuNavController(IMenuLinkService menuLinkService, ILocalizedPropertyService localizedPropertyService, IWorkContext workContext)
         {
             this._menuLinkService = menuLinkService;
             this._localizedPropertyService = localizedPropertyService;
+            this._workContext = workContext;
         }
 
         private List<MenuNav> CreateMenuNav(int? parentId, IEnumerable<MenuNav> source)
@@ -116,10 +120,10 @@ namespace App.Front.Controllers.Custom
             return base.PartialView(menuNavs);
         }
 
-        [ChildActionOnly]
-        [PartialCache("Short")]
+        [ChildActionOnly]       
         public ActionResult GetMenuLink()
         {
+            int languageId = _workContext.WorkingLanguage.Id;
             List<MenuNav> query1 = null;
             List<MenuNav> menuNavs = new List<MenuNav>();
             IEnumerable<MenuLink> menuLinks = this._menuLinkService.FindBy((MenuLink x) => x.Status == 1 && x.Position == 1, true);
@@ -145,9 +149,7 @@ namespace App.Front.Controllers.Custom
 
                 //Add Localized
                 IEnumerable<LocalizedProperty> ieLocalizedProperty = _localizedPropertyService.GetAll();
-                List<LocalizedProperty> lst = ieLocalizedProperty.Cast<LocalizedProperty>().ToList();
-
-                string languageSelected = "1", languageFallback = "2";
+                List<LocalizedProperty> lst = ieLocalizedProperty.Cast<LocalizedProperty>().ToList();                
 
                 var result = (from MenuNav mn in menuNavs
                               join LocalizedProperty lp in lst
@@ -159,41 +161,27 @@ namespace App.Front.Controllers.Custom
                               });
 
                 query1 = (from MenuNav mn in menuNavs
-                              join LocalizedProperty lp1 in lst
-                                on new { Id = mn.MenuId, LanguageId = 1 } equals new { Id = lp1.EntityId, lp1.LanguageId } into LanguageSelected
-                              join LocalizedProperty lp2 in lst
-                                on new { Id = mn.MenuId, LanguageId = 2 } equals new { Id = lp2.EntityId, lp2.LanguageId } into LanguageFallback
-                              from selected in LanguageSelected.DefaultIfEmpty()
-                              from fallback in LanguageFallback.DefaultIfEmpty()                              
-                              select new MenuNav()
-                              {
-                                  MenuName = selected != null ? selected.LocaleValue : mn.MenuName,
-                                  MenuId = mn.MenuId,
-                                  ParentId = mn.ParentId,                                 
-                                  SeoUrl = mn.SeoUrl,
-                                  OrderDisplay = mn.OrderDisplay,
-                                  ImageUrl = mn.ImageUrl,
-                                  CurrentVirtualId = mn.CurrentVirtualId,
-                                  VirtualId = mn.VirtualId,
-                                  TemplateType = mn.TemplateType,
-                                  IconNav = mn.IconBar,
-                                  IconBar = mn.IconBar
+                          join LocalizedProperty lp1 in lst
+                            on new { Id = mn.MenuId, LanguageId = languageId } equals new { Id = lp1.EntityId, lp1.LanguageId } into LanguageSelected
+                          join LocalizedProperty lp2 in lst
+                            on new { Id = mn.MenuId, LanguageId = languageId } equals new { Id = lp2.EntityId, lp2.LanguageId } into LanguageFallback
+                          from selected in LanguageSelected.DefaultIfEmpty()
+                          from fallback in LanguageFallback.DefaultIfEmpty()
+                          select new MenuNav()
+                          {
+                              MenuName = selected != null ? selected.LocaleValue : mn.MenuName,
+                              MenuId = mn.MenuId,
+                              ParentId = mn.ParentId,
+                              SeoUrl = mn.SeoUrl,
+                              OrderDisplay = mn.OrderDisplay,
+                              ImageUrl = mn.ImageUrl,
+                              CurrentVirtualId = mn.CurrentVirtualId,
+                              VirtualId = mn.VirtualId,
+                              TemplateType = mn.TemplateType,
+                              IconNav = mn.IconBar,
+                              IconBar = mn.IconBar
 
-                              }).ToList();
-
-
-                //foreach (LocalizedProperty item in lst)
-                //{
-                //    menuNavs.Add(new LocalizedPropertyViewModel
-                //    {
-                //        Id = item.Id,
-                //        EntityId = item.EntityId,
-                //        LanguageId = item.LanguageId,
-                //        LocaleKeyGroup = item.LocaleKeyGroup,
-                //        LocaleKey = item.LocaleKey,
-                //        LocaleValue = item.LocaleValue
-                //    });
-                //}
+                          }).ToList();
             }
             return base.PartialView(query1);
         }

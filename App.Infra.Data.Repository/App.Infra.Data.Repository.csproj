@@ -58,6 +58,8 @@
   <ItemGroup>
     <Compile Include="Infra.Data.Repository.Assessments\AssessmentRepository.cs" />
     <Compile Include="Infra.Data.Repository.Assessments\IAssessmentRepository.cs" />
+    <Compile Include="Infra.Data.Repository.GenericAttribute\GenericAttributeRepository.cs" />
+    <Compile Include="Infra.Data.Repository.GenericAttribute\IGenericAttributeRepository.cs" />
     <Compile Include="Infra.Data.Repository.Brandes\BrandRepository.cs" />
     <Compile Include="Infra.Data.Repository.Brandes\IBrandRepository.cs" />
     <Compile Include="Infra.Data.Repository.Language\ILocalizedPropertyRepository.cs" />

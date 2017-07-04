@@ -1,15 +1,16 @@
-﻿@using App.Domain.Entities.GlobalSetting
+﻿<!----ContactUS--->
+@using App.Domain.Entities.GlobalSetting
 @model App.Domain.Entities.Menu.MenuLink
 
 <div class="vnt-page-slide">
     <div id="vnt-page-slide">
         <div class="item">
-            <div class="img"><a href="http://" target="_blank"><img src="../vnt_upload/weblink/banner_6.jpg" /></a></div>
+            <div class="img"><a href="http://" target="_blank"><img src="assets/vnt_upload/weblink/banner_6.jpg" /></a></div>
         </div>
     </div>
 
     <div id="vnt-navation" class="breadcrumb">
-        <div class="wrapper">
+        <div class="container">
             <div class="navation">
                 <ul class="list-inline text-left">
                     <li class="home">
@@ -24,7 +25,7 @@
 </div>
 
 <div class="mod_content">
-    <div class="wrapper">
+    <div class="container">
         <div id="vnt-contact">
 
             <div class="box_mid">
@@ -69,13 +70,7 @@
 
                     @{Html.RenderPartial("_ContactPartial", (ContactInfomation)ViewBag.Contact);}
 
-                    <div class="map-contact marginbottom">
-                        <div class="box">
-                            <div id="ext_maps">
-                                @{Html.RenderPartial("_ContactMap", (ContactInfomation)ViewBag.Contact);}
-                            </div>
-                        </div>
-                    </div>
+                    @{Html.RenderPartial("_ContactMap", (ContactInfomation)ViewBag.Contact);}
 
                 </div>
             </div>
@@ -87,3 +82,4 @@
 <div class="clear"></div>
 
 <link rel="stylesheet" href="assets/modules/contact/css/contact.css" type="text/css" />
+<!----/ContactUS--->

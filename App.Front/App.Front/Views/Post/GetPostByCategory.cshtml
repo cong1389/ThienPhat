@@ -8,7 +8,7 @@
     @Html.Action("BannerTop", "Banner", new { menuId = ViewBag.MenuId })
     @Html.Partial("_BreadCrumb")
 </div>
-<div class="wrapper">
+<div class="container">
     @if (Model.IsAny())
     {
         int i = 0;
@@ -26,7 +26,7 @@
                 @foreach (var item in Model)
                 {
                     string rightOrLeft = i % 2 == 0 ? "right" : "left";
-                    <div class="category @rightOrLeft">
+                    <div class="category col-xs-12 @rightOrLeft">
                         <div class="img">
                             <a href="@Url.Action("PostDetail","Post", new {seoUrl =item.SeoUrl,area=""})" title="@item.Title">
                                 <img src="@Url.Content("~/" + item.ImageBigSize)" alt="@item.Title" title="@item.Title">

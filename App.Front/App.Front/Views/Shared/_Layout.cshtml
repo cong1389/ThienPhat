@@ -1,10 +1,10 @@
 ﻿@using App.Utils
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>
         @ViewBag.Title
     </title>
@@ -27,95 +27,102 @@
     <meta property="og:image" content="@ViewBag.Image" />
     <link href="~/images/favicon.png" rel="shortcut icon" type="image/x-icon" />
 
-    <script language="javascript">
-
-
-    </script>
-
     @Html.Partial("_StyleSheet")
     @Html.Partial("_Scripts")
 
     @RenderSection("stylesheets", false)
     @RenderSection("styles", false)
 
-    
 </head>
 <body>
 
     <div id="vnt-wrapper">
         <div id="vnt-container">
-
-            @Html.Action("GetMenuTopHead", "MenuNav", new { area = "" })
-
-            @Html.Action("GetMenuLink", "MenuNav", new { area = "" })
-
-
+            <header>
+                <div class="header-wrapper">
+                    <div class="header-topbar">
+                        @Html.Action("GetMenuTopHead", "MenuNav", new { area = "" })
+                    </div>
+                    <div class="header-main">
+                        @Html.Action("GetMenuLink", "MenuNav", new { area = "" })
+                    </div>
+                </div>
+            </header>
             <div id="vnt-content">
 
-
-
                 @RenderBody()
-
 
                 <div class="clear"></div>
             </div>
 
-
-            <div id="vnt-footer">
-                <!--= BEGIN PARTNER =-->
-                <div id="vnt-home-partner" class="lazyloading">
-                    <div class="wrapper">
-                        <div class="rowmn">
-                            <div class="col2">
-                                <div class="title">công ty thành viên</div>
-                                <div class="content">
-                                    <p>Danh sách các đối tác</p>
-                                    <p>Công ty Thiên Phát</p>
-                                </div>
-                            </div>
-                            <div class="col10">
-                                <div id="vnt-home-partner-slider" style="cursor: move; width: 970px; height: 113px; position: relative;">
-                                    <div data-u="slides" style="cursor: move; width: 970px; height: 113px;
+            <footer>
+                <div id="vnt-footer">
+                    <!--partner-->
+                    <div id="vnt-home-partner" class="lazyloading">
+                        <div class="">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="title">công ty thành viên</div>
+                                        <div class="content">
+                                            <p>Danh sách các đối tác</p>
+                                            <p>Công ty Thiên Phát</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div id="vnt-home-partner-slider" style="cursor: move; width: 970px; height: 113px; position: relative;">
+                                            <div data-u="slides" style="cursor: move; width: 970px; height: 113px;
                         overflow: hidden;">
-                                        <div class="item">
-                                            <a href="http://saomaiag.vn/" target="_blank">
-                                                <img data-u="image" src="assets/vnt_upload/weblink/doitac1.jpg" />
-                                            </a>
-                                        </div><div class="item"><a href="http://idiseafood.com/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac2.jpg" /></a></div><div class="item">
-                                        <a href="http://thienphattiengiang.com/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac3.jpg" /></a></div><div class="item"><a href="http://ranee.com.vn/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac4.jpg" /></a></div><div class="item"><a href="http://dongthaptourist.com/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac5.jpg" /></a></div>
+                                                <div class="item">
+                                                    <a href="http://saomaiag.vn/" target="_blank">
+                                                        <img data-u="image" src="assets/vnt_upload/weblink/doitac1.jpg" />
+                                                    </a>
+                                                </div><div class="item"><a href="http://idiseafood.com/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac2.jpg" /></a></div><div class="item">
+                                                    <a href="http://thienphattiengiang.com/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac3.jpg" /></a>
+                                                </div><div class="item"><a href="http://ranee.com.vn/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac4.jpg" /></a></div><div class="item"><a href="http://dongthaptourist.com/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac5.jpg" /></a></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--= END PARTNER =-->
-                <!--= BEGIN FOOT =-->
-                <div id="vnt-foot" class="lazyloading">
-                    <div class="wrapper">
-                        <div class="rowmn">
-                            <div class="col9 pull-left">
-                                <div class="copyright">
-                                    <p class="txt">
-                                    <img src="/images/logo.bmp" alt="" /><span class="did">|</span>Copyright © 2016 <strong>THIÊN PHÁT</strong></p>
-                                    <p class="footer-address">
-                                        <strong>Địa chỉ</strong> : ẤP Tân Thuận, xã Bình Đức, huyện Châu Thành, tỉnh Tiền Giang - MST: 1200653343  -
-                                        <strong>Điện thoại/Fax</strong> : 0673 680 660
-                                    </p>
+                    <!--/partner-->
+                    <!--= BEGIN FOOT =-->
+                    <div id="vnt-foot" class="lazyloading">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <img src="/images/logo.bmp" alt="" />
                                 </div>
-                            </div>
-                            <div class="col3 pull-right">
-                                <div class="soc">
-                                    <ul class="list-inline text-right"><li><a target='_blank' href="http://" title="envelope"><i class="fa fa-envelope-square"></i></a></li><li><a target='_blank' href="http://" title="twitter"><i class="fa fa-twitter-square"></i></a></li><li><a target='_blank' href="http://facebook.com/" title="facebook"><i class="fa fa-facebook-square"></i></a></li><li><a target='_blank' href="http://google/" title="google"><i class="fa fa-google-plus-square"></i></a></li></ul>
+                                <div class="col-sm-7">
+                                    <div class="copyright">
+                                        <div class="txt">                                            
+                                             <div class="footer-address">
+                                                <strong>Địa chỉ</strong> : ẤP Tân Thuận, xã Bình Đức, huyện Châu Thành, tỉnh Tiền Giang - MST: 1200653343
+                                            </div>
+                                            <div class="footer-address">                                                
+                                                <strong>Điện thoại/Fax</strong> : 0673 680 660
+                                            </div>
+                                            <div class="text-center">
+                                                Copyright © 2016 <strong>THIÊN PHÁT</strong>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 pull-right">
+                                    <div class="soc">
+                                        <ul class="list-inline text-right"><li><a target='_blank' href="http://" title="envelope"><i class="fa fa-envelope-square"></i></a></li><li><a target='_blank' href="http://" title="twitter"><i class="fa fa-twitter-square"></i></a></li><li><a target='_blank' href="http://facebook.com/" title="facebook"><i class="fa fa-facebook-square"></i></a></li><li><a target='_blank' href="http://google/" title="google"><i class="fa fa-google-plus-square"></i></a></li></ul>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!--= END FOOT =-->
                 </div>
-                <!--= END FOOT =-->
-            </div>
-
+            </footer>
 
         </div>
     </div>

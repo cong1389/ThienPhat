@@ -1,22 +1,27 @@
 ﻿@model App.Domain.Entities.GlobalSetting.ContactInfomation
 
 <div class="info-company marginbottom">
-    <div class="img">
-        <img src="/Images/chart.png" />
+    <div class="col-sm-6">
+        <div class="img">
+            <img src="/Images/chart.png" />
+        </div>
     </div>
-    <ul>
-        <li class="fa-home" itemprop="address">
-            @Model.Address
-        </li>
-        <li class="fa-phone" itemprop="telephone">@Model.MobilePhone</li>
-        <li class="fa-print" itemprop="faxNumber">@Model.Fax</li>
-        <li class="fa-envelope" itemprop="email">@Model.Email</li>
-        <li class="fa-globe" itemprop="url">www.thienphattiengiang.com</li>
-    </ul><a class="view-map" onclick="">Xem bản đồ</a><div class="clear"></div>
+    <div class="col-sm-6 col-xs-12">
+        <ul>
+            <li class="fa-home" itemprop="address">
+                @Model.Address
+            </li>
+            <li class="fa-phone" itemprop="telephone">@Model.MobilePhone</li>
+            <li class="fa-print" itemprop="faxNumber">@Model.Fax</li>
+            <li class="fa-envelope" itemprop="email">@Model.Email</li>
+            <li class="fa-globe" itemprop="url">www.thienphattiengiang.com</li>
+        </ul>
+    </div>
+    <a class="view-map hidden" onclick="">Xem bản đồ</a><div class="clear"></div>
 </div>
 
 
-<div id="formContact" name="formContact" method="post" action="#" class="form validate">
+<div id="formContact" name="formContact" method="post" action="#" class="form validate col-sm-6">
 
     <form id="formContact" name="formContact" method="post" action="#" class="form validate">
         <p>Cảm ơn Quý Khách đã quan tâm tới dịch vụ của chúng tôi, Quý Khách vui lòng liên hệ trực tiếp tại bất kỳ chi nhánh thành viên gần nhất hoặc liên hệ qua form:</p>

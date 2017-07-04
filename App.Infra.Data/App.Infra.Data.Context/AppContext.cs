@@ -190,6 +190,12 @@ namespace App.Infra.Data.Context
             set;
         }
 
+        public virtual IDbSet<GenericAttribute> GenericAttribute
+        {
+            get;
+            set;
+        }
+
         public AppContext() : base("AppConnect")
 		{
 			base.Configuration.LazyLoadingEnabled = true;
@@ -281,6 +287,8 @@ namespace App.Infra.Data.Context
             modelBuilder.Configurations.Add<OrderGallery>(new OrderGalleryConfiguration());
             modelBuilder.Configurations.Add<OrderItem>(new OrderItemConfiguration());
             modelBuilder.Configurations.Add<LocalizedProperty>(new LocalizedPropertyConfiguration());
+
+            modelBuilder.Configurations.Add<GenericAttribute>(new GenericAttributeConfiguration());
         }
 	}
 }

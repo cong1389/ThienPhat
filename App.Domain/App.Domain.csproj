@@ -91,6 +91,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain.Entities.Data\GenericAttribute.cs" />
     <Compile Include="Domain.Common\OrderStatus.cs" />
     <Compile Include="Domain.Entities.Brandes\Brand.cs" />
     <Compile Include="Domain.Entities.Data\Assessment.cs" />

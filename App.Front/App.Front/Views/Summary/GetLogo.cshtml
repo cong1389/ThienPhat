@@ -3,12 +3,19 @@
 @model App.Domain.Entities.GlobalSetting.SystemSetting
 @if (Model != null)
 {
-    <div class="logo">
-        <h1>
+    <div class="logo center-block text-center">
+        <div>
             <a href='@Url.Action("Index", "Home", new { area = "" })' target='_self' title='@Model.Title'>
                 <img src='@Url.Content("~/" + Model.LogoImage)' alt='@Model.Title' class='png' />
+
             </a>
-        </h1>
+        </div>
+        <div class="logoText hidden-xs hidden-sm">
+            <h1>
+                CÔNG TY TNHH SX TM THIÊN PHÁT
+            </h1>
+        </div>
+        
     </div>
 }
 <!---/GetLogo--->

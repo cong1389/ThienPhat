@@ -5,12 +5,12 @@
 
 @if (Model != null)
 {
-<div class="wrapper">
+<div class="container">
     <div class="mod_content">
 
         @Html.Action("GetCategoryHome", "MenuNav", new { MenuId = ViewBag.VirtualId, area = "" })
 
-        <div id="vnt-main">
+        <div id="vnt-main" class="col-sm-9">
 
             <div class="box_mid">
                 <div class="mid_title">

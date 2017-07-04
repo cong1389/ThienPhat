@@ -1,9 +1,15 @@
 ﻿<!----GetSlogan-->
 @model App.Domain.Entities.Data.StaticContent
-@if (Model !=null)
+@if (Model != null)
 {
-  
-    @Html.Raw(Model.ShortDesc)
+    <div class="lazyloading show" id="vnt-home-icon">
+        <div class="wrapper">
+            <div class="container">
+                @Html.Raw(Model.ShortDesc)
+            </div>
+        </div>
+    </div>
+
 }
 
 <!----/ GetSlogan-->
