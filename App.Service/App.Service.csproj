@@ -78,6 +78,8 @@
     <Compile Include="Service.Brandes\BrandService.cs" />
     <Compile Include="Service.Common\WebWorkContext.cs" />
     <Compile Include="Service.GenericAttribute\IGenericAttributeService.cs" />
+    <Compile Include="Service.Language\ILocalizedModel.cs" />
+    <Compile Include="Service.Language\ILocalizedModelLocal.cs" />
     <Compile Include="Service.Language\ILocalizedPropertyService.cs" />
     <Compile Include="Service.GenericAttribute\GenericAttributeService.cs" />
     <Compile Include="Service.Language\LocalizedPropertyService.cs" />

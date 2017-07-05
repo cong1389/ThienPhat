@@ -1,3 +1,4 @@
+using App.Core.Common;
 using App.Core.Utils;
 using App.Domain.Entities.Language;
 using App.Domain.Interfaces.Repository;
@@ -7,6 +8,7 @@ using App.Infra.Data.Repository.Language;
 using App.Infra.Data.UOW.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace App.Service.LocalizedProperty
 {
@@ -38,6 +40,17 @@ namespace App.Service.LocalizedProperty
             return localizedProperty;
         }
 
+        public App.Domain.Entities.Language.LocalizedProperty GetLocalizedPropertByKey(int languageId,int entityId, string localeKeyGroup, string localeKey)
+        {
+            App.Domain.Entities.Language.LocalizedProperty attr = this.Get((App.Domain.Entities.Language.LocalizedProperty x) =>
+                x.LanguageId.Equals(languageId)
+                && x.EntityId.Equals(entityId)
+                 && x.LocaleKeyGroup.Equals(localeKeyGroup)
+                 && x.LocaleKey.Equals(localeKey)
+                , false);
+            return attr;
+        }
+
         public IEnumerable<App.Domain.Entities.Language.LocalizedProperty> PagedList(SortingPagingBuilder sortbuBuilder, Paging page)
         {
             return this._localizedPropertyRepository.PagedSearchList(sortbuBuilder, page);
@@ -46,6 +59,38 @@ namespace App.Service.LocalizedProperty
         public int SaveLocalizedProperty()
         {
             return this._unitOfWork.Commit();
+        }
+
+        public virtual void SaveLocalizedValue<T>(
+            T entity,
+            Expression<Func<T, string>> keySelector,
+            string localeValue,
+            int languageId) where T : BaseEntity
+        {
+            SaveLocalizedValueItem<T, string>(entity, keySelector, localeValue, languageId);
+        }
+
+        public virtual void SaveLocalizedValueItem<T, TPropType>(
+           T entity,
+           Expression<Func<T, TPropType>> keySelector,
+           TPropType localeValue,
+           int languageId) where T : BaseEntity
+        {
+            var attribute = this.GetLocalizedPropertByKey(languageId, entity.i
+           , objAttribute.KeyGroup, objAttribute.Key);
+
+            if (attribute == null)
+                _genericAttributeService.Create(objAttribute);
+            else
+            {
+                attribute.Value = languageId.ToString();
+                _genericAttributeService.Update(attribute);
+            }
+        }
+
+        public void SaveLocalized()
+        {
+          
         }
     }
 }

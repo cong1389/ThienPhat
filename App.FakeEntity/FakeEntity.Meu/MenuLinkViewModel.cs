@@ -1,4 +1,5 @@
 using App.FakeEntity.Language;
+using App.Service.Language;
 using Resources;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,8 @@ using System.Web;
 
 namespace App.FakeEntity.Meu
 {
-	public class MenuLinkViewModel
-	{
+	public class MenuLinkViewModel: ILocalizedModel<MenuLinkLocalesViewModel>
+    {
 		public string CurrentVirtualId
 		{
 			get;
@@ -205,7 +206,7 @@ namespace App.FakeEntity.Meu
         }
 	}
 
-    public class MenuLinkLocalesViewModel
+    public class MenuLinkLocalesViewModel: ILocalizedModelLocal
     {
         public int LanguageId { get; set; }
 
