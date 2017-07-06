@@ -6,9 +6,11 @@ using App.Domain.Interfaces.Services;
 using App.Infra.Data.Common;
 using App.Infra.Data.Repository.Language;
 using App.Infra.Data.UOW.Interfaces;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace App.Service.LocalizedProperty
 {
@@ -40,13 +42,14 @@ namespace App.Service.LocalizedProperty
             return localizedProperty;
         }
 
-        public App.Domain.Entities.Language.LocalizedProperty GetLocalizedPropertByKey(int languageId,int entityId, string localeKeyGroup, string localeKey)
+        public App.Domain.Entities.Language.LocalizedProperty GetLocalizedPropertByKey(int languageId, int entityId, string localeKeyGroup, string localeKey)
         {
             App.Domain.Entities.Language.LocalizedProperty attr = this.Get((App.Domain.Entities.Language.LocalizedProperty x) =>
                 x.LanguageId.Equals(languageId)
                 && x.EntityId.Equals(entityId)
                  && x.LocaleKeyGroup.Equals(localeKeyGroup)
                  && x.LocaleKey.Equals(localeKey)
+
                 , false);
             return attr;
         }
@@ -65,7 +68,7 @@ namespace App.Service.LocalizedProperty
             T entity,
             Expression<Func<T, string>> keySelector,
             string localeValue,
-            int languageId) where T : BaseEntity
+            int languageId) where T : AuditableEntity<int>
         {
             SaveLocalizedValueItem<T, string>(entity, keySelector, localeValue, languageId);
         }
@@ -73,24 +76,52 @@ namespace App.Service.LocalizedProperty
         public virtual void SaveLocalizedValueItem<T, TPropType>(
            T entity,
            Expression<Func<T, TPropType>> keySelector,
-           TPropType localeValue,
-           int languageId) where T : BaseEntity
+           string localeValue,
+           int languageId) where T : AuditableEntity<int>
         {
-            var attribute = this.GetLocalizedPropertByKey(languageId, entity.i
-           , objAttribute.KeyGroup, objAttribute.Key);
+            var member = keySelector.Body as MemberExpression;
+            if (member == null)
+            {
+                throw new ArgumentException($"Expression '{keySelector}' refers to a method, not a property.");
+            }
 
-            if (attribute == null)
-                _genericAttributeService.Create(objAttribute);
+            var propInfo = member.Member as PropertyInfo;
+            if (propInfo == null)
+            {
+                throw new ArgumentException($"Expression '{keySelector}' refers to a field, not a property.");
+            }
+
+            var keyGroup = typeof(T).Name;
+            var key = propInfo.Name;
+
+            App.Domain.Entities.Language.LocalizedProperty obj = this.GetLocalizedPropertByKey(languageId, entity.Id
+           , keyGroup, key);
+
+            if (obj == null)
+            {
+                if (!string.IsNullOrEmpty(localeValue))
+                {
+                    obj = new App.Domain.Entities.Language.LocalizedProperty
+                    {
+                        EntityId = entity.Id,
+                        LanguageId = languageId,
+                        LocaleKey = key,
+                        LocaleKeyGroup = keyGroup,
+                        LocaleValue = localeValue
+                    };
+                    this.Create(obj);
+                }
+            }
             else
             {
-                attribute.Value = languageId.ToString();
-                _genericAttributeService.Update(attribute);
+                obj.Id = obj.Id;
+                obj.EntityId = entity.Id;
+                obj.LanguageId = languageId;
+                obj.LocaleKey = key;
+                obj.LocaleValue = localeValue;
+                this.Update(obj);
             }
         }
 
-        public void SaveLocalized()
-        {
-          
-        }
     }
 }

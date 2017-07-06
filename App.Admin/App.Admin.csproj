@@ -942,7 +942,6 @@
     <Compile Include="Areas\Admin\Helpers\Common.cs" />
     <Compile Include="Areas\Admin\Helpers\ImageSize.cs" />
     <Compile Include="Areas\Admin\Helpers\LandingPageExport.cs" />
-    <Compile Include="Areas\Admin\Helpers\LocalizationExtentions.cs" />
     <Compile Include="Areas\Admin\Helpers\RequiredPermisson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

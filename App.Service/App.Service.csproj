@@ -35,8 +35,9 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="App.Core">
-      <HintPath>.\App.ServiceReferences\App.Core.dll</HintPath>
+    <Reference Include="App.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\App.Core\bin\Debug\App.Core.dll</HintPath>
     </Reference>
     <Reference Include="App.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -63,6 +64,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\App.Aplication\App.AplicationReferences\System.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Service.Common\CommonServices.cs" />
@@ -82,6 +87,7 @@
     <Compile Include="Service.Language\ILocalizedModelLocal.cs" />
     <Compile Include="Service.Language\ILocalizedPropertyService.cs" />
     <Compile Include="Service.GenericAttribute\GenericAttributeService.cs" />
+    <Compile Include="Service.Language\LocalizationExtentions.cs" />
     <Compile Include="Service.Language\LocalizedPropertyService.cs" />
     <Compile Include="Service.Locations\DistrictService.cs" />
     <Compile Include="Service.Locations\IDistrictService.cs" />

@@ -11,7 +11,7 @@ namespace App.Service.GenericAttribute
 
         App.Domain.Entities.Data.GenericAttribute GetGenericAttributeById(int Id);
 
-        App.Domain.Entities.Data.GenericAttribute GetGenericAttributeByKey(int EntityId, string keyGroup, string key);
+        App.Domain.Entities.Data.GenericAttribute GetGenericAttributeByKey(int entityId, string keyGroup, string key);
 
         IEnumerable<App.Domain.Entities.Data.GenericAttribute> PagedList(SortingPagingBuilder sortBuider, Paging page);
         

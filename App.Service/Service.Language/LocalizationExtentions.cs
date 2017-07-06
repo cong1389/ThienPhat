@@ -1,20 +1,26 @@
-﻿using App.Core.Common;
-using App.Domain.Entities.Language;
-using App.FakeEntity.Language;
-using App.Service.GenericAttribute;
+﻿using App.Service.GenericAttribute;
 using App.Service.LocalizedProperty;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Web;
+using System.Web.Mvc;
 
-namespace App.Admin.Areas.Admin.Helpers
+namespace App.Service.Language
 {
     public static class LocalizationExtentions
     {
-        private static readonly IGenericAttributeService _genericAttributeService;
+        private static readonly ILocalizedPropertyService _localizedPropertyService;
+
+        static LocalizationExtentions()
+        {
+
+        }
+
+
+        public static string GetLocalized<T>(this T entity, Expression<Func<T, string>> keySelector)
+        {
+            return GetLocalized(entity, keySelector, 1, 1);
+        }
 
         /// <summary>
         /// Get localized property of an entity
@@ -27,19 +33,19 @@ namespace App.Admin.Areas.Admin.Helpers
         /// <param name="ensureTwoPublishedLanguages">A value indicating whether to ensure that we have at least two published languages; otherwise, load only default value</param>
         /// <returns>Localized property</returns>
         public static string GetLocalized<T>(this T entity,
-            Expression<Func<T, string>> keySelector, int languageId,
+            Expression<Func<T, string>> keySelector, int entityId, int languageId,
             bool returnDefaultValue = true, bool ensureTwoPublishedLanguages = true)
-            where T : BaseEntity
         {
-            return GetLocalized<T, string>(entity, keySelector, languageId, returnDefaultValue, ensureTwoPublishedLanguages);
+            return GetLocalized<T, string>(entity, keySelector, entityId, languageId, returnDefaultValue, ensureTwoPublishedLanguages);
         }
 
         public static string GetLocalized<T, TPropType>(this T entity,
            Expression<Func<T, TPropType>> keySelector,
+            int entityId,
            int languageId,
            bool returnDefaultValue = true,
            bool ensureTwoPublishedLanguages = true)
-           where T : BaseEntity
+
         {
             var member = keySelector.Body as MemberExpression;
             if (member == null)
@@ -56,20 +62,22 @@ namespace App.Admin.Areas.Admin.Helpers
                        "Expression '{0}' refers to a field, not a property.",
                        keySelector));
             }
-            string result=null;
-            
+            string result = null;
+
 
             // load localized value
-            string localeKeyGroup = typeof(T).Name;
+            string localeKeyGroup = typeof(T).Name.Replace("ViewModel", "");
             string localeKey = propInfo.Name;
 
             if (languageId > 0)
             {
-                App.Domain.Entities.Data.GenericAttribute attribute = _genericAttributeService.GetGenericAttributeByKey(1, "Customer", "LanguageId");
+                var _localizedPropertyService = DependencyResolver.Current.GetService<ILocalizedPropertyService>();
+                App.Domain.Entities.Language.LocalizedProperty localizedProperty = _localizedPropertyService.GetLocalizedPropertByKey(languageId
+                    , entityId, localeKeyGroup, localeKey);
 
-                result = attribute.Value;
+                result = localizedProperty != null ? localizedProperty.LocaleValue : null;
             }
-                        
+
             return result;
         }
 

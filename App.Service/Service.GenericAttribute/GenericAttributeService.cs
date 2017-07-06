@@ -34,11 +34,11 @@ namespace App.Service.GenericAttribute
             return this._genericAttributeRepository.GetAttributeById(Id);
         }
 
-        public App.Domain.Entities.Data.GenericAttribute GetGenericAttributeByKey(int EntityId, string keyGroup, string key)
+        public App.Domain.Entities.Data.GenericAttribute GetGenericAttributeByKey(int entityId, string keyGroup, string key)
         {
             App.Domain.Entities.Data.GenericAttribute attr = this._genericAttributeRepository
                 .Get((App.Domain.Entities.Data.GenericAttribute x) =>
-                x.EntityId.Equals(EntityId)
+                x.EntityId.Equals(entityId)
                  && x.KeyGroup.Equals(keyGroup)
                  && x.Key.Equals(key)
                 , false);

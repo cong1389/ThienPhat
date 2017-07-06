@@ -26,15 +26,13 @@ namespace App.Service.LocalizedProperty
             T entity,
             Expression<Func<T, string>> keySelector,
             string localeValue,
-            int languageId) where T : BaseEntity;
+            int languageId) where T : AuditableEntity<int>;
 
         void SaveLocalizedValueItem<T, TPropType>(
            T entity,
            Expression<Func<T, TPropType>> keySelector,
-           TPropType localeValue,
-           int languageId) where T : BaseEntity;
-
-        int SaveLocalized();
-
+           string localeValue,
+           int languageId) where T : AuditableEntity<int>;
+        
     }
 }
