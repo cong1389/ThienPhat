@@ -16,7 +16,6 @@ namespace App.Service.Language
 
         }
 
-
         public static string GetLocalized<T>(this T entity, Expression<Func<T, string>> keySelector)
         {
             return GetLocalized(entity, keySelector, 1, 1);
@@ -76,6 +75,33 @@ namespace App.Service.Language
                     , entityId, localeKeyGroup, localeKey);
 
                 result = localizedProperty != null ? localizedProperty.LocaleValue : null;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// GetLocalizedByLocaleKey
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity">Class name</param>
+        /// <param name="fallBackValue">Value mặc định nếu không có localized</param>
+        /// <param name="entityId">Id của thực thể cần set localized</param>
+        /// <param name="languageId">Id ngôn ngữ</param>
+        /// <param name="localeKeyGroup">Tên nhóm</param>
+        /// <param name="localeKey">Tên key</param>
+        /// <returns></returns>
+        public static string GetLocalizedByLocaleKey<T>(this T entity,string fallBackValue, int entityId,int languageId, string localeKeyGroup, string localeKey)
+        {
+            string result = null;
+           // string localeKeyGroup = typeof(T).Name.Replace("ViewModel", "");
+            if (languageId > 0)
+            {
+                var _localizedPropertyService = DependencyResolver.Current.GetService<ILocalizedPropertyService>();
+                App.Domain.Entities.Language.LocalizedProperty localizedProperty = _localizedPropertyService.GetLocalizedPropertByKey(languageId
+                    , entityId, localeKeyGroup, localeKey);
+
+                result = localizedProperty != null ? localizedProperty.LocaleValue : fallBackValue;
             }
 
             return result;

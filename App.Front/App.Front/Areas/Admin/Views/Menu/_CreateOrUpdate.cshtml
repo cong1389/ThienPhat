@@ -25,21 +25,14 @@
 
                 @{
                     for (int i = 0; i < Model.Locales.Count; i++)
-                    { 
-                         @Html.HiddenFor(model => model.MenuName, new { @class = "form-control", @Value = Model.Locales[0].MenuName })
-                        @Html.HiddenFor(model => model.Locales[i].LocalesId)
-                        @Html.HiddenFor(model => model.Locales[i].LanguageId)
-
+                    {
                         <div class="tab-pane @(i == 0 ? "active" : "")" id="tab_@(i+1)">
                             <div class="row">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Locales[i].MenuName, new { @class = "control-label col-md-3" })
                                     <div class="col-md-5">
-
                                         @Html.TextBoxFor(model => model.Locales[i].MenuName, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.Locales[i].MenuName, "", new { @class = "help-block" })                                       
-
-                                       
+                                        @Html.ValidationMessageFor(model => model.Locales[i].MenuName, "", new { @class = "help-block" })
                                     </div>
                                 </div>
                             </div>
@@ -47,43 +40,48 @@
                             <div class="row">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Locales[i].MetaTitle, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-5">                                        
-
+                                    <div class="col-md-5">
                                         @Html.TextBoxFor(model => model.Locales[i].MetaTitle, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.Locales[i].MetaTitle, "", new { @class = "help-block" })
+                                        @*@Html.ValidationMessageFor(model => model.Locales[i].MetaTitle, "", new { @class = "help-block" })*@
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Locales[i].MetaKeywords, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.Locales[i].MetaKeywords, new { @class = "form-control" })
+                                        @*@Html.ValidationMessageFor(model => model.Locales[i].MetaKeywords, "", new { @class = "help-block" })*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Locales[i].MetaDescription, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(model => model.Locales[i].MetaDescription, new { @class = "form-control" })
+                                        @*@Html.ValidationMessageFor(model => model.Locales[i].MetaDescription, "", new { @class = "help-block" })*@
                                     </div>
                                 </div>
                             </div>
 
                         </div>
+
+                        @Html.HiddenFor(model => model.Locales[i].LocalesId)
+                        @Html.HiddenFor(model => model.Locales[i].LanguageId)
                     }
-                }                
-                
+                   
+                    @Html.HiddenFor(model => model.MenuName, new { @class = "form-control", @Value = Model.Locales[0].MenuName })
+                    @Html.HiddenFor(model => model.MetaTitle, new { @class = "form-control", @Value = Model.Locales[0].MetaTitle })
+                    @Html.HiddenFor(model => model.MetaKeywords, new { @class = "form-control", @Value = Model.Locales[0].MetaKeywords })
+                    @Html.HiddenFor(model => model.MetaDescription, new { @class = "form-control", @Value = Model.Locales[0].MetaDescription })
+
+                }
+
             </div>
         </div>
-
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.MenuName, new { @class = "control-label col-md-3" })
-            <div class="col-md-5">
-
-                @Html.HiddenFor(model => model.LocalizedProperty[0].Id)
-                @Html.TextBoxFor(model => model.LocalizedProperty[0].LocaleValue, new { @class = "form-control" })
-                @Html.HiddenFor(model => model.LocalizedProperty[0].LanguageId)
-
-                @Html.HiddenFor(model => model.LocalizedProperty[1].Id)
-                @Html.TextBoxFor(model => model.LocalizedProperty[1].LocaleValue, new { @class = "form-control" })
-                @Html.HiddenFor(model => model.LocalizedProperty[1].LanguageId)
-
-                @Html.HiddenFor(model => model.LocalizedProperty[2].Id)
-                @Html.TextBoxFor(model => model.LocalizedProperty[2].LocaleValue, new { @class = "form-control" })
-                @Html.HiddenFor(model => model.LocalizedProperty[2].LanguageId)
-
-                @Html.TextBoxFor(model => model.MenuName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MenuName, "", new { @class = "help-block" })
-            </div>
-        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ParentId, new { @class = "control-label col-md-3" })
@@ -201,27 +199,7 @@
                 @Html.ValidationMessageFor(model => model.Position, "", new { @class = "help-block" })
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.MetaTitle, new { @class = "control-label col-md-3" })
-            <div class="col-md-5">
-                @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MetaTitle, "", new { @class = "help-block" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.MetaKeywords, new { @class = "control-label col-md-3" })
-            <div class="col-md-5">
-                @Html.TextBoxFor(model => model.MetaKeywords, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MetaKeywords, "", new { @class = "help-block" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.MetaDescription, new { @class = "control-label col-md-3" })
-            <div class="col-md-5">
-                @Html.TextBoxFor(model => model.MetaDescription, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MetaDescription, "", new { @class = "help-block" })
-            </div>
-        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-3" })
             <div class="col-md-5">
@@ -310,5 +288,6 @@
         </div>
     </div>
 </div>
+
 
 <!---/_CreateOrUpdate--->

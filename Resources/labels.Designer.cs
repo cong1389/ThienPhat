@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DisplayOnHomePage noooooooooooooo.
+        ///   Looks up a localized string similar to DisplayOnHomePage.
         /// </summary>
         public static string DisplayOnHomePage {
             get {

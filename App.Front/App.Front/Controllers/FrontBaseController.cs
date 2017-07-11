@@ -1,5 +1,7 @@
 using App.Service.Common;
+using App.Service.Language;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
@@ -9,7 +11,26 @@ namespace App.Front.Controllers
 {
 	public  class FrontBaseController : Controller
 	{
-		public int _pageSize
+        protected virtual void AddLocales<TLocalizedPropertyViewModelLocal>(ILanguageService languageService, IList<TLocalizedPropertyViewModelLocal> locales) where TLocalizedPropertyViewModelLocal : ILocalizedModelLocal
+        {
+            AddLocales(languageService, locales, null);
+        }
+
+        protected virtual void AddLocales<TLocalizedPropertyViewModelLocal>(ILanguageService languageService, IList<TLocalizedPropertyViewModelLocal> locales, Action<TLocalizedPropertyViewModelLocal, int> configure) where TLocalizedPropertyViewModelLocal : ILocalizedModelLocal
+        {
+            foreach (var language in languageService.GetAll())
+            {
+                var locale = Activator.CreateInstance<TLocalizedPropertyViewModelLocal>();
+                locale.LanguageId = language.Id;
+                if (configure != null)
+                {
+                    configure.Invoke(locale, locale.LanguageId);
+                }
+                locales.Add(locale);
+            }
+        }
+
+        public int _pageSize
 		{
 			get
 			{

@@ -29,6 +29,7 @@ namespace App.Admin.Controllers
         private readonly IMenuLinkService _menuLinkService;
 
         private readonly ILocalizedPropertyService _localizedPropertyService;
+
         private readonly ILanguageService _languageService;
 
         public MenuController(IMenuLinkService menuLinkService, ILocalizedPropertyService localizedPropertyService, ILanguageService languageService)
@@ -58,7 +59,9 @@ namespace App.Admin.Controllers
             {
                 if (!base.ModelState.IsValid)
                 {
-                    base.ModelState.AddModelError("", MessageUI.ErrorMessage);
+                    String messages = String.Join(Environment.NewLine, ModelState.Values.SelectMany(v => v.Errors)
+                                                            .Select(v => v.ErrorMessage + " " + v.Exception));
+                    base.ModelState.AddModelError("", messages);
                     return base.View(model);
                 }
                 else
@@ -206,7 +209,9 @@ namespace App.Admin.Controllers
             {
                 if (!base.ModelState.IsValid)
                 {
-                    base.ModelState.AddModelError("", MessageUI.ErrorMessage);
+                    String messages = String.Join(Environment.NewLine, ModelState.Values.SelectMany(v => v.Errors)
+                                                             .Select(v => v.ErrorMessage + " " + v.Exception));
+                    base.ModelState.AddModelError("", messages);
                     return base.View(model);
                 }
                 else
@@ -334,33 +339,6 @@ namespace App.Admin.Controllers
                 IEnumerable<MenuLink> all = this._menuLinkService.GetAll();
                 ((dynamic)base.ViewBag).MenuList = all;
             }
-        }
-
-        //[NonAction]
-        //protected void UpdateLocales(MenuLink category, MenuLinkViewModel model)
-        //{
-        //    //    foreach (var localized in model.Locales)
-        //    //    {
-        //    _localizedPropertyService.Update(category);
-
-        //    //        _localizedEntityService.SaveLocalizedValue(category, x => x.FullName, localized.FullName, localized.LanguageId);
-
-        //    //        _localizedEntityService.SaveLocalizedValue(category, x => x.Description, localized.Description, localized.LanguageId);
-
-        //    //        _localizedEntityService.SaveLocalizedValue(category, x => x.BottomDescription, localized.BottomDescription, localized.LanguageId);
-
-        //    //        _localizedEntityService.SaveLocalizedValue(category, x => x.BadgeText, localized.BadgeText, localized.LanguageId);
-
-        //    //        _localizedEntityService.SaveLocalizedValue(category, x => x.MetaKeywords, localized.MetaKeywords, localized.LanguageId);
-
-        //    //        _localizedEntityService.SaveLocalizedValue(category, x => x.MetaDescription, localized.MetaDescription, localized.LanguageId);
-
-        //    //        _localizedEntityService.SaveLocalizedValue(category, x => x.MetaTitle, localized.MetaTitle, localized.LanguageId);
-
-        //    //        //search engine name
-        //    //        var seName = category.ValidateSeName(localized.SeName, localized.Name, false, localized.LanguageId);
-        //    //        _urlRecordService.SaveSlug(category, seName, localized.LanguageId);
-        //    //    }
-        //}
+        }        
     }
 }

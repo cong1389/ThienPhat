@@ -1,12 +1,13 @@
 using App.Domain.Entities.Language;
 using App.FakeEntity.Language;
+using App.Service.Language;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace App.Front.Models
 {
-    public class MenuNav
+    public class MenuNav : ILocalizedModel<MenuNavLocales>
     {
         public List<MenuNav> ChildNavMenu
         {
@@ -91,20 +92,24 @@ namespace App.Front.Models
             get;
             set;
         }
+        public IList<MenuNavLocales> Locales { get; set; }
 
         public MenuNav()
         {
+            this.Locales = new List<MenuNavLocales>();
         }
     }
 
-    public class MenuNavLocalized
+    public class MenuNavLocales : ILocalizedModelLocal
     {
+        public int LanguageId { get; set; }
+
+        public int LocalesId { get; set; }
+
         public string MenuName
         {
             get;
             set;
         }
-        public MenuNav MenuNavTranslation { get; set; }
-        public LocalizedProperty LocalizedTranslation { get; set; }
     }
 }
