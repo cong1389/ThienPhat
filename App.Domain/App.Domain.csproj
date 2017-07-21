@@ -98,6 +98,7 @@
     <Compile Include="Domain.Entities.Data\Order.cs" />
     <Compile Include="Domain.Entities.Data\OrderGallery.cs" />
     <Compile Include="Domain.Entities.Data\OrderItem.cs" />
+    <Compile Include="Domain.Entities.Language\LocaleStringResource.cs" />
     <Compile Include="Domain.Entities.Language\LocalizedProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>false</AutoGen>

@@ -511,6 +511,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View string resource.
+        /// </summary>
+        public static string LanguageResource {
+            get {
+                return ResourceManager.GetString("LanguageResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lat.
         /// </summary>
         public static string Lat {

@@ -97,6 +97,7 @@
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Utils\WebGrid\WebGridHelpers.cs" />
     <Compile Include="Utils\SEO\SiteMapImage.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
@@ -145,10 +146,21 @@
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Utils\WebGrid\EditableHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\App.Domain\App.Domain.csproj">
+      <Project>{396FF6DF-0F55-4C8F-9B2F-233F439DA8F6}</Project>
+      <Name>App.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\App.FakeEntity\App.FakeEntity.csproj">
+      <Project>{2205E10F-F6DE-43C5-A39D-E9458639D0D5}</Project>
+      <Name>App.FakeEntity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

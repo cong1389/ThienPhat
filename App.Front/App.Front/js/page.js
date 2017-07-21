@@ -239,9 +239,13 @@ $(function () {
     $("#checkorder").click(function (e) {
         var code = $("#oderCode").val();
         var name = $("#NameOrPhome").val();
-        $.post('/home/CheckOrder', { phone: name, ordercode: code }, function (response) {
-            $(".result_check").empty().html(response.data);
-        })
+        $.post('/home/CheckOrder'
+            , { phone: name, ordercode: code }
+            , function (response)
+                {
+                    $(".result_check").empty().html(response.data);
+                }
+        )
         return false;
     });
 });

@@ -190,18 +190,11 @@ namespace App.FakeEntity.Meu
 			get;
 			set;
 		}
-
-        public List<LocalizedPropertyViewModel> LocalizedProperty
-        {
-            get;
-            set;
-        }
-
+        
         public IList<MenuLinkLocalesViewModel> Locales { get; set; }
 
         public MenuLinkViewModel()
-		{
-            this.LocalizedProperty = new List<LocalizedPropertyViewModel>();
+		{           
             this.Locales = new List<MenuLinkLocalesViewModel>();
         }
 	}

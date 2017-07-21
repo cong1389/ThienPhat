@@ -480,4 +480,7 @@
   <data name="LocaleValue" xml:space="preserve">
     <value>LocaleValue</value>
   </data>
+  <data name="LanguageResource" xml:space="preserve">
+    <value>View string resource</value>
+  </data>
 </root>

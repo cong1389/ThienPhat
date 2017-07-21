@@ -74,6 +74,7 @@ namespace App.Framework.Mappings
             Mapper.CreateMap<OrderItem, OrderItemViewModel>();
 
             Mapper.CreateMap<LocalizedProperty, LocalizedPropertyViewModel>();
+            Mapper.CreateMap<LocaleStringResource, LocaleStringResourceViewModel>();
         }
 	}
 }

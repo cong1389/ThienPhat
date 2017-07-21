@@ -11,6 +11,7 @@
             <th class="text-center"> &nbsp;</th>
             <th class="text-center"> @FormUI.Title </th>
             <th class="text-center"> @FormUI.LanguageCode </th>
+            <th class="text-center"> @FormUI.LanguageResource</th>
             <th class="text-center"> @FormUI.Status </th>
             <th class="text-center">
                 <input onclick="AppCore.handleCheckAll(this) " type="checkbox">
@@ -28,8 +29,11 @@
                     </td>
                     <td>
                         <a class="highlight0" href="@Url.Action("Edit", new {id = item.Id, ReturnUrl = Request.Url.PathAndQuery})">@item.LanguageName</a>
-                    </td>
+                    </td>                   
                     <td class="highlight1">@item.LanguageCode</td>
+                    <td>
+                        <a class="highlight0" href='@Url.Action("Index", "LocaleResource")?languageId=@item.Id'>@FormUI.LanguageResource</a>
+                    </td>
                     <td>@Html.Raw(item.Status == (int)Status.Disable ? "<span class='label label-sm label-warning'>" + UI.InActive + "</span>" : "<span class='label label-sm label-success'>" + UI.Active + "</span>")</td>
                     <td class="text-center">
                         <input type="checkbox" value="@item.Id">

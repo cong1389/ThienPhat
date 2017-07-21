@@ -3,6 +3,7 @@ using App.Core.Utils;
 using App.Domain.Entities.Language;
 using App.FakeEntity.Language;
 using App.Framework.Ultis;
+using App.Service.Common;
 using App.Service.Language;
 using App.Utils;
 using AutoMapper;
@@ -19,11 +20,16 @@ namespace App.Admin.Controllers
 {
     public class LanguageController : BaseAdminController
     {
+        #region Language
+
         private readonly ILanguageService _langService;
 
-        public LanguageController(ILanguageService langService)
+        private readonly ICommonServices _services;
+
+        public LanguageController(ILanguageService langService, ICommonServices services)
         {
             this._langService = langService;
+            this._services = services;
         }
 
         [HttpGet]
@@ -77,14 +83,14 @@ namespace App.Admin.Controllers
             }
             return action;
         }
-       
+
         public ActionResult Edit(int Id)
         {
             LanguageFormViewModel languageViewModel = Mapper.Map<Language, LanguageFormViewModel>(this._langService.GetLanguageById(Id));
-            return base.View(languageViewModel);           
+            return base.View(languageViewModel);
         }
 
-        [HttpPost]      
+        [HttpPost]
         public ActionResult Edit(LanguageFormViewModel language, string ReturnUrl)
         {
             ActionResult action;
@@ -145,5 +151,14 @@ namespace App.Admin.Controllers
             }
             return base.View(languages);
         }
+
+        #endregion
+
+        #region Resource
+
+       
+
+        #endregion
+
     }
 }

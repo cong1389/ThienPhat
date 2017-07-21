@@ -2,6 +2,7 @@ using App.Core.Common;
 using App.Core.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace App.Domain.Interfaces.Repository
@@ -38,5 +39,11 @@ namespace App.Domain.Interfaces.Repository
 		IEnumerable<T> GetTopBy<TKey>(int take, Expression<Func<T, bool>> where, Expression<Func<T, TKey>> orderByClause);
 
 		void Update(T entity);
-	}
+
+
+        /// <summary>
+        /// Returns the queryable entity set for the given type {T}.
+        /// </summary>
+        IQueryable<T> Table { get; }
+    }
 }

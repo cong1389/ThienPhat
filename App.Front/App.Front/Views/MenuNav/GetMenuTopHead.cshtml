@@ -50,7 +50,7 @@
                             <ul class="list-inline text-right">
                                 <li class='active'><a href="@Url.Action("SetLanguage", "Common", new { langid = 1, returnUrl = this.Request.RawUrl }, null)"><img src="assets/vnt_upload/lang/flag-vn.png" /><p class="hidden-xs hidden-sm">Tiếng Việt</p></a></li>
                                 <li><a href="@Url.Action("SetLanguage", "Common", new {langid = 2, returnUrl =this.Request.RawUrl},null)"><img src="assets/vnt_upload/lang/flag-en.png" /><p class="hidden-xs hidden-sm">English</p></a></li>
-                                <li><a href="http://trisedco.com/cn/main.html"><img src="assets/vnt_upload/lang/flag-cn.png" /><p class="hidden-xs hidden-sm">中国</p></a></li>
+                                <li><a href="@Url.Action("SetLanguage", "Common", new {langid = 3, returnUrl =this.Request.RawUrl},null)"><img src="assets/vnt_upload/lang/flag-cn.png" /><p class="hidden-xs hidden-sm">中国</p></a></li>
 
                             </ul>
                         </div>

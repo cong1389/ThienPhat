@@ -196,6 +196,12 @@ namespace App.Infra.Data.Context
             set;
         }
 
+        public virtual IDbSet<LocaleStringResource> LocaleStringResource
+        {
+            get;
+            set;
+        }
+
         public AppContext() : base("AppConnect")
 		{
 			base.Configuration.LazyLoadingEnabled = true;
@@ -289,6 +295,7 @@ namespace App.Infra.Data.Context
             modelBuilder.Configurations.Add<LocalizedProperty>(new LocalizedPropertyConfiguration());
 
             modelBuilder.Configurations.Add<GenericAttribute>(new GenericAttributeConfiguration());
+            modelBuilder.Configurations.Add<LocaleStringResource>(new LocaleStringResourceConfiguration());
         }
 	}
 }

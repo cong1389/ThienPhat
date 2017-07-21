@@ -151,5 +151,18 @@ namespace App.Infra.Data.Common
 			this._dbSet.Attach(entity);
 			this._dataContext.Entry<T>(entity).State = EntityState.Modified;
 		}
-	}
+
+
+        public virtual IQueryable<T> Table
+        {
+            get
+            {
+                //if (_dataContext.ForceNoTracking)
+                //{
+                //    return this._dbSet.AsNoTracking();
+                //}
+                return this._dbSet;
+            }
+        }
+    }
 }

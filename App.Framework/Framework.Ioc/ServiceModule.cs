@@ -30,6 +30,9 @@ using App.Service.LocalizedProperty;
 using App.Service.Common;
 using App.Aplication;
 using App.Service.GenericAttribute;
+using App.Service.LocaleStringResource;
+using Autofac.Core;
+using App.Core.Localization;
 
 namespace App.Framework.Ioc
 {
@@ -81,7 +84,18 @@ namespace App.Framework.Ioc
             builder.RegisterType<CommonServices>().As<ICommonServices>().InstancePerRequest<CommonServices, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<WebWorkContext>().As<IWorkContext>().InstancePerRequest<WebWorkContext, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<GenericAttributeService>().As<IGenericAttributeService>().InstancePerRequest<GenericAttributeService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+            builder.RegisterType<LocaleStringResourceService>().As<ILocaleStringResourceService>().InstancePerRequest<LocaleStringResourceService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+
+            builder.RegisterType<TextService>().As<ITextService>().InstancePerRequest<TextService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
 
         }
+
+        //protected override void AttachToComponentRegistration(IComponentRegistry componentRegistry, IComponentRegistration registration)
+        //{
+        //    registration.Activated += (sender, e) =>
+        //    {
+        //        Localizer localizer = e.Context.Resolve<ITextService>().Get;               
+        //    };
+        //}
     }
 }

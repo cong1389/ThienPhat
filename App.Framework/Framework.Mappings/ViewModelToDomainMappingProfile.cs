@@ -166,6 +166,13 @@ namespace App.Framework.Mappings
 
             Mapper.CreateMap<OrderItemViewModel, OrderItem>().ForMember((OrderItem x) => (object)x.Id, (IMemberConfigurationExpression<OrderItemViewModel> map) => map.MapFrom<int>((OrderItemViewModel vm) => vm.Id)).ForMember((OrderItem x) => (object)x.OrderId, (IMemberConfigurationExpression<OrderItemViewModel> map) => map.MapFrom<int>((OrderItemViewModel vm) => vm.OrderId)).ForMember((OrderItem x) => (object)x.FixedFee, (IMemberConfigurationExpression<OrderItemViewModel> map) => map.MapFrom<decimal?>((OrderItemViewModel vm) => vm.FixedFee)).ForMember((OrderItem x) => (object)x.WarrantyFrom, (IMemberConfigurationExpression<OrderItemViewModel> map) => map.MapFrom<DateTime?>((OrderItemViewModel vm) => vm.WarrantyFrom)).ForMember((OrderItem x) => x.Order, (IMemberConfigurationExpression<OrderItemViewModel> map) => map.Ignore()).ForMember((OrderItem x) => (object)x.WarrantyTo, (IMemberConfigurationExpression<OrderItemViewModel> map) => map.MapFrom<DateTime?>((OrderItemViewModel vm) => vm.WarrantyTo));
 
+            Mapper.CreateMap<LocaleStringResourceViewModel, LocaleStringResource>()
+              .ForMember((LocaleStringResource x) => x.LanguageId, (IMemberConfigurationExpression<LocaleStringResourceViewModel> map) => map.MapFrom<int>((LocaleStringResourceViewModel vm) => vm.LanguageId))
+              .ForMember((LocaleStringResource x) => x.ResourceName, (IMemberConfigurationExpression<LocaleStringResourceViewModel> map) => map.MapFrom<string>((LocaleStringResourceViewModel vm) => vm.ResourceName))
+              .ForMember((LocaleStringResource x) => x.ResourceValue, (IMemberConfigurationExpression<LocaleStringResourceViewModel> map) => map.MapFrom<string>((LocaleStringResourceViewModel vm) => vm.ResourceValue))
+              .ForMember((LocaleStringResource x) => x.IsFromPlugin, (IMemberConfigurationExpression<LocaleStringResourceViewModel> map) => map.MapFrom<bool>((LocaleStringResourceViewModel vm) => vm.IsFromPlugin))
+              .ForMember((LocaleStringResource x) => x.IsTouched, (IMemberConfigurationExpression<LocaleStringResourceViewModel> map) => map.MapFrom<bool>((LocaleStringResourceViewModel vm) => vm.IsTouched));
+
         }
     }
 }

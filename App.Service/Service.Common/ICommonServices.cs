@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Service.LocaleStringResource;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,11 @@ namespace App.Service.Common
     public interface ICommonServices
     {
         IWorkContext WorkContext
+        {
+            get;
+        }
+
+        ILocaleStringResourceService Localization
         {
             get;
         }

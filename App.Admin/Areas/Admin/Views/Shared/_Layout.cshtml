@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     @Html.Partial("_StyleSheet")
+    @Html.Partial("_Scripts")
     @RenderSection("style", false)
     <link rel="shortcut icon" href="~/favicon.ico" />
 </head>
@@ -57,7 +58,7 @@
     </div>
     <!-- END INNER FOOTER -->
     <!-- END FOOTER -->
-    @Html.Partial("_Scripts")
+    
     @RenderSection("scripts", required: false)
     @*@Html.Partial("_AngularScripts")
     @RenderSection("AngularUiJs", required: false)

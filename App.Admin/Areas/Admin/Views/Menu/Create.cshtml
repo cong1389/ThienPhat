@@ -20,6 +20,10 @@
             $("#Locales_0__MenuName").change(function () {
                 var name = $("#Locales_0__MenuName").val();              
                 if (name != "") {
+                    $("#Locales_0__MetaTitle").val(name);
+                    $("#Locales_0__MetaKeywords").val(name);
+                    $("#Locales_0__MetaDescription").val(name);
+
                     $("#MenuName").val(name);
                     $("#MetaTitle").val(name);
                     $("#MetaKeywords").val(name);

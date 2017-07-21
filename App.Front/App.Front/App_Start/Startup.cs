@@ -23,6 +23,8 @@ namespace App.Front
             //GlobalConfiguration.Configure(new Action<HttpConfiguration>(WebApiConfig.Register));
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            app.MapSignalR();
         }
 
         public void ConfigureAuth(IAppBuilder app)

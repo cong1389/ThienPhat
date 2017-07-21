@@ -85,10 +85,14 @@
     <Compile Include="Service.GenericAttribute\IGenericAttributeService.cs" />
     <Compile Include="Service.Language\ILocalizedModel.cs" />
     <Compile Include="Service.Language\ILocalizedModelLocal.cs" />
+    <Compile Include="Service.Language\ILocaleStringResourceService.cs" />
     <Compile Include="Service.Language\ILocalizedPropertyService.cs" />
     <Compile Include="Service.GenericAttribute\GenericAttributeService.cs" />
+    <Compile Include="Service.Language\ITextService.cs" />
     <Compile Include="Service.Language\LocalizationExtentions.cs" />
+    <Compile Include="Service.Language\LocaleStringResourceService.cs" />
     <Compile Include="Service.Language\LocalizedPropertyService.cs" />
+    <Compile Include="Service.Language\TextService.cs" />
     <Compile Include="Service.Locations\DistrictService.cs" />
     <Compile Include="Service.Locations\IDistrictService.cs" />
     <Compile Include="Service.Attribute\AttributeService.cs">

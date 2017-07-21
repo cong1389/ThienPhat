@@ -1,0 +1,84 @@
+﻿@model App.Domain.Entities.Language.LocaleStringResource
+
+<tr>
+    <td>
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.LanguageId)
+        @Html.HiddenFor(m => m.IsFromPlugin)
+    </td>
+    <td>
+        @Html.TextBoxFor(m => m.ResourceName)
+    </td>
+    <td>
+        @Html.TextBoxFor(m => m.ResourceValue)
+    </td>
+   
+    <td>
+        <ul class="record-toolbar">
+            <li class="edit-button btn btn-default btn-sm hide" title="Edit Record">
+                <i class="glyphicon glyphicon-edit"></i>
+            </li>
+            <li class="btnAddRecord btn btn-default btn-sm" title="Save Record">
+                <i class="glyphicon glyphicon-floppy-disk"></i>
+            </li>
+            <li class="btnCancel btn btn-default btn-sm" title="Cancel Editing">
+                <i class="glyphicon glyphicon-ban-circle"></i>
+            </li>
+        </ul>
+    </td>    
+</tr>
+
+<script>
+
+    $(".btnAddRecord").on("click", function () {
+        var row = $(this).closest("tr");
+        var record = getRecord(row);
+
+        $.ajax({
+            url: '/admin/localeresource/edit',
+            data: JSON.stringify(record),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                location.reload();
+                tr.find('.edit-mode, .display-mode').toggle();               
+            },
+            error: function (request, status, error)
+            {
+                alert(request.responseText);
+            }
+        }).done(function () {
+            alert("Successfully Saved");
+            location.reload();      // refresh the page
+        });
+
+        //webGridHubClient.server.saveRecord(record);
+        $("td", row).each(function () {
+            var cell = $(this, row);
+            var inputValue = $("input", cell);
+            $(".cell-value", cell).text(inputValue.val());
+        });
+        $(".record-toolbar li", row).toggleClass("hide");
+        $("input, select, textarea", row).toggleClass("hide");
+        $(".cell-value", row).toggleClass("hide");
+    });
+
+    function getRecord(row) {
+        return {
+            id: row.find("#hddId").val(),
+            resourceName: row.find(':nth-child(2)').find("input").val(),
+            resourceValue: row.find(':nth-child(3)').find("input").val(),
+            languageId: row.find('#LanguageId').val(),
+            isFromPlugin: row.find('#IsFromPlugin').val(),
+        };
+    };
+
+    $(".btnCancel").on("click", function () {
+        var row = $(this).closest("tr");
+        $(".record-toolbar li", row).toggleClass("hide");
+        $(".cell-value", row).toggleClass("hide");
+        $("input, select, textarea", row).toggleClass("hide");
+        row.remove();
+    });
+
+</script>

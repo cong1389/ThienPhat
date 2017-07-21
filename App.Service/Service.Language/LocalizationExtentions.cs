@@ -9,8 +9,6 @@ namespace App.Service.Language
 {
     public static class LocalizationExtentions
     {
-        private static readonly ILocalizedPropertyService _localizedPropertyService;
-
         static LocalizationExtentions()
         {
 

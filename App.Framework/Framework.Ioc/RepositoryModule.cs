@@ -25,6 +25,7 @@ using Autofac.Builder;
 using System;
 using App.Infra.Data.Repository.Order;
 using App.Infra.Data.Repository.GenericAttribute;
+using App.Infra.Data.Repository.LocaleStringResource;
 
 namespace App.Framework.Ioc
 {
@@ -69,6 +70,7 @@ namespace App.Framework.Ioc
 
             builder.RegisterType<LocalizedPropertyRepository>().As<ILocalizedPropertyRepository>().InstancePerRequest<LocalizedPropertyRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<GenericAttributeRepository>().As<IGenericAttributeRepository>().InstancePerRequest<GenericAttributeRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+            builder.RegisterType<LocaleStringResourceRepository>().As<ILocaleStringResourceRepository>().InstancePerRequest<LocaleStringResourceRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
 
         }
     }

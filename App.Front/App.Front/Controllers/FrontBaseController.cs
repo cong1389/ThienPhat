@@ -1,3 +1,4 @@
+using App.Core.Localization;
 using App.Service.Common;
 using App.Service.Language;
 using System;
@@ -37,14 +38,23 @@ namespace App.Front.Controllers
 				return 20;
 			}
 		}
+
         public ICommonServices Services
         {
             get;
             set;
         }
+
         public FrontBaseController()
 		{
-		}
+            this.T = NullLocalizer.Instance;
+        }
+
+        public Localizer T
+        {
+            get;
+            set;
+        }
 
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {
