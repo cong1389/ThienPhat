@@ -1,9 +1,7 @@
-using App.Admin.Helpers;
 using App.Core.Utils;
 using App.Domain.Entities.Language;
 using App.FakeEntity.Language;
 using App.Framework.Ultis;
-using App.Service.Common;
 using App.Service.Language;
 using App.Utils;
 using AutoMapper;
@@ -12,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,12 +21,12 @@ namespace App.Admin.Controllers
 
         private readonly ILanguageService _langService;
 
-        private readonly ICommonServices _services;
+        //private readonly ICommonServices _services;
 
-        public LanguageController(ILanguageService langService, ICommonServices services)
+        public LanguageController(ILanguageService langService)
         {
             this._langService = langService;
-            this._services = services;
+            //this._services = services;
         }
 
         [HttpGet]
@@ -39,23 +36,30 @@ namespace App.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(LanguageFormViewModel language, string returnUrl)
+        public ActionResult Create(LanguageFormViewModel model, string returnUrl)
         {
             ActionResult action;
             try
             {
-                if (base.ModelState.IsValid)
+                if (!base.ModelState.IsValid)
                 {
-                    Language language1 = Mapper.Map<LanguageFormViewModel, Language>(language);
-                    this._langService.CreateLanguage(language1);
+                    String messages = String.Join(Environment.NewLine, ModelState.Values.SelectMany(v => v.Errors)
+                                                            .Select(v => v.ErrorMessage + " " + v.Exception));
+                    base.ModelState.AddModelError("", messages);
+                    return base.View(model);
+                }
+                else
+                {
+                    Language modelMap = Mapper.Map<LanguageFormViewModel, Language>(model);
+                    this._langService.CreateLanguage(modelMap);
                     string empty = string.Empty;
-                    if (language.File != null && language.File.ContentLength > 0)
+                    if (model.File != null && model.File.ContentLength > 0)
                     {
-                        empty = Path.GetFileName(language.File.FileName);
-                        string extension = Path.GetExtension(language.File.FileName);
+                        empty = Path.GetFileName(model.File.FileName);
+                        string extension = Path.GetExtension(model.File.FileName);
                         empty = string.Concat(empty.NonAccent(), extension);
                         string str = Path.Combine(base.Server.MapPath(string.Concat("~/", Contains.FolderLanguage)), empty);
-                        language.File.SaveAs(str);
+                        model.File.SaveAs(str);
                     }
                     if (this._langService.SaveLanguage() > 0)
                     {
@@ -73,38 +77,40 @@ namespace App.Admin.Controllers
                     }
                 }
                 base.ModelState.AddModelError("", MessageUI.ErrorMessage);
-                return base.View(language);
+                return base.View(model);
             }
             catch (Exception exception1)
             {
                 Exception exception = exception1;
                 ExtentionUtils.Log(string.Concat("Language.Create: ", exception.Message));
-                return base.View(language);
+                return base.View(model);
             }
             return action;
         }
 
         public ActionResult Edit(int Id)
         {
-            LanguageFormViewModel languageViewModel = Mapper.Map<Language, LanguageFormViewModel>(this._langService.GetLanguageById(Id));
+            LanguageFormViewModel languageViewModel = Mapper.Map<Language, LanguageFormViewModel>(_langService.GetLanguageById(Id));
             return base.View(languageViewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(LanguageFormViewModel language, string ReturnUrl)
+        public ActionResult Edit(LanguageFormViewModel model, string ReturnUrl)
         {
             ActionResult action;
             try
             {
                 if (!base.ModelState.IsValid)
                 {
-                    base.ModelState.AddModelError("", MessageUI.ErrorMessage);
-                    return base.View(language);
+                    String messages = String.Join(Environment.NewLine, ModelState.Values.SelectMany(v => v.Errors)
+                                                           .Select(v => v.ErrorMessage + " " + v.Exception));
+                    base.ModelState.AddModelError("", messages);
+                    return base.View(model);
                 }
                 else
                 {
-                    Language language1 = Mapper.Map<LanguageFormViewModel, Language>(language);
-                    this._langService.Update(language1);
+                    Language modelMap = Mapper.Map<LanguageFormViewModel, Language>(model);
+                    this._langService.Update(modelMap);
                     base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.UpdateSuccess, FormUI.Language)));
                     if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
                     {
@@ -120,7 +126,7 @@ namespace App.Admin.Controllers
             {
                 Exception exception = exception1;
                 ExtentionUtils.Log(string.Concat("Language.Edit: ", exception.Message));
-                return base.View(language);
+                return base.View(model);
             }
             return action;
         }
@@ -151,12 +157,6 @@ namespace App.Admin.Controllers
             }
             return base.View(languages);
         }
-
-        #endregion
-
-        #region Resource
-
-       
 
         #endregion
 

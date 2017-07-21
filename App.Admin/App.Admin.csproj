@@ -902,6 +902,7 @@
     <Content Include="Areas\Admin\Views\LocaleResource\Index.cshtml" />
     <Content Include="Areas\Admin\Views\LocaleResource\Create.cshtml" />
     <Content Include="Areas\Admin\Views\LocaleResource\_NewRow.cshtml" />
+    <Content Include="Areas\Admin\Views\StaticContent\_CreateOrUpdate.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\admin.pubxml" />
     <Content Include="Content\Site.css" />

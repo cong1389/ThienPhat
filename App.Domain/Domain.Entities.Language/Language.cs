@@ -7,7 +7,7 @@ namespace App.Domain.Entities.Language
 {
     public class Language : AuditableEntity<int>
     {
-        [MaxLength(250)]
+        [MaxLength(500)]
         public string Flag
         {
             get;

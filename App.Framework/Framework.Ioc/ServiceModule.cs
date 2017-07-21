@@ -28,15 +28,12 @@ using System;
 using App.Service.Order;
 using App.Service.LocalizedProperty;
 using App.Service.Common;
-using App.Aplication;
 using App.Service.GenericAttribute;
 using App.Service.LocaleStringResource;
-using Autofac.Core;
-using App.Core.Localization;
 
 namespace App.Framework.Ioc
 {
-	public class ServiceModule : Module
+    public class ServiceModule : Module
 	{
 		public ServiceModule()
 		{

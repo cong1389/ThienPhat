@@ -48,9 +48,8 @@ namespace App.FakeEntity.Language
 			get;
 			set;
 		}
-
-        
-        public App.FakeEntity.Language.LanguageFormViewModel Language
+                
+        public LanguageFormViewModel Language
         {
             get;
             set;
