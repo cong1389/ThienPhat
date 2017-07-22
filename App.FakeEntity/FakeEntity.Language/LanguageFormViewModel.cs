@@ -6,7 +6,7 @@ namespace App.FakeEntity.Language
 {
     public class LanguageFormViewModel
 	{
-        public int LangId
+        public int Id
         {
             get;
             set;

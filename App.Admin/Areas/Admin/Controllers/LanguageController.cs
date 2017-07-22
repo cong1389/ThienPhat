@@ -111,6 +111,17 @@ namespace App.Admin.Controllers
                 {
                     Language modelMap = Mapper.Map<LanguageFormViewModel, Language>(model);
                     this._langService.Update(modelMap);
+
+                    string empty = string.Empty;
+                    if (model.File != null && model.File.ContentLength > 0)
+                    {
+                        empty = Path.GetFileName(model.File.FileName);
+                        string extension = Path.GetExtension(model.File.FileName);
+                        empty = string.Concat(empty.NonAccent(), extension);
+                        string str = Path.Combine(base.Server.MapPath(string.Concat("~/", Contains.FolderLanguage)), empty);
+                        model.File.SaveAs(str);
+                    }
+
                     base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.UpdateSuccess, FormUI.Language)));
                     if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
                     {

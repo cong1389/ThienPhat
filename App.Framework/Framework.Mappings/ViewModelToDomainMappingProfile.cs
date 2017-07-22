@@ -62,7 +62,7 @@ namespace App.Framework.Mappings
                 .ForMember((Language x) => x.LanguageName, (IMemberConfigurationExpression<LanguageFormViewModel> map) 
                 => map.MapFrom<string>((LanguageFormViewModel vm) => vm.LanguageName))
             .ForMember((Language x) => (object)x.Id, (IMemberConfigurationExpression<LanguageFormViewModel> map) 
-            => map.MapFrom<int>((LanguageFormViewModel vm) => vm.LangId))
+            => map.MapFrom<int>((LanguageFormViewModel vm) => vm.Id))
             .ForMember((Language x) => x.LanguageCode, (IMemberConfigurationExpression<LanguageFormViewModel> map) 
             => map.MapFrom<string>((LanguageFormViewModel vm) => vm.LanguageCode))
             .ForMember((Language x) => (object)x.Status, (IMemberConfigurationExpression<LanguageFormViewModel> map) 

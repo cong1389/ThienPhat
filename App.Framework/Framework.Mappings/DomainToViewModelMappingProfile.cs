@@ -48,7 +48,7 @@ namespace App.Framework.Mappings
 
 		protected override void Configure()
 		{
-			Mapper.CreateMap<Language, LocalizedPropertyViewModel>();
+			Mapper.CreateMap<Language, LanguageFormViewModel>();
 			Mapper.CreateMap<ServerMailSetting, ServerMailSettingViewModel>();
 			Mapper.CreateMap<ContactInfomation, ContactInformationViewModel>();
 			Mapper.CreateMap<SystemSetting, SystemSettingViewModel>();
