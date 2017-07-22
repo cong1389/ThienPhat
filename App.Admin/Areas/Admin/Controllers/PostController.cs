@@ -3,6 +3,7 @@ using App.Core.Common;
 using App.Core.Utils;
 using App.Domain.Entities.Attribute;
 using App.Domain.Entities.Data;
+using App.Domain.Entities.Language;
 using App.Domain.Entities.Menu;
 using App.Domain.Interfaces.Services;
 using App.FakeEntity.Gallery;
@@ -11,6 +12,8 @@ using App.Framework.Ultis;
 using App.ImagePlugin;
 using App.Service.Attribute;
 using App.Service.Gallery;
+using App.Service.Language;
+using App.Service.LocalizedProperty;
 using App.Service.Menu;
 using App.Service.Post;
 using App.Utils;
@@ -29,7 +32,7 @@ using System.Web.Routing;
 namespace App.Admin.Controllers
 {
 	public class PostController : BaseAdminUploadController
-	{
+    {
 		private readonly IAttributeValueService _attributeValueService;
 
 		private readonly IMenuLinkService _menuLinkService;
@@ -42,7 +45,19 @@ namespace App.Admin.Controllers
 
 		private readonly IImagePlugin _imagePlugin;
 
-		public PostController(IPostService postService, IMenuLinkService menuLinkService, IAttributeValueService attributeValueService, IGalleryService galleryService, IImagePlugin imagePlugin, IAttributeService attributeService)
+        private readonly ILanguageService _languageService;
+
+        private readonly ILocalizedPropertyService _localizedPropertyService;
+
+        public PostController(
+            IPostService postService
+            , IMenuLinkService menuLinkService
+            , IAttributeValueService attributeValueService
+            , IGalleryService galleryService
+            , IImagePlugin imagePlugin
+            , IAttributeService attributeService
+            , ILanguageService languageService
+            , ILocalizedPropertyService localizedPropertyService)
 		{
 			this._postService = postService;
 			this._menuLinkService = menuLinkService;
@@ -50,39 +65,47 @@ namespace App.Admin.Controllers
 			this._galleryService = galleryService;
 			this._imagePlugin = imagePlugin;
 			this._attributeService = attributeService;
-		}
+            this._languageService = languageService;
+            this._localizedPropertyService = localizedPropertyService;
+        }
 
 		[RequiredPermisson(Roles="CreatePost")]
 		public ActionResult Create()
 		{
-			return base.View(new PostViewModel()
-			{
-				OrderDisplay = 0,
-				Status = 1
-			});
+            var model = new PostViewModel {
+                OrderDisplay = 0,
+                Status = 1
+            };
+
+            //Add locales to model
+            AddLocales(_languageService, model.Locales);
+
+            return base.View(model);
 		}
 
 		[HttpPost]
 		[RequiredPermisson(Roles="CreatePost")]
 		[ValidateInput(false)]
-		public ActionResult Create(PostViewModel post, string ReturnUrl)
+		public ActionResult Create(PostViewModel model, string ReturnUrl)
 		{
 			ActionResult action;
 			try
 			{
 				if (!base.ModelState.IsValid)
 				{
-					base.ModelState.AddModelError("", MessageUI.ErrorMessage);
-					return base.View(post);
-				}
-				else if (!this._postService.FindBy((Post x) => x.ProductCode.Equals(post.ProductCode), true).IsAny<Post>())
+                    String messages = String.Join(Environment.NewLine, ModelState.Values.SelectMany(v => v.Errors)
+                                                          .Select(v => v.ErrorMessage + " " + v.Exception));
+                    base.ModelState.AddModelError("", messages);
+                    return base.View(model);
+                }
+				else //if (!this._postService.FindBy((Post x) => x.ProductCode.Equals(model.ProductCode), true).IsAny<Post>())
 				{
-					string str = post.Title.NonAccent();
+					string str = model.Title.NonAccent();
 					IEnumerable<Post> bySeoUrl = this._postService.GetBySeoUrl(str);
-					post.SeoUrl = post.Title.NonAccent();
-					if (bySeoUrl.Any<Post>((Post x) => x.Id != post.Id))
+					model.SeoUrl = model.Title.NonAccent();
+					if (bySeoUrl.Any<Post>((Post x) => x.Id != model.Id))
 					{
-						PostViewModel postViewModel = post;
+						PostViewModel postViewModel = model;
 						postViewModel.SeoUrl = string.Concat(postViewModel.SeoUrl, "-", bySeoUrl.Count<Post>());
 					}
 					string str1 = str;
@@ -91,27 +114,27 @@ namespace App.Admin.Controllers
 						str1 = AdminHelper.SplitWords(250, str1);
 					}
 					string str2 = string.Format("{0:ddMMyyyy}", DateTime.UtcNow);
-					if (post.Image != null && post.Image.ContentLength > 0)
+					if (model.Image != null && model.Image.ContentLength > 0)
 					{
 						string str3 = string.Concat(str1, ".jpg");
 						string str4 = string.Format("{0}-{1}.jpg", str1, Guid.NewGuid());
 						string str5 = string.Format("{0}-{1}.jpg", str1, Guid.NewGuid());
-						this._imagePlugin.CropAndResizeImage(post.Image, string.Format("{0}{1}/", Contains.PostFolder, str2), str3, new int?(ImageSize.WithBigSize), new int?(ImageSize.HeightBigSize), false);
-						this._imagePlugin.CropAndResizeImage(post.Image, string.Format("{0}{1}/", Contains.PostFolder, str2), str4, new int?(ImageSize.WithMediumSize), new int?(ImageSize.HeightMediumSize), false);
-						this._imagePlugin.CropAndResizeImage(post.Image, string.Format("{0}{1}/", Contains.PostFolder, str2), str5, new int?(ImageSize.WithSmallSize), new int?(ImageSize.HeightSmallSize), false);
-						post.ImageBigSize = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str3);
-						post.ImageMediumSize = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str4);
-						post.ImageSmallSize = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str5);
+						this._imagePlugin.CropAndResizeImage(model.Image, string.Format("{0}{1}/", Contains.PostFolder, str2), str3, new int?(ImageSize.WithBigSize), new int?(ImageSize.HeightBigSize), false);
+						this._imagePlugin.CropAndResizeImage(model.Image, string.Format("{0}{1}/", Contains.PostFolder, str2), str4, new int?(ImageSize.WithMediumSize), new int?(ImageSize.HeightMediumSize), false);
+						this._imagePlugin.CropAndResizeImage(model.Image, string.Format("{0}{1}/", Contains.PostFolder, str2), str5, new int?(ImageSize.WithSmallSize), new int?(ImageSize.HeightSmallSize), false);
+						model.ImageBigSize = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str3);
+						model.ImageMediumSize = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str4);
+						model.ImageSmallSize = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str5);
 					}
-					int? menuId = post.MenuId;
+					int? menuId = model.MenuId;
 					int i = 0;
 					if ((menuId.GetValueOrDefault() > i ? menuId.HasValue : false))
 					{
 						IMenuLinkService menuLinkService = this._menuLinkService;
-						menuId = post.MenuId;
+						menuId = model.MenuId;
 						MenuLink byId = menuLinkService.GetById(menuId.Value);
-						post.VirtualCatUrl = byId.VirtualSeoUrl;
-						post.VirtualCategoryId = byId.VirtualId;
+						model.VirtualCatUrl = byId.VirtualSeoUrl;
+						model.VirtualCategoryId = byId.VirtualId;
 					}
 					HttpFileCollectionBase files = base.Request.Files;
 					List<GalleryImage> galleryImages = new List<GalleryImage>();
@@ -135,7 +158,7 @@ namespace App.Admin.Controllers
 										string item1 = base.Request[str8];
 										GalleryImageViewModel galleryImageViewModel = new GalleryImageViewModel()
 										{
-											PostId = post.Id,
+											PostId = model.Id,
 											AttributeValueId = int.Parse(str8)
 										};
 										string str9 = string.Format("{0}-{1}.jpg", str6, Guid.NewGuid());
@@ -146,7 +169,7 @@ namespace App.Admin.Controllers
 										galleryImageViewModel.ImagePath = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str9);
 										galleryImageViewModel.OrderDisplay = num;
 										galleryImageViewModel.Status = 1;
-										galleryImageViewModel.Title = post.Title;
+										galleryImageViewModel.Title = model.Title;
 										galleryImageViewModel.Price = new double?(double.Parse(item1));
 										galleryImages.Add(Mapper.Map<GalleryImage>(galleryImageViewModel));
 									}
@@ -169,17 +192,33 @@ namespace App.Admin.Controllers
 							attributeValues.Add(this._attributeValueService.GetById(num1));
 						}
 					}
-					Post post1 = Mapper.Map<PostViewModel, Post>(post);
+					Post modelMap = Mapper.Map<PostViewModel, Post>(model);
 					if (galleryImages.IsAny<GalleryImage>())
 					{
-						post1.GalleryImages = galleryImages;
+						modelMap.GalleryImages = galleryImages;
 					}
 					if (attributeValues.IsAny<AttributeValue>())
 					{
-						post1.AttributeValues = attributeValues;
+						modelMap.AttributeValues = attributeValues;
 					}
-					this._postService.Create(post1);
-					base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.CreateSuccess, FormUI.Post)));
+					this._postService.Create(modelMap);
+
+                    //Update Localized   
+                    foreach (var localized in model.Locales)
+                    {
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Title, localized.Title, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.ProductCode, localized.ProductCode, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.ShortDesc, localized.ShortDesc, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Description, localized.Description, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.TechInfo, localized.TechInfo, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.SeoUrl, localized.SeoUrl, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.MetaTitle, localized.MetaTitle, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.MetaKeywords, localized.MetaKeywords, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.MetaDescription, localized.MetaDescription, localized.LanguageId);
+                    }
+
+
+                    base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.CreateSuccess, FormUI.Post)));
 					if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
 					{
 						action = base.RedirectToAction("Index");
@@ -189,18 +228,18 @@ namespace App.Admin.Controllers
 						action = this.Redirect(ReturnUrl);
 					}
 				}
-				else
-				{
-					base.ModelState.AddModelError("", "Mã sản phẩm đã tồn tại.");
-					action = base.View(post);
-				}
+				//else
+				//{
+				//	base.ModelState.AddModelError("", "Mã sản phẩm đã tồn tại.");
+				//	action = base.View(model);
+				//}
 			}
 			catch (Exception exception1)
 			{
 				Exception exception = exception1;
 				ExtentionUtils.Log(string.Concat("Post.Create: ", exception.Message));
 				base.ModelState.AddModelError("", exception.Message);
-				return base.View(post);
+				return base.View(model);
 			}
 			return action;
 		}
@@ -225,7 +264,15 @@ namespace App.Admin.Controllers
 					}
 					this._galleryService.BatchDelete(galleryImages);
 					this._postService.BatchDelete(posts);
-				}
+
+                    //Delete localize
+                    for (int i = 0; i < ids.Length; i++)
+                    {
+                        IEnumerable<LocalizedProperty> ieLocalizedProperty
+                           = _localizedPropertyService.GetLocalizedPropertyByEntityId(int.Parse(ids[i]));
+                        this._localizedPropertyService.BatchDelete(ieLocalizedProperty);
+                    }
+                }
 			}
 			catch (Exception exception1)
 			{
@@ -265,34 +312,53 @@ namespace App.Admin.Controllers
 		public ActionResult Edit(int Id)
 		{
 			Post byId = this._postService.GetById(Id);
-			PostViewModel postViewModel = Mapper.Map<Post, PostViewModel>(byId);
+
+			PostViewModel modelMap = Mapper.Map<Post, PostViewModel>(byId);
 			((dynamic)base.ViewBag).Galleries = byId.GalleryImages;
-			return base.View(postViewModel);
+
+            //Add Locales to model
+            AddLocales(_languageService, modelMap.Locales, (locale, languageId) =>
+            {
+                locale.Id = modelMap.Id;
+                locale.LocalesId = modelMap.Id;                
+                locale.Title = modelMap.GetLocalized(x => x.Title, Id, languageId, false, false);
+                locale.ProductCode = modelMap.GetLocalized(x => x.ProductCode, Id, languageId, false, false);
+                locale.ShortDesc = modelMap.GetLocalized(x => x.ShortDesc, Id, languageId, false, false);
+                locale.Description = modelMap.GetLocalized(x => x.Description, Id, languageId, false, false);
+                locale.TechInfo = modelMap.GetLocalized(x => x.TechInfo, Id, languageId, false, false);
+                locale.MetaTitle = modelMap.GetLocalized(x => x.MetaTitle, Id, languageId, false, false);
+                locale.MetaKeywords = modelMap.GetLocalized(x => x.MetaKeywords, Id, languageId, false, false);
+                locale.MetaDescription = modelMap.GetLocalized(x => x.MetaDescription, Id, languageId, false, false);
+                locale.SeoUrl = modelMap.GetLocalized(x => x.SeoUrl, Id, languageId, false, false);
+            });
+
+            return base.View(modelMap);
 		}
 
 		[HttpPost]
 		[RequiredPermisson(Roles="CreatePost")]
 		[ValidateInput(false)]
-		public ActionResult Edit(PostViewModel postView, string ReturnUrl)
+		public ActionResult Edit(PostViewModel model, string ReturnUrl)
 		{
-            //PostController.<> c__DisplayClass12_1 variable = null;
             ActionResult action;
             try
             {
                 if (!base.ModelState.IsValid)
                 {
-                    base.ModelState.AddModelError("", MessageUI.ErrorMessage);
-                    return base.View(postView);
+                    String messages = String.Join(Environment.NewLine, ModelState.Values.SelectMany(v => v.Errors)
+                                                          .Select(v => v.ErrorMessage + " " + v.Exception));
+                    base.ModelState.AddModelError("", messages);
+                    return base.View(model);
                 }
-                else if (!this._postService.FindBy((Post x) => x.ProductCode.Equals(postView.ProductCode) && x.Id != postView.Id, true).IsAny<Post>())
+                else if (!this._postService.FindBy((Post x) => x.ProductCode.Equals(model.ProductCode) && x.Id != model.Id, true).IsAny<Post>())
                 {
-                    Post byId = this._postService.GetById(postView.Id);
-                    string str = postView.Title.NonAccent();
+                    Post byId = this._postService.GetById(model.Id);
+                    string str = model.Title.NonAccent();
                     IEnumerable<MenuLink> bySeoUrl = this._menuLinkService.GetBySeoUrl(str);
-                    postView.SeoUrl = postView.Title.NonAccent();
-                    if (bySeoUrl.Any<MenuLink>((MenuLink x) => x.Id != postView.Id))
+                    model.SeoUrl = model.Title.NonAccent();
+                    if (bySeoUrl.Any<MenuLink>((MenuLink x) => x.Id != model.Id))
                     {
-                        PostViewModel postViewModel = postView;
+                        PostViewModel postViewModel = model;
                         postViewModel.SeoUrl = string.Concat(postViewModel.SeoUrl, "-", bySeoUrl.Count<MenuLink>());
                     }
                     string str1 = str;
@@ -302,27 +368,27 @@ namespace App.Admin.Controllers
                     }
                     HttpFileCollectionBase files = base.Request.Files;
                     string str2 = string.Format("{0:ddMMyyyy}", DateTime.UtcNow);
-                    if (postView.Image != null && postView.Image.ContentLength > 0)
+                    if (model.Image != null && model.Image.ContentLength > 0)
                     {
                         string str3 = string.Format("{0}.jpg", str1);
                         string str4 = string.Format("{0}-{1}.jpg", str1, Guid.NewGuid());
                         string str5 = string.Format("{0}-{1}.jpg", str1, Guid.NewGuid());
-                        this._imagePlugin.CropAndResizeImage(postView.Image, string.Format("{0}{1}/", Contains.PostFolder, str2), str3, new int?(ImageSize.WithBigSize), new int?(ImageSize.HeightBigSize), false);
-                        this._imagePlugin.CropAndResizeImage(postView.Image, string.Format("{0}{1}/", Contains.PostFolder, str2), str4, new int?(ImageSize.WithMediumSize), new int?(ImageSize.HeightMediumSize), false);
-                        this._imagePlugin.CropAndResizeImage(postView.Image, string.Format("{0}{1}/", Contains.PostFolder, str2), str5, new int?(ImageSize.WithSmallSize), new int?(ImageSize.HeightSmallSize), false);
-                        postView.ImageBigSize = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str3);
-                        postView.ImageMediumSize = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str4);
-                        postView.ImageSmallSize = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str5);
+                        this._imagePlugin.CropAndResizeImage(model.Image, string.Format("{0}{1}/", Contains.PostFolder, str2), str3, new int?(ImageSize.WithBigSize), new int?(ImageSize.HeightBigSize), false);
+                        this._imagePlugin.CropAndResizeImage(model.Image, string.Format("{0}{1}/", Contains.PostFolder, str2), str4, new int?(ImageSize.WithMediumSize), new int?(ImageSize.HeightMediumSize), false);
+                        this._imagePlugin.CropAndResizeImage(model.Image, string.Format("{0}{1}/", Contains.PostFolder, str2), str5, new int?(ImageSize.WithSmallSize), new int?(ImageSize.HeightSmallSize), false);
+                        model.ImageBigSize = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str3);
+                        model.ImageMediumSize = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str4);
+                        model.ImageSmallSize = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str5);
                     }
-                    int? menuId = postView.MenuId;
+                    int? menuId = model.MenuId;
                     int i = 0;
                     if ((menuId.GetValueOrDefault() > i ? menuId.HasValue : false))
                     {
                         IMenuLinkService menuLinkService = this._menuLinkService;
-                        menuId = postView.MenuId;
+                        menuId = model.MenuId;
                         MenuLink menuLink = menuLinkService.GetById(menuId.Value);
-                        postView.VirtualCatUrl = menuLink.VirtualSeoUrl;
-                        postView.VirtualCategoryId = menuLink.VirtualId;
+                        model.VirtualCatUrl = menuLink.VirtualSeoUrl;
+                        model.VirtualCategoryId = menuLink.VirtualId;
                     }
                     List<GalleryImage> galleryImages = new List<GalleryImage>();
                     if (files.Count > 0)
@@ -345,7 +411,7 @@ namespace App.Admin.Controllers
                                         string item1 = base.Request[str8];
                                         GalleryImageViewModel galleryImageViewModel = new GalleryImageViewModel()
                                         {
-                                            PostId = postView.Id,
+                                            PostId = model.Id,
                                             AttributeValueId = int.Parse(str8)
                                         };
                                         string str9 = string.Format("{0}-{1}.jpg", str6, Guid.NewGuid());
@@ -356,7 +422,7 @@ namespace App.Admin.Controllers
                                         galleryImageViewModel.ImagePath = string.Format("{0}{1}/{2}", Contains.PostFolder, str2, str9);
                                         galleryImageViewModel.OrderDisplay = num;
                                         galleryImageViewModel.Status = 1;
-                                        galleryImageViewModel.Title = postView.Title;
+                                        galleryImageViewModel.Title = model.Title;
                                         galleryImageViewModel.Price = new double?(double.Parse(item1));
                                         galleryImages.Add(Mapper.Map<GalleryImage>(galleryImageViewModel));
                                     }
@@ -396,13 +462,13 @@ namespace App.Admin.Controllers
                     {
                         byId.AttributeValues = attributeValues;
                     }
-                    byId = Mapper.Map<PostViewModel, Post>(postView, byId);
+                    Post modelMap = Mapper.Map<PostViewModel, Post>(model, byId);
                     this._postService.Update(byId);
                     if (attributeValues.IsAny<AttributeValue>())
                     {
                         foreach (AttributeValue attributeValue in attributeValues)
                         {
-                            GalleryImage nullable = this._galleryService.Get((GalleryImage x) => x.AttributeValueId == attributeValue.Id && x.PostId == postView.Id, false);
+                            GalleryImage nullable = this._galleryService.Get((GalleryImage x) => x.AttributeValueId == attributeValue.Id && x.PostId == model.Id, false);
                             if (nullable == null)
                             {
                                 continue;
@@ -414,6 +480,22 @@ namespace App.Admin.Controllers
                             this._galleryService.Update(nullable);
                         }
                     }
+
+                    //Update Localized   
+                    foreach (var localized in model.Locales)
+                    {
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Title, localized.Title, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.ProductCode, localized.ProductCode, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.ShortDesc, localized.ShortDesc, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Description, localized.Description, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.TechInfo, localized.TechInfo, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.SeoUrl, localized.SeoUrl, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.MetaTitle, localized.MetaTitle, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.MetaKeywords, localized.MetaKeywords, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.MetaDescription, localized.MetaDescription, localized.LanguageId);
+                    }
+
+
                     base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.UpdateSuccess, FormUI.Post)));
                     if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
                     {
@@ -427,7 +509,7 @@ namespace App.Admin.Controllers
                 else
                 {
                     base.ModelState.AddModelError("", "Mã sản phẩm đã tồn tại.");
-                    action = base.View(postView);
+                    action = base.View(model);
                 }
             }
             catch (Exception exception1)
@@ -435,7 +517,7 @@ namespace App.Admin.Controllers
                 Exception exception = exception1;
                 base.ModelState.AddModelError("", exception.Message);
                 ExtentionUtils.Log(string.Concat("Post.Edit: ", exception.Message));
-                return base.View(postView);
+                return base.View(model);
             }
             return action;
         }

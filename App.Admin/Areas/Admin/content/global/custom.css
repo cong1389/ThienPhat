@@ -225,3 +225,6 @@ input.select-page {
     width: 30px;
     height: 30px;
 }
+.page-header .page-header-menu .search-form {
+       width: 160px;
+}

@@ -1,6 +1,7 @@
 using App.Admin.Helpers;
 using App.Core.Utils;
 using App.Domain.Entities.Data;
+using App.Domain.Entities.Language;
 using App.Domain.Entities.Menu;
 using App.FakeEntity.Meu;
 using App.FakeEntity.Static;
@@ -31,7 +32,10 @@ namespace App.Admin.Controllers
 
         private readonly ILocalizedPropertyService _localizedPropertyService;
 
-        public StaticContentController(IStaticContentService staticContentService, IMenuLinkService menuLinkService, ILanguageService languageService
+        public StaticContentController(
+            IStaticContentService staticContentService
+            , IMenuLinkService menuLinkService
+            , ILanguageService languageService
             , ILocalizedPropertyService localizedPropertyService)
 		{
 			this._staticContentService = staticContentService;
@@ -132,7 +136,15 @@ namespace App.Admin.Controllers
 						from id in ids
 						select this._staticContentService.GetById(int.Parse(id));
 					this._staticContentService.BatchDelete(staticContents);
-				}
+
+                    //Delete localize
+                    for (int i = 0; i < ids.Length; i++)
+                    {
+                        IEnumerable<LocalizedProperty> ieLocalizedProperty
+                           = _localizedPropertyService.GetLocalizedPropertyByEntityId(int.Parse(ids[i]));
+                        this._localizedPropertyService.BatchDelete(ieLocalizedProperty);
+                    }
+                }
 			}
 			catch (Exception exception1)
 			{
