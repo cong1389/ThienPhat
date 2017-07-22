@@ -35,6 +35,24 @@
                     $("#MetaDescription").val(name);
                 }
             });
+
+            $("#Locales_1__Title").change(function () {
+                var name = $("#Locales_1__Title").val();
+                if (name != "") {
+                    $("#Locales_1__MetaTitle").val(name);
+                    $("#Locales_1__MetaKeywords").val(name);
+                    $("#Locales_1__MetaDescription").val(name);
+                }
+            });
+
+            $("#Locales_3__Title").change(function () {
+                var name = $("#Locales_3__Title").val();
+                if (name != "") {
+                    $("#Locales_3__MetaTitle").val(name);
+                    $("#Locales_3__MetaKeywords").val(name);
+                    $("#Locales_3__MetaDescription").val(name);
+                }
+            });
         }
 
         $(function () {

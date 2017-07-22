@@ -1,4 +1,5 @@
-﻿using App.Service.GenericAttribute;
+﻿using App.Service.Common;
+using App.Service.GenericAttribute;
 using App.Service.LocalizedProperty;
 using System;
 using System.Linq.Expressions;
@@ -16,7 +17,8 @@ namespace App.Service.Language
 
         public static string GetLocalized<T>(this T entity, Expression<Func<T, string>> keySelector)
         {
-            return GetLocalized(entity, keySelector, 1, 1);
+            var workContext = DependencyResolver.Current.GetService<IWorkContext>();
+            return GetLocalized(entity, keySelector, 1, workContext.WorkingLanguage.Id);
         }
 
         /// <summary>

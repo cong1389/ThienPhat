@@ -23,7 +23,6 @@
             $("#Locales_0__MenuName").change(function () {
                 var name = $("#Locales_0__MenuName").val();
                 if (name != "") {
-
                     $("#Locales_0__MetaTitle").val(name);
                     $("#Locales_0__MetaKeywords").val(name);
                     $("#Locales_0__MetaDescription").val(name);
@@ -34,10 +33,28 @@
                     $("#MetaDescription").val(name);
                 }
             });
+
+            $("#Locales_1__MenuName").change(function () {
+                var name = $("#Locales_1__MenuName").val();
+                if (name != "") {
+                    $("#Locales_1__MetaTitle").val(name);
+                    $("#Locales_1__MetaKeywords").val(name);
+                    $("#Locales_1__MetaDescription").val(name);
+                }
+            });
+
+            $("#Locales_3__MenuName").change(function () {
+                var name = $("#Locales_3__MenuName").val();
+                if (name != "") {
+                    $("#Locales_3__MetaTitle").val(name);
+                    $("#Locales_3__MetaKeywords").val(name);
+                    $("#Locales_3__MetaDescription").val(name);
+                }
+            });
         }
 
      $(function () {
          CopyValue();
      });
-    </script>
+</script>
 }

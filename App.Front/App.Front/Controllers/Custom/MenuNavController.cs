@@ -222,6 +222,8 @@ namespace App.Front.Controllers.Custom
         [ChildActionOnly]
         public ActionResult GetCategoryHome(string virtualId)
         {
+            int languageId = _workContext.WorkingLanguage.Id;
+
             List<MenuNav> menuNavs = new List<MenuNav>();
             virtualId = (virtualId != null && virtualId.Count(i => i.Equals('/')) > 0) ? virtualId.Split('/')[0] : virtualId;
             IEnumerable<MenuLink> menuLinks = this._menuLinkService.FindBy((MenuLink x) =>
@@ -236,7 +238,7 @@ namespace App.Front.Controllers.Custom
                     {
                         MenuId = x.Id,
                         ParentId = x.ParentId,
-                        MenuName = x.MenuName,
+                        MenuName = x.GetLocalizedByLocaleKey(x.MenuName, x.Id, languageId, "MenuLink", "MenuName"),
                         SeoUrl = x.SeoUrl,
                         OrderDisplay = x.OrderDisplay,
                         ImageUrl = x.ImageUrl,
