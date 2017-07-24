@@ -3,12 +3,14 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using System.Web;
+using System.Web.Mvc;
 
 namespace App.FakeEntity.Language
 {
 	public class LocalizedPropertyViewModel
 	{
-		[Display(Name= "LocaleValue", ResourceType=typeof(Resources.FormUI))]
+        [AllowHtml]
+        [Display(Name= "LocaleValue", ResourceType=typeof(Resources.FormUI))]
 		public string LocaleValue
         {
 			get;

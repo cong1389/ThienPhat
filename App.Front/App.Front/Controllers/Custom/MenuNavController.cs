@@ -148,7 +148,7 @@ namespace App.Front.Controllers.Custom
             //});
             
             List<MenuNav> menuNavs = new List<MenuNav>();
-            IEnumerable<MenuLink> menuLinks = this._menuLinkService.FindBy((MenuLink x) => x.Status == 1 && x.Position == 1, true);
+            IEnumerable<MenuLink> menuLinks = _menuLinkService.FindBy((MenuLink x) => x.Status == 1 && x.Position == 1, true);
             if (menuLinks.Any<MenuLink>())
             {
                 IEnumerable<MenuNav> menuNav =
@@ -158,7 +158,7 @@ namespace App.Front.Controllers.Custom
                         MenuId = x.Id,
                         ParentId = x.ParentId,
                         MenuName = x.GetLocalizedByLocaleKey(x.MenuName, x.Id, languageId, "MenuLink", "MenuName"),
-                        SeoUrl = x.GetLocalizedByLocaleKey(x.SeoUrl, x.Id, languageId, "MenuLink", "SeoUrl"),
+                        SeoUrl = x.SeoUrl,
                         OrderDisplay = x.OrderDisplay,
                         ImageUrl = x.ImageUrl,
                         CurrentVirtualId = x.CurrentVirtualId,

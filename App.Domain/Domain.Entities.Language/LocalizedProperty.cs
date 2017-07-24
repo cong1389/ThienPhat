@@ -6,22 +6,21 @@ using System.Runtime.CompilerServices;
 namespace App.Domain.Entities.Language
 {
 	public class LocalizedProperty : AuditableEntity<int>
-	{
-		[MaxLength(250)]
+	{		
 		public string LocaleValue
         {
 			get;
 			set;
 		}
 
-		[MaxLength(50)]		
+		[MaxLength(400)]		
 		public string LocaleKey
         {
 			get;
 			set;
 		}
 
-		[MaxLength(250)]	
+		[MaxLength(400)]	
 		public string LocaleKeyGroup
         {
 			get;
@@ -40,7 +39,6 @@ namespace App.Domain.Entities.Language
             set;
         }
         
-
         public LocalizedProperty()
 		{
 		}

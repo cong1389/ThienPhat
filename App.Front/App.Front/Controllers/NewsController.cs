@@ -5,6 +5,8 @@ using App.Domain.Entities.Menu;
 using App.Domain.Interfaces.Services;
 using App.Framework.Ultis;
 using App.Front.Models;
+using App.Service.Common;
+using App.Service.Language;
 using App.Service.Menu;
 using App.Service.News;
 using App.Service.Static;
@@ -12,6 +14,7 @@ using App.Utils;
 using App.Utils.MVCHelper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Web.Mvc;
@@ -26,12 +29,19 @@ namespace App.Front.Controllers
 
 		private IStaticContentService _staticContentService;
 
-		public NewsController(INewsService newsService, IMenuLinkService menuLinkService, IStaticContentService staticContentService)
+        private readonly IWorkContext _workContext;
+
+        public NewsController(
+            INewsService newsService
+            , IMenuLinkService menuLinkService
+            , IStaticContentService staticContentService
+            , IWorkContext workContext)
 		{
 			this._newsService = newsService;
 			this._menuLinkService = menuLinkService;
 			this._staticContentService = staticContentService;
-		}
+            this._workContext = workContext;
+        }
 
 		[ChildActionOnly]
 		[PartialCache("Short")]
@@ -76,11 +86,34 @@ namespace App.Front.Controllers
         [PartialCache("Short")]
         public ActionResult GetHomeNews(int? Id)
 		{
-			List<News> news = new List<News>();
+            int languageId = _workContext.WorkingLanguage.Id;
+
+            List<News> news = new List<News>();
 			IEnumerable<News> top = this._newsService.GetTop<DateTime>(4, (News x) => x.HomeDisplay == true && x.Status == 1, (News x) => x.CreatedDate);
 			if (top.IsAny<News>())
 			{
-				news.AddRange(top);
+                IEnumerable<News> ieNews = from x in top
+                                           select new News()
+                                           {
+                                               Id = x.Id,
+                                               MenuId = x.MenuId,
+                                               VirtualCategoryId = x.VirtualCategoryId,
+                                               Language = x.Language,
+                                               Status = x.Status,
+                                               SeoUrl = x.SeoUrl,
+                                               ImageBigSize= x.ImageBigSize,
+                                               ImageMediumSize = x.ImageMediumSize,
+                                               ImageSmallSize = x.ImageSmallSize,
+
+                                               Title = x.GetLocalizedByLocaleKey(x.Title, x.Id, languageId, "News", "Title"),
+                                               ShortDesc = x.GetLocalizedByLocaleKey(x.ShortDesc, x.Id, languageId, "News", "ShortDesc"),
+                                               Description = x.GetLocalizedByLocaleKey(x.Description, x.Id, languageId, "News", "Description"),
+                                               MetaTitle = x.GetLocalizedByLocaleKey(x.MetaTitle, x.Id, languageId, "StaticContent", "MetaTitle"),
+                                               MetaKeywords = x.GetLocalizedByLocaleKey(x.MetaKeywords, x.Id, languageId, "News", "MetaKeywords"),
+                                               MetaDescription = x.GetLocalizedByLocaleKey(x.MetaDescription, x.Id, languageId, "News", "MetaDescription")                                               
+                                           };
+
+                 news.AddRange(ieNews);
 			}
             return base.PartialView(news);
 		}

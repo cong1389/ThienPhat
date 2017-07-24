@@ -10,6 +10,7 @@ using App.FakeEntity.News;
 using App.Framework.Ultis;
 using App.ImagePlugin;
 using App.Service.Language;
+using App.Service.LocalizedProperty;
 using App.Service.Menu;
 using App.Service.News;
 using App.Utils;
@@ -34,65 +35,93 @@ namespace App.Admin.Controllers
 
         private IImagePlugin _imagePlugin;
 
-        private readonly ILanguageService _langService;
+        private readonly ILanguageService _languageService;
 
-        public NewsController(INewsService newsService, IMenuLinkService menuLinkService, IImagePlugin imagePlugin, ILanguageService langService)
+        private readonly ILocalizedPropertyService _localizedPropertyService;
+
+        public NewsController(
+            INewsService newsService
+            , IMenuLinkService menuLinkService
+            , IImagePlugin imagePlugin
+            , ILanguageService languageService
+            , ILocalizedPropertyService localizedPropertyService)
         {
             this._newsService = newsService;
             this._menuLinkService = menuLinkService;
             this._imagePlugin = imagePlugin;
-            this._langService = langService;
+            this._languageService = languageService;
+            this._localizedPropertyService = localizedPropertyService;
         }
 
         [RequiredPermisson(Roles = "CreateEditNews")]
         public ActionResult Create()
         {
-            return base.View();
+            var model = new NewsViewModel();
+
+            //Add locales to model
+            AddLocales(_languageService, model.Locales);
+
+            return base.View(model);
         }
 
         [HttpPost]
         [RequiredPermisson(Roles = "CreateEditNews")]
-        public ActionResult Create(NewsViewModel post, string ReturnUrl)
+        public ActionResult Create(NewsViewModel model, string ReturnUrl)
         {
             ActionResult action;
             try
             {
                 if (!base.ModelState.IsValid)
                 {
-                    base.ModelState.AddModelError("", MessageUI.ErrorMessage);
-                    return base.View(post);
+                    String messages = String.Join(Environment.NewLine, ModelState.Values.SelectMany(v => v.Errors)
+                                                           .Select(v => v.ErrorMessage + " " + v.Exception));
+                    base.ModelState.AddModelError("", messages);
+                    return base.View(model);
                 }
                 else
                 {
-                    string str = post.Title.NonAccent();
+                    string str = model.Title.NonAccent();
                     IEnumerable<News> bySeoUrl = this._newsService.GetBySeoUrl(str);
-                    post.SeoUrl = post.Title.NonAccent();
-                    if (bySeoUrl.Any<News>((News x) => x.Id != post.Id))
+                    model.SeoUrl = model.Title.NonAccent();
+                    if (bySeoUrl.Any<News>((News x) => x.Id != model.Id))
                     {
-                        NewsViewModel newsViewModel = post;
+                        NewsViewModel newsViewModel = model;
                         newsViewModel.SeoUrl = string.Concat(newsViewModel.SeoUrl, "-", bySeoUrl.Count<News>());
                     }
                     string str1 = string.Format("{0:ddMMyyyy}", DateTime.UtcNow);
-                    if (post.Image != null && post.Image.ContentLength > 0)
+                    if (model.Image != null && model.Image.ContentLength > 0)
                     {
                         string str2 = string.Concat(str, ".jpg");
                         string str3 = string.Format("{0}-{1}.jpg", str, Guid.NewGuid());
                         string str4 = string.Format("{0}-{1}.jpg", str, Guid.NewGuid());
-                        this._imagePlugin.CropAndResizeImage(post.Image, string.Format("{0}{1}/", Contains.NewsFolder, str1), str2, new int?(ImageSize.WithBigSize), new int?(ImageSize.HeightBigSize), false);
-                        this._imagePlugin.CropAndResizeImage(post.Image, string.Format("{0}{1}/", Contains.NewsFolder, str1), str3, new int?(ImageSize.WithMediumSize), new int?(ImageSize.HeightMediumSize), false);
-                        this._imagePlugin.CropAndResizeImage(post.Image, string.Format("{0}{1}/", Contains.NewsFolder, str1), str4, new int?(ImageSize.WithSmallSize), new int?(ImageSize.HeightSmallSize), false);
-                        post.ImageBigSize = string.Format("{0}{1}/{2}", Contains.NewsFolder, str1, str2);
-                        post.ImageMediumSize = string.Format("{0}{1}/{2}", Contains.NewsFolder, str1, str3);
-                        post.ImageSmallSize = string.Format("{0}{1}/{2}", Contains.NewsFolder, str1, str4);
+                        this._imagePlugin.CropAndResizeImage(model.Image, string.Format("{0}{1}/", Contains.NewsFolder, str1), str2, new int?(ImageSize.WithBigSize), new int?(ImageSize.HeightBigSize), false);
+                        this._imagePlugin.CropAndResizeImage(model.Image, string.Format("{0}{1}/", Contains.NewsFolder, str1), str3, new int?(ImageSize.WithMediumSize), new int?(ImageSize.HeightMediumSize), false);
+                        this._imagePlugin.CropAndResizeImage(model.Image, string.Format("{0}{1}/", Contains.NewsFolder, str1), str4, new int?(ImageSize.WithSmallSize), new int?(ImageSize.HeightSmallSize), false);
+                        model.ImageBigSize = string.Format("{0}{1}/{2}", Contains.NewsFolder, str1, str2);
+                        model.ImageMediumSize = string.Format("{0}{1}/{2}", Contains.NewsFolder, str1, str3);
+                        model.ImageSmallSize = string.Format("{0}{1}/{2}", Contains.NewsFolder, str1, str4);
                     }
-                    if (post.MenuId > 0)
+                    if (model.MenuId > 0)
                     {
-                        MenuLink byId = this._menuLinkService.GetById(post.MenuId);
-                        post.VirtualCatUrl = byId.VirtualSeoUrl;
-                        post.VirtualCategoryId = byId.VirtualId;
+                        MenuLink byId = this._menuLinkService.GetById(model.MenuId);
+                        model.VirtualCatUrl = byId.VirtualSeoUrl;
+                        model.VirtualCategoryId = byId.VirtualId;
                     }
-                    News news = Mapper.Map<NewsViewModel, News>(post);
-                    this._newsService.Create(news);
+                    News modelMap = Mapper.Map<NewsViewModel, News>(model);
+                    this._newsService.Create(modelMap);
+
+                    //Update Localized   
+                    foreach (var localized in model.Locales)
+                    {
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Title, localized.Title, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.ShortDesc, localized.ShortDesc, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Description, localized.Description, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.SeoUrl, localized.Title.NonAccent(), localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.MetaTitle, localized.MetaTitle, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.MetaKeywords, localized.MetaKeywords, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.MetaDescription, localized.MetaDescription, localized.LanguageId);
+                    }
+
                     base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.CreateSuccess, FormUI.News)));
                     if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
                     {
@@ -109,7 +138,7 @@ namespace App.Admin.Controllers
                 Exception exception = exception1;
                 ExtentionUtils.Log(string.Concat("Post.Create: ", exception.Message));
                 base.ModelState.AddModelError("", exception.Message);
-                return base.View(post);
+                return base.View(model);
             }
             return action;
         }
@@ -125,6 +154,14 @@ namespace App.Admin.Controllers
                         from id in ids
                         select this._newsService.GetById(id);
                     this._newsService.BatchDelete(news);
+
+                    //Delete localize
+                    for (int i = 0; i < ids.Length; i++)
+                    {
+                        IEnumerable<LocalizedProperty> ieLocalizedProperty
+                           = _localizedPropertyService.GetLocalizedPropertyByEntityId(ids[i]);
+                        this._localizedPropertyService.BatchDelete(ieLocalizedProperty);
+                    }
                 }
             }
             catch (Exception exception1)
@@ -138,55 +175,85 @@ namespace App.Admin.Controllers
         [RequiredPermisson(Roles = "CreateEditNews")]
         public ActionResult Edit(int Id)
         {
-            NewsViewModel newsViewModel = Mapper.Map<News, NewsViewModel>(this._newsService.GetById(Id));
-            return base.View(newsViewModel);
+            NewsViewModel modelMap = Mapper.Map<News, NewsViewModel>(this._newsService.GetById(Id));
+
+            //Add Locales to model
+            AddLocales(_languageService, modelMap.Locales, (locale, languageId) =>
+            {
+                locale.Id = modelMap.Id;
+                locale.LocalesId = modelMap.Id;
+                locale.Title = modelMap.GetLocalized(x => x.Title, Id, languageId, false, false);                
+                locale.ShortDesc = modelMap.GetLocalized(x => x.ShortDesc, Id, languageId, false, false);
+                locale.Description = modelMap.GetLocalized(x => x.Description, Id, languageId, false, false);                
+                locale.MetaTitle = modelMap.GetLocalized(x => x.MetaTitle, Id, languageId, false, false);
+                locale.MetaKeywords = modelMap.GetLocalized(x => x.MetaKeywords, Id, languageId, false, false);
+                locale.MetaDescription = modelMap.GetLocalized(x => x.MetaDescription, Id, languageId, false, false);
+                locale.SeoUrl = modelMap.GetLocalized(x => x.SeoUrl, Id, languageId, false, false);
+            });
+
+            return base.View(modelMap);
         }
 
         [HttpPost]
         [RequiredPermisson(Roles = "CreateEditNews")]
-        public ActionResult Edit(NewsViewModel postView, string ReturnUrl)
+        public ActionResult Edit(NewsViewModel model, string ReturnUrl)
         {
             ActionResult action;
             try
             {
                 if (!base.ModelState.IsValid)
                 {
-                    base.ModelState.AddModelError("", MessageUI.ErrorMessage);
-                    return base.View(postView);
+                    String messages = String.Join(Environment.NewLine, ModelState.Values.SelectMany(v => v.Errors)
+                                                          .Select(v => v.ErrorMessage + " " + v.Exception));
+                    base.ModelState.AddModelError("", messages);
+                    return base.View(model);
                 }
                 else
                 {
-                    News byId = this._newsService.GetById(postView.Id);
-                    string str = postView.Title.NonAccent();
+                    News byId = this._newsService.GetById(model.Id);
+                    string str = model.Title.NonAccent();
                     IEnumerable<MenuLink> bySeoUrl = this._menuLinkService.GetBySeoUrl(str);
-                    postView.SeoUrl = postView.Title.NonAccent();
+                    model.SeoUrl = model.Title.NonAccent();
                     string str1 = string.Format("{0:ddMMyyyy}", DateTime.UtcNow);
-                    if (bySeoUrl.Any<MenuLink>((MenuLink x) => x.Id != postView.Id))
+                    if (bySeoUrl.Any<MenuLink>((MenuLink x) => x.Id != model.Id))
                     {
-                        NewsViewModel newsViewModel = postView;
+                        NewsViewModel newsViewModel = model;
                         newsViewModel.SeoUrl = string.Concat(newsViewModel.SeoUrl, "-", bySeoUrl.Count<MenuLink>());
                     }
-                    if (postView.Image != null && postView.Image.ContentLength > 0)
+                    if (model.Image != null && model.Image.ContentLength > 0)
                     {
                         string str2 = string.Concat(str, ".jpg");
                         string str3 = string.Format("{0}-{1}.jpg", str, Guid.NewGuid());
                         string str4 = string.Format("{0}-{1}.jpg", str, Guid.NewGuid());
-                        this._imagePlugin.CropAndResizeImage(postView.Image, string.Format("{0}{1}/", Contains.NewsFolder, str1), str2, new int?(ImageSize.WithBigSize), new int?(ImageSize.HeightBigSize), false);
-                        this._imagePlugin.CropAndResizeImage(postView.Image, string.Format("{0}{1}/", Contains.NewsFolder, str1), str3, new int?(ImageSize.WithMediumSize), new int?(ImageSize.HeightMediumSize), false);
-                        this._imagePlugin.CropAndResizeImage(postView.Image, string.Format("{0}{1}/", Contains.NewsFolder, str1), str4, new int?(ImageSize.WithSmallSize), new int?(ImageSize.HeightSmallSize), false);
-                        postView.ImageBigSize = string.Format("{0}{1}/{2}", Contains.NewsFolder, str1, str2);
-                        postView.ImageMediumSize = string.Format("{0}{1}/{2}", Contains.NewsFolder, str1, str3);
-                        postView.ImageSmallSize = string.Format("{0}{1}/{2}", Contains.NewsFolder, str1, str4);
+                        this._imagePlugin.CropAndResizeImage(model.Image, string.Format("{0}{1}/", Contains.NewsFolder, str1), str2, new int?(ImageSize.WithBigSize), new int?(ImageSize.HeightBigSize), false);
+                        this._imagePlugin.CropAndResizeImage(model.Image, string.Format("{0}{1}/", Contains.NewsFolder, str1), str3, new int?(ImageSize.WithMediumSize), new int?(ImageSize.HeightMediumSize), false);
+                        this._imagePlugin.CropAndResizeImage(model.Image, string.Format("{0}{1}/", Contains.NewsFolder, str1), str4, new int?(ImageSize.WithSmallSize), new int?(ImageSize.HeightSmallSize), false);
+                        model.ImageBigSize = string.Format("{0}{1}/{2}", Contains.NewsFolder, str1, str2);
+                        model.ImageMediumSize = string.Format("{0}{1}/{2}", Contains.NewsFolder, str1, str3);
+                        model.ImageSmallSize = string.Format("{0}{1}/{2}", Contains.NewsFolder, str1, str4);
                     }
-                    if (postView.MenuId > 0)
+                    if (model.MenuId > 0)
                     {
-                        MenuLink menuLink = this._menuLinkService.GetById(postView.MenuId);
-                        postView.VirtualCatUrl = menuLink.VirtualSeoUrl;
-                        postView.VirtualCategoryId = menuLink.VirtualId;
-                        postView.MenuLink = Mapper.Map<MenuLink, MenuLinkViewModel>(menuLink);
+                        MenuLink menuLink = this._menuLinkService.GetById(model.MenuId);
+                        model.VirtualCatUrl = menuLink.VirtualSeoUrl;
+                        model.VirtualCategoryId = menuLink.VirtualId;
+                        model.MenuLink = Mapper.Map<MenuLink, MenuLinkViewModel>(menuLink);
                     }
-                    News news = Mapper.Map<NewsViewModel, News>(postView, byId);
-                    this._newsService.Update(news);
+                    News modelMap = Mapper.Map<NewsViewModel, News>(model, byId);
+                    this._newsService.Update(modelMap);
+
+                    //Update Localized   
+                    foreach (var localized in model.Locales)
+                    {
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Title, localized.Title, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.ShortDesc, localized.ShortDesc, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Description, localized.Description, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.SeoUrl, localized.Title.NonAccent(), localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.MetaTitle, localized.MetaTitle, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.MetaKeywords, localized.MetaKeywords, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.MetaDescription, localized.MetaDescription, localized.LanguageId);
+                    }
+
                     base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.UpdateSuccess, FormUI.News)));
                     if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
                     {
@@ -203,7 +270,7 @@ namespace App.Admin.Controllers
                 Exception exception = exception1;
                 base.ModelState.AddModelError("", exception.Message);
                 ExtentionUtils.Log(string.Concat("Post.Edit: ", exception.Message));
-                return base.View(postView);
+                return base.View(model);
             }
             return action;
         }
@@ -242,9 +309,6 @@ namespace App.Admin.Controllers
             {
                 IEnumerable<MenuLink> menuLinks = this._menuLinkService.FindBy((MenuLink x) => x.Status == 1 && x.TemplateType == 1 || x.TemplateType == 6 || x.TemplateType == 7, true);
                 ((dynamic)base.ViewBag).MenuList = menuLinks;
-
-                IEnumerable<Language> language = this._langService.GetAll();
-                ((dynamic)base.ViewBag).AllLanguage = language;
             }
         }
     }

@@ -1,9 +1,5 @@
-using App.Core.Common;
 using App.Domain.Entities.Data;
-using App.Domain.Entities.Location;
 using App.Domain.Entities.Menu;
-using App.Domain.Interfaces.Services;
-using App.Extensions;
 using App.Front.Models;
 using App.Service.Common;
 using App.Service.Language;
@@ -12,12 +8,8 @@ using App.Service.Menu;
 using App.Service.Static;
 using App.Utils;
 using App.Utils.MVCHelper;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using System.Web;
 using System.Web.Mvc;
 
 namespace App.Front.Controllers
@@ -60,6 +52,23 @@ namespace App.Front.Controllers
         {
             int languageId = _workContext.WorkingLanguage.Id;
 
+            //MenuLink menuLinkAll = _menuLinkService.Get((MenuLink x) => 1 == 1, true);
+            //if (menuLinkAll != null)
+            //{
+            //    MenuLink menuLinkAllLocalized = new MenuLink
+            //    {
+            //        Id = menuLinkAll.Id,
+            //        ParentId = menuLinkAll.ParentId,
+            //        MenuName = menuLinkAll.GetLocalizedByLocaleKey(menuLinkAll.MenuName, menuLinkAll.Id, languageId, "MenuLink", "MenuName"),
+            //        SeoUrl = menuLinkAll.SeoUrl,
+            //        OrderDisplay = menuLinkAll.OrderDisplay,
+            //        ImageUrl = menuLinkAll.ImageUrl,
+            //        CurrentVirtualId = menuLinkAll.CurrentVirtualId,
+            //        VirtualId = menuLinkAll.VirtualId,
+            //        TemplateType = menuLinkAll.TemplateType
+            //    };               
+            //}
+            
             MenuLink menuLink = this._menuLinkService.Get((MenuLink x) => x.SeoUrl.Equals(menu), true);
             MenuLink menuLinkLocalized = new MenuLink();
             if (menuLink !=null)
@@ -69,7 +78,7 @@ namespace App.Front.Controllers
                     Id = menuLink.Id,
                     ParentId = menuLink.ParentId,
                     MenuName = menuLink.GetLocalizedByLocaleKey(menuLink.MenuName, menuLink.Id, languageId, "MenuLink", "MenuName"),
-                    SeoUrl = menuLink.GetLocalizedByLocaleKey(menuLink.SeoUrl, menuLink.Id, languageId, "MenuLink", "SeoUrl"),
+                    SeoUrl = menuLink.SeoUrl,
                     OrderDisplay = menuLink.OrderDisplay,
                     ImageUrl = menuLink.ImageUrl,
                     CurrentVirtualId = menuLink.CurrentVirtualId,
@@ -180,7 +189,10 @@ namespace App.Front.Controllers
             List<BreadCrumb> breadCrumbs = new List<BreadCrumb>();
             string[] strArrays = virtualId.Split(new char[] { '/' });
             StaticContent staticContent = this._staticContentService.Get((StaticContent x) => x.MenuId == menuId && x.Status == 1, false);
-            dynamic viewBag = base.ViewBag;          
+            if (staticContent == null)
+                return HttpNotFound();
+
+            dynamic viewBag = base.ViewBag;
 
             StaticContent staticContentLocalized = new StaticContent
             {
@@ -198,17 +210,24 @@ namespace App.Front.Controllers
                 MetaTitle = staticContent.GetLocalizedByLocaleKey(staticContent.MetaTitle, staticContent.Id, languageId, "StaticContent", "MetaTitle"),
                 MetaKeywords = staticContent.GetLocalizedByLocaleKey(staticContent.MetaKeywords, staticContent.Id, languageId, "StaticContent", "MetaKeywords"),
                 MetaDescription = staticContent.GetLocalizedByLocaleKey(staticContent.MetaDescription, staticContent.Id, languageId, "StaticContent", "MetaDescription")
-            };
+            };           
 
             IMenuLinkService menuLinkService = this._menuLinkService;
-            IEnumerable<MenuLink> menuLinks = menuLinkService.FindBy((MenuLink x) => x.ParentId == (int?)menuId && x.Status == 1, false);
+            if (menuLinkService == null)
+                return HttpNotFound();
+
+            IEnumerable<MenuLink> menuLinks = menuLinkService.FindBy((MenuLink x) => x.Id == menuId && x.Status == 1, false);
+            if (menuLinks == null)
+                return HttpNotFound();
+
             if (menuLinks.IsAny<MenuLink>())
             {
                 IEnumerable<MenuLink> ieMenuLink =
                     from x in menuLinks
                     select new MenuLink()
                     {
-                        MenuName = x.GetLocalizedByLocaleKey(x.MenuName, x.Id, languageId, "MenuLink", "MenuName")
+                        MenuName = x.GetLocalizedByLocaleKey(x.MenuName, x.Id, languageId, "MenuLink", "MenuName"),
+                        SeoUrl = x.SeoUrl
                     };
                 viewBag.ListItems = ieMenuLink;
             }
