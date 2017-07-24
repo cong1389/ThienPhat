@@ -1,9 +1,12 @@
 using App.Core.Common;
 using App.Core.Utils;
+using App.Domain.Entities.Language;
 using App.Domain.Entities.Slide;
 using App.Domain.Interfaces.Services;
 using App.FakeEntity.Slide;
 using App.Framework.Ultis;
+using App.Service.Language;
+using App.Service.LocalizedProperty;
 using App.Service.Slide;
 using App.Utils;
 using AutoMapper;
@@ -23,41 +26,67 @@ namespace App.Admin.Controllers
 	{
 		private readonly ISlideShowService _slideShowService;
 
-		public SlideShowController(ISlideShowService slideShowService)
+        private readonly ILanguageService _languageService;
+
+        private readonly ILocalizedPropertyService _localizedPropertyService;
+
+        public SlideShowController(
+            ISlideShowService slideShowService
+            , ILanguageService languageService
+            , ILocalizedPropertyService localizedPropertyService
+            )
 		{
 			this._slideShowService = slideShowService;
-		}
+            this._languageService = languageService;
+            this._localizedPropertyService = localizedPropertyService;
+        }
 
 		public ActionResult Create()
-		{
-			return base.View();
+        {
+            var model = new SlideShowViewModel();
+
+            //Add locales to model
+            AddLocales(_languageService, model.Locales);
+
+            return base.View(model);
 		}
 
 		[HttpPost]
-		public ActionResult Create(SlideShowViewModel SlideShowView, string ReturnUrl)
+		public ActionResult Create(SlideShowViewModel model, string ReturnUrl)
 		{
 			ActionResult action;
 			try
 			{
 				if (!base.ModelState.IsValid)
 				{
-					base.ModelState.AddModelError("", MessageUI.ErrorMessage);
-					return base.View(SlideShowView);
-				}
+                    String messages = String.Join(Environment.NewLine, ModelState.Values.SelectMany(v => v.Errors)
+                                                         .Select(v => v.ErrorMessage + " " + v.Exception));
+                    base.ModelState.AddModelError("", messages);
+                    return base.View(model);
+                }
 				else
 				{
-					if (SlideShowView.Image != null && SlideShowView.Image.ContentLength > 0)
+					if (model.Image != null && model.Image.ContentLength > 0)
 					{
-						string fileName = Path.GetFileName(SlideShowView.Image.FileName);
-						string extension = Path.GetExtension(SlideShowView.Image.FileName);
-						fileName = string.Concat(SlideShowView.Title.NonAccent(), extension);
+						string fileName = Path.GetFileName(model.Image.FileName);
+						string extension = Path.GetExtension(model.Image.FileName);
+						fileName = string.Concat(model.Title.NonAccent(), extension);
 						string str = Path.Combine(base.Server.MapPath(string.Concat("~/", Contains.AdsFolder)), fileName);
-						SlideShowView.Image.SaveAs(str);
-						SlideShowView.ImgPath = string.Concat(Contains.AdsFolder, fileName);
+						model.Image.SaveAs(str);
+						model.ImgPath = string.Concat(Contains.AdsFolder, fileName);
 					}
-					SlideShow slideShow = Mapper.Map<SlideShowViewModel, SlideShow>(SlideShowView);
-					this._slideShowService.Create(slideShow);
-					base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.CreateSuccess, FormUI.SlideShow)));
+
+					SlideShow modelMap = Mapper.Map<SlideShowViewModel, SlideShow>(model);
+					this._slideShowService.Create(modelMap);
+
+                    //Update Localized   
+                    foreach (var localized in model.Locales)
+                    {
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Title, localized.Title, localized.LanguageId);                        
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Description, localized.Description, localized.LanguageId);                        
+                    }
+
+                    base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.CreateSuccess, FormUI.SlideShow)));
 					if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
 					{
 						action = base.RedirectToAction("Index");
@@ -73,7 +102,7 @@ namespace App.Admin.Controllers
 				Exception exception = exception1;
 				ExtentionUtils.Log(string.Concat("SlideShow.Create: ", exception.Message));
 				base.ModelState.AddModelError("", exception.Message);
-				return base.View(SlideShowView);
+				return base.View(model);
 			}
 			return action;
 		}
@@ -90,7 +119,12 @@ namespace App.Admin.Controllers
 						int num = numArray[i];
 						SlideShow slideShow = this._slideShowService.Get((SlideShow x) => x.Id == num, false);
 						this._slideShowService.Delete(slideShow);
-					}
+
+                        //Delete localize
+                        IEnumerable<LocalizedProperty> ieLocalizedProperty
+                             = _localizedPropertyService.GetLocalizedPropertyByEntityId(num);
+                        this._localizedPropertyService.BatchDelete(ieLocalizedProperty);
+                    }
 				}
 			}
 			catch (Exception exception1)
@@ -108,31 +142,42 @@ namespace App.Admin.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Edit(SlideShowViewModel SlideShowView, string ReturnUrl)
+		public ActionResult Edit(SlideShowViewModel model, string ReturnUrl)
 		{
 			ActionResult action;
 			try
 			{
 				if (!base.ModelState.IsValid)
 				{
-					base.ModelState.AddModelError("", MessageUI.ErrorMessage);
-					return base.View(SlideShowView);
-				}
+                    String messages = String.Join(Environment.NewLine, ModelState.Values.SelectMany(v => v.Errors)
+                                                         .Select(v => v.ErrorMessage + " " + v.Exception));
+                    base.ModelState.AddModelError("", messages);
+                    return base.View(model);
+                }
 				else
 				{
-					SlideShow slideShow = this._slideShowService.Get((SlideShow x) => x.Id == SlideShowView.Id, false);
-					if (SlideShowView.Image != null && SlideShowView.Image.ContentLength > 0)
+					SlideShow slideShow = this._slideShowService.Get((SlideShow x) => x.Id == model.Id, false);
+					if (model.Image != null && model.Image.ContentLength > 0)
 					{
-						string fileName = Path.GetFileName(SlideShowView.Image.FileName);
-						string extension = Path.GetExtension(SlideShowView.Image.FileName);
-						fileName = string.Concat(SlideShowView.Title.NonAccent(), extension);
+						string fileName = Path.GetFileName(model.Image.FileName);
+						string extension = Path.GetExtension(model.Image.FileName);
+						fileName = string.Concat(model.Title.NonAccent(), extension);
 						string str = Path.Combine(base.Server.MapPath(string.Concat("~/", Contains.AdsFolder)), fileName);
-						SlideShowView.Image.SaveAs(str);
-						SlideShowView.ImgPath = string.Concat(Contains.AdsFolder, fileName);
+						model.Image.SaveAs(str);
+						model.ImgPath = string.Concat(Contains.AdsFolder, fileName);
 					}
-					SlideShow slideShow1 = Mapper.Map<SlideShowViewModel, SlideShow>(SlideShowView, slideShow);
-					this._slideShowService.Update(slideShow1);
-					base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.UpdateSuccess, FormUI.SlideShow)));
+
+					SlideShow modelMap = Mapper.Map<SlideShowViewModel, SlideShow>(model, slideShow);
+					this._slideShowService.Update(modelMap);
+
+                    //Update Localized   
+                    foreach (var localized in model.Locales)
+                    {
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Title, localized.Title, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Description, localized.Description, localized.LanguageId);
+                    }
+
+                    base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.UpdateSuccess, FormUI.SlideShow)));
 					if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
 					{
 						action = base.RedirectToAction("Index");
@@ -148,7 +193,7 @@ namespace App.Admin.Controllers
 				Exception exception = exception1;
 				base.ModelState.AddModelError("", exception.Message);
 				ExtentionUtils.Log(string.Concat("SlideShow.Edit: ", exception.Message));
-				return base.View(SlideShowView);
+				return base.View(model);
 			}
 			return action;
 		}

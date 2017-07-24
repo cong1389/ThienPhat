@@ -6,7 +6,9 @@ using App.Domain.Entities.Menu;
 using App.Domain.Interfaces.Services;
 using App.Framework.Ultis;
 using App.Front.Models;
+using App.Service.Common;
 using App.Service.Gallery;
+using App.Service.Language;
 using App.Service.Menu;
 using App.Service.Post;
 using App.Utils;
@@ -30,11 +32,18 @@ namespace App.Front.Controllers
 
         private readonly IGalleryService _galleryService;
 
-        public PostController(IPostService postService, IMenuLinkService menuLinkService, IGalleryService galleryService)
+        private readonly IWorkContext _workContext;
+
+        public PostController(
+            IPostService postService
+            , IMenuLinkService menuLinkService
+            , IGalleryService galleryService
+             , IWorkContext workContext)
         {
             this._postService = postService;
             this._menuLinkService = menuLinkService;
             this._galleryService = galleryService;
+            this._workContext = workContext;
         }
 
         public ActionResult FillterProduct(string attribute = null)
@@ -124,6 +133,10 @@ namespace App.Front.Controllers
             double? nullable5 = nullable2;
             List<Post> posts = new List<Post>();
             IEnumerable<Post> top = this._postService.GetTop<DateTime?>(4, (Post x) => x.Status == 1 && x.Price >= nullable4 && x.Price <= nullable5 && x.Id != productId, (Post x) => x.UpdatedDate);
+
+            if (top == null)
+                return HttpNotFound();
+
             if (top.IsAny<Post>())
             {
                 posts.AddRange(top);
@@ -137,6 +150,10 @@ namespace App.Front.Controllers
         {
             List<Post> posts = new List<Post>();
             IEnumerable<Post> top = this._postService.GetTop<DateTime?>(4, (Post x) => x.Status == 1 && x.VirtualCategoryId.Contains(virtualId) && x.Id != productId, (Post x) => x.UpdatedDate);
+
+            if (top == null)
+                return HttpNotFound();
+
             if (top.IsAny<Post>())
             {
                 posts.AddRange(top);
@@ -158,7 +175,8 @@ namespace App.Front.Controllers
 
         public ActionResult GetPostByCategory(string virtualCategoryId, int page, string title, string attrs, string prices, string proattrs, string keywords)
         {
-            //PostController.<> c__DisplayClass14_3 variable = null;
+            int languageId = _workContext.WorkingLanguage.Id;
+
             List<BreadCrumb> breadCrumbs = new List<BreadCrumb>();
             Expression<Func<Post, bool>> expression = PredicateBuilder.True<Post>();
             expression = expression.And<Post>((Post x) => x.Status == 1);
@@ -214,6 +232,10 @@ namespace App.Front.Controllers
             }
             expression = expression.And<Post>((Post x) => x.VirtualCategoryId.Contains(virtualCategoryId));
             IEnumerable<Post> posts = this._postService.FindAndSort(expression, sortBuilder, paging);
+
+            if (posts == null)
+                return HttpNotFound();
+
             string[] strArrays2 = virtualCategoryId.Split(new char[] { '/' });
             for (int i1 = 0; i1 < (int)strArrays2.Length; i1++)
             {
@@ -235,15 +257,50 @@ namespace App.Front.Controllers
                 Title = title
             });
             ((dynamic)base.ViewBag).BreadCrumb = breadCrumbs;
+
+            IEnumerable<Post> iePost = null;
             if (posts.IsAny<Post>())
             {
+                iePost = from x in posts
+                         select new Post()
+                         {
+                             Id = x.Id,
+                             MenuId = x.MenuId,
+                             VirtualCategoryId = x.VirtualCategoryId,
+                             Language = x.Language,
+                             Status = x.Status,
+                             SeoUrl = x.SeoUrl,
+                             ImageBigSize = x.ImageBigSize,
+                             ImageMediumSize = x.ImageMediumSize,
+                             ImageSmallSize = x.ImageSmallSize,
+                             Price = x.Price,
+                             Discount = x.Discount,
+                             ProductHot = x.ProductHot,
+                             OutOfStock = x.OutOfStock,
+                             ProductNew = x.ProductNew,
+                             VirtualCatUrl = x.VirtualCatUrl,
+                             StartDate = x.StartDate,
+                             PostType = x.PostType,
+                             OldOrNew = x.OldOrNew,
+                             MenuLink = x.MenuLink,
+
+                             Title = x.GetLocalizedByLocaleKey(x.Title, x.Id, languageId, "Post", "Title"),
+                             ProductCode = x.GetLocalizedByLocaleKey(x.ProductCode, x.Id, languageId, "Post", "ProductCode"),
+                             TechInfo = x.GetLocalizedByLocaleKey(x.TechInfo, x.Id, languageId, "Post", "TechInfo"),
+                             ShortDesc = x.GetLocalizedByLocaleKey(x.ShortDesc, x.Id, languageId, "Post", "ShortDesc"),
+                             Description = x.GetLocalizedByLocaleKey(x.Description, x.Id, languageId, "Post", "Description"),
+                             MetaTitle = x.GetLocalizedByLocaleKey(x.MetaTitle, x.Id, languageId, "Post", "MetaTitle"),
+                             MetaKeywords = x.GetLocalizedByLocaleKey(x.MetaKeywords, x.Id, languageId, "Post", "MetaKeywords"),
+                             MetaDescription = x.GetLocalizedByLocaleKey(x.MetaDescription, x.Id, languageId, "Post", "MetaDescription")
+                         };
+
                 Helper.PageInfo pageInfo = new Helper.PageInfo(ExtentionUtils.PageSize, page, paging.TotalRecord, (int i) => base.Url.Action("GetContent", "Menu", new { page = i }));
                 ((dynamic)base.ViewBag).PageInfo = pageInfo;
                 ((dynamic)base.ViewBag).CountItem = pageInfo.TotalItems;
-                ((dynamic)base.ViewBag).MenuId = posts.ElementAt(0).MenuId;
+                ((dynamic)base.ViewBag).MenuId = iePost.ElementAt(0).MenuId;
             }
             ((dynamic)base.ViewBag).Title = title;
-            return base.PartialView(posts);
+            return base.PartialView(iePost);
         }
 
         [OutputCache(CacheProfile = "Medium")]
@@ -391,10 +448,50 @@ namespace App.Front.Controllers
         [OutputCache(CacheProfile = "Medium")]
         public ActionResult PostDetail(string seoUrl)
         {
+            int languageId = _workContext.WorkingLanguage.Id;
+
             List<BreadCrumb> breadCrumbs = new List<BreadCrumb>();
             Post post = this._postService.Get((Post x) => x.SeoUrl.Equals(seoUrl), false);
+
+            if (post == null)
+                return HttpNotFound();
+
+            Post postLocalized = null;
+
             if (post != null)
             {
+                postLocalized = new Post
+                {
+                    Id = post.Id,
+                    MenuId = post.MenuId,
+                    VirtualCategoryId = post.VirtualCategoryId,
+                    Language = post.Language,
+                    Status = post.Status,
+                    SeoUrl = post.SeoUrl,
+                    ImageBigSize = post.ImageBigSize,
+                    ImageMediumSize = post.ImageMediumSize,
+                    ImageSmallSize = post.ImageSmallSize,
+                    Price = post.Price,
+                    Discount = post.Discount,
+                    ProductHot = post.ProductHot,
+                    OutOfStock = post.OutOfStock,
+                    ProductNew = post.ProductNew,
+                    VirtualCatUrl = post.VirtualCatUrl,
+                    StartDate = post.StartDate,
+                    PostType = post.PostType,
+                    OldOrNew = post.OldOrNew,
+                    MenuLink = post.MenuLink,
+
+                    Title = post.GetLocalizedByLocaleKey(post.Title, post.Id, languageId, "Post", "Title"),
+                    ProductCode = post.GetLocalizedByLocaleKey(post.ProductCode, post.Id, languageId, "Post", "ProductCode"),
+                    TechInfo = post.GetLocalizedByLocaleKey(post.TechInfo, post.Id, languageId, "Post", "TechInfo"),
+                    ShortDesc = post.GetLocalizedByLocaleKey(post.ShortDesc, post.Id, languageId, "Post", "ShortDesc"),
+                    Description = post.GetLocalizedByLocaleKey(post.Description, post.Id, languageId, "Post", "Description"),
+                    MetaTitle = post.GetLocalizedByLocaleKey(post.MetaTitle, post.Id, languageId, "Post", "MetaTitle"),
+                    MetaKeywords = post.GetLocalizedByLocaleKey(post.MetaKeywords, post.Id, languageId, "Post", "MetaKeywords"),
+                    MetaDescription = post.GetLocalizedByLocaleKey(post.MetaDescription, post.Id, languageId, "Post", "MetaDescription")
+                };
+
                 Post viewCount = post;
                 viewCount.ViewCount = viewCount.ViewCount + 1;
                 this._postService.Update(post);
@@ -405,7 +502,7 @@ namespace App.Front.Controllers
                     MenuLink menuLink = this._menuLinkService.Get((MenuLink x) => x.CurrentVirtualId.Equals(str), false);
                     breadCrumbs.Add(new BreadCrumb()
                     {
-                        Title = menuLink.MenuName,
+                        Title = menuLink.GetLocalizedByLocaleKey(menuLink.MenuName, menuLink.Id, languageId, "MenuLink", "MenuName"),
                         Current = false,
                         Url = base.Url.Action("GetContent", "Menu", new { area = "", menu = menuLink.SeoUrl })
                     });
@@ -413,17 +510,17 @@ namespace App.Front.Controllers
                 breadCrumbs.Add(new BreadCrumb()
                 {
                     Current = true,
-                    Title = post.Title
+                    Title = postLocalized.Title
                 });
                 ((dynamic)base.ViewBag).BreadCrumb = breadCrumbs;
-                ((dynamic)base.ViewBag).Title = post.Title;
-                ((dynamic)base.ViewBag).KeyWords = post.MetaKeywords;
+                ((dynamic)base.ViewBag).Title = postLocalized.Title;
+                ((dynamic)base.ViewBag).KeyWords = postLocalized.MetaKeywords;
                 ((dynamic)base.ViewBag).SiteUrl = base.Url.Action("PostDetail", "Post", new { seoUrl = seoUrl, area = "" });
-                ((dynamic)base.ViewBag).Description = post.MetaTitle;
-                ((dynamic)base.ViewBag).Image = base.Url.Content(string.Concat("~/", post.ImageMediumSize));
-                ((dynamic)base.ViewBag).MenuId = post.MenuId;
+                ((dynamic)base.ViewBag).Description = postLocalized.MetaTitle;
+                ((dynamic)base.ViewBag).Image = base.Url.Content(string.Concat("~/", postLocalized.ImageMediumSize));
+                ((dynamic)base.ViewBag).MenuId = postLocalized.MenuId;
             }
-            return base.View(post);
+            return base.View(postLocalized);
         }
 
         [OutputCache(CacheProfile = "Medium")]

@@ -51,23 +51,6 @@ namespace App.Front.Controllers
         public ActionResult GetContent(string menu, int page)
         {
             int languageId = _workContext.WorkingLanguage.Id;
-
-            //MenuLink menuLinkAll = _menuLinkService.Get((MenuLink x) => 1 == 1, true);
-            //if (menuLinkAll != null)
-            //{
-            //    MenuLink menuLinkAllLocalized = new MenuLink
-            //    {
-            //        Id = menuLinkAll.Id,
-            //        ParentId = menuLinkAll.ParentId,
-            //        MenuName = menuLinkAll.GetLocalizedByLocaleKey(menuLinkAll.MenuName, menuLinkAll.Id, languageId, "MenuLink", "MenuName"),
-            //        SeoUrl = menuLinkAll.SeoUrl,
-            //        OrderDisplay = menuLinkAll.OrderDisplay,
-            //        ImageUrl = menuLinkAll.ImageUrl,
-            //        CurrentVirtualId = menuLinkAll.CurrentVirtualId,
-            //        VirtualId = menuLinkAll.VirtualId,
-            //        TemplateType = menuLinkAll.TemplateType
-            //    };               
-            //}
             
             MenuLink menuLink = this._menuLinkService.Get((MenuLink x) => x.SeoUrl.Equals(menu), true);
             MenuLink menuLinkLocalized = new MenuLink();
@@ -160,7 +143,7 @@ namespace App.Front.Controllers
                 {
                     breadCrumbs.Add(new BreadCrumb()
                     {
-                        Title = menuLink.MenuName,
+                        Title = menuLink.GetLocalizedByLocaleKey(menuLink.MenuName, menuLink.Id, languageId, "MenuLink", "MenuName"),
                         Current = false,
                         Url = base.Url.Action("GetContent", "Menu", new { area = "", menu = menuLink.SeoUrl })
                     });

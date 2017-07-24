@@ -90,7 +90,11 @@ namespace App.Front.Controllers
 
             List<News> news = new List<News>();
 			IEnumerable<News> top = this._newsService.GetTop<DateTime>(4, (News x) => x.HomeDisplay == true && x.Status == 1, (News x) => x.CreatedDate);
-			if (top.IsAny<News>())
+
+            if (top == null)
+                return HttpNotFound();
+
+            if (top.IsAny<News>())
 			{
                 IEnumerable<News> ieNews = from x in top
                                            select new News()
@@ -108,7 +112,7 @@ namespace App.Front.Controllers
                                                Title = x.GetLocalizedByLocaleKey(x.Title, x.Id, languageId, "News", "Title"),
                                                ShortDesc = x.GetLocalizedByLocaleKey(x.ShortDesc, x.Id, languageId, "News", "ShortDesc"),
                                                Description = x.GetLocalizedByLocaleKey(x.Description, x.Id, languageId, "News", "Description"),
-                                               MetaTitle = x.GetLocalizedByLocaleKey(x.MetaTitle, x.Id, languageId, "StaticContent", "MetaTitle"),
+                                               MetaTitle = x.GetLocalizedByLocaleKey(x.MetaTitle, x.Id, languageId, "News", "MetaTitle"),
                                                MetaKeywords = x.GetLocalizedByLocaleKey(x.MetaKeywords, x.Id, languageId, "News", "MetaKeywords"),
                                                MetaDescription = x.GetLocalizedByLocaleKey(x.MetaDescription, x.Id, languageId, "News", "MetaDescription")                                               
                                            };
@@ -119,8 +123,10 @@ namespace App.Front.Controllers
 		}
 
 		public ActionResult GetNewsByCategory(string virtualCategoryId, int? menuId, int page)
-		{
-			((dynamic)base.ViewBag).MenuId = menuId;
+        {
+            int languageId = _workContext.WorkingLanguage.Id;
+
+            ((dynamic)base.ViewBag).MenuId = menuId;
             ((dynamic)base.ViewBag).VirtualId = virtualCategoryId;
             dynamic viewBag = base.ViewBag;
 			IStaticContentService staticContentService = this._staticContentService;
@@ -136,29 +142,43 @@ namespace App.Front.Controllers
 				PageNumber = page,
 				PageSize = base._pageSize,
 				TotalRecord = 0
-			};
+			};            
 
-            string currentCulture = Helpers.CultureHelper.GetCurrentCulture();
-            string languageId=string.Empty;
-            switch (currentCulture)
-            {
-                case "vi-VN":
-                    languageId = "1";
-                    break;
-                case "en-US":
-                    languageId = "2";
-                    break;
-            }
-            IEnumerable<News> news = this._newsService.FindAndSort((News x) => !x.Video && x.Status == 1 
-            && x.VirtualCategoryId.Contains(virtualCategoryId) && x.Language== languageId
-            , sortBuilder, paging);
-			if (news.IsAny<News>())
+            IEnumerable<News> news = this._newsService.FindAndSort((News x) => !x.Video && x.Status == 1 && x.VirtualCategoryId.Contains(virtualCategoryId), sortBuilder, paging);
+
+            if (news == null)
+                return HttpNotFound();
+
+            IEnumerable<News> ieNews = null;
+
+            if (news.IsAny<News>())
 			{
+               ieNews = from x in news
+                                           select new News()
+                                           {
+                                               Id = x.Id,
+                                               MenuId = x.MenuId,
+                                               VirtualCategoryId = x.VirtualCategoryId,
+                                               Language = x.Language,
+                                               Status = x.Status,
+                                               SeoUrl = x.SeoUrl,
+                                               ImageBigSize = x.ImageBigSize,
+                                               ImageMediumSize = x.ImageMediumSize,
+                                               ImageSmallSize = x.ImageSmallSize,
+
+                                               Title = x.GetLocalizedByLocaleKey(x.Title, x.Id, languageId, "News", "Title"),
+                                               ShortDesc = x.GetLocalizedByLocaleKey(x.ShortDesc, x.Id, languageId, "News", "ShortDesc"),
+                                               Description = x.GetLocalizedByLocaleKey(x.Description, x.Id, languageId, "News", "Description"),
+                                               MetaTitle = x.GetLocalizedByLocaleKey(x.MetaTitle, x.Id, languageId, "StaticContent", "MetaTitle"),
+                                               MetaKeywords = x.GetLocalizedByLocaleKey(x.MetaKeywords, x.Id, languageId, "News", "MetaKeywords"),
+                                               MetaDescription = x.GetLocalizedByLocaleKey(x.MetaDescription, x.Id, languageId, "News", "MetaDescription")
+                                           };
+
                 Helper.PageInfo pageInfo = new Helper.PageInfo(ExtentionUtils.PageSize, page, paging.TotalRecord, (int i) => base.Url.Action("GetContent", "Menu", new { page = i }));
 				((dynamic)base.ViewBag).PageInfo = pageInfo;
 				((dynamic)base.ViewBag).CountItem = pageInfo.TotalItems;                
             }
-			return base.PartialView(news);
+			return base.PartialView(ieNews);
 		}
 
 		[ChildActionOnly]
@@ -188,22 +208,49 @@ namespace App.Front.Controllers
 
 		[OutputCache(CacheProfile="Medium")]
 		public ActionResult NewsDetail(string seoUrl)
-		{
-			dynamic viewBag = base.ViewBag;
+        {
+            int languageId = _workContext.WorkingLanguage.Id;
+
+            dynamic viewBag = base.ViewBag;
 			IStaticContentService staticContentService = this._staticContentService;
 			Expression<Func<StaticContent, bool>> status = (StaticContent x) => x.Status == 1;
 			viewBag.fixItems = staticContentService.GetTop<int>(3, status, (StaticContent x) => x.ViewCount);
 			List<BreadCrumb> breadCrumbs = new List<BreadCrumb>();
 			News news = this._newsService.Get((News x) => x.SeoUrl.Equals(seoUrl), true);
-			if (news != null)
+            if (news == null)
+                return HttpNotFound();
+
+            News newsLocalized = new News();
+            if (news != null)
 			{
-				((dynamic)base.ViewBag).Title = news.MetaTitle;
-				((dynamic)base.ViewBag).KeyWords = news.MetaKeywords;
+                newsLocalized = new News
+                {
+                    Id = news.Id,
+                    MenuId = news.MenuId,
+                    VirtualCategoryId = news.VirtualCategoryId,
+                    Language = news.Language,
+                    Status = news.Status,
+                    SeoUrl = news.SeoUrl,
+                    ImageBigSize = news.ImageBigSize,
+                    ImageMediumSize = news.ImageMediumSize,
+                    ImageSmallSize = news.ImageSmallSize,
+                    MenuLink = news.MenuLink,
+
+                    Title = news.GetLocalizedByLocaleKey(news.Title, news.Id, languageId, "News", "Title"),
+                    ShortDesc = news.GetLocalizedByLocaleKey(news.ShortDesc, news.Id, languageId, "News", "ShortDesc"),
+                    Description = news.GetLocalizedByLocaleKey(news.Description, news.Id, languageId, "News", "Description"),
+                    MetaTitle = news.GetLocalizedByLocaleKey(news.MetaTitle, news.Id, languageId, "News", "MetaTitle"),
+                    MetaKeywords = news.GetLocalizedByLocaleKey(news.MetaKeywords, news.Id, languageId, "News", "MetaKeywords"),
+                    MetaDescription = news.GetLocalizedByLocaleKey(news.MetaDescription, news.Id, languageId, "News", "MetaDescription")
+                };
+
+                ((dynamic)base.ViewBag).Title = newsLocalized.MetaTitle;
+				((dynamic)base.ViewBag).KeyWords = newsLocalized.MetaKeywords;
 				((dynamic)base.ViewBag).SiteUrl = base.Url.Action("NewsDetail", "News", new { seoUrl = seoUrl, area = "" });
-				((dynamic)base.ViewBag).Description = news.MetaDescription;
-				((dynamic)base.ViewBag).Image = base.Url.Content(string.Concat("~/", news.ImageMediumSize));
-				((dynamic)base.ViewBag).MenuId = news.MenuId;
-				string[] strArrays = news.VirtualCategoryId.Split(new char[] { '/' });
+				((dynamic)base.ViewBag).Description = newsLocalized.MetaDescription;
+				((dynamic)base.ViewBag).Image = base.Url.Content(string.Concat("~/", newsLocalized.ImageMediumSize));
+				((dynamic)base.ViewBag).MenuId = newsLocalized.MenuId;
+				string[] strArrays = newsLocalized.VirtualCategoryId.Split(new char[] { '/' });
 				for (int i = 0; i < (int)strArrays.Length; i++)
 				{
 					string str = strArrays[i];
@@ -218,12 +265,13 @@ namespace App.Front.Controllers
 				breadCrumbs.Add(new BreadCrumb()
 				{
 					Current = true,
-					Title = news.Title
+					Title = newsLocalized.Title
 				});
 				((dynamic)base.ViewBag).BreadCrumb = breadCrumbs;
 			}
-			((dynamic)base.ViewBag).SeoUrl = news.MenuLink.SeoUrl;
-			return base.View(news);
+			((dynamic)base.ViewBag).SeoUrl = newsLocalized.MenuLink.SeoUrl;
+
+			return base.View(newsLocalized);
 		}
 
         //protected override void OnActionExecuting(ActionExecutingContext filterContext)
