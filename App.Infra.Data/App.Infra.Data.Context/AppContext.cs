@@ -46,7 +46,7 @@ namespace App.Infra.Data.Context
 			set;
 		}
 
-		public virtual DbSet<ContactInfomation> ContactInfomations
+		public virtual DbSet<ContactInformation> ContactInformations
 		{
 			get;
 			set;
@@ -280,7 +280,7 @@ namespace App.Infra.Data.Context
             modelBuilder.Configurations.Add<Claim>(new ClaimConfiguration());
 			modelBuilder.Configurations.Add<MenuLink>(new MenuLinkConfiguration());
 			modelBuilder.Configurations.Add<Banner>(new BannerConfiguration());
-			modelBuilder.Configurations.Add<ContactInfomation>(new ContactInfomationConfiguration());
+			modelBuilder.Configurations.Add<ContactInformation>(new ContactInformationConfiguration());
 			modelBuilder.Configurations.Add<LandingPage>(new LandingPageConfiguration());
 			modelBuilder.Configurations.Add<Post>(new PostsConfiguration());
 			modelBuilder.Configurations.Add<AttributeValue>(new AttribureValueConfiguration());

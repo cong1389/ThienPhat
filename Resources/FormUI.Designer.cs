@@ -162,9 +162,9 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Thông tin liên hệ.
         /// </summary>
-        public static string ContactInfomation {
+        public static string ContactInformation {
             get {
-                return ResourceManager.GetString("ContactInfomation", resourceCulture);
+                return ResourceManager.GetString("ContactInformation", resourceCulture);
             }
         }
         

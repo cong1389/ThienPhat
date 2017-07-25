@@ -825,9 +825,9 @@
     <Content Include="Areas\Admin\Views\Banner\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Banner\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Banner\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ContactInfomation\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ContactInfomation\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ContactInfomation\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactInformation\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactInformation\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactInformation\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Extentions\ResourceScript.cshtml" />
     <Content Include="Areas\Admin\Views\FlowStep\Create.cshtml" />
     <Content Include="Areas\Admin\Views\FlowStep\Edit.cshtml" />
@@ -906,6 +906,7 @@
     <Content Include="Areas\Admin\Views\Post\_CreateOrUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\News\_CreateOrUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\SlideShow\_CreateOrUpdate.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactInformation\_CreateOrUpdate.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\admin.pubxml" />
     <Content Include="Content\Site.css" />
@@ -939,7 +940,7 @@
     <Compile Include="Areas\Admin\Controllers\BaseAdminUploadController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseDefaultIdentity.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseIdentityController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ContactInfomationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactInformationController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Admin\Controllers\ExtentionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\FlowStepController.cs" />

@@ -94,7 +94,7 @@ namespace App.Admin.Controllers
 						Email = landingPage.Email,
 						PhoneNumber = landingPage.PhoneNumber,
 						Status = Common.GetStatusLanddingPage(landingPage.Status),
-						PlaceOfGift = string.Concat(landingPage.ContactInfomation.Title, " - ", landingPage.ContactInfomation.Address)
+						PlaceOfGift = string.Concat(landingPage.ContactInformation.Title, " - ", landingPage.ContactInformation.Address)
 					};
 					landingPageExports.Add(landingPageExport);
 				}

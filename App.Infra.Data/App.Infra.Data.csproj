@@ -83,7 +83,7 @@
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="App.Infra.Data.Mapping\ContactInfomationConfiguration.cs">
+    <Compile Include="App.Infra.Data.Mapping\ContactInformationConfiguration.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>

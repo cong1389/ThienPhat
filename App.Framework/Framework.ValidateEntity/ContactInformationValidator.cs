@@ -12,7 +12,7 @@ namespace App.Framework.ValidateEntity
 		{
 			base.RuleFor<string>((ContactInformationViewModel x) => x.Title).NotEmpty<ContactInformationViewModel, string>().WithMessage<ContactInformationViewModel, string>("Vui lòng nhập tiêu đề.");
 			base.RuleFor<string>((ContactInformationViewModel x) => x.Address).NotEmpty<ContactInformationViewModel, string>().WithMessage<ContactInformationViewModel, string>("Vui lòng nhập địa chỉ.");
-			base.RuleFor<string>((ContactInformationViewModel x) => x.Email).Must<ContactInformationViewModel, string>(new Func<string, bool>(ContactInformationValidator.IsValidEmail)).WithMessage<ContactInformationViewModel, string>("Hình ảnh không đúng định dạng");
+			base.RuleFor<string>((ContactInformationViewModel x) => x.Email).Must<ContactInformationViewModel, string>(new Func<string, bool>(ContactInformationValidator.IsValidEmail)).WithMessage<ContactInformationViewModel, string>("Email không đúng định dạng");
 			base.RuleFor<int>((ContactInformationViewModel x) => x.OrderDisplay).NotEmpty<ContactInformationViewModel, int>().WithMessage<ContactInformationViewModel, int>("Vui lòng nhập vị trí hiển thị.");
 			base.RuleFor<int>((ContactInformationViewModel x) => x.OrderDisplay).GreaterThanOrEqualTo<ContactInformationViewModel, int>(0).WithMessage<ContactInformationViewModel, int>("Vị trí hiển thị phải là số và lớn hơn 0.");
 		}

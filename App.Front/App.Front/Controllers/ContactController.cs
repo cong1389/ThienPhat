@@ -27,8 +27,8 @@ namespace App.Front.Controllers
 		public ActionResult ContactUs(int Id)
 		{
 			MenuLink menuLink = this._menuLinkService.Get((MenuLink x) => x.Id == Id, true);
-			ContactInfomation contactInfomation = this._contactInfoService.Get((ContactInfomation x) => x.Type == 1 && x.Status == 1, true);
-			((dynamic)base.ViewBag).Contact = contactInfomation;
+			ContactInformation ContactInformation = this._contactInfoService.Get((ContactInformation x) => x.Type == 1 && x.Status == 1, true);
+			((dynamic)base.ViewBag).Contact = ContactInformation;
 			return base.PartialView(menuLink);
 		}
 	}

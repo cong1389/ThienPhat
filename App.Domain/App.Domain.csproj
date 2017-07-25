@@ -184,7 +184,7 @@
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Domain.Entities.GlobalSetting\ContactInfomation.cs">
+    <Compile Include="Domain.Entities.GlobalSetting\ContactInformation.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>

@@ -12,38 +12,40 @@ using System.Runtime.CompilerServices;
 
 namespace App.Infra.Data.Repository.ContactInformation
 {
-	public class ContactInfoRepository : RepositoryBase<ContactInfomation>, IContactInfoRepository, IRepositoryBase<ContactInfomation>
+	public class ContactInfoRepository : RepositoryBase<Domain.Entities.GlobalSetting.ContactInformation>, IContactInfoRepository, IRepositoryBase<Domain.Entities.GlobalSetting.ContactInformation>
 	{
 		public ContactInfoRepository(IDbFactory dbFactory) : base(dbFactory)
 		{
 		}
 
-		public ContactInfomation GetById(int Id)
+		public Domain.Entities.GlobalSetting.ContactInformation GetById(int Id)
 		{
-			ContactInfomation contactInfomation = this.FindBy((ContactInfomation x) => x.Id == Id, false).FirstOrDefault<ContactInfomation>();
-			return contactInfomation;
+            Domain.Entities.GlobalSetting.ContactInformation ContactInformation = 
+                this.FindBy((Domain.Entities.GlobalSetting.ContactInformation x) 
+                => x.Id == Id, false).FirstOrDefault<Domain.Entities.GlobalSetting.ContactInformation>();
+			return ContactInformation;
 		}
 
-		protected override IOrderedQueryable<ContactInfomation> GetDefaultOrder(IQueryable<ContactInfomation> query)
+		protected override IOrderedQueryable<Domain.Entities.GlobalSetting.ContactInformation> GetDefaultOrder(IQueryable<Domain.Entities.GlobalSetting.ContactInformation> query)
 		{
-			IOrderedQueryable<ContactInfomation> contactInfomations = 
+            IOrderedQueryable<Domain.Entities.GlobalSetting.ContactInformation> ContactInformations = 
 				from p in query
 				orderby p.Id
 				select p;
-			return contactInfomations;
+			return ContactInformations;
 		}
 
-		public IEnumerable<ContactInfomation> PagedList(Paging page)
+		public IEnumerable<Domain.Entities.GlobalSetting.ContactInformation> PagedList(Paging page)
 		{
-			return this.GetAllPagedList(page).ToList<ContactInfomation>();
+			return this.GetAllPagedList(page).ToList();
 		}
 
-		public IEnumerable<ContactInfomation> PagedSearchList(SortingPagingBuilder sortBuider, Paging page)
+		public IEnumerable<Domain.Entities.GlobalSetting.ContactInformation> PagedSearchList(SortingPagingBuilder sortBuider, Paging page)
 		{
-			Expression<Func<ContactInfomation, bool>> expression = PredicateBuilder.True<ContactInfomation>();
+            Expression<Func<Domain.Entities.GlobalSetting.ContactInformation, bool>> expression = PredicateBuilder.True<Domain.Entities.GlobalSetting.ContactInformation>();
 			if (!string.IsNullOrEmpty(sortBuider.Keywords))
 			{
-				expression = expression.And<ContactInfomation>((ContactInfomation x) => x.Title.ToLower().Contains(sortBuider.Keywords.ToLower()) || x.Email.ToLower().Contains(sortBuider.Keywords.ToLower()) || x.Address.ToLower().Contains(sortBuider.Keywords.ToLower()) || x.MobilePhone.ToLower().Contains(sortBuider.Keywords.ToLower()) || x.Hotline.ToLower().Contains(sortBuider.Keywords.ToLower()) || x.Fax.ToLower().Contains(sortBuider.Keywords.ToLower()));
+				expression = expression.And((Domain.Entities.GlobalSetting.ContactInformation x) => x.Title.ToLower().Contains(sortBuider.Keywords.ToLower()) || x.Email.ToLower().Contains(sortBuider.Keywords.ToLower()) || x.Address.ToLower().Contains(sortBuider.Keywords.ToLower()) || x.MobilePhone.ToLower().Contains(sortBuider.Keywords.ToLower()) || x.Hotline.ToLower().Contains(sortBuider.Keywords.ToLower()) || x.Fax.ToLower().Contains(sortBuider.Keywords.ToLower()));
 			}
 			return this.FindAndSort(expression, sortBuider.Sorts, page);
 		}

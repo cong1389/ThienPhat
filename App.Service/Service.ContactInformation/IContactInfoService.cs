@@ -6,10 +6,10 @@ using System.Collections.Generic;
 
 namespace App.Service.ContactInformation
 {
-	public interface IContactInfoService : IBaseService<ContactInfomation>, IService
+	public interface IContactInfoService : IBaseService<Domain.Entities.GlobalSetting.ContactInformation>, IService
 	{
-		ContactInfomation GetById(int Id);
+        Domain.Entities.GlobalSetting.ContactInformation GetById(int Id);
 
-		IEnumerable<ContactInfomation> PagedList(SortingPagingBuilder sortBuider, Paging page);
+		IEnumerable<Domain.Entities.GlobalSetting.ContactInformation> PagedList(SortingPagingBuilder sortBuider, Paging page);
 	}
 }

@@ -73,8 +73,8 @@ namespace App.Front.Controllers
 		[PartialCache("Short")]
 		public ActionResult GetAddressInfo()
 		{
-			ContactInfomation contactInfomation = this._contactInfoService.Get((ContactInfomation x) => x.Status == 1 && x.Type == 1, true);
-			return base.PartialView(contactInfomation);
+			ContactInformation ContactInformation = this._contactInfoService.Get((ContactInformation x) => x.Status == 1 && x.Type == 1, true);
+			return base.PartialView(ContactInformation);
 		}
 
 		[ChildActionOnly]
@@ -115,8 +115,8 @@ namespace App.Front.Controllers
 		[PartialCache("Short")]
 		public ActionResult GetContactOrder()
 		{
-			ContactInfomation contactInfomation = this._contactInfoService.Get((ContactInfomation x) => x.Status == 1 && x.Type == 1, true);
-			return base.PartialView(contactInfomation);
+			ContactInformation ContactInformation = this._contactInfoService.Get((ContactInformation x) => x.Status == 1 && x.Type == 1, true);
+			return base.PartialView(ContactInformation);
 		}
 
 		[ChildActionOnly]
@@ -148,8 +148,8 @@ namespace App.Front.Controllers
 		[PartialCache("Short")]
 		public ActionResult GetInformationFooter()
 		{
-			ContactInfomation contactInfomation = this._contactInfoService.Get((ContactInfomation x) => x.Status == 1 && x.Type == 1, true);
-			return base.PartialView(contactInfomation);
+			ContactInformation ContactInformation = this._contactInfoService.Get((ContactInformation x) => x.Status == 1 && x.Type == 1, true);
+			return base.PartialView(ContactInformation);
 		}
 
 		

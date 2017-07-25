@@ -6,12 +6,12 @@ using System.Collections.Generic;
 
 namespace App.Infra.Data.Repository.ContactInformation
 {
-	public interface IContactInfoRepository : IRepositoryBase<ContactInfomation>
+	public interface IContactInfoRepository : IRepositoryBase<Domain.Entities.GlobalSetting.ContactInformation>
 	{
-		ContactInfomation GetById(int Id);
+        Domain.Entities.GlobalSetting.ContactInformation GetById(int Id);
 
-		IEnumerable<ContactInfomation> PagedList(Paging page);
+		IEnumerable<Domain.Entities.GlobalSetting.ContactInformation> PagedList(Paging page);
 
-		IEnumerable<ContactInfomation> PagedSearchList(SortingPagingBuilder sortBuider, Paging page);
+		IEnumerable<Domain.Entities.GlobalSetting.ContactInformation> PagedSearchList(SortingPagingBuilder sortBuider, Paging page);
 	}
 }

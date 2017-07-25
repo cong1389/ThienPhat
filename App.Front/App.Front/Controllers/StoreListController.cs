@@ -34,12 +34,12 @@ namespace App.Front.Controllers
 			{
 				return base.Json(new { success = false });
 			}
-			IEnumerable<ContactInfomation> contactInfomations = this._contactInfoService.FindBy((ContactInfomation x) => x.Status == 1 && x.ProvinceId == (int?)Id, true);
+			IEnumerable<ContactInformation> ContactInformations = this._contactInfoService.FindBy((ContactInformation x) => x.Status == 1 && x.ProvinceId == (int?)Id, true);
 			List<StoreList> storeLists = new List<StoreList>();
-			if (contactInfomations.IsAny<ContactInfomation>())
+			if (ContactInformations.IsAny<ContactInformation>())
 			{
 				storeLists.AddRange(
-					from item in contactInfomations
+					from item in ContactInformations
 					select new StoreList()
 					{
 						Address = item.Address,
@@ -57,12 +57,12 @@ namespace App.Front.Controllers
 			Province province = this._provinceService.GetTop<int>(1, (Province x) => x.Status == 1, (Province x) => x.OrderDisplay).FirstOrDefault<Province>();
 			IEnumerable<Province> top = this._provinceService.GetTop<int>(2147483647, (Province x) => x.Status == 1, (Province x) => x.OrderDisplay);
 			((dynamic)base.ViewBag).Provinces = top;
-			IEnumerable<ContactInfomation> contactInfomations = this._contactInfoService.FindBy((ContactInfomation x) => x.Status == 1 && x.ProvinceId == (int?)province.Id, true);
+			IEnumerable<ContactInformation> ContactInformations = this._contactInfoService.FindBy((ContactInformation x) => x.Status == 1 && x.ProvinceId == (int?)province.Id, true);
 			List<StoreList> storeLists = new List<StoreList>();
-			if (contactInfomations.IsAny<ContactInfomation>())
+			if (ContactInformations.IsAny<ContactInformation>())
 			{
 				storeLists.AddRange(
-					from item in contactInfomations
+					from item in ContactInformations
 					select new StoreList()
 					{
 						Address = item.Address,
@@ -74,7 +74,7 @@ namespace App.Front.Controllers
 					});
 				((dynamic)base.ViewBag).Data = JsonConvert.SerializeObject(storeLists);
 			}
-			return base.PartialView(contactInfomations);
+			return base.PartialView(ContactInformations);
 		}
 	}
 }

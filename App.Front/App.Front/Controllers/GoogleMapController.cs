@@ -20,8 +20,8 @@ namespace App.Front.Controllers
 
 		public ActionResult ShowGoogleMap(int Id)
 		{
-			ContactInfomation contactInfomation = this._contactInfoService.Get((ContactInfomation x) => x.Id == Id, false);
-			return base.View(contactInfomation);
+			ContactInformation ContactInformation = this._contactInfoService.Get((ContactInformation x) => x.Id == Id, false);
+			return base.View(ContactInformation);
 		}
 	}
 }

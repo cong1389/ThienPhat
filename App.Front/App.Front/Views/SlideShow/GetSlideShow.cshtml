@@ -12,7 +12,7 @@
                 <div class="img"><a href="@item.WebsiteLink" target="_blank" title="@item.Title"><img src="@Url.Content("~/"+item.ImgPath)" alt="@item.Title"  /></a></div><div class="i-des">
                     <div class="title">@item.Title</div>
                     <div class="content">@Html.Raw(item.Description)</div>
-                    <a arget="_blank" href="@item.WebsiteLink" class="btn" title=""><span>xem chi tiết</span></a>
+                    <a arget="_blank" href="@item.WebsiteLink" class="btn" title=""><span>@T("XemChiTiet")</span></a>
                 </div>
             </div>
         }

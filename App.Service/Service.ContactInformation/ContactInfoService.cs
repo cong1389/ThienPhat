@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace App.Service.ContactInformation
 {
-	public class ContactInfoService : BaseService<ContactInfomation>, IContactInfoService, IBaseService<ContactInfomation>, IService
+	public class ContactInfoService : BaseService<Domain.Entities.GlobalSetting.ContactInformation>, IContactInfoService, IBaseService<Domain.Entities.GlobalSetting.ContactInformation>, IService
 	{
 		private readonly IContactInfoRepository _contactInfoRepository;
 
@@ -21,12 +21,12 @@ namespace App.Service.ContactInformation
 			this._contactInfoRepository = contactInfoRepository;
 		}
 
-		public ContactInfomation GetById(int Id)
+		public Domain.Entities.GlobalSetting.ContactInformation GetById(int Id)
 		{
 			return this._contactInfoRepository.GetById(Id);
 		}
 
-		public IEnumerable<ContactInfomation> PagedList(SortingPagingBuilder sortbuBuilder, Paging page)
+		public IEnumerable<Domain.Entities.GlobalSetting.ContactInformation> PagedList(SortingPagingBuilder sortbuBuilder, Paging page)
 		{
 			return this._contactInfoRepository.PagedSearchList(sortbuBuilder, page);
 		}

@@ -9,7 +9,7 @@
 
                         <div class="content desc">
                             @Html.Raw(Model.ShortDesc)
-                            <a class="view" href="@Url.Action("GetContent", "Menu", new { menu = Model.SeoUrl, area = "" })"><span>Xem thêm</span></a>
+                            <a class="view" href="@Url.Action("GetContent", "Menu", new { menu = Model.SeoUrl, area = "" })"><span>@T("XemThem")</span></a>
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 namespace App.Domain.Entities.GlobalSetting
 {
-	public class ContactInfomation : AuditableEntity<int>
+	public class ContactInformation : AuditableEntity<int>
 	{
 		[StringLength(250)]
 		public string Address
@@ -116,7 +116,7 @@ namespace App.Domain.Entities.GlobalSetting
 			set;
 		}
 
-		public ContactInfomation()
+		public ContactInformation()
 		{
 		}
 	}

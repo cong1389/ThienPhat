@@ -34,11 +34,11 @@ namespace App.Domain.Common
 
 		public const string DeleteEditBanner = "DeleteEditBanner";
 
-		public const string ViewContactInfomation = "ViewContactInfomation";
+		public const string ViewContactInformation = "ViewContactInformation";
 
-		public const string CreateEditContactInfomation = "CreateEditContactInfomation";
+		public const string CreateEditContactInformation = "CreateEditContactInformation";
 
-		public const string DeleteContactInfomation = "DeleteContactInfomation";
+		public const string DeleteContactInformation = "DeleteContactInformation";
 
 		public const string ViewDistrict = "ViewDistrict";
 

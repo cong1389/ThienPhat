@@ -8,7 +8,7 @@ namespace App.FakeEntity.Other
 {
 	public class LandingPageViewModel
 	{
-		public ContactInformationViewModel ContactInfomation
+		public ContactInformationViewModel ContactInformation
 		{
 			get;
 			set;

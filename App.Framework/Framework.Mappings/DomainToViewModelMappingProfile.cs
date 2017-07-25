@@ -50,7 +50,7 @@ namespace App.Framework.Mappings
 		{
 			Mapper.CreateMap<Language, LanguageFormViewModel>();
 			Mapper.CreateMap<ServerMailSetting, ServerMailSettingViewModel>();
-			Mapper.CreateMap<ContactInfomation, ContactInformationViewModel>();
+			Mapper.CreateMap<ContactInformation, ContactInformationViewModel>();
 			Mapper.CreateMap<SystemSetting, SystemSettingViewModel>();
 			Mapper.CreateMap<MenuLink, MenuLinkViewModel>();
 			Mapper.CreateMap<Province, ProvinceViewModel>();

@@ -63,10 +63,9 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <div class="title">công ty thành viên</div>
+                                        <div class="title">@T("CongTyThanhVien")</div>
                                         <div class="content">
-                                            <p>Danh sách các đối tác</p>
-                                            <p>Công ty Thiên Phát</p>
+                                            <p>@T("DanhSachCongTy")</p>
                                         </div>
                                     </div>
                                     <div class="col-sm-10">
@@ -89,37 +88,8 @@
                     </div>
                     <!--/partner-->
                     <!--= BEGIN FOOT =-->
-                    <div id="vnt-foot" class="lazyloading">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <img src="/images/logo.bmp" alt="" />
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="copyright">
-                                        <div class="txt">                                            
-                                             <div class="footer-address">
-                                                <strong>Địa chỉ</strong> : @T("Paymentinfo") ẤP Tân Thuận, xã Bình Đức, huyện Châu Thành, tỉnh Tiền Giang - MST: 1200653343
-                                            </div>
-                                            <div class="footer-address">                                                
-                                                <strong>Điện thoại/Fax</strong> : 0673 680 660
-                                            </div>
-                                            <div class="text-center">
-                                                Copyright © 2016 <strong>THIÊN PHÁT</strong>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 pull-right">
-                                    <div class="soc">
-                                        <ul class="list-inline text-right"><li><a target='_blank' href="http://" title="envelope"><i class="fa fa-envelope-square"></i></a></li><li><a target='_blank' href="http://" title="twitter"><i class="fa fa-twitter-square"></i></a></li><li><a target='_blank' href="http://facebook.com/" title="facebook"><i class="fa fa-facebook-square"></i></a></li><li><a target='_blank' href="http://google/" title="google"><i class="fa fa-google-plus-square"></i></a></li></ul>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @Html.Action("GetInformationFooter", "Summary", new { area = "" })
+                  
                     <!--= END FOOT =-->
                 </div>
             </footer>

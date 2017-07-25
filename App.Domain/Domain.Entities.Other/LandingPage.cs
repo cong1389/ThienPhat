@@ -9,7 +9,7 @@ namespace App.Domain.Entities.Other
 	public class LandingPage : AuditableEntity<int>
 	{
 		[ForeignKey("ShopId")]
-		public virtual App.Domain.Entities.GlobalSetting.ContactInfomation ContactInfomation
+		public virtual App.Domain.Entities.GlobalSetting.ContactInformation ContactInformation
 		{
 			get;
 			set;

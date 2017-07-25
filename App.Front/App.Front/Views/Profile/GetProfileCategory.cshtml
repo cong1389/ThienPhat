@@ -49,11 +49,11 @@
                                     </div>
                                     @if (!string.IsNullOrEmpty(Model[i].OtherLink))
                                     {
-                                        <a href="@Model[i].OtherLink" class="btn btn-default">Xem thêm</a>
+                                        <a href="@Model[i].OtherLink" class="btn btn-default">@T("XemThem")</a>
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("NewsDetail", "News", new {seoUrl = Model[i].SeoUrl, area = ""})" class="btn btn-default">Xem thêm</a>
+                                        <a href="@Url.Action("NewsDetail", "News", new {seoUrl = Model[i].SeoUrl, area = ""})" class="btn btn-default">@T("XemThem")</a>
                                     }
                                 </div>
                             </div>
@@ -121,11 +121,11 @@
                                     </div>
                                     @if (!string.IsNullOrEmpty(Model[i].OtherLink))
                                     {
-                                        <a href="@Model[i].OtherLink" class="btn btn-default">Xem thêm</a>
+                                        <a href="@Model[i].OtherLink" class="btn btn-default">@T("XemThem")</a>
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("NewsDetail", "News", new {seoUrl = Model[i].SeoUrl, area = ""})" class="btn btn-default">Xem thêm</a>
+                                        <a href="@Url.Action("NewsDetail", "News", new {seoUrl = Model[i].SeoUrl, area = ""})" class="btn btn-default">@T("XemThem")</a>
                                     }
                                 </div>
                             </div>

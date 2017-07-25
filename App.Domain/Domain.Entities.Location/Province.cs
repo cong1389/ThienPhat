@@ -8,7 +8,7 @@ namespace App.Domain.Entities.Location
 {
 	public class Province : AuditableEntity<int>
 	{
-		public virtual ICollection<ContactInfomation> ContactInfomations
+		public virtual ICollection<ContactInformation> ContactInformations
 		{
 			get;
 			set;
