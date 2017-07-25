@@ -137,8 +137,18 @@ namespace App.Admin.Controllers
 
 		public ActionResult Edit(int Id)
 		{
-			SlideShowViewModel slideShowViewModel = Mapper.Map<SlideShow, SlideShowViewModel>(this._slideShowService.Get((SlideShow x) => x.Id == Id, false));
-			return base.View(slideShowViewModel);
+			SlideShowViewModel modelMap = Mapper.Map<SlideShow, SlideShowViewModel>(this._slideShowService.Get((SlideShow x) => x.Id == Id, false));
+
+            //Add Locales to model
+            AddLocales(_languageService, modelMap.Locales, (locale, languageId) =>
+            {
+                locale.Id = modelMap.Id;
+                locale.LocalesId = modelMap.Id;
+                locale.Title = modelMap.GetLocalized(x => x.Title, Id, languageId, false, false);            
+                locale.Description = modelMap.GetLocalized(x => x.Description, Id, languageId, false, false);                
+            });
+
+            return base.View(modelMap);
 		}
 
 		[HttpPost]
