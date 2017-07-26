@@ -148,17 +148,53 @@ namespace App.Front.Controllers
         [PartialCache("Short")]
         public ActionResult GetNewProductRelative2(string virtualId, int productId)
         {
-            List<Post> posts = new List<Post>();
-            IEnumerable<Post> top = this._postService.GetTop<DateTime?>(4, (Post x) => x.Status == 1 && x.VirtualCategoryId.Contains(virtualId) && x.Id != productId, (Post x) => x.UpdatedDate);
+            int languageId = _workContext.WorkingLanguage.Id;
 
-            if (top == null)
+            List<Post> lstPost = new List<Post>();
+            IEnumerable<Post> iePost = this._postService.GetTop<DateTime?>(4, (Post x) => x.Status == 1 && x.VirtualCategoryId.Contains(virtualId) && x.Id != productId, (Post x) => x.UpdatedDate);
+
+            if (iePost == null)
                 return HttpNotFound();
 
-            if (top.IsAny<Post>())
+            IEnumerable<Post> postLocalized = null;
+            if (iePost.IsAny<Post>())
             {
-                posts.AddRange(top);
+                postLocalized = from x in iePost
+                                select new Post()
+                                {
+                                    Id = x.Id,
+                                    MenuId = x.MenuId,
+                                    VirtualCategoryId = x.VirtualCategoryId,
+                                    Language = x.Language,
+                                    Status = x.Status,
+                                    SeoUrl = x.SeoUrl,
+                                    ImageBigSize = x.ImageBigSize,
+                                    ImageMediumSize = x.ImageMediumSize,
+                                    ImageSmallSize = x.ImageSmallSize,
+                                    Price = x.Price,
+                                    Discount = x.Discount,
+                                    ProductHot = x.ProductHot,
+                                    OutOfStock = x.OutOfStock,
+                                    ProductNew = x.ProductNew,
+                                    VirtualCatUrl = x.VirtualCatUrl,
+                                    StartDate = x.StartDate,
+                                    PostType = x.PostType,
+                                    OldOrNew = x.OldOrNew,
+                                    MenuLink = x.MenuLink,
+
+                                    Title = x.GetLocalizedByLocaleKey(x.Title, x.Id, languageId, "Post", "Title"),
+                                    ProductCode = x.GetLocalizedByLocaleKey(x.ProductCode, x.Id, languageId, "Post", "ProductCode"),
+                                    TechInfo = x.GetLocalizedByLocaleKey(x.TechInfo, x.Id, languageId, "Post", "TechInfo"),
+                                    ShortDesc = x.GetLocalizedByLocaleKey(x.ShortDesc, x.Id, languageId, "Post", "ShortDesc"),
+                                    Description = x.GetLocalizedByLocaleKey(x.Description, x.Id, languageId, "Post", "Description"),
+                                    MetaTitle = x.GetLocalizedByLocaleKey(x.MetaTitle, x.Id, languageId, "Post", "MetaTitle"),
+                                    MetaKeywords = x.GetLocalizedByLocaleKey(x.MetaKeywords, x.Id, languageId, "Post", "MetaKeywords"),
+                                    MetaDescription = x.GetLocalizedByLocaleKey(x.MetaDescription, x.Id, languageId, "Post", "MetaDescription")
+                                };
+
+                lstPost.AddRange(postLocalized);
             }
-            return base.PartialView(posts);
+            return base.PartialView(lstPost);
         }
 
         [ChildActionOnly]
@@ -258,10 +294,10 @@ namespace App.Front.Controllers
             });
             ((dynamic)base.ViewBag).BreadCrumb = breadCrumbs;
 
-            IEnumerable<Post> iePost = null;
+            IEnumerable<Post> postLocalized = null;
             if (posts.IsAny<Post>())
             {
-                iePost = from x in posts
+                postLocalized = from x in posts
                          select new Post()
                          {
                              Id = x.Id,
@@ -297,10 +333,10 @@ namespace App.Front.Controllers
                 Helper.PageInfo pageInfo = new Helper.PageInfo(ExtentionUtils.PageSize, page, paging.TotalRecord, (int i) => base.Url.Action("GetContent", "Menu", new { page = i }));
                 ((dynamic)base.ViewBag).PageInfo = pageInfo;
                 ((dynamic)base.ViewBag).CountItem = pageInfo.TotalItems;
-                ((dynamic)base.ViewBag).MenuId = iePost.ElementAt(0).MenuId;
+                ((dynamic)base.ViewBag).MenuId = postLocalized.ElementAt(0).MenuId;
             }
             ((dynamic)base.ViewBag).Title = title;
-            return base.PartialView(iePost);
+            return base.PartialView(postLocalized);
         }
 
         [OutputCache(CacheProfile = "Medium")]

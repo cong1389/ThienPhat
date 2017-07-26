@@ -1,9 +1,10 @@
-﻿@using App.Utils
+﻿<!---GetNewProductRelative2--->
+@using App.Utils
 @model IEnumerable<App.Domain.Entities.Data.Post>
 @if (Model.IsAny())
 {
     <div class="product-other">
-        <div class="pro-title">sản phẩm khác</div>
+        <div class="pro-title">@T("ProductReleate.Lable")</div>
         <div id="vnt-product-other">
             @foreach (var item in Model)
             {
@@ -24,3 +25,4 @@
         </div>
     </div>
 }
+<!---/GetNewProductRelative2--->
