@@ -12,10 +12,21 @@
                     <div class="copyright">
                         <div class="txt">
                             <div class="footer-address">
-                                <strong>@T("DiaChi")</strong> : @T("DiaChi_ChiTiet") - MST: 1200653343
+                                <strong>@T("DiaChi.Lable")</strong> : @Model.Address - MST: 1200653343
                             </div>
                             <div class="footer-address">
-                                <strong>@T("DienThoai.Lable	")</strong> : 0673 680 660
+                                <strong>@T("DienThoai.Lable")</strong> : @Model.Hotline
+                                @if (!string.IsNullOrEmpty(Model.MobilePhone))
+                                {
+                                    @Html.Raw(" - " + Model.MobilePhone)
+                                }
+                                @if (!string.IsNullOrEmpty(Model.Fax))
+                                {
+                                    @Html.Raw(" - Fax: " + Model.Fax)
+                                }
+                            </div>
+                            <div class="footer-address">
+                                <strong>Email</strong> : @Model.Email
                             </div>
                             <div class="text-center">
                                 Copyright © 2016 <strong>@T("CongTy.Name")</strong>
@@ -34,21 +45,7 @@
         </div>
     </div>
 
-
-    <p>@Model.Title</p>
-    <p>
-        Điện thoại: @Model.Hotline
-        @if (!string.IsNullOrEmpty(Model.MobilePhone))
-        {
-            @Html.Raw(" - " + Model.MobilePhone)
-        }
-        @if (!string.IsNullOrEmpty(Model.Fax))
-        {
-            @Html.Raw(" - Fax: " + Model.Fax)
-        }
-    </p>
-    <p>Email : @Model.Email</p>
-    <p>Địa chỉ: @Model.Address</p>
+    
 
 }
 <!---/GetInformationFooter--->

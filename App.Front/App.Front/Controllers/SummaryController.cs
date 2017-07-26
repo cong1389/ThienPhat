@@ -4,7 +4,9 @@ using App.Domain.Entities.Location;
 using App.Domain.Entities.Menu;
 using App.Domain.Interfaces.Services;
 using App.Front.Models;
+using App.Service.Common;
 using App.Service.ContactInformation;
+using App.Service.Language;
 using App.Service.Locations;
 using App.Service.Menu;
 using App.Service.SeoSetting;
@@ -32,7 +34,13 @@ namespace App.Front.Controllers
 
 		private readonly ISettingSeoGlobalService _settingSeoGlobal;
 
-		public SummaryController(IMenuLinkService menuLinkService, IProvinceService provinceService, IDistrictService districtService, ISystemSettingService systemSettingService, IContactInfoService contactInfoService, ISettingSeoGlobalService settingSeoGlobal)
+        private readonly IWorkContext _workContext;
+
+        public SummaryController(IMenuLinkService menuLinkService
+            , IProvinceService provinceService, IDistrictService districtService, ISystemSettingService systemSettingService
+            , IContactInfoService contactInfoService
+            , ISettingSeoGlobalService settingSeoGlobal
+            , IWorkContext workContext)
 		{
 			this._menuLinkService = menuLinkService;
 			this._provinceService = provinceService;
@@ -40,7 +48,8 @@ namespace App.Front.Controllers
 			this._systemSettingService = systemSettingService;
 			this._contactInfoService = contactInfoService;
 			this._settingSeoGlobal = settingSeoGlobal;
-		}
+            this._workContext = workContext;
+        }
 
 		private List<MenuNav> CreateMenuNav(int? parentId, IEnumerable<MenuNav> source)
 		{
@@ -69,12 +78,25 @@ namespace App.Front.Controllers
 			}).ToList<MenuNav>();
 		}
 
-		[ChildActionOnly]
-		[PartialCache("Short")]
-		public ActionResult GetAddressInfo()
-		{
-			ContactInformation ContactInformation = this._contactInfoService.Get((ContactInformation x) => x.Status == 1 && x.Type == 1, true);
-			return base.PartialView(ContactInformation);
+        [ChildActionOnly]
+        [PartialCache("Short")]
+        public ActionResult GetAddressInfo()
+        {
+            int languageId = _workContext.WorkingLanguage.Id;
+
+            ContactInformation contactInformation = this._contactInfoService.Get((ContactInformation x) => x.Status == 1 && x.Type == 1, true);
+
+            if (contactInformation == null)
+                return HttpNotFound();
+
+            ContactInformation contactInformationLocalize = new ContactInformation
+            {
+                Title = contactInformation.GetLocalizedByLocaleKey(contactInformation.Title, contactInformation.Id, languageId, "ContactInformation", "Title"),
+                Address = contactInformation.GetLocalizedByLocaleKey(contactInformation.Address, contactInformation.Id, languageId, "ContactInformation", "Address"),
+
+            };
+
+            return base.PartialView(contactInformationLocalize);
 		}
 
 		[ChildActionOnly]
@@ -147,12 +169,33 @@ namespace App.Front.Controllers
 		[ChildActionOnly]
 		[PartialCache("Short")]
 		public ActionResult GetInformationFooter()
-		{
-			ContactInformation ContactInformation = this._contactInfoService.Get((ContactInformation x) => x.Status == 1 && x.Type == 1, true);
-			return base.PartialView(ContactInformation);
-		}
+        {
+            int languageId = _workContext.WorkingLanguage.Id;
 
-		
+            ContactInformation contactInformation = this._contactInfoService.Get((ContactInformation x) => x.Status == 1 && x.Type == 1, true);
+
+            if (contactInformation == null)
+                return HttpNotFound();
+
+            ContactInformation contactInformationLocalize = new ContactInformation
+            {
+                Lag = contactInformation.Lag,
+                Lat = contactInformation.Lat,
+                Type = contactInformation.Type,
+                Status = contactInformation.Status,
+                Email = contactInformation.Email,
+                Hotline = contactInformation.Hotline,
+                MobilePhone = contactInformation.MobilePhone,
+                Fax = contactInformation.Fax,
+                NumberOfStore = contactInformation.NumberOfStore,
+                ProvinceId = contactInformation.ProvinceId,
+                Title = contactInformation.GetLocalizedByLocaleKey(contactInformation.Title, contactInformation.Id, languageId, "ContactInformation", "Title"),
+                Address = contactInformation.GetLocalizedByLocaleKey(contactInformation.Address, contactInformation.Id, languageId, "ContactInformation", "Address"),
+
+            };
+
+            return base.PartialView(contactInformationLocalize);
+		}		
         
         public ActionResult GetLogo()
 		{
