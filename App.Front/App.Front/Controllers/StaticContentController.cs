@@ -1,6 +1,8 @@
 ﻿using App.Domain.Entities.Data;
+using App.Domain.Entities.Menu;
 using App.Service.Common;
 using App.Service.Language;
+using App.Service.Menu;
 using App.Service.Static;
 using System;
 using System.Collections.Generic;
@@ -16,10 +18,16 @@ namespace App.Front.Controllers
 
         private readonly IWorkContext _workContext;
 
-        public StaticContentController(IStaticContentService staticContentService, IWorkContext workContext)
+        private readonly IMenuLinkService _menuLinkService;
+
+        public StaticContentController(IStaticContentService staticContentService
+            , IWorkContext workContext
+            , IMenuLinkService menuLinkService
+            )
         {
             this._staticContentService = staticContentService;
             this._workContext = workContext;
+            this._menuLinkService = menuLinkService;
         }
 
         // GET: StaticContent
@@ -116,9 +124,34 @@ namespace App.Front.Controllers
                 MetaTitle = staticContent.GetLocalizedByLocaleKey(staticContent.MetaTitle, staticContent.Id, languageId, "StaticContent", "MetaTitle"),
                 MetaKeywords = staticContent.GetLocalizedByLocaleKey(staticContent.MetaKeywords, staticContent.Id, languageId, "StaticContent", "MetaKeywords"),
                 MetaDescription = staticContent.GetLocalizedByLocaleKey(staticContent.MetaDescription, staticContent.Id, languageId, "StaticContent", "MetaDescription")
-            };
+            };            
 
             return base.PartialView(staticContentLocalized);
+        }
+
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            dynamic viewBag = base.ViewBag;
+
+            //Get link sản phẩm
+            IEnumerable<MenuLink> menuLinksProduct = _menuLinkService.FindBy((MenuLink x) =>
+                                                    x.Status == 1
+                                                    && x.VirtualId == "ca19fb4a-10a1-4515-bdb2-0c091b4107d5"
+                                                    , true);
+            if (menuLinksProduct.Any<MenuLink>())
+            {               
+                viewBag.objMenuLinkProduct = menuLinksProduct.ElementAt(0);
+            }
+
+            //Get link sản phẩm
+            IEnumerable<MenuLink> menuLinksIntro = _menuLinkService.FindBy((MenuLink x) =>
+                                                    x.Status == 1
+                                                    && x.VirtualId == "5ff97ccf-29d4-47d2-82d9-9d217119a68d"
+                                                    , true);
+            if (menuLinksIntro.Any<MenuLink>())
+            {
+                viewBag.objMenuLinkIntro = menuLinksIntro.ElementAt(0);
+            }
         }
     }
 }

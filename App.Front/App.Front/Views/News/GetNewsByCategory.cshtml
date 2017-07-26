@@ -21,7 +21,7 @@
 
                 <div class="box_mid">
                     <div class="mid_title">
-                        <div class="titleL"><h1>12 </h1></div>
+                        <div class="titleL"><h1>@ViewBag.Title</h1></div>
                         <div class="titleR"></div>
                         <div class="clear"></div>
                     </div>
@@ -32,12 +32,12 @@
                             @foreach (var item in Model)
                             {
                             <div class="box-news">
-                                <div class="img">
+                                <div class="img col-sm-4">
                                     <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">
                                         <img src="@Url.Content("~/" + item.ImageMediumSize)" alt='@item.Title' title='@item.Title' />
                                     </a>
                                 </div>
-                                <div class="caption">
+                                <div class="caption col-sm-8">
                                     <div class="date">@item.CreatedDate.ToString("dd/MM/yyyy")</div>
                                     <div class="title">
                                         <h3>
@@ -47,7 +47,8 @@
                                         </h3>
                                     </div>
                                     <div class="tomtat">@item.ShortDesc</div>
-                                    <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})" class="view"><span>xem thêm</span></a>
+                                    <a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})" class="view"><span>
+                                        @T("XemThem")</span></a>
                                 </div>
                                 <div class="clear"></div>
                             </div>

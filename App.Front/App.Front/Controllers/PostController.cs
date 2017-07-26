@@ -245,7 +245,7 @@ namespace App.Front.Controllers
                 {
                     breadCrumbs.Add(new BreadCrumb()
                     {
-                        Title = menuLink.MenuName,
+                        Title = menuLink.GetLocalizedByLocaleKey(menuLink.MenuName, menuLink.Id, languageId, "MenuLink", "MenuName"),
                         Current = false,
                         Url = base.Url.Action("GetContent", "Menu", new { area = "", menu = menuLink.SeoUrl })
                     });

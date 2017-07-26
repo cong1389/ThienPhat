@@ -20,9 +20,9 @@
                     {
                         <div class="col-sm-3">
                             <a href="@Url.Action("GetContent", "Menu", new { menu = item.SeoUrl, area = "" })">
-                                <img src="@Url.Content("~/" + item.ImageUrl)" alt="@item.MenuName" />
+                                <img src="@Url.Content("~/" + item.ImageUrl)" alt="@item.MenuName" class="hidden" />
                             </a>
-                            <h3>
+                            <h3 class="hidden">
                                 <a href="@Url.Action("GetContent", "Menu", new { menu = item.SeoUrl, area = "" })">
                                     @item.MenuName
                                 </a>

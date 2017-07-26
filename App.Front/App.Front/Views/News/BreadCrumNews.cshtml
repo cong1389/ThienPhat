@@ -1,5 +1,6 @@
-﻿@using App.Utils
-@model IEnumerable<App.Domain.Entities.Menu.MenuLink>
+﻿<!---BreadCrumNews-->
+@using App.Utils
+@model List<App.Domain.Entities.Menu.MenuLink>
 @if (Model.IsAny())
 {
     <div id="vnt-navation" class="breadcrumb">
@@ -23,3 +24,4 @@
         </div>
     </div>
 }
+<!---/BreadCrumNews-->

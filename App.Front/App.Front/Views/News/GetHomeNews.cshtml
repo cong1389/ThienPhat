@@ -16,9 +16,9 @@
                         {
                             <div class="col-sm-3">
                                 <div class="news">
-                                    <div class="img"><img src="@Url.Content("~/" + item.ImageMediumSize)" alt='@item.Title' title='@item.Title' /></div>
+                                    <div class="img"><a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})"><img src="@Url.Content("~/" + item.ImageMediumSize)" alt='@item.Title' title='@item.Title' /></a></div>
                                     <div class="caption">
-                                        <div class="date">26/10/2016</div>
+                                        <div class="date">@item.CreatedDate.ToString("dd/MM/yyyy")</div>
                                         <div class="tend"><a href="@Url.Action("NewsDetail", "News", new {seoUrl = item.SeoUrl, area = ""})">@item.Title</a> </div>
                                     </div>
                                 </div>

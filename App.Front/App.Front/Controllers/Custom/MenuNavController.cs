@@ -230,9 +230,14 @@ namespace App.Front.Controllers.Custom
                                                     x.Status == 1
                                                     && x.VirtualId.Contains(virtualId)
                                                     , true);
+
+            if (menuLinks == null)
+                return HttpNotFound();
+
+            IEnumerable<MenuNav> menuNavLocalized = null;
             if (menuLinks.Any<MenuLink>())
             {
-                IEnumerable<MenuNav> menuNav =
+                 menuNavLocalized =
                     from x in menuLinks
                     select new MenuNav()
                     {
@@ -248,7 +253,7 @@ namespace App.Front.Controllers.Custom
                         IconNav = x.Icon1,
                         IconBar = x.Icon2
                     };
-                menuNavs = this.CreateMenuNav(null, menuNav);
+                menuNavs = this.CreateMenuNav(null, menuNavLocalized);                
             }
             return base.PartialView(menuNavs);
         }

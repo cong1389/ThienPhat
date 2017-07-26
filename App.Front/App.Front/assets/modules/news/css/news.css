@@ -79,7 +79,7 @@ div#vnt-news-slider .slick-dots li.slick-active button {
 }
 .box-news .caption {
     float: right;
-    width: 59%;
+    /* width: 59%; */
     padding: 0px 25px;
 }
 .box-news .caption .date {

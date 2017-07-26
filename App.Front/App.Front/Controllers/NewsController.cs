@@ -48,13 +48,14 @@ namespace App.Front.Controllers
 		public ActionResult BreadCrumNews(string virtualId)
 		{
 			((dynamic)base.ViewBag).VirtualId = virtualId;
-			List<MenuLink> menuLinks = new List<MenuLink>();
+			List<MenuLink> lstMenuLink = new List<MenuLink>();
 			IEnumerable<MenuLink> menuLinks1 = this._menuLinkService.FindBy((MenuLink x) => x.TemplateType == 1 && x.Status == 1, true);
 			if (menuLinks1.IsAny<MenuLink>())
 			{
-				menuLinks.AddRange(menuLinks1);
-			}
-			return base.PartialView(menuLinks);
+                lstMenuLink.AddRange(menuLinks1);
+                ((dynamic)base.ViewBag).TitleNews = menuLinks1.ElementAt(0).MenuName;
+            }
+			return base.PartialView(lstMenuLink);
 		}
 
 		public ActionResult GetCareerByCategory(string virtualCategoryId, int page, string title)
@@ -108,6 +109,7 @@ namespace App.Front.Controllers
                                                ImageBigSize= x.ImageBigSize,
                                                ImageMediumSize = x.ImageMediumSize,
                                                ImageSmallSize = x.ImageSmallSize,
+                                               CreatedDate = x.CreatedDate,
 
                                                Title = x.GetLocalizedByLocaleKey(x.Title, x.Id, languageId, "News", "Title"),
                                                ShortDesc = x.GetLocalizedByLocaleKey(x.ShortDesc, x.Id, languageId, "News", "ShortDesc"),
@@ -122,16 +124,18 @@ namespace App.Front.Controllers
             return base.PartialView(news);
 		}
 
-		public ActionResult GetNewsByCategory(string virtualCategoryId, int? menuId, int page)
+		public ActionResult GetNewsByCategory(string virtualCategoryId, int? menuId,string title, int page)
         {
             int languageId = _workContext.WorkingLanguage.Id;
 
             ((dynamic)base.ViewBag).MenuId = menuId;
             ((dynamic)base.ViewBag).VirtualId = virtualCategoryId;
             dynamic viewBag = base.ViewBag;
+
 			IStaticContentService staticContentService = this._staticContentService;
 			Expression<Func<StaticContent, bool>> status = (StaticContent x) => x.Status == 1;
 			viewBag.fixItems = staticContentService.GetTop<int>(3, status, (StaticContent x) => x.ViewCount);
+
 			SortBuilder sortBuilder = new SortBuilder()
 			{
 				ColumnName = "CreatedDate",
@@ -147,13 +151,12 @@ namespace App.Front.Controllers
             IEnumerable<News> news = this._newsService.FindAndSort((News x) => !x.Video && x.Status == 1 && x.VirtualCategoryId.Contains(virtualCategoryId), sortBuilder, paging);
 
             if (news == null)
-                return HttpNotFound();
+                return HttpNotFound();           
 
-            IEnumerable<News> ieNews = null;
-
+            IEnumerable<News> newsLocalized = null;
             if (news.IsAny<News>())
 			{
-               ieNews = from x in news
+               newsLocalized = from x in news
                                            select new News()
                                            {
                                                Id = x.Id,
@@ -165,6 +168,7 @@ namespace App.Front.Controllers
                                                ImageBigSize = x.ImageBigSize,
                                                ImageMediumSize = x.ImageMediumSize,
                                                ImageSmallSize = x.ImageSmallSize,
+                                               CreatedDate = x.CreatedDate,
 
                                                Title = x.GetLocalizedByLocaleKey(x.Title, x.Id, languageId, "News", "Title"),
                                                ShortDesc = x.GetLocalizedByLocaleKey(x.ShortDesc, x.Id, languageId, "News", "ShortDesc"),
@@ -176,9 +180,37 @@ namespace App.Front.Controllers
 
                 Helper.PageInfo pageInfo = new Helper.PageInfo(ExtentionUtils.PageSize, page, paging.TotalRecord, (int i) => base.Url.Action("GetContent", "Menu", new { page = i }));
 				((dynamic)base.ViewBag).PageInfo = pageInfo;
-				((dynamic)base.ViewBag).CountItem = pageInfo.TotalItems;                
+				((dynamic)base.ViewBag).CountItem = pageInfo.TotalItems;
+
+                MenuLink menuLink = null;
+                List<BreadCrumb> breadCrumbs = new List<BreadCrumb>();
+                string[] strArrays2 = virtualCategoryId.Split(new char[] { '/' });
+                for (int i1 = 0; i1 < (int)strArrays2.Length; i1++)
+                {
+                    string str = strArrays2[i1];
+                    menuLink = this._menuLinkService.Get((MenuLink x) => x.CurrentVirtualId.Equals(str) && x.Id != menuId, false);
+
+                    if (menuLink != null)
+                    {
+                        breadCrumbs.Add(new BreadCrumb()
+                        {
+                            Title = menuLink.GetLocalizedByLocaleKey(menuLink.MenuName, menuLink.Id, languageId, "MenuLink", "MenuName"),
+                            Current = false,
+                            Url = base.Url.Action("GetContent", "Menu", new { area = "", menu = menuLink.SeoUrl })
+                        });
+                    }
+                }
+                breadCrumbs.Add(new BreadCrumb()
+                {
+                    Current = true,
+                    Title = title
+                });
+                ((dynamic)base.ViewBag).BreadCrumb = breadCrumbs;
             }
-			return base.PartialView(ieNews);
+
+            ((dynamic)base.ViewBag).Title = title;
+
+            return base.PartialView(newsLocalized);
 		}
 
 		[ChildActionOnly]
@@ -212,9 +244,11 @@ namespace App.Front.Controllers
             int languageId = _workContext.WorkingLanguage.Id;
 
             dynamic viewBag = base.ViewBag;
+
 			IStaticContentService staticContentService = this._staticContentService;
 			Expression<Func<StaticContent, bool>> status = (StaticContent x) => x.Status == 1;
 			viewBag.fixItems = staticContentService.GetTop<int>(3, status, (StaticContent x) => x.ViewCount);
+
 			List<BreadCrumb> breadCrumbs = new List<BreadCrumb>();
 			News news = this._newsService.Get((News x) => x.SeoUrl.Equals(seoUrl), true);
             if (news == null)
@@ -235,6 +269,7 @@ namespace App.Front.Controllers
                     ImageMediumSize = news.ImageMediumSize,
                     ImageSmallSize = news.ImageSmallSize,
                     MenuLink = news.MenuLink,
+                    CreatedDate = news.CreatedDate,
 
                     Title = news.GetLocalizedByLocaleKey(news.Title, news.Id, languageId, "News", "Title"),
                     ShortDesc = news.GetLocalizedByLocaleKey(news.ShortDesc, news.Id, languageId, "News", "ShortDesc"),
@@ -257,7 +292,7 @@ namespace App.Front.Controllers
 					MenuLink menuLink = this._menuLinkService.Get((MenuLink x) => x.CurrentVirtualId.Equals(str), false);
 					breadCrumbs.Add(new BreadCrumb()
 					{
-						Title = menuLink.MenuName,
+						Title = menuLink.GetLocalizedByLocaleKey(menuLink.MenuName, menuLink.Id, languageId, "MenuLink", "MenuName"),
 						Current = false,
 						Url = base.Url.Action("GetContent", "Menu", new { area = "", menu = menuLink.SeoUrl })
 					});

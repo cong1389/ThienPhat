@@ -42,7 +42,7 @@
                                 <li>
                                     <a href="@Url.Action("Index", "SlideShow")" class="nav-link"> Danh sách slide </a>
                                 </li>
-                                <li>
+                                <li class="hidden">
                                     <a href="@Url.Action("Index", "Province")" class="nav-link"> Danh sách tỉnh thành </a>
                                 </li> 
                             </ul>
@@ -50,9 +50,10 @@
                         <div class="col-md-4">
                             <ul class="mega-menu-submenu">
                                 <li>
+                                <li class="hidden">
                                     <a href="@Url.Action("Index", "FlowStep")" class="nav-link">Quy trình</a>
                                 </li> 
-                                <li>
+                                <li class="hidden">
                                     <a href="@Url.Action("Index", "Brand")" class="nav-link">Hãng sản xuất</a>
                                 </li>
                                 <li>
@@ -65,12 +66,12 @@
             </li>
         </ul>
     </li> 
-    <li class="menu-dropdown classic-menu-dropdown ">
+    <li class="menu-dropdown classic-menu-dropdown hidden">
         <a href="javascript:;">
             <i class="fa fa-map-marker"></i> Quản lý thuộc tính
             <span class="arrow"></span>
         </a>
-        <ul class="dropdown-menu pull-left">
+        <ul class="dropdown-menu pull-left hidden">
             <li>
                 <a href="@Url.Action("Index", "Attribute")" class="nav-link"> @FormUI.Attribute </a>
             </li>
@@ -84,7 +85,7 @@
             <i class="fa fa-file-archive-o"></i>Quản lý bài viết<span class="arrow"></span>
         </a>
         <ul class="dropdown-menu pull-left">
-            <li>
+            <li class="hidden">
                 <a href="@Url.Action("Index", "Order")" class="nav-link"> @FormUI.Order </a>
             </li>
             <li>

@@ -1,4 +1,6 @@
 ﻿<!---GetHomeIntro--->
+@using App.Domain.Entities.Menu
+
 <div id="vnt-home-about" class="lazyloading">
     <div class="wrapper">
         <div class="container">
@@ -9,7 +11,7 @@
 
                         <div class="content desc">
                             @Html.Raw(Model.ShortDesc)
-                            <a class="view" href="@Url.Action("GetContent", "Menu", new { menu = Model.SeoUrl, area = "" })"><span>@T("XemThem")</span></a>
+                            <a class="view" href="@Url.Action("GetContent", "Menu", new { menu = ViewBag.objMenuLinkIntro !=null? ((MenuLink)ViewBag.objMenuLinkIntro).SeoUrl: "", area = "" })"><span>@T("XemThem")</span></a>
                         </div>
                     </div>
                 </div>

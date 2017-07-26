@@ -1,4 +1,5 @@
 ﻿<!--GetHomeProduct----->
+@using App.Domain.Entities.Menu
 @model App.Domain.Entities.Data.StaticContent
 @if (Model != null)
 {
@@ -23,7 +24,7 @@
                     <div class="row">
                         <div class="title">@Model.Title</div>
                         <div class="cont">@Html.Raw(Model.ShortDesc)</div>
-                        <a class="view" href="#"><span>@T("XemSanPham")</span></a>
+                        <a class="view" href="@Url.Action("GetContent","Menu",new { menu= ViewBag.objMenuLinkProduct!=null? ((MenuLink)ViewBag.objMenuLinkProduct).SeoUrl: "",area="" })"><span>@T("XemSanPham")</span></a>
                     </div>
                 </div>
             </div>

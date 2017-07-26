@@ -60,13 +60,28 @@ namespace App.Front.Controllers
                 {
                     Id = menuLink.Id,
                     ParentId = menuLink.ParentId,
+                    Status = menuLink.Status,
+                    TypeMenu = menuLink.TypeMenu,
+                    Position = menuLink.Position,
                     MenuName = menuLink.GetLocalizedByLocaleKey(menuLink.MenuName, menuLink.Id, languageId, "MenuLink", "MenuName"),
                     SeoUrl = menuLink.SeoUrl,
                     OrderDisplay = menuLink.OrderDisplay,
                     ImageUrl = menuLink.ImageUrl,
+                    Icon1 = menuLink.Icon1,
+                    Icon2 = menuLink.Icon2,
                     CurrentVirtualId = menuLink.CurrentVirtualId,
                     VirtualId = menuLink.VirtualId,
-                    TemplateType = menuLink.TemplateType
+                    TemplateType = menuLink.TemplateType,
+                    MetaTitle = menuLink.GetLocalizedByLocaleKey(menuLink.MetaTitle, menuLink.Id, languageId, "MenuLink", "MetaTitle"),
+                    MetaKeywords = menuLink.GetLocalizedByLocaleKey(menuLink.MetaKeywords, menuLink.Id, languageId, "MenuLink", "MetaKeywords"),
+                    MetaDescription = menuLink.GetLocalizedByLocaleKey(menuLink.MetaDescription, menuLink.Id, languageId, "MenuLink", "MetaDescription"),
+                   
+                    Language = menuLink.Language,
+                    SourceLink = menuLink.SourceLink,
+                    VirtualSeoUrl = menuLink.VirtualSeoUrl,
+                    DisplayOnHomePage = menuLink.DisplayOnHomePage,
+                    DisplayOnMenu = menuLink.DisplayOnMenu,
+                    DisplayOnSearch = menuLink.DisplayOnSearch,
                 }; 
             }
 
@@ -138,7 +153,7 @@ namespace App.Front.Controllers
             for (int i = 0; i < (int)strArrays.Length; i++)
             {
                 string str = strArrays[i];
-                MenuLink menuLink = this._menuLinkService.Get((MenuLink x) => x.CurrentVirtualId.Equals(str) && x.Id != MenuId, false);
+                MenuLink menuLink = this._menuLinkService.Get((MenuLink x) => x.CurrentVirtualId.Equals(str) && x.ParentId != MenuId, false);
                 if (menuLink != null)
                 {
                     breadCrumbs.Add(new BreadCrumb()
@@ -209,8 +224,28 @@ namespace App.Front.Controllers
                     from x in menuLinks
                     select new MenuLink()
                     {
+                        Id = x.Id,
+                        ParentId = x.ParentId,
+                        SeoUrl = x.SeoUrl,
+                        CurrentVirtualId = x.CurrentVirtualId,
+                        VirtualId = x.VirtualId,
+                        Status = x.Status,
+                        TypeMenu = x.TypeMenu,
+                        Position = x.Position,
+                        TemplateType = x.TemplateType,
+                        Language = x.Language,
+                        OrderDisplay = x.OrderDisplay,
+                        SourceLink = x.SourceLink,
+                        VirtualSeoUrl = x.VirtualSeoUrl,
+                        MetaTitle = x.MetaTitle,
+                        MetaDescription = x.MetaDescription,
+                        DisplayOnHomePage = x.DisplayOnHomePage,
+                        DisplayOnMenu = x.DisplayOnMenu,
+                        Icon1 = x.Icon1,
+                        Icon2 = x.Icon2,
+                        ImageUrl = x.ImageUrl,
                         MenuName = x.GetLocalizedByLocaleKey(x.MenuName, x.Id, languageId, "MenuLink", "MenuName"),
-                        SeoUrl = x.SeoUrl
+                       
                     };
                 viewBag.ListItems = ieMenuLink;
             }
