@@ -56,12 +56,12 @@ namespace App.Admin.Controllers
 				{
 					if (bannerView.Image != null && bannerView.Image.ContentLength > 0)
 					{
-                        string fileName = "Test";
-                        string extension = "Test";
-                        //string fileName = Path.GetFileName(bannerView.Image.FileName);
-                        //string extension = Path.GetExtension(bannerView.Image.FileName);
-						//fileName = string.Concat(bannerView.FullName.NonAccent(), extension);
-						string str = Path.Combine(base.Server.MapPath(string.Concat("~/", Contains.AdsFolder)), fileName);
+                        //string fileName = "Test";
+                        //string extension = "Test";
+                        string fileName = Path.GetFileName(bannerView.Image.FileName);
+                        string extension = Path.GetExtension(bannerView.Image.FileName);
+                        //fileName = string.Concat(bannerView.FullName.NonAccent(), extension);
+                        string str = Path.Combine(base.Server.MapPath(string.Concat("~/", Contains.AdsFolder)), fileName);
 						bannerView.Image.SaveAs(str);
 						bannerView.ImgPath = string.Concat(Contains.AdsFolder, fileName);
 					}

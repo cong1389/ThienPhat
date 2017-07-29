@@ -52,13 +52,13 @@ namespace App.Admin.Controllers
                 {
                     Language modelMap = Mapper.Map<LanguageFormViewModel, Language>(model);
                     this._langService.CreateLanguage(modelMap);
-                    string empty = string.Empty;
+                    string image = string.Empty;
                     if (model.File != null && model.File.ContentLength > 0)
                     {
-                        empty = Path.GetFileName(model.File.FileName);
+                        image = Path.GetFileName(model.File.FileName);
                         string extension = Path.GetExtension(model.File.FileName);
-                        empty = string.Concat(empty.NonAccent(), extension);
-                        string str = Path.Combine(base.Server.MapPath(string.Concat("~/", Contains.FolderLanguage)), empty);
+                        image = string.Concat(image.NonAccent(), extension);
+                        string str = Path.Combine(base.Server.MapPath(string.Concat("~/", Contains.FolderLanguage)), image);
                         model.File.SaveAs(str);
                     }
                     if (this._langService.SaveLanguage() > 0)
