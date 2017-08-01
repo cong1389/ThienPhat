@@ -86,13 +86,5 @@ namespace App.Framework.Ioc
             builder.RegisterType<TextService>().As<ITextService>().InstancePerRequest<TextService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
 
         }
-
-        //protected override void AttachToComponentRegistration(IComponentRegistry componentRegistry, IComponentRegistration registration)
-        //{
-        //    registration.Activated += (sender, e) =>
-        //    {
-        //        Localizer localizer = e.Context.Resolve<ITextService>().Get;               
-        //    };
-        //}
     }
 }

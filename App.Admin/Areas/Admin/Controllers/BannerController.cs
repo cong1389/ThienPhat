@@ -65,8 +65,10 @@ namespace App.Admin.Controllers
 						bannerView.Image.SaveAs(str);
 						bannerView.ImgPath = string.Concat(Contains.AdsFolder, fileName);
 					}
+
 					Banner banner = Mapper.Map<BannerViewModel, Banner>(bannerView);
 					this._bannerService.Create(banner);
+
 					base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.CreateSuccess, FormUI.Banner)));
 					if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
 					{
@@ -115,7 +117,7 @@ namespace App.Admin.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Edit(BannerViewModel bannerView, string ReturnUrl)
+		public ActionResult Edit(BannerViewModel model, string ReturnUrl)
 		{
 			ActionResult action;
 			try
@@ -123,21 +125,21 @@ namespace App.Admin.Controllers
 				if (!base.ModelState.IsValid)
 				{
 					base.ModelState.AddModelError("", MessageUI.ErrorMessage);
-					return base.View(bannerView);
+					return base.View(model);
 				}
 				else
 				{
-					Banner byId = this._bannerService.GetById(bannerView.Id);
-					if (bannerView.Image != null && bannerView.Image.ContentLength > 0)
+					Banner byId = this._bannerService.GetById(model.Id);
+					if (model.Image != null && model.Image.ContentLength > 0)
 					{
-						string fileName = Path.GetFileName(bannerView.Image.FileName);
-						string extension = Path.GetExtension(bannerView.Image.FileName);
+						string fileName = Path.GetFileName(model.Image.FileName);
+						string extension = Path.GetExtension(model.Image.FileName);
 						//fileName = string.Concat(bannerView.FullName.NonAccent(""), extension);
 						string str = Path.Combine(base.Server.MapPath(string.Concat("~/", Contains.AdsFolder)), fileName);
-						bannerView.Image.SaveAs(str);
-						bannerView.ImgPath = string.Concat(Contains.AdsFolder, fileName);
+						model.Image.SaveAs(str);
+						model.ImgPath = string.Concat(Contains.AdsFolder, fileName);
 					}
-					Banner banner = Mapper.Map<BannerViewModel, Banner>(bannerView, byId);
+					Banner banner = Mapper.Map<BannerViewModel, Banner>(model, byId);
 					this._bannerService.Update(banner);
 					base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.UpdateSuccess, FormUI.Banner)));
 					if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
@@ -155,7 +157,7 @@ namespace App.Admin.Controllers
 				Exception exception = exception1;
 				base.ModelState.AddModelError("", exception.Message);
 				ExtentionUtils.Log(string.Concat("Banner.Edit: ", exception.Message));
-				return base.View(bannerView);
+				return base.View(model);
 			}
 			return action;
 		}

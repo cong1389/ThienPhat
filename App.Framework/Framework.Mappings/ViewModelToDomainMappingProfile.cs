@@ -67,10 +67,8 @@ namespace App.Framework.Mappings
             => map.MapFrom<string>((LanguageFormViewModel vm) => vm.LanguageCode))
             .ForMember((Language x) => (object)x.Status, (IMemberConfigurationExpression<LanguageFormViewModel> map) 
             => map.MapFrom<int>((LanguageFormViewModel vm) => vm.Status))
-            .ForMember((Language x) => x.Flag
-            , (IMemberConfigurationExpression<LanguageFormViewModel> map) 
-            => map.MapFrom<string>((LanguageFormViewModel vm) 
-            => (Contains.FolderLanguage + vm.File.FileName.NonAccent()) + Path.GetExtension(vm.File.FileName)));
+            .ForMember((Language x) => x.Flag, (IMemberConfigurationExpression<LanguageFormViewModel> map)
+                => map.Condition((LanguageFormViewModel source) => !string.IsNullOrEmpty(source.Flag)));
 
             Mapper.CreateMap<LocalizedPropertyViewModel, LocalizedProperty>()
                  .ForMember((LocalizedProperty x) => x.Id, (IMemberConfigurationExpression<LocalizedPropertyViewModel> map)
@@ -171,7 +169,7 @@ namespace App.Framework.Mappings
 
             Mapper.CreateMap<StaticContentViewModel, StaticContent>().
                 ForMember((StaticContent x) => x.Title,
-                (IMemberConfigurationExpression<StaticContentViewModel> map) 
+                (IMemberConfigurationExpression<StaticContentViewModel> map)
                 => map.MapFrom<string>((StaticContentViewModel vm) 
                 => vm.Title)).ForMember((StaticContent x) 
                 => (object)x.Id, (IMemberConfigurationExpression<StaticContentViewModel> map) 

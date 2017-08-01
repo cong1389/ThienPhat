@@ -31,9 +31,16 @@ namespace App.FakeEntity.Language
 		{
 			get;
 			set;
-		}		
+		}
 
-		[Display(Name="Status", ResourceType=typeof(FormUI))]
+        [Display(Name = "Image", ResourceType = typeof(FormUI))]
+        public string Flag
+        {
+            get;
+            set;
+        }
+
+        [Display(Name="Status", ResourceType=typeof(FormUI))]
 		public int Status
 		{
 			get;

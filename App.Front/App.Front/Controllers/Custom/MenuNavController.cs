@@ -131,22 +131,7 @@ namespace App.Front.Controllers.Custom
         public ActionResult GetMenuLink()
         {
             int languageId = _workContext.WorkingLanguage.Id;
-
-            //MenuLinkViewModel menuLinkViewModel = Mapper.Map<MenuLink, MenuLinkViewModel>(_menuLinkService
-            //    .Get((MenuLink x) => x.Status == 1 && x.Position == 1, true));
-
-            ////Add Locales to model
-            //AddLocales(_languageService, menuLinkViewModel.Locales, (locale, language1Id) =>
-            //{
-            //    locale.Id = menuLinkViewModel.Id;
-            //    locale.LocalesId = menuLinkViewModel.Id;
-            //    locale.MenuName = menuLinkViewModel.GetLocalized(x => x.MenuName);
-            //    locale.MetaTitle = menuLinkViewModel.GetLocalized(x => x.MetaTitle);
-            //    locale.MetaKeywords = menuLinkViewModel.GetLocalized(x => x.MetaKeywords);
-            //    locale.MetaDescription = menuLinkViewModel.GetLocalized(x => x.MetaDescription);
-            //    locale.SeoUrl = menuLinkViewModel.GetLocalized(x => x.SeoUrl);
-            //});
-            
+                        
             List<MenuNav> menuNavs = new List<MenuNav>();
             IEnumerable<MenuLink> menuLinks = _menuLinkService.FindBy((MenuLink x) => x.Status == 1 && x.Position == 1, true);
             if (menuLinks.Any<MenuLink>())
@@ -169,45 +154,6 @@ namespace App.Front.Controllers.Custom
                     };
 
                 menuNavs = this.CreateMenuNav(null, menuNav);
-
-                //Add Localized
-                //IEnumerable<LocalizedProperty> ieLocalizedProperty = _localizedPropertyService.GetAll();
-                //List<LocalizedProperty> lst = ieLocalizedProperty.Cast<LocalizedProperty>().ToList();
-
-                ////var result = (from MenuNav mn in menuNavs
-                ////              join LocalizedProperty lp in lst
-                ////              on mn.MenuId equals lp.EntityId into o
-                ////              from lp in o.DefaultIfEmpty()
-                ////              select new MenuNav()
-                ////              {
-                ////                  MenuName = lp.LocaleValue
-                ////              });
-
-                //query1 = (from MenuNav mn in menuNavs
-                //          join LocalizedProperty lp1 in lst
-                //            on new { Id = mn.MenuId, LanguageId = languageId }
-                //            equals new { Id = lp1.EntityId, lp1.LanguageId } into LanguageSelected
-                //          join LocalizedProperty lp2 in lst
-                //            on new { Id = mn.MenuId, LanguageId = 1 }
-                //            equals new { Id = lp2.EntityId, lp2.LanguageId } into LanguageFallback
-                //          from selected in LanguageSelected.DefaultIfEmpty()
-                //          from fallback in LanguageFallback.DefaultIfEmpty()
-                //          select new MenuNav()
-                //          {
-                //              //MenuName = selected != null ? selected.LocaleValue : mn.MenuName, 
-                //              MenuName = mn.GetLocalizedByLocaleKey(mn.MenuId, languageId, "MenuLink", "MenuName"),
-                //              MenuId = mn.MenuId,
-                //              ParentId = mn.ParentId,
-                //              SeoUrl = mn.SeoUrl,
-                //              OrderDisplay = mn.OrderDisplay,
-                //              ImageUrl = mn.ImageUrl,
-                //              CurrentVirtualId = mn.CurrentVirtualId,
-                //              VirtualId = mn.VirtualId,
-                //              TemplateType = mn.TemplateType,
-                //              IconNav = mn.IconBar,
-                //              IconBar = mn.IconBar
-
-                //          }).ToList();
             }
 
             return base.PartialView(menuNavs);

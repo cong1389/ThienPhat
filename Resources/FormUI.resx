@@ -483,4 +483,7 @@
   <data name="LanguageResource" xml:space="preserve">
     <value>View string resource</value>
   </data>
+  <data name="Flag" xml:space="preserve">
+    <value>Image</value>
+  </data>
 </root>

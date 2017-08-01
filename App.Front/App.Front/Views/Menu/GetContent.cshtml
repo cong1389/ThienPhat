@@ -1,6 +1,6 @@
 ﻿<!---GetContent--->
-
 @using App.Domain.Common
+
 @if (ViewBag.TemplateType != null && ViewBag.TemplateType == (int)TemplateContent.Static || ViewBag.TemplateType == (int)TemplateContent.FixItem)
 {
     @Html.Action("GetStaticContent", "Menu", new { MenuId= ViewBag.MenuId, virtualId = ViewBag.VirtualId, title = ViewBag.Title, area = "" })

@@ -18,27 +18,27 @@ namespace App.Framework.ValidateEntity
 			base.RuleFor<HttpPostedFileBase>((LanguageFormViewModel x) => x.File).Must<LanguageFormViewModel, HttpPostedFileBase>(new Func<HttpPostedFileBase, bool>(LanguageValidator.IsValidFileType)).WithMessage<LanguageFormViewModel, HttpPostedFileBase>("Hình ảnh không đúng định dạng");
 		}
 
-		public static bool IsValidFileType(HttpPostedFileBase file)
-		{
-			bool flag;
-			if ((file == null ? true : file.ContentLength <= 0))
-			{
-				flag = false;
-			}
-			else
-			{
-				ImageFormat[] jpeg = new ImageFormat[] { ImageFormat.Jpeg, ImageFormat.Png, ImageFormat.Gif, ImageFormat.Bmp, ImageFormat.Jpeg, ImageFormat.Tiff };
-				using (Image image = Image.FromStream(file.InputStream))
-				{
-					if (!jpeg.Contains<ImageFormat>(image.RawFormat))
-					{
-						flag = false;
-						return flag;
-					}
-				}
-				flag = true;
-			}
-			return flag;
-		}
-	}
+        public static bool IsValidFileType(HttpPostedFileBase file)
+        {
+            bool flag;
+            if ((file == null ? true : file.ContentLength <= 0))
+            {
+                flag = true;
+            }
+            else
+            {
+                ImageFormat[] jpeg = new ImageFormat[] { ImageFormat.Jpeg, ImageFormat.Png, ImageFormat.Gif, ImageFormat.Bmp, ImageFormat.Jpeg, ImageFormat.Tiff };
+                using (Image image = Image.FromStream(file.InputStream))
+                {
+                    if (!jpeg.Contains<ImageFormat>(image.RawFormat))
+                    {
+                        flag = false;
+                        return flag;
+                    }
+                }
+                flag = true;
+            }
+            return flag;
+        }
+    }
 }

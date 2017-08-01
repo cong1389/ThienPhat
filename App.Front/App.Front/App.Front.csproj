@@ -1265,20 +1265,6 @@
     <Content Include="js\pricerange\bootstrap-slider.js" />
     <Content Include="js\range-price.min.js" />
     <Content Include="js\royalslider\jquery.royalslider.min.js" />
-    <Content Include="Logs\20170225.txt" />
-    <Content Include="Logs\20170226.txt" />
-    <Content Include="Logs\20170228.txt" />
-    <Content Include="Logs\20170301.txt" />
-    <Content Include="Logs\20170302.txt" />
-    <Content Include="Logs\20170315.txt" />
-    <Content Include="Logs\20170316.txt" />
-    <Content Include="Logs\20170320.txt" />
-    <Content Include="Logs\20170323.txt" />
-    <Content Include="Logs\20170324.txt" />
-    <Content Include="Logs\20170325.txt" />
-    <Content Include="Logs\20170328.txt" />
-    <Content Include="Logs\20170329.txt" />
-    <Content Include="Logs\20170404.txt" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1358,7 +1344,6 @@
     <Content Include="Areas\Admin\web.config" />
     <None Include="Properties\PublishProfiles\suachua.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Logs\20170526.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -1546,6 +1531,7 @@
     <Folder Include="images\post\23032017\" />
     <Folder Include="images\post\26022017\" />
     <Folder Include="images\post\28022017\" />
+    <Folder Include="Logs\" />
     <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>
@@ -1553,7 +1539,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

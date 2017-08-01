@@ -5,19 +5,11 @@
     ViewBag.Toolbar = new[] { "Save", "SaveNew", "Divider", "Back" };
 }
 
-@functions{
-    public string GetAntiForgeryToken()
-    {
-        string cookieToken, formToken;
-        AntiForgery.GetTokens(null, out cookieToken, out formToken);
-        return cookieToken + ":" + formToken;
-    }
-}
-
-@using (Html.BeginForm("Edit", "Language", FormMethod.Post, new { data_container = @ViewContext.RouteData.Values["controller"], @enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Language", FormMethod.Post, new { data_container = ViewContext.RouteData.Values["controller"], @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.Flag)
 
     <div class="form-horizontal">
         <div class="form-body">

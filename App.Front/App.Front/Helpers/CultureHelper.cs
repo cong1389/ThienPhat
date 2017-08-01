@@ -28,9 +28,6 @@ namespace App.Front.Helpers
 
         }
 
-
-
-
         /// <summary>
         /// Returns a valid culture name based on "name" parameter. If "name" is not valid, it returns the default culture "en-US"
         /// </summary>

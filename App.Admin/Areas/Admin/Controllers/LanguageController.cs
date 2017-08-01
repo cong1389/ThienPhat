@@ -50,17 +50,19 @@ namespace App.Admin.Controllers
                 }
                 else
                 {
-                    Language modelMap = Mapper.Map<LanguageFormViewModel, Language>(model);
-                    this._langService.CreateLanguage(modelMap);
-                    string image = string.Empty;
                     if (model.File != null && model.File.ContentLength > 0)
                     {
-                        image = Path.GetFileName(model.File.FileName);
+                        string fileName = Path.GetFileName(model.File.FileName);
                         string extension = Path.GetExtension(model.File.FileName);
-                        image = string.Concat(image.NonAccent(), extension);
-                        string str = Path.Combine(base.Server.MapPath(string.Concat("~/", Contains.FolderLanguage)), image);
+                        //image = string.Concat(image.NonAccent(), extension);
+                        string str = Path.Combine(base.Server.MapPath(string.Concat("~/", Contains.FolderLanguage)), fileName);
                         model.File.SaveAs(str);
+                        model.Flag = string.Concat(Contains.FolderLanguage, fileName);
                     }
+
+                    Language modelMap = Mapper.Map<LanguageFormViewModel, Language>(model);
+                    this._langService.CreateLanguage(modelMap);
+
                     if (this._langService.SaveLanguage() > 0)
                     {
                         base.Response.Cookies.Add(new HttpCookie("system_message", MessageUI.SuccessLanguage));
@@ -108,19 +110,19 @@ namespace App.Admin.Controllers
                     return base.View(model);
                 }
                 else
-                {
-                    Language modelMap = Mapper.Map<LanguageFormViewModel, Language>(model);
-                    this._langService.Update(modelMap);
-
-                    string empty = string.Empty;
+                {                   
                     if (model.File != null && model.File.ContentLength > 0)
                     {
-                        empty = Path.GetFileName(model.File.FileName);
+                        string fileName = Path.GetFileName(model.File.FileName);
                         string extension = Path.GetExtension(model.File.FileName);
-                        empty = string.Concat(empty.NonAccent(), extension);
-                        string str = Path.Combine(base.Server.MapPath(string.Concat("~/", Contains.FolderLanguage)), empty);
+                        //fileName = string.Concat(empty.NonAccent(), extension);
+                        string str = Path.Combine(base.Server.MapPath(string.Concat("~/", Contains.FolderLanguage)), fileName);
                         model.File.SaveAs(str);
+                        model.Flag = string.Concat(Contains.FolderLanguage, fileName);
                     }
+
+                    Language modelMap = Mapper.Map<LanguageFormViewModel, Language>(model);
+                    this._langService.Update(modelMap);
 
                     base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.UpdateSuccess, FormUI.Language)));
                     if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
@@ -140,6 +142,26 @@ namespace App.Admin.Controllers
                 return base.View(model);
             }
             return action;
+        }
+
+        public ActionResult Delete(string[] ids)
+        {
+            try
+            {
+                if (ids.Length != 0)
+                {
+                    IEnumerable<Language> language =
+                        from id in ids
+                        select this._langService.GetLanguageById(int.Parse(id));
+                    this._langService.BatchDelete(language);
+                }
+            }
+            catch (Exception exception1)
+            {
+                Exception exception = exception1;
+                ExtentionUtils.Log(string.Concat("Banner.Delete: ", exception.Message));
+            }
+            return base.RedirectToAction("Index");
         }
 
         public ActionResult Index(int page = 1, string keywords = "")
