@@ -55,44 +55,7 @@
                 <div class="clear"></div>
             </div>
 
-            <footer>
-                <div id="vnt-footer">
-                    <!--partner-->
-                    <div id="vnt-home-partner" class="lazyloading">
-                        <div class="">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <div class="title">@T("CongTyThanhVien")</div>
-                                        <div class="content">
-                                            <p>@T("DanhSachCongTy")</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div id="vnt-home-partner-slider" style="cursor: move; width: 970px; height: 113px; position: relative;">
-                                            <div data-u="slides" style="cursor: move; width: 970px; height: 113px;
-                        overflow: hidden;">
-                                                <div class="item">
-                                                    <a href="http://saomaiag.vn/" target="_blank">
-                                                        <img data-u="image" src="assets/vnt_upload/weblink/doitac1.jpg" />
-                                                    </a>
-                                                </div><div class="item"><a href="http://idiseafood.com/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac2.jpg" /></a></div><div class="item">
-                                                    <a href="http://thienphattiengiang.com/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac3.jpg" /></a>
-                                                </div><div class="item"><a href="http://ranee.com.vn/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac4.jpg" /></a></div><div class="item"><a href="http://dongthaptourist.com/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac5.jpg" /></a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/partner-->
-                    <!--= BEGIN FOOT =-->
-                    @Html.Action("GetInformationFooter", "Summary", new { area = "" })
-                  
-                    <!--= END FOOT =-->
-                </div>
-            </footer>
+           @Html.Action("Footer","Summary", new {area ="" });
 
         </div>
     </div>

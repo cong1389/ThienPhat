@@ -194,7 +194,7 @@ namespace App.Front.Controllers
 
         [ChildActionOnly]
         [PartialCache("Short")]
-        public ActionResult GetInformationFooter()
+        public ActionResult Footer()
         {
             int languageId = _workContext.WorkingLanguage.Id;
 

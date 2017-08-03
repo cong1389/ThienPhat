@@ -57,6 +57,7 @@
     <Compile Include="FakeEntity.GenericAttribute\GenericAttributeViewModel.cs" />
     <Compile Include="FakeEntity.Language\LocaleStringResourceViewModel.cs" />
     <Compile Include="FakeEntity.Language\LanguageFormViewModel.cs" />
+    <Compile Include="FakeEntity.Meu\MenuNavViewModel.cs" />
     <Compile Include="FakeEntity.Order\OrderGalleryViewModel.cs" />
     <Compile Include="FakeEntity.Order\OrderItemViewModel.cs" />
     <Compile Include="FakeEntity.Order\OrderViewModel.cs" />

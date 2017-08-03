@@ -1,4 +1,4 @@
-using App.Core.Common;
+﻿using App.Core.Common;
 using App.Domain.Entities.Ads;
 using App.Domain.Entities.Data;
 using App.Domain.Entities.Language;
@@ -184,13 +184,7 @@ namespace App.Domain.Entities.Menu
 			get;
 			set;
 		}
-
-        //public virtual ICollection<LocalizedProperty> LocalizedProperty
-        //{
-        //    get;
-        //    set;
-        //}        
-
+        
         public MenuLink()
 		{
 		}

@@ -327,6 +327,68 @@ namespace App.Admin.Controllers
             return base.View(menuLinks);
         }
 
+        [RequiredPermisson(Roles = "ViewMenu")]
+        public ActionResult Tree(int page = 1, string keywords = "")
+        {
+            List<MenuNavViewModel> lstMenuNav = new List<MenuNavViewModel>();
+
+            IEnumerable<MenuLink> menuLinks = _menuLinkService.GetAll();
+            if (menuLinks.Any<MenuLink>())
+            {
+                IEnumerable<MenuNavViewModel> menuNav =
+                    from x in menuLinks
+                    select new MenuNavViewModel()
+                    {
+                        MenuId = x.Id,
+                        ParentId = x.ParentId,
+                        MenuName = x.MenuName,
+                        SeoUrl = x.SeoUrl,
+                        OrderDisplay = x.OrderDisplay,
+                        ImageUrl = x.ImageUrl,
+                        CurrentVirtualId = x.CurrentVirtualId,
+                        VirtualId = x.VirtualId,
+                        TemplateType = x.TemplateType,
+                        IconNav = x.Icon1,
+                        IconBar = x.Icon2
+                    };
+                lstMenuNav = this.CreateMenuNav(null, menuNav);
+            }
+            return base.View(lstMenuNav);
+        }
+
+        private List<MenuNavViewModel> CreateMenuNav(int? parentId, IEnumerable<MenuNavViewModel> source)
+        {
+            List<MenuNavViewModel> ieMenuNavViewModel = (from x in source
+                                       orderby x.OrderDisplay descending
+                                       select x).Where<MenuNavViewModel>((MenuNavViewModel x) =>
+                                       {
+                                           int? nullable1 = x.ParentId;
+                                           int? nullable = parentId;
+                                           if (nullable1.GetValueOrDefault() != nullable.GetValueOrDefault())
+                                           {
+                                               return false;
+                                           }
+                                           return nullable1.HasValue == nullable.HasValue;
+                                       }).Select<MenuNavViewModel, MenuNavViewModel>((MenuNavViewModel x) => new MenuNavViewModel()
+                                       {
+                                           MenuId = x.MenuId,
+                                           ParentId = x.ParentId,
+                                           MenuName = x.MenuName,
+                                           SeoUrl = x.SeoUrl,
+                                           OrderDisplay = x.OrderDisplay,
+                                           ImageUrl = x.ImageUrl,
+                                           CurrentVirtualId = x.CurrentVirtualId,
+                                           VirtualId = x.VirtualId,
+                                           TemplateType = x.TemplateType,
+                                           OtherLink = x.OtherLink,
+                                           IconNav = x.IconNav,
+                                           IconBar = x.IconBar,
+                                           ChildNavMenu = this.CreateMenuNav(new int?(x.MenuId), source)
+                                       }).ToList<MenuNavViewModel>();
+
+            return ieMenuNavViewModel;
+        }
+
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             if (filterContext.RouteData.Values["action"].Equals("create") || filterContext.RouteData.Values["action"].Equals("edit"))

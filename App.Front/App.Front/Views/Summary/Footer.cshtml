@@ -1,0 +1,90 @@
+﻿<!---Footer--->
+@model App.Domain.Entities.GlobalSetting.ContactInformation
+@if (Model != null)
+{
+    <footer>
+        <div id="vnt-footer">
+            <!--partner-->
+            <div id="vnt-home-partner" class="lazyloading">
+                <div class="">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="title">@T("CongTyThanhVien")</div>
+                                <div class="content">
+                                    <p>@T("DanhSachCongTy")</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-10">
+                                <div id="vnt-home-partner-slider" style="cursor: move; width: 970px; height: 113px; position: relative;">
+                                    <div data-u="slides" style="cursor: move; width: 970px; height: 113px;
+                        overflow: hidden;">
+                                        <div class="item">
+                                            <a href="http://saomaiag.vn/" target="_blank">
+                                                <img data-u="image" src="assets/vnt_upload/weblink/doitac1.jpg" />
+                                            </a>
+                                        </div><div class="item"><a href="http://idiseafood.com/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac2.jpg" /></a></div><div class="item">
+                                            <a href="http://thienphattiengiang.com/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac3.jpg" /></a>
+                                        </div><div class="item"><a href="http://ranee.com.vn/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac4.jpg" /></a></div><div class="item"><a href="http://dongthaptourist.com/" target="_blank"><img data-u="image" src="assets/vnt_upload/weblink/doitac5.jpg" /></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/partner-->
+            <!--= BEGIN FOOT =-->
+            <div id="vnt-foot" class="lazyloading">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <img src="/images/logo.bmp" alt="" />
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="copyright">
+                                <div class="txt">
+                                    <div class="footer-address">
+                                        <strong>@T("DiaChi.Lable")</strong> : @Model.Address - MST: 1200653343
+                                    </div>
+                                    <div class="footer-address">
+                                        <strong>@T("DienThoai.Lable")</strong> : @Model.Hotline
+                                        @if (!string.IsNullOrEmpty(Model.MobilePhone))
+                                        {
+                                            @Html.Raw(" - " + Model.MobilePhone)
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.Fax))
+                                        {
+                                            @Html.Raw(" - Fax: " + Model.Fax)
+                                        }
+                                    </div>
+                                    <div class="footer-address">
+                                        <strong>@T("Email.Lable")</strong> : @Model.Email
+                                    </div>
+                                    <div class="text-center">
+                                        Copyright © 2016 <strong>@T("CongTy.Name")</strong>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-3 pull-right">
+                            <div class="soc">
+                                <ul class="list-inline text-right"><li><a target='_blank' href="http://" title="envelope"><i class="fa fa-envelope-square"></i></a></li><li><a target='_blank' href="http://" title="twitter"><i class="fa fa-twitter-square"></i></a></li><li><a target='_blank' href="http://facebook.com/" title="facebook"><i class="fa fa-facebook-square"></i></a></li><li><a target='_blank' href="http://google/" title="google"><i class="fa fa-google-plus-square"></i></a></li></ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--= END FOOT =-->
+        </div>
+    </footer>
+
+    
+
+    
+
+}
+<!---/GetInformationFooter--->

@@ -1,0 +1,42 @@
+﻿@using App.Framework.Ultis
+@model IEnumerable<App.FakeEntity.Meu.MenuNavViewModel>
+<div id="tree_1" class="tree-demo">
+    <ul>
+        @foreach (var child in Model)
+        {
+            <li>
+                @child.MenuName
+                @if (child.ChildNavMenu != null)
+                {
+                    <ul>
+                        @foreach (var child1 in child.ChildNavMenu)
+                        {
+                            <li data-jstree='{ "opened" : true }'>
+                                @child1.MenuName
+                                @if (child.ChildNavMenu != null)
+                                {
+                                    <ul>
+                                        @foreach (var child2 in child1.ChildNavMenu)
+                                        {
+                                            <li data - jstree='{ "disabled" : true }'> @child2.MenuName </li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    </ul>
+                }
+            </li>
+        }
+    </ul>
+</div>
+
+@section scripts{
+    <script src="@Url.FakePathAdmin("assets/jstree/dist/jstree.min.js")"></script>
+    <script src="@Url.FakePathAdmin("assets/jstree/ui-tree.min.js")"></script>
+}
+
+@section style{
+    <link href="@Url.FakePathAdmin("assets/jstree/dist/themes/default/style.min.css")" rel="stylesheet" />
+
+}

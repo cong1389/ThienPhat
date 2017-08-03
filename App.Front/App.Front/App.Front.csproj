@@ -1442,7 +1442,7 @@
     <Content Include="Views\Summary\GetAddressInfo.cshtml" />
     <Content Include="Views\Summary\GetContactHeader.cshtml" />
     <Content Include="Views\Summary\GetContactOrder.cshtml" />
-    <Content Include="Views\Summary\GetInformationFooter.cshtml" />
+    <Content Include="Views\Summary\Footer.cshtml" />
     <Content Include="Views\Summary\GetLogo.cshtml" />
     <Content Include="Views\Summary\GetMetaTagsSeo.cshtml" />
     <Content Include="Views\Summary\GetProvinceSearchBox.cshtml" />
@@ -1532,7 +1532,6 @@
     <Folder Include="images\post\26022017\" />
     <Folder Include="images\post\28022017\" />
     <Folder Include="Logs\" />
-    <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1562,7 +1561,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>9356</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:9356/</IISUrl>
+          <IISUrl>http://localhost:9357/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

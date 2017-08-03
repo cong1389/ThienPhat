@@ -291,6 +291,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\assets\jstree\dist\jstree.min.js" />
+    <Content Include="Areas\Admin\assets\jstree\dist\themes\default\32px.png" />
+    <Content Include="Areas\Admin\assets\jstree\dist\themes\default\style.min.css" />
+    <Content Include="Areas\Admin\assets\jstree\ui-tree.min.js" />
     <Content Include="Areas\Admin\assets\table-datatables\images\sort_asc.png" />
     <Content Include="Areas\Admin\assets\table-datatables\images\sort_asc_disabled.png" />
     <Content Include="Areas\Admin\assets\table-datatables\images\sort_both.png" />
@@ -909,6 +913,7 @@
     <Content Include="Areas\Admin\Views\SlideShow\_CreateOrUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\ContactInformation\_CreateOrUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\SystemSetting\_CreateOrUpdate.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Tree.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\admin.pubxml" />
     <Content Include="Content\Site.css" />
