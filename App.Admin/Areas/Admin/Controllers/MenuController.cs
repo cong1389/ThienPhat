@@ -302,34 +302,6 @@ namespace App.Admin.Controllers
         [RequiredPermisson(Roles = "ViewMenu")]
         public ActionResult Index(int page = 1, string keywords = "")
         {
-            ((dynamic)base.ViewBag).Keywords = keywords;
-            SortingPagingBuilder sortingPagingBuilder = new SortingPagingBuilder()
-            {
-                Keywords = keywords,
-                Sorts = new SortBuilder()
-                {
-                    ColumnName = "MenuName",
-                    ColumnOrder = SortBuilder.SortOrder.Descending
-                }
-            };
-            Paging paging = new Paging()
-            {
-                PageNumber = page,
-                PageSize = base._pageSize,
-                TotalRecord = 0
-            };
-            IEnumerable<MenuLink> menuLinks = this._menuLinkService.PagedList(sortingPagingBuilder, paging);
-            if (menuLinks != null && menuLinks.Any<MenuLink>())
-            {
-                Helper.PageInfo pageInfo = new Helper.PageInfo(ExtentionUtils.PageSize, page, paging.TotalRecord, (int i) => this.Url.Action("Index", new { page = i, keywords = keywords }));
-                ((dynamic)base.ViewBag).PageInfo = pageInfo;
-            }
-            return base.View(menuLinks);
-        }
-
-        [RequiredPermisson(Roles = "ViewMenu")]
-        public ActionResult Tree(int page = 1, string keywords = "")
-        {
             List<MenuNavViewModel> lstMenuNav = new List<MenuNavViewModel>();
 
             IEnumerable<MenuLink> menuLinks = _menuLinkService.GetAll();
@@ -339,6 +311,7 @@ namespace App.Admin.Controllers
                     from x in menuLinks
                     select new MenuNavViewModel()
                     {
+
                         MenuId = x.Id,
                         ParentId = x.ParentId,
                         MenuName = x.MenuName,

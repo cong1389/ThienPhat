@@ -1,36 +1,61 @@
 ﻿@using App.Framework.Ultis
 @model IEnumerable<App.FakeEntity.Meu.MenuNavViewModel>
-<div id="tree_1" class="tree-demo">
-    <ul>
-        @foreach (var child in Model)
-        {
-            <li>
-                @child.MenuName
-                @if (child.ChildNavMenu != null)
-                {
-                    <ul>
-                        @foreach (var child1 in child.ChildNavMenu)
-                        {
-                            <li data-jstree='{ "opened" : true }'>
-                                @child1.MenuName
-                                @if (child.ChildNavMenu != null)
-                                {
-                                    <ul>
-                                        @foreach (var child2 in child1.ChildNavMenu)
-                                        {
-                                            <li data - jstree='{ "disabled" : true }'> @child2.MenuName </li>
-                                        }
-                                    </ul>
-                                }
-                            </li>
-                        }
-                    </ul>
-                }
-            </li>
-        }
-    </ul>
-</div>
+@using Resources
 
+@if (Model.Any())
+{
+    <div id="tree_1" class="tree-demo">
+        <ul>
+            @foreach (var child in Model)
+        {
+        <li>
+            <a href="@Url.Action("Edit", new {id = child.MenuId, ReturnUrl = Request.Url.PathAndQuery})">@child.MenuName</a>
+            @if (child.ChildNavMenu != null)
+                {
+                <ul>
+                    @foreach (var child1 in child.ChildNavMenu)
+                        {
+                        <li data-jstree='{ "opened" : true }'>
+                            <a href="@Url.Action("Edit", new {id = child1.MenuId, ReturnUrl = Request.Url.PathAndQuery})">@child1.MenuName</a>
+                            @if (child1.ChildNavMenu != null)
+                                {
+                                <ul>
+                                    @foreach (var child2 in child1.ChildNavMenu)
+                                        {
+                                        <li data-jstree='{ "opened" : true }'>
+                                            <a href="@Url.Action("Edit", new {id = child2.MenuId, ReturnUrl = Request.Url.PathAndQuery})">@child2.MenuName</a>
+                                            @if (child2.ChildNavMenu != null)
+                                                {
+                                                <ul>
+                                                    @foreach (var child3 in child2.ChildNavMenu)
+                                                        {
+                                                        <li data-jstree='{ "opened" : true }'>
+                                                            <a href="@Url.Action("Edit", new {id = child3.MenuId, ReturnUrl = Request.Url.PathAndQuery})">@child3.MenuName</a>
+                                                        </li>
+                                                        }
+                                                </ul>
+                                                }
+                                        </li>
+                                        }
+                                </ul>
+                                }
+                        </li>
+                        }
+                </ul>
+                }
+        </li>
+        }
+        </ul>
+    </div>
+}
+else
+{
+    <tr class="odd">
+        <td class="dataTables_empty text-center" colspan="8" valign="top">
+            @MessageUI.EmptyItem
+        </td>
+    </tr>
+}
 @section scripts{
     <script src="@Url.FakePathAdmin("assets/jstree/dist/jstree.min.js")"></script>
     <script src="@Url.FakePathAdmin("assets/jstree/ui-tree.min.js")"></script>
