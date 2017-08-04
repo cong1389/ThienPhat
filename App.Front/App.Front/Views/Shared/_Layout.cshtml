@@ -41,10 +41,10 @@
             <header>
                 <div class="header-wrapper">
                     <div class="header-topbar">
-                        @Html.Action("GetMenuTopHead", "MenuNav", new { area = "" })
+                        @Html.Action("GetHeader", "MenuNav", new { area = "" })
                     </div>
                     <div class="header-main">
-                        @Html.Action("GetMenuLink", "MenuNav", new { area = "" })
+                        @Html.Action("GetTopMenu", "MenuNav", new { area = "" })
                     </div>
                 </div>
             </header>
@@ -101,12 +101,6 @@
 
         Ad_floating_init();
     </script>
-
-
-
-
-
-
 
     @RenderSection("jquerys", false)
 

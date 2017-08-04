@@ -1,9 +1,8 @@
 ﻿<!---GetMenuCategory--->
-
 @using App.Domain.Common
-@using App.Front.Models
 @using App.Utils
-@model IEnumerable<MenuNav>
+@using App.FakeEntity.Meu
+@model IEnumerable<MenuNavViewModel>
 
 @if (Model != null)
 {
@@ -27,7 +26,7 @@
                             </a>
                             <ul class="desktop-nav vertical-left-megamenu menu clearfix">                               
                                 
-                                @foreach (MenuNav item in Model)
+                                @foreach (MenuNavViewModel item in Model)
                                 {
                                     <li class="megamenu-2349 megamenu-container megamenu-rows  menu-parent">
                                         <a href="@Url.Action("GetContent","Menu",new {menu = item.SeoUrl, area = "" }) " data-rel="#" title="Smartphone & Tablets">

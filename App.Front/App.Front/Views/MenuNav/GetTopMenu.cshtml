@@ -1,12 +1,12 @@
-﻿<!----GetMenuLink ---->
-
+﻿<!----GetTopMenu ---->
 @using App.Domain.Common
 @using App.Front.Models
 @using App.Utils
 @using App.Domain.Entities.Menu
 @using Resources
 @using App.Front.Helpers
-@model IEnumerable<MenuNav>
+@using App.FakeEntity.Meu
+@model IEnumerable<MenuNavViewModel>
 
 @if (Model != null)
 {
@@ -25,7 +25,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @foreach (MenuNav item in Model)
+                    @foreach (MenuNavViewModel item in Model)
                     {
                         var home = i == 0 ? "home" : "";
                         <li class="@home"><a href="@Url.Action("GetContent", "Menu", new {menu = item.SeoUrl, area = ""})">@item.MenuName </a></li>
@@ -37,5 +37,4 @@
         </div>
     </nav>    
 }
-
-<!----/GetMenuLink ---->
+<!----/GetTopMenu ---->

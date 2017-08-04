@@ -1,5 +1,4 @@
-﻿
-<!---GetStaticContent---->
+﻿<!---GetStaticContent---->
 @using App.Domain.Common
 @using Resources
 @model App.Domain.Entities.Data.StaticContent
@@ -7,7 +6,6 @@
 {
     @Html.Action("BannerTopOfNewsPage", "Banner", new { menuId = Model.MenuId })
     @Html.Partial("_BreadCrumb")
-
     if (Model.MenuLink.TemplateType == (int)TemplateContent.FixItem)
     {
         @Html.Action("GetStaticContentParent", "Menu", new { title = Model.Title, menuId = Model.MenuId, virtualId = Model.MenuLink.VirtualId })
@@ -18,6 +16,5 @@
             @Html.Raw(Model.Description)
         </div>
     }
-
 }
 <!---/GetStaticContent---->

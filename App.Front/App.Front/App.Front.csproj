@@ -375,7 +375,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageSize.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MenuNav.cs" />
     <Compile Include="Models\PartialCacheAttribute.cs" />
     <Compile Include="Models\SeachConditions.cs" />
     <Compile Include="Models\SendMail.cs" />
@@ -1384,10 +1383,10 @@
     <Content Include="Views\MenuNav\GetFixedHomePage.cshtml" />
     <Content Include="Views\MenuNav\GetFooterLink.cshtml" />
     <Content Include="Views\MenuNav\GetMenuCategory.cshtml" />
-    <Content Include="Views\MenuNav\GetMenuLink.cshtml" />
+    <Content Include="Views\MenuNav\GetTopMenu.cshtml" />
     <Content Include="Views\MenuNav\GetMenuLinkSideBar.cshtml" />
     <Content Include="Views\MenuNav\GetMenuOnHomePage.cshtml" />
-    <Content Include="Views\MenuNav\GetMenuTopHead.cshtml" />
+    <Content Include="Views\MenuNav\GetHeader.cshtml" />
     <Content Include="Views\MenuNav\StickyBar.cshtml" />
     <Content Include="Views\Menu\GetAccesssories.cshtml" />
     <Content Include="Views\Menu\GetContent.cshtml" />

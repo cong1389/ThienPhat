@@ -3,6 +3,7 @@ using App.Domain.Entities.GlobalSetting;
 using App.Domain.Entities.Location;
 using App.Domain.Entities.Menu;
 using App.Domain.Interfaces.Services;
+using App.FakeEntity.Meu;
 using App.Front.Models;
 using App.Service.Common;
 using App.Service.ContactInformation;
@@ -51,12 +52,12 @@ namespace App.Front.Controllers
             this._workContext = workContext;
         }
 
-        private List<MenuNav> CreateMenuNav(int? parentId, IEnumerable<MenuNav> source)
+        private List<MenuNavViewModel> CreateMenuNav(int? parentId, IEnumerable<MenuNavViewModel> source)
         {
             return (
                 from x in source
                 orderby x.OrderDisplay descending
-                select x).Where<MenuNav>((MenuNav x) =>
+                select x).Where<MenuNavViewModel>((MenuNavViewModel x) =>
                 {
                     int? nullable1 = x.ParentId;
                     int? nullable = parentId;
@@ -65,7 +66,7 @@ namespace App.Front.Controllers
                         return false;
                     }
                     return nullable1.HasValue == nullable.HasValue;
-                }).Select<MenuNav, MenuNav>((MenuNav x) => new MenuNav()
+                }).Select<MenuNavViewModel, MenuNavViewModel>((MenuNavViewModel x) => new MenuNavViewModel()
                 {
                     MenuId = x.MenuId,
                     ParentId = x.ParentId,
@@ -76,7 +77,7 @@ namespace App.Front.Controllers
                     CurrentVirtualId = x.CurrentVirtualId,
                     VirtualId = x.VirtualId,
                     ChildNavMenu = this.CreateMenuNav(new int?(x.MenuId), source)
-                }).ToList<MenuNav>();
+                }).ToList<MenuNavViewModel>();
         }
 
         [ChildActionOnly]
@@ -104,13 +105,13 @@ namespace App.Front.Controllers
         [PartialCache("Short")]
         public ActionResult GetCategorySearchBox()
         {
-            List<MenuNav> menuNavs = new List<MenuNav>();
+            List<MenuNavViewModel> menuNavs = new List<MenuNavViewModel>();
             IEnumerable<MenuLink> menuLinks = this._menuLinkService.FindBy((MenuLink x) => x.Status == 1 && x.TemplateType == 2, true);
             if (menuLinks.Any<MenuLink>())
             {
-                IEnumerable<MenuNav> menuNav =
+                IEnumerable<MenuNavViewModel> menuNav =
                     from x in menuLinks
-                    select new MenuNav()
+                    select new MenuNavViewModel()
                     {
                         MenuId = x.Id,
                         ParentId = x.ParentId,
