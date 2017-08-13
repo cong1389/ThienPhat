@@ -17,6 +17,7 @@
 
 .navbar-default .navbar-nav > li > a {
     color: #fff;
+    text-transform: uppercase;
 }
 
 .menutopHeade .search {
@@ -158,12 +159,12 @@
 
 .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
     color: #808080;
-    background-color: transparent; 
+    background-color: transparent;
 }
 
 .logoText {
-    font-size:17px;
-        color: #3023cb;
+    font-size: 17px;
+    color: #3023cb;
 }
 
 /* ============================================== */
@@ -202,4 +203,23 @@
     div#vnt-home-my-product .content {
         width: 100% !important;
     }
+}
+
+.logo img {
+    width: 160px;
+    height: 75px;
+}
+
+
+.brand img {
+    width: 100px;
+    height: 80px;
+}
+
+.logofooter {
+    margin-top: 25px;
+}
+
+#navbar li {
+    padding: 0px 20px;
 }

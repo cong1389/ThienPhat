@@ -44,7 +44,10 @@
 /*=============END: MY BOOTSTRAP=============*/
 body{
     font-size: 16px;
-    font-family: "MyriadPro";
+    /* font-family: "MyriadPro"; */
+	text-transform: inherit;
+    font-family: Oswald;
+   
     color: #333333;
     line-height: 24px;
 }
@@ -505,13 +508,15 @@ div#vnt-main {
 }
 /*================END BOX MID=============*/
 /*============BEGIN FOOTER===============*/
-div#vnt-foot {
+.divFooter {
     background: #3B5998;
     padding: 10px 0px;
+    border-bottom: 1px solid #fff;
+    color: #fff;
 }
 .copyright .txt {
     color: #fff;
-    font-style: italic;
+    /* font-style: italic; */
 }
 .copyright .txt .did {
     font-style: initial;
@@ -524,11 +529,11 @@ div#vnt-foot {
     color: #fff;
 }
 .copyright .footer-address {
-    color: #ffbebb;
+    color: #fff;
 }
 
 .soc {
-    margin-top: 17px;
+    margin-top: 35px;
 }
 .soc ul {
     margin: 0;
@@ -607,3 +612,4 @@ div#vnt-foot {
     60% {-o-transform: translate(-50%,-60%);}
 }
 /*=============END GOTOP============
+li

@@ -144,8 +144,8 @@ namespace App.Admin.Controllers
             {
                 locale.Id = modelMap.Id;
                 locale.LocalesId = modelMap.Id;
-                locale.Title = modelMap.GetLocalized(x => x.Title, Id, languageId, false, false);            
-                locale.Description = modelMap.GetLocalized(x => x.Description, Id, languageId, false, false);                
+                locale.Title = modelMap.GetLocalized(x => x.Title,modelMap.Id);            
+                locale.Description = modelMap.GetLocalized(x => x.Description, Id);                
             });
 
             return base.View(modelMap);

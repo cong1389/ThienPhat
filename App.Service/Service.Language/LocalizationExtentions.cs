@@ -1,4 +1,5 @@
-﻿using App.Service.Common;
+﻿using App.Core.Common;
+using App.Service.Common;
 using App.Service.GenericAttribute;
 using App.Service.LocalizedProperty;
 using System;
@@ -10,15 +11,10 @@ namespace App.Service.Language
 {
     public static class LocalizationExtentions
     {
-        static LocalizationExtentions()
-        {
-
-        }
-
-        public static string GetLocalized<T>(this T entity, Expression<Func<T, string>> keySelector)
+        public static string GetLocalized<T>(this T entity, Expression<Func<T, string>> keySelector, int entityId)
         {
             var workContext = DependencyResolver.Current.GetService<IWorkContext>();
-            return GetLocalized(entity, keySelector, 1, workContext.WorkingLanguage.Id);
+            return GetLocalized(entity, keySelector, entityId, workContext.WorkingLanguage.Id);
         }
 
         /// <summary>
@@ -34,18 +30,20 @@ namespace App.Service.Language
         public static string GetLocalized<T>(this T entity,
             Expression<Func<T, string>> keySelector, int entityId, int languageId,
             bool returnDefaultValue = true, bool ensureTwoPublishedLanguages = true)
+
         {
             return GetLocalized<T, string>(entity, keySelector, entityId, languageId, returnDefaultValue, ensureTwoPublishedLanguages);
         }
 
         public static string GetLocalized<T, TPropType>(this T entity,
            Expression<Func<T, TPropType>> keySelector,
-            int entityId,
+           int entityId,
            int languageId,
            bool returnDefaultValue = true,
            bool ensureTwoPublishedLanguages = true)
 
         {
+
             var member = keySelector.Body as MemberExpression;
             if (member == null)
             {
@@ -62,7 +60,6 @@ namespace App.Service.Language
                        keySelector));
             }
             string result = null;
-
 
             // load localized value
             string localeKeyGroup = typeof(T).Name.Replace("ViewModel", "");
@@ -91,10 +88,10 @@ namespace App.Service.Language
         /// <param name="localeKeyGroup">Tên nhóm</param>
         /// <param name="localeKey">Tên key</param>
         /// <returns></returns>
-        public static string GetLocalizedByLocaleKey<T>(this T entity,string fallBackValue, int entityId,int languageId, string localeKeyGroup, string localeKey)
+        public static string GetLocalizedByLocaleKey<T>(this T entity, string fallBackValue, int entityId, int languageId, string localeKeyGroup, string localeKey)
         {
             string result = null;
-           // string localeKeyGroup = typeof(T).Name.Replace("ViewModel", "");
+            // string localeKeyGroup = typeof(T).Name.Replace("ViewModel", "");
             if (languageId > 0)
             {
                 var _localizedPropertyService = DependencyResolver.Current.GetService<ILocalizedPropertyService>();

@@ -1,3 +1,4 @@
+using App.Core.Common;
 using App.Service.Language;
 using Resources;
 using System;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace App.FakeEntity.Slide
 {
-	public class SlideShowViewModel: ILocalizedModel<SlideShowLocalizesViewModel>
+	public class SlideShowViewModel:  ILocalizedModel<SlideShowLocalizesViewModel>
     {
 		[AllowHtml]
 		[Display(Name="Description", ResourceType=typeof(FormUI))]

@@ -1175,25 +1175,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="css\animate.css" />
-    <Content Include="css\animations.css" />
-    <Content Include="css\bootstrap.min.css" />
-    <Content Include="css\cssedit.css" />
-    <Content Include="css\font-awesome.min.css" />
-    <Content Include="css\owl.carousel.css" />
-    <Content Include="css\owl.theme.css" />
-    <Content Include="css\pricerange\slider.css" />
-    <Content Include="css\reset.min.css" />
-    <Content Include="css\royalslider\blank.gif" />
-    <Content Include="css\royalslider\grab.png" />
-    <Content Include="css\royalslider\grabbing.png" />
-    <Content Include="css\royalslider\preloader-white.gif" />
-    <Content Include="css\royalslider\preloader.gif" />
-    <Content Include="css\royalslider\royalslider.css" />
-    <Content Include="css\royalslider\royalslider.min.css" />
-    <Content Include="css\royalslider\rs-default.css" />
-    <Content Include="css\royalslider\rs-default.png" />
-    <Content Include="css\site.css" />
+    <Content Include="Content\cssedit.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1254,16 +1236,6 @@
     <Content Include="images\slide-ion2.jpg" />
     <Content Include="images\slogan.png" />
     <Content Include="images\truyen-thong.jpg" />
-    <Content Include="js\bootstrap.min.js" />
-    <Content Include="js\css3-animate-it.js" />
-    <Content Include="js\flaunt.js" />
-    <Content Include="js\jquery.min.js" />
-    <Content Include="js\jsedit.js" />
-    <Content Include="js\owl.carousel.js" />
-    <Content Include="js\page.js" />
-    <Content Include="js\pricerange\bootstrap-slider.js" />
-    <Content Include="js\range-price.min.js" />
-    <Content Include="js\royalslider\jquery.royalslider.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1379,7 +1351,7 @@
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Home\FlowForm.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\MenuNav\GetCategoryHome.cshtml" />
+    <Content Include="Views\MenuNav\MenuNavLeft.cshtml" />
     <Content Include="Views\MenuNav\GetFixedHomePage.cshtml" />
     <Content Include="Views\MenuNav\GetFooterLink.cshtml" />
     <Content Include="Views\MenuNav\GetMenuCategory.cshtml" />

@@ -2,6 +2,7 @@
 using App.Domain.Entities.Language;
 using App.Domain.Entities.Menu;
 using App.Domain.Interfaces.Services;
+using App.Extensions;
 using App.FakeEntity.Meu;
 using App.Front.Controllers;
 using App.Front.Models;
@@ -130,10 +131,15 @@ namespace App.Front.Controllers.Custom
         [ChildActionOnly]
         public ActionResult GetTopMenu()
         {
-            int languageId = _workContext.WorkingLanguage.Id;
-                        
-            List<MenuNavViewModel> menuNavs = new List<MenuNavViewModel>();
             IEnumerable<MenuLink> menuLinks = _menuLinkService.FindBy((MenuLink x) => x.Status == 1 && x.Position == 1, true);
+
+            //Convert to localized
+            menuLinks = menuLinks.Select(x =>
+            {
+                return x.ToModel();
+            });
+
+            List<MenuNavViewModel> menuNavs = new List<MenuNavViewModel>();
             if (menuLinks.Any<MenuLink>())
             {
                 IEnumerable<MenuNavViewModel> menuNav =
@@ -142,8 +148,9 @@ namespace App.Front.Controllers.Custom
                     {
                         MenuId = x.Id,
                         ParentId = x.ParentId,
-                        MenuName = x.GetLocalizedByLocaleKey(x.MenuName, x.Id, languageId, "MenuLink", "MenuName"),
+                        MenuName = x.MenuName,
                         SeoUrl = x.SeoUrl,
+                        OtherLink = x.SourceLink,
                         OrderDisplay = x.OrderDisplay,
                         ImageUrl = x.ImageUrl,
                         CurrentVirtualId = x.CurrentVirtualId,
@@ -166,30 +173,29 @@ namespace App.Front.Controllers.Custom
         /// <param name="virtualId"></param>
         /// <returns></returns>
         [ChildActionOnly]
-        public ActionResult GetCategoryHome(string virtualId)
-        {
-            int languageId = _workContext.WorkingLanguage.Id;
-
-            List<MenuNavViewModel> menuNavs = new List<MenuNavViewModel>();
+        public ActionResult MenuNavLeft(string virtualId)
+        {            
             virtualId = (virtualId != null && virtualId.Count(i => i.Equals('/')) > 0) ? virtualId.Split('/')[0] : virtualId;
             IEnumerable<MenuLink> menuLinks = this._menuLinkService.FindBy((MenuLink x) =>
                                                     x.Status == 1
                                                     && x.VirtualId.Contains(virtualId)
                                                     , true);
+            //Convert to localized
+            menuLinks = menuLinks.Select(x =>
+            {
+                return x.ToModel();
+            });
 
-            if (menuLinks == null)
-                return HttpNotFound();
-
-            IEnumerable<MenuNavViewModel> menuNavLocalized = null;
+            List<MenuNavViewModel> menuNavs = new List<MenuNavViewModel>();           
             if (menuLinks.Any<MenuLink>())
             {
-                 menuNavLocalized =
+                IEnumerable<MenuNavViewModel> menuNavLocalized =
                     from x in menuLinks
                     select new MenuNavViewModel()
                     {
                         MenuId = x.Id,
                         ParentId = x.ParentId,
-                        MenuName = x.GetLocalizedByLocaleKey(x.MenuName, x.Id, languageId, "MenuLink", "MenuName"),
+                        MenuName = x.MenuName,
                         SeoUrl = x.SeoUrl,
                         OrderDisplay = x.OrderDisplay,
                         ImageUrl = x.ImageUrl,
@@ -282,6 +288,13 @@ namespace App.Front.Controllers.Custom
         {
             List<MenuNavViewModel> menuNavs = new List<MenuNavViewModel>();
             IEnumerable<MenuLink> menuLinks = this._menuLinkService.FindBy((MenuLink x) => x.Status == 1 && x.Position == 7, true);
+
+            //Convert to localized
+            menuLinks = menuLinks.Select(x =>
+            {
+                return x.ToModel();
+            });
+
             if (menuLinks.Any<MenuLink>())
             {
                 IEnumerable<MenuNavViewModel> menuNav =

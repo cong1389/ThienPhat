@@ -12,7 +12,7 @@
 {
     int i = 0;
 
-    <nav id="vnt-menutop"  class="navbar navbar-default navbar-static-top">
+    <nav id="vnt-menutop" class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -21,20 +21,42 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-               
+
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    @{
+                        int index = 0;
+                    }
                     @foreach (MenuNavViewModel item in Model)
                     {
-                        var home = i == 0 ? "home" : "";
-                        <li class="@home"><a href="@Url.Action("GetContent", "Menu", new {menu = item.SeoUrl, area = ""})">@item.MenuName </a></li>
+                        if (index == 0)
+                        {
+                            <li>
+                                <a href="">
+                                    <i class='fa fa-home'></i>@item.MenuName
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="@(item.OtherLink = item.OtherLink !=null? item.OtherLink :@Url.Action("GetContent", "Menu", new {menu = item.SeoUrl , area = ""}) )">
+                                    @item.MenuName
+                                </a>
+
+                                @*<a href="@Url.Action("GetContent", "Menu", new {menu = item.OtherLink == null ? item.SeoUrl:item.OtherLink , area = ""})">
+                                        @item.MenuName
+                                    </a>*@
+                            </li>
+                        }
+                        index++;
                     }
-                    
+
                 </ul>
-                
+
             </div><!--/.nav-collapse -->
         </div>
-    </nav>    
-}
+    </nav>
+                        }
 <!----/GetTopMenu ---->
