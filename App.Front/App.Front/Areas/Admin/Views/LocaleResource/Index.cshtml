@@ -5,7 +5,7 @@
 @model IEnumerable<App.Domain.Entities.Language.LocaleStringResource>
 @{
     ViewBag.Title = UI.LanguageManagement;
-    var grid = new WebGrid((IEnumerable<App.Domain.Entities.Language.LocaleStringResource>)ViewBag.Localization, canPage: false);
+    var grid = new WebGrid((IEnumerable<App.Domain.Entities.Language.LocaleStringResource>)ViewBag.Localization, rowsPerPage: 10);
 }
 
 <div class="navbar navbar-default" role="search">
@@ -17,23 +17,40 @@
     <div class="col-sm-5">
         <div class="form-body">
             <div class="form-group">
-                <label class="control-label col-md-3" for="ParentId">Select language</label>
+                <label class="control-label col-md-4" for="ParentId">Select language</label>
                 <div class="col-md-6">
 
-                    @Html.DropDownList("drpLanguage", new SelectList(ViewBag.AllLanguage, "Id", "LanguageName", @ViewBag.LanguageSelected != null? @ViewBag.LanguageSelected : 1)
+                    @Html.DropDownList("drpLanguage", new SelectList(ViewBag.AllLanguage, "Id", "LanguageName", @ViewBag.LanguageSelected != null ? @ViewBag.LanguageSelected : 1)
                    , new { @class = "form-control", @onChange = "drpLanguage_change();" })
 
                     <script>
                         function drpLanguage_change() {
-                          
-                                window.location = '@Url.Action("Index", "LocaleResource")?languageId=' + $("#drpLanguage").val();
-                            }
+                            window.location = '@Url.Action("Index", "LocaleResource")?languageId=' + $("#drpLanguage").val() + '&keywords=' + $('#txtSearch').val();
+                        }
                     </script>
 
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="col-sm-5">
+        <div class="form-body">
+            <div class="form-group">
+
+                <div class="col-md-11">
+                    <div class="form-group">
+                        <input id="txtSearch" type="text" name="search" class="form-control" value="@ViewBag.keywords" />
+                    </div>
+                </div>
+                <div class="control-label col-md-1">
+                    <button type="submit" value="Search" class="btn btn-success" onclick="drpLanguage_change();">Search</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div>
 
 @using (Html.BeginForm("Edit", "LocaleResource", FormMethod.Post, new { data_container = @ViewContext.RouteData.Values["controller"], @enctype = "multipart/form-data" }))
@@ -69,7 +86,7 @@
                                     , "ResourceValue", (item.Value as LocaleStringResource).Id.ToString()))
 
                                 , grid.Column("Options",
-                                    format: item => Html.DisplayRecordOptions(), canSort: false)
+                                    format: item => Html.DisplayRecordOptions(), canSort: false, style: "colOption")
 
                                 )
                             )
@@ -77,13 +94,28 @@
                             .Replace("{CheckBoxHeading}", "<div class='text-center'><input type='checkbox' id='allBox'/></div>")
                         )
 }
-
+@Html.Hidden("dir", grid.SortDirection)
+@Html.Hidden("col", grid.SortColumn)
 <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
 <script src="/signalr/hubs"></script>
 
 <script>
 
     $(function () {
+        try {
+            var dir = $('#dir').val();
+            var col = $('#col').val();
+            var header = $("th a[href*=" + col + "]");
+            if (dir == "Ascending") {
+                header.text(header.text() + "  ▲")
+            }
+            if (dir == "Descending") {
+                header.text(header.text() + "  ▼");
+            }
+
+        } catch (e) {
+
+        }
 
         var webGridHubClient = $.connection.webGridHub;
 
@@ -158,16 +190,17 @@
 
         var tbod = grd.rows[0].parentNode;
         var newRow = grd.rows[grd.rows.length - 1].cloneNode(true);
+
         //var id = $(newRow).find(':nth-child(1)').find("input:hidden").val();
         var toolbar = $(newRow).find(':nth-child(1)').find(".record-toolbar").attr("value", "-1");
 
-        //tbod.appendChild(newRow);
+        // tbod.appendChild(newRow);
         // return false;
 
         //cell.appendChild(element);
         var data = {
             "languageId": @ViewBag.LanguageSelected
-        };
+            };
 
         $.ajax({
             url: '@Url.Action("NewRow", "LocaleResource")',

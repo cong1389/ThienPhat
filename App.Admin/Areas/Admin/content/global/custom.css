@@ -219,12 +219,18 @@ input.select-page {
 
 /*style checkbox and radio button*/
 .tableSort {
-    padding-bottom:20px !important;
+    padding-bottom: 20px !important;
 }
+
 .imgDatatable {
     width: 30px;
     height: 30px;
 }
+
 .page-header .page-header-menu .search-form {
-       width: 160px;
+    width: 160px;
+}
+
+.colOption {
+    width: 15%;
 }

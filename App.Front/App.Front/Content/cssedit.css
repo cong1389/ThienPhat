@@ -223,3 +223,7 @@
 #navbar li {
     padding: 0px 20px;
 }
+
+#vnt-sidebar .box-title .fTitle a {
+    color:#fff;
+}

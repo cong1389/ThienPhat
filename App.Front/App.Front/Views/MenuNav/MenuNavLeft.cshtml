@@ -15,7 +15,8 @@
                     if (item.ChildNavMenu.IsAny())
                     {
                         <div class="box-title">
-                            <div class="fTitle">@item.MenuName</div>
+                            <div class="fTitle"><a href="@Url.Action("GetContent", "Menu", new {menu = item.SeoUrl, area = ""})">@item.MenuName</a>
+                           </div>
                         </div>
                         <ul>
                             @foreach (var lv1 in item.ChildNavMenu)

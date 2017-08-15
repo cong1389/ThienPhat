@@ -29,11 +29,15 @@ namespace App.Admin.Controllers
             this._localeStringResourceService = localeStringResourceService;
         }
 
-        public ActionResult Index(int languageId)
+        public ActionResult Index(int languageId, int page = 1, string keywords = "")
         {
             var resources = _services.Localization.GetByLanguageId(languageId);
-            ViewBag.Localization = resources;
+            resources = resources.Where(m => m.ResourceName.Contains(keywords) || m.ResourceValue.Contains(keywords));
+            ViewBag.Localization = resources.OrderByDescending(m => m.CreatedDate);
+
+            //Lưu lại languageId, keywork để k bị mất value text ở view
             ViewBag.LanguageSelected = languageId;
+            ViewBag.keywords = keywords;
 
             IEnumerable<Language> all = _langService.GetAll();
             ((dynamic)base.ViewBag).AllLanguage = all;
@@ -101,6 +105,6 @@ namespace App.Admin.Controllers
 
             return base.Json(new { data = newRow, success = true }, JsonRequestBehavior.AllowGet);
         }
-        
+
     }
 }

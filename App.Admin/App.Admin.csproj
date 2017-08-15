@@ -913,7 +913,6 @@
     <Content Include="Areas\Admin\Views\SlideShow\_CreateOrUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\ContactInformation\_CreateOrUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\SystemSetting\_CreateOrUpdate.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Tree.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\admin.pubxml" />
     <Content Include="Content\Site.css" />

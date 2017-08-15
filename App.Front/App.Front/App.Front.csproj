@@ -366,7 +366,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BreadCrumb.cs" />
     <Compile Include="Models\ContactForm.cs" />
@@ -1345,8 +1344,6 @@
     <Content Include="Views\Banner\GetBannerRight.cshtml" />
     <Content Include="Views\Banner\GetBannerSideBar.cshtml" />
     <Content Include="Views\Contact\ContactUs.cshtml" />
-    <Content Include="Views\CustomerCare\GetCustomerCareCategory.cshtml" />
-    <Content Include="Views\FlowStep\Index.cshtml" />
     <Content Include="Views\GoogleMap\ShowGoogleMap.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Home\FlowForm.cshtml" />
@@ -1409,7 +1406,6 @@
     <Content Include="Views\StaticContent\GetHomeIntro.cshtml" />
     <Content Include="Views\StaticContent\GetHomeProduct.cshtml" />
     <Content Include="Views\StaticContent\GetSlogan.cshtml" />
-    <Content Include="Views\StoreList\Index.cshtml" />
     <Content Include="Views\Summary\GetAddressInfo.cshtml" />
     <Content Include="Views\Summary\GetContactHeader.cshtml" />
     <Content Include="Views\Summary\GetContactOrder.cshtml" />
@@ -1489,6 +1485,7 @@
     <Folder Include="assets\themes\kuteshop\js\modules\sendtoafriend\" />
     <Folder Include="assets\themes\kuteshop\js\modules\socialsharing\js\" />
     <Folder Include="assets\themes\kuteshop\js\tools\" />
+    <Folder Include="Helpers\" />
     <Folder Include="images\icons\" />
     <Folder Include="images\news\04042017\" />
     <Folder Include="images\news\18042017\" />
