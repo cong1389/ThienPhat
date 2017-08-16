@@ -38,8 +38,8 @@
             <div id="vnt-foot" class="lazyloading divFooter">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-3">
-                            <img src="/images/logofooter.png" alt="" class="logofooter" />
+                        <div class="col-sm-3 ">
+                            <img src="/images/logofooter.png" alt="" class="logofooter center-block" />
                         </div>
                         <div class="col-sm-7">
                             <div class="copyright">
@@ -54,19 +54,19 @@
                                         <i class="fa fa-codiepie fa-fw" aria-hidden="true"></i>@T("Tax.Lable") :1200653343
                                     </div>
                                     <div class="footer-address">
-                                       <i class="fa fa-mobile fa-fw" aria-hidden="true"></i>@T("DienThoai.Lable"): @Model.Hotline
+                                        <i class="fa fa-mobile fa-fw" aria-hidden="true"></i>@T("DienThoai.Lable"): @Model.Hotline
                                         @if (!string.IsNullOrEmpty(Model.MobilePhone))
                                         {
-                                        @Html.Raw(" - " + Model.MobilePhone)
+                                            @Html.Raw(" - " + Model.MobilePhone)
                                         }
                                         @if (!string.IsNullOrEmpty(Model.Fax))
                                         {
-                                        @Html.Raw(" - " + Model.Fax)
+                                            @Html.Raw(" - " + Model.Fax)
                                         }
                                     </div>
                                     <div class="footer-address">
                                         <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i>@T("Email.Lable") : @Model.Email
-                                    </div>                                   
+                                    </div>
                                 </div>
 
                             </div>
@@ -99,3 +99,4 @@
 
 }
 <!---/GetInformationFooter--->
+

@@ -1327,6 +1327,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jsedit.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
@@ -1355,7 +1356,7 @@
     <Content Include="Views\MenuNav\GetTopMenu.cshtml" />
     <Content Include="Views\MenuNav\GetMenuLinkSideBar.cshtml" />
     <Content Include="Views\MenuNav\GetMenuOnHomePage.cshtml" />
-    <Content Include="Views\MenuNav\GetHeader.cshtml" />
+    <Content Include="Views\MenuNav\Header.cshtml" />
     <Content Include="Views\MenuNav\StickyBar.cshtml" />
     <Content Include="Views\Menu\GetAccesssories.cshtml" />
     <Content Include="Views\Menu\GetContent.cshtml" />

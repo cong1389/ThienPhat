@@ -76,8 +76,8 @@ a:hover{
 }
 /*===============BEGIN: HEADER==============*/
 div#vnt-header {
-    padding: 20px 0px;
-    border-top: solid 2px #3B5998;
+    padding: 5px 0px;
+    /* border-top: solid 2px #3B5998; */
 }
 .logo {
     float: left;

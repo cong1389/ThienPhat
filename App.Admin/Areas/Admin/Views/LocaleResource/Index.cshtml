@@ -5,7 +5,7 @@
 @model IEnumerable<App.Domain.Entities.Language.LocaleStringResource>
 @{
     ViewBag.Title = UI.LanguageManagement;
-    var grid = new WebGrid((IEnumerable<App.Domain.Entities.Language.LocaleStringResource>)ViewBag.Localization, rowsPerPage: 10);
+    var grid = new WebGrid((IEnumerable<App.Domain.Entities.Language.LocaleStringResource>)ViewBag.Localization, rowsPerPage: 10, canPage: true);
 }
 
 <div class="navbar navbar-default" role="search">
@@ -64,7 +64,7 @@
                             },
                             emptyRowCellValue: "No Records Found",
                             headerStyle: "grid-header",
-
+                            footerStyle: "table-pager",
                             columns: grid.Columns(
 
                                 grid.Column(null, null,
@@ -92,10 +92,12 @@
                             )
                             .ToString()
                             .Replace("{CheckBoxHeading}", "<div class='text-center'><input type='checkbox' id='allBox'/></div>")
-                        )
+                        )    
 }
+
 @Html.Hidden("dir", grid.SortDirection)
 @Html.Hidden("col", grid.SortColumn)
+
 <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
 <script src="/signalr/hubs"></script>
 

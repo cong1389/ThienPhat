@@ -905,7 +905,6 @@
     <Content Include="Areas\Admin\Views\Order\WarrantyForm.cshtml" />
     <Content Include="Areas\Admin\Views\Menu\_CreateOrUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\LocaleResource\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\LocaleResource\Create.cshtml" />
     <Content Include="Areas\Admin\Views\LocaleResource\_NewRow.cshtml" />
     <Content Include="Areas\Admin\Views\StaticContent\_CreateOrUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\Post\_CreateOrUpdate.cshtml" />

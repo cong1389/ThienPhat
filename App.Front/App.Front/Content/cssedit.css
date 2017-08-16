@@ -36,6 +36,14 @@
 /*                                      1920x1080 */
 /* ============================================== */
 @media screen and (min-width: 1080px) and (max-width: 1920px) {
+    .brand {
+        padding-top: 10px;
+    }
+
+        .brand img {
+            width: 70px;
+            height: 70px;
+        }
 }
 
 /* ============================================== */
@@ -43,6 +51,15 @@
 /*                                       1280x800 */
 /* ============================================== */
 @media screen and (min-width: 800px) and (max-width: 1280px) {
+
+    .brand {
+        padding-top: 10px;
+    }
+
+        .brand img {
+            width: 70px;
+            height: 70px;
+        }
 }
 
 /* ============================================== */
@@ -50,13 +67,27 @@
 /*                                       980x     */
 /* ============================================== */
 @media screen and (min-width: 980px) {
+
+    .brand {
+        padding-top: 10px;
+    }
+
+        .brand img {
+            width: 70px;
+            height: 70px;
+        }
 }
 
 /* ============================================== */
 /* Twitter Bootstrap                              */
 /*                                       x979     */
 /* ============================================== */
-@media screen and (max-width: 979px) {
+@media screen and (max-width: 979px) {   
+
+        .brand img {
+            width: 70px;
+            height: 70px;
+        }
 }
 
 /* ============================================== */
@@ -64,6 +95,15 @@
 /*                                       1024x768 */
 /* ============================================== */
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    .brand {
+        padding-top: 10px;
+    }
+
+        .brand img {
+            width: 70px;
+            height: 70px;
+        }
 }
 
 /* ============================================== */
@@ -71,6 +111,14 @@
 /*                                       1024x768 */
 /* ============================================== */
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:landscape) {
+    
+.brand {
+    padding-top:10px;
+}
+    .brand img {
+        width: 70px;
+        height: 70px;
+    }
 }
 
 /* ============================================== */
@@ -78,6 +126,14 @@
 /*                                       768x1024 */
 /* ============================================== */
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:portrait) {
+    
+.brand {
+    padding-top:10px;
+}
+    .brand img {
+        width: 70px;
+        height: 70px;
+    }
 }
 
 /* ============================================== */
@@ -85,6 +141,15 @@
 /*                                        800x600 */
 /* ============================================== */
 @media screen and (min-width: 600px) and (max-width: 800px) {
+    .brand img {
+        width: 87px;
+        height: 55px;
+    }
+
+    div#vnt-news-home .portlet .portlet-title {
+        width: 100%;
+    }
+
     .category .caption {
         position: relative !important;
         bottom: 20px !important;
@@ -105,6 +170,15 @@
 /*                                        568x320 */
 /* ============================================== */
 @media screen and (min-width: 320px) and (max-width:568px) {
+    .brand img {
+        width: 87px;
+        height: 55px;
+    }
+
+    div#vnt-news-home .portlet .portlet-title {
+        width: 100%;
+    }
+
     .category .caption {
         position: relative !important;
         bottom: 20px !important;
@@ -124,13 +198,22 @@
 /*                                        480x320 */
 /* ============================================== */
 @media screen and (min-width: 320px) and (max-width:480px) {
+    .brand img {
+        width: 87px;
+        height: 55px;
+    }
+
+    div#vnt-news-home .portlet .portlet-title {
+        width: 100%;
+    }
+
     .category .caption {
         position: relative !important;
         bottom: 20px !important;
     }
 
     div#vnt-home-my-product .content .cont {
-        padding: 0px !important;
+        padding: 15px !important;
     }
 
     div#vnt-home-my-product .content {
@@ -143,6 +226,15 @@
 /* iPhone5 portrait                       320x568 */
 /* ============================================== */
 @media screen and (max-width:320px) {
+    .brand img {
+        width: 87px;
+        height: 55px;
+    }
+
+    div#vnt-news-home .portlet .portlet-title {
+        width: 100%;
+    }
+
     .category .caption {
         position: relative !important;
         bottom: 20px !important;
@@ -172,6 +264,15 @@
 /* Android Landscape                      320x240 */
 /* ============================================== */
 @media screen and (min-width:240px) and (max-width:320px) {
+    .brand img {
+        width: 87px;
+        height: 55px;
+    }
+
+    div#vnt-news-home .portlet .portlet-title {
+        width: 100%;
+    }
+
     .category .caption {
         position: relative !important;
         bottom: 20px !important;
@@ -191,6 +292,15 @@
 /* Android Portrait                       240x320 */
 /* ============================================== */
 @media screen and (max-width:240px) {
+    .brand img {
+        width: 87px;
+        height: 55px;
+    }
+
+    div#vnt-news-home .portlet .portlet-title {
+        width: 100%;
+    }
+
     .category .caption {
         position: relative !important;
         bottom: 20px !important;
@@ -211,13 +321,10 @@
 }
 
 
-.brand img {
-    width: 100px;
-    height: 80px;
-}
+
 
 .logofooter {
-    margin-top: 25px;
+    margin: 5px auto 5px auto;
 }
 
 #navbar li {
@@ -225,5 +332,39 @@
 }
 
 #vnt-sidebar .box-title .fTitle a {
-    color:#fff;
+    color: #fff;
+}
+
+div#vnt-home-icon .ion .title {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 auto;
+    width: 150px;
+}
+
+div#vnt-home-icon .ion {
+    margin: 10px auto;
+    text-align: center;
+}
+
+.header-topbar {
+    position: relative;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+    background-color: #ffffff;
+    z-index: 1212121;
+}
+
+.header-fixed {
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    left: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+}
+
+.headermin {
+    padding: 0 !important;
 }

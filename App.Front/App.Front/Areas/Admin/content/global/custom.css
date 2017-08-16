@@ -234,3 +234,18 @@ input.select-page {
 .colOption {
     width: 15%;
 }
+
+.table-pager > td {
+  padding-top: 10px;
+}
+
+  .table-pager > td > a {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 3px 7px;
+  }
+
+  .table-pager > td > a:hover {
+    background-color: #f0f0f0;
+  }

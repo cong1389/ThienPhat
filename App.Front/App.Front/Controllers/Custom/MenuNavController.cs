@@ -284,7 +284,7 @@ namespace App.Front.Controllers.Custom
 
         [ChildActionOnly]
         [PartialCache("Short")]
-        public ActionResult GetHeader()
+        public ActionResult Header()
         {
             List<MenuNavViewModel> menuNavs = new List<MenuNavViewModel>();
             IEnumerable<MenuLink> menuLinks = this._menuLinkService.FindBy((MenuLink x) => x.Status == 1 && x.Position == 7, true);

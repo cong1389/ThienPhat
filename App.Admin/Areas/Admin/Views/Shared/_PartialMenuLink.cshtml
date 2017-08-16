@@ -1,11 +1,11 @@
 ﻿@using Resources
 <ul class="nav navbar-nav">
     <li class="menu-dropdown classic-menu-dropdown ">
-        <a href="@Url.Action("Index", "Home")"> Dashboard</a>
+        <a href="@Url.Action("Index", "Home")"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a>
     </li>
     <li class="menu-dropdown mega-menu-dropdown  ">
         <a href="javascript:;">
-            <i class="fa fa-cogs"></i> Cấu hình hệ thống
+            <i class="fa fa-cogs"></i> Cấu hình
             <span class="arrow"></span>
         </a>
         <ul class="dropdown-menu" style="min-width: 710px">
@@ -20,12 +20,7 @@
                                 <li>
                                     <a href="@Url.Action("Index", "ContactInformation")" class="nav-link"> @FormUI.ContactInformation </a>
                                 </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "SystemSetting")" class="nav-link"> @FormUI.SystemSetting </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "SeoSetting")" class="nav-link"> @FormUI.SettingSeoGlobal </a>
-                                </li>
+                                
                                 <li>
                                     <a href="@Url.Action("Index", "Menu")" class="nav-link"> @FormUI.MenuLink </a>
                                 </li>                                
@@ -66,6 +61,33 @@
             </li>
         </ul>
     </li> 
+
+    <li class="menu-dropdown mega-menu-dropdown  ">
+        <a href="javascript:;">
+            <i class="fa fa-cogs"></i> Hệ thống
+            <span class="arrow"></span>
+        </a>
+        <ul class="dropdown-menu" style="min-width: 710px">
+            <li>
+                <div class="mega-menu-content">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <ul class="mega-menu-submenu">
+                                <li>
+                                    <a href="@Url.Action("Index", "SystemSetting")" class="nav-link"> @FormUI.SystemSetting </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "SeoSetting")" class="nav-link"> @FormUI.SettingSeoGlobal </a>
+                                </li>
+                            </ul>
+                        </div>
+                    
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </li>
+
     <li class="menu-dropdown classic-menu-dropdown hidden">
         <a href="javascript:;">
             <i class="fa fa-map-marker"></i> Quản lý thuộc tính
