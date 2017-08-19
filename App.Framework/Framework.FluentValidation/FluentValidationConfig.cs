@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using App.FakeEntity.Brandes;
 using App.FakeEntity.Order;
+using App.FakeEntity.GenericControl;
 
 namespace App.Framework.FluentValidation
 {
@@ -56,8 +57,10 @@ namespace App.Framework.FluentValidation
             this._validators.Add(typeof(IValidator<AssessmentViewModel>), new AssessmentValidator());
             this._validators.Add(typeof(IValidator<BrandViewModel>), new BrandValidator());
             this._validators.Add(typeof(IValidator<OrderViewModel>), new OrderValidator());
-
             this._validators.Add(typeof(IValidator<LocalizedPropertyViewModel>), new LocalizedPropertyValidator());
+
+            this._validators.Add(typeof(IValidator<GenericControlViewModel>), new GenericControlValidator());
+            this._validators.Add(typeof(IValidator<GenericControlValueViewModel>), new GenericControlValueValidator());
         }
 
 		public override IValidator CreateInstance(Type validatorType)

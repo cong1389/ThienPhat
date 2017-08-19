@@ -109,6 +109,8 @@
     <Compile Include="Framework.Theme\WebViewPage.cs" />
     <Compile Include="Framework.Theme\WebViewPageHelper.cs" />
     <Compile Include="Framework.ValidateEntity\AssessmentValidator.cs" />
+    <Compile Include="Framework.ValidateEntity\GenControlValueValidator.cs" />
+    <Compile Include="Framework.ValidateEntity\GenControlValidator.cs" />
     <Compile Include="Framework.ValidateEntity\BranchValidator.cs" />
     <Compile Include="Framework.ValidateEntity\LocaleStringResourceValidator.cs" />
     <Compile Include="Framework.ValidateEntity\LocalizedPropertyValidator.cs" />

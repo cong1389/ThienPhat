@@ -56,10 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.Infra.Data.Mapping\AssessmentConfiguration.cs" />
+    <Compile Include="App.Infra.Data.Mapping\GenericControlValueConfiguration.cs" />
     <Compile Include="App.Infra.Data.Mapping\BrandConfiguration.cs" />
     <Compile Include="App.Infra.Data.Mapping\LocaleStringResourceConfiguration.cs" />
     <Compile Include="App.Infra.Data.Mapping\GenericAttributeConfiguration.cs" />
     <Compile Include="App.Infra.Data.Mapping\LocalizedPropertyConfiguration.cs" />
+    <Compile Include="App.Infra.Data.Mapping\GenericControlConfiguration.cs" />
     <Compile Include="App.Infra.Data.Mapping\OrderConfiguration.cs" />
     <Compile Include="App.Infra.Data.Mapping\OrderGalleryConfiguration.cs" />
     <Compile Include="App.Infra.Data.Mapping\OrderItemConfiguration.cs" />

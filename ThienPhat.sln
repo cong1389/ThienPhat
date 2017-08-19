@@ -37,6 +37,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Admin", "App.Admin\App.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Front", "App.Front\App.Front\App.Front.csproj", "{5E90064C-835E-4AB5-970C-5BDA6B4438E3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{F7AECC51-365F-4C54-9AE7-213C26BCA334}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library.Core", "Library.Core", "{40C2E9C7-D616-408D-81FC-BC423727B98E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library.Model", "Library.Model", "{50FFEE10-24C3-43EA-9308-13D187A58E53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library.Service", "Library.Service", "{390EC137-FAAC-4CDD-9758-8CBA9A6E1A41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library.Application", "Library.Application", "{A2BD9447-8487-4AAF-A731-F627EDAA9D5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,61 +125,25 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 18
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://congtt.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = App.Admin\\App.Admin.csproj
-		SccProjectName1 = App.Admin
-		SccLocalPath1 = App.Admin
-		SccProjectUniqueName2 = App.Aplication\\App.Aplication.csproj
-		SccProjectName2 = App.Aplication
-		SccLocalPath2 = App.Aplication
-		SccProjectUniqueName3 = App.AsyncService\\App.AsyncService.csproj
-		SccProjectName3 = App.AsyncService
-		SccLocalPath3 = App.AsyncService
-		SccProjectUniqueName4 = App.Core\\App.Core.csproj
-		SccProjectName4 = App.Core
-		SccLocalPath4 = App.Core
-		SccProjectUniqueName5 = App.Domain\\App.Domain.csproj
-		SccProjectName5 = App.Domain
-		SccLocalPath5 = App.Domain
-		SccProjectUniqueName6 = App.FakeEntity\\App.FakeEntity.csproj
-		SccProjectName6 = App.FakeEntity
-		SccLocalPath6 = App.FakeEntity
-		SccProjectUniqueName7 = App.FileUtil\\App.FileUtil.csproj
-		SccProjectName7 = App.FileUtil
-		SccLocalPath7 = App.FileUtil
-		SccProjectUniqueName8 = App.Framework\\App.Framework.csproj
-		SccProjectName8 = App.Framework
-		SccLocalPath8 = App.Framework
-		SccProjectUniqueName9 = App.Front\\App.Front\\App.Front.csproj
-		SccProjectName9 = App.Front/App.Front
-		SccLocalPath9 = App.Front\\App.Front
-		SccProjectUniqueName10 = App.ImagePlugin\\App.ImagePlugin.csproj
-		SccProjectName10 = App.ImagePlugin
-		SccLocalPath10 = App.ImagePlugin
-		SccProjectUniqueName11 = App.Infra.Data.Repository\\App.Infra.Data.Repository.csproj
-		SccProjectName11 = App.Infra.Data.Repository
-		SccLocalPath11 = App.Infra.Data.Repository
-		SccProjectUniqueName12 = App.Infra.Data.RepositoryAsync\\App.Infra.Data.RepositoryAsync.csproj
-		SccProjectName12 = App.Infra.Data.RepositoryAsync
-		SccLocalPath12 = App.Infra.Data.RepositoryAsync
-		SccProjectUniqueName13 = App.Infra.Data\\App.Infra.Data.csproj
-		SccProjectName13 = App.Infra.Data
-		SccLocalPath13 = App.Infra.Data
-		SccProjectUniqueName14 = App.SeoSitemap\\App.SeoSitemap.csproj
-		SccProjectName14 = App.SeoSitemap
-		SccLocalPath14 = App.SeoSitemap
-		SccProjectUniqueName15 = App.Service\\App.Service.csproj
-		SccProjectName15 = App.Service
-		SccLocalPath15 = App.Service
-		SccProjectUniqueName16 = App.Utils\\App.Utils.csproj
-		SccProjectName16 = App.Utils
-		SccLocalPath16 = App.Utils
-		SccProjectUniqueName17 = Resources\\Resources.csproj
-		SccProjectName17 = Resources
-		SccLocalPath17 = Resources
+	GlobalSection(NestedProjects) = preSolution
+		{B265D654-AE60-4DAC-A090-9F53AA10C769} = {A2BD9447-8487-4AAF-A731-F627EDAA9D5E}
+		{396FF6DF-0F55-4C8F-9B2F-233F439DA8F6} = {50FFEE10-24C3-43EA-9308-13D187A58E53}
+		{4AA23151-AEC5-4942-AF34-A2E887F7A585} = {A2BD9447-8487-4AAF-A731-F627EDAA9D5E}
+		{D57A5702-7595-4360-A5E0-BDB36BBA8A25} = {40C2E9C7-D616-408D-81FC-BC423727B98E}
+		{2205E10F-F6DE-43C5-A39D-E9458639D0D5} = {50FFEE10-24C3-43EA-9308-13D187A58E53}
+		{4145F94E-D953-47DB-A33E-102B26692790} = {A2BD9447-8487-4AAF-A731-F627EDAA9D5E}
+		{DF0DF5FD-5E5A-4C60-A945-BCCC151F4A12} = {390EC137-FAAC-4CDD-9758-8CBA9A6E1A41}
+		{22EBD28A-55C0-4D91-AB94-3B75A40584DE} = {40C2E9C7-D616-408D-81FC-BC423727B98E}
+		{5EF20CE9-62DD-482F-B970-DA5C41CBD816} = {A2BD9447-8487-4AAF-A731-F627EDAA9D5E}
+		{778565A6-C306-49C1-B793-51E50DB9D1B5} = {A2BD9447-8487-4AAF-A731-F627EDAA9D5E}
+		{BADAAF5E-E078-4763-A4E9-6FE9076376F4} = {50FFEE10-24C3-43EA-9308-13D187A58E53}
+		{1F0CE22D-7EF3-41A2-96EF-A01B174AE14D} = {50FFEE10-24C3-43EA-9308-13D187A58E53}
+		{8C72EC76-33A5-442B-B7C8-54F102D876AB} = {50FFEE10-24C3-43EA-9308-13D187A58E53}
+		{66967DF3-D493-4C60-ADE9-B3F616F83B8D} = {390EC137-FAAC-4CDD-9758-8CBA9A6E1A41}
+		{17A1E462-F7A9-4729-82E0-D0674F125863} = {A2BD9447-8487-4AAF-A731-F627EDAA9D5E}
+		{40C2E9C7-D616-408D-81FC-BC423727B98E} = {F7AECC51-365F-4C54-9AE7-213C26BCA334}
+		{50FFEE10-24C3-43EA-9308-13D187A58E53} = {F7AECC51-365F-4C54-9AE7-213C26BCA334}
+		{390EC137-FAAC-4CDD-9758-8CBA9A6E1A41} = {F7AECC51-365F-4C54-9AE7-213C26BCA334}
+		{A2BD9447-8487-4AAF-A731-F627EDAA9D5E} = {F7AECC51-365F-4C54-9AE7-213C26BCA334}
 	EndGlobalSection
 EndGlobal

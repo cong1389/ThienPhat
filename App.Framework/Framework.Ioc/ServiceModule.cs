@@ -30,6 +30,7 @@ using App.Service.LocalizedProperty;
 using App.Service.Common;
 using App.Service.GenericAttribute;
 using App.Service.LocaleStringResource;
+using App.Service.GenericControl;
 
 namespace App.Framework.Ioc
 {
@@ -77,13 +78,15 @@ namespace App.Framework.Ioc
             builder.RegisterType<OrderGalleryService>().As<IOrderGalleryService>().InstancePerRequest<OrderGalleryService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<OrderItemService>().As<IOrderItemService>().InstancePerRequest<OrderItemService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<LocalizedPropertyService>().As<ILocalizedPropertyService>().InstancePerRequest<LocalizedPropertyService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
-
             builder.RegisterType<CommonServices>().As<ICommonServices>().InstancePerRequest<CommonServices, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<WebWorkContext>().As<IWorkContext>().InstancePerRequest<WebWorkContext, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<GenericAttributeService>().As<IGenericAttributeService>().InstancePerRequest<GenericAttributeService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<LocaleStringResourceService>().As<ILocaleStringResourceService>().InstancePerRequest<LocaleStringResourceService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
-
             builder.RegisterType<TextService>().As<ITextService>().InstancePerRequest<TextService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+
+            builder.RegisterType<GenericControlService>().As<IGenericControlService>().InstancePerRequest<GenericControlService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+            builder.RegisterType<GenericControlValueService>().As<IGenericControlValueService>().InstancePerRequest<GenericControlValueService, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+
 
         }
     }

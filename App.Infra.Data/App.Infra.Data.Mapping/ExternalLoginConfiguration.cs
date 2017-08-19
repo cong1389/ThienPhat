@@ -17,7 +17,10 @@ namespace App.Infra.Data.Mapping
             base.Property((ExternalLogin x) => x.LoginProvider).HasColumnName("LoginProvider").HasColumnType("nvarchar").HasMaxLength(new int?(128)).IsRequired();
             base.Property((ExternalLogin x) => x.ProviderKey).HasColumnName("ProviderKey").HasColumnType("nvarchar").HasMaxLength(new int?(128)).IsRequired();
             base.Property<Guid>((ExternalLogin x) => x.UserId).HasColumnName("UserId").HasColumnType("uniqueidentifier").IsRequired();
-            base.HasRequired<User>((ExternalLogin x) => x.User).WithMany((User x) => x.Logins).HasForeignKey<Guid>((ExternalLogin x) => x.UserId);
+
+            base.HasRequired<User>((ExternalLogin x) => x.User)
+                .WithMany((User x) => x.Logins)
+                .HasForeignKey<Guid>((ExternalLogin x) => x.UserId);
         }
     }
 }

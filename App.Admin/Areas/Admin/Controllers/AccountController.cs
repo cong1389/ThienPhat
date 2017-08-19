@@ -1,27 +1,22 @@
 using App.Admin.Helpers;
 using App.Core.Utils;
-using App.Domain.Entities.Account;
 using App.Domain.Entities.Identity;
 using App.FakeEntity.User;
 using App.Framework.Ultis;
 using App.Service.Account;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
-using Microsoft.CSharp.RuntimeBinder;
 using Resources;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 
 namespace App.Admin.Controllers
 {
-	public class AccountController : BaseIdentityController
+    public class AccountController : BaseIdentityController
 	{
 		private readonly IUserService _userService;
 

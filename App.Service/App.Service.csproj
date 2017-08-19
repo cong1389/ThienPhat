@@ -70,6 +70,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Service.GenericControl\GenericControlService.cs" />
+    <Compile Include="Service.GenericControl\GenericControlValueService.cs" />
+    <Compile Include="Service.GenericControl\IGenericControlService.cs" />
+    <Compile Include="Service.GenericControl\IGenericControlValueService.cs" />
     <Compile Include="Service.Common\CommonServices.cs" />
     <Compile Include="Service.Common\ICommonServices.cs" />
     <Compile Include="Service.Common\IWorkContext.cs" />

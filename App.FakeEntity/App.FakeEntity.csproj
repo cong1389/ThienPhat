@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FakeEntity.Assessments\AssessmentViewModel.cs" />
+    <Compile Include="FakeEntity.GenericControl\GenericControlValueViewModel.cs" />
+    <Compile Include="FakeEntity.GenericControl\GenericControlViewModel.cs" />
     <Compile Include="FakeEntity.Brandes\BrandViewModel.cs" />
     <Compile Include="FakeEntity.GenericAttribute\GenericAttributeViewModel.cs" />
     <Compile Include="FakeEntity.Language\LocaleStringResourceViewModel.cs" />

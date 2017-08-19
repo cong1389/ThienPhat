@@ -2,6 +2,7 @@ using App.Domain.Entities.Ads;
 using App.Domain.Entities.Attribute;
 using App.Domain.Entities.Brandes;
 using App.Domain.Entities.Data;
+using App.Domain.Entities.GenericControl;
 using App.Domain.Entities.GlobalSetting;
 using App.Domain.Entities.Identity;
 using App.Domain.Entities.Language;
@@ -14,6 +15,7 @@ using App.FakeEntity.Attribute;
 using App.FakeEntity.Brandes;
 using App.FakeEntity.ContactInformation;
 using App.FakeEntity.Gallery;
+using App.FakeEntity.GenericControl;
 using App.FakeEntity.Language;
 using App.FakeEntity.Location;
 using App.FakeEntity.Meu;
@@ -72,9 +74,12 @@ namespace App.Framework.Mappings
             Mapper.CreateMap<Order, OrderViewModel>();
             Mapper.CreateMap<OrderGallery, OrderGalleryViewModel>();
             Mapper.CreateMap<OrderItem, OrderItemViewModel>();
-
             Mapper.CreateMap<LocalizedProperty, LocalizedPropertyViewModel>();
             Mapper.CreateMap<LocaleStringResource, LocaleStringResourceViewModel>();
+
+            Mapper.CreateMap<GenericControl, GenericControlViewModel>();
+            Mapper.CreateMap<GenericControlValue, GenericControlValueViewModel>();
+           
         }
 	}
 }

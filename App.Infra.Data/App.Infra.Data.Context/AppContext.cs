@@ -5,6 +5,7 @@ using App.Domain.Entities.Ads;
 using App.Domain.Entities.Attribute;
 using App.Domain.Entities.Brandes;
 using App.Domain.Entities.Data;
+using App.Domain.Entities.GenericControl;
 using App.Domain.Entities.GlobalSetting;
 using App.Domain.Entities.Language;
 using App.Domain.Entities.Location;
@@ -202,6 +203,18 @@ namespace App.Infra.Data.Context
             set;
         }
 
+        public virtual DbSet<GenericControl> GenericControls
+        {
+            get;
+            set;
+        }
+
+        public virtual DbSet<GenericControlValue> GenericControlValues
+        {
+            get;
+            set;
+        }
+
         public AppContext() : base("AppConnect")
 		{
 			base.Configuration.LazyLoadingEnabled = true;
@@ -296,6 +309,9 @@ namespace App.Infra.Data.Context
 
             modelBuilder.Configurations.Add<GenericAttribute>(new GenericAttributeConfiguration());
             modelBuilder.Configurations.Add<LocaleStringResource>(new LocaleStringResourceConfiguration());
+
+            modelBuilder.Configurations.Add<GenericControl>(new GenericControlConfiguration());
+            modelBuilder.Configurations.Add<GenericControlValue>(new GenericControlValueConfiguration());
         }
 	}
 }

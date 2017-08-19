@@ -20,7 +20,8 @@ namespace App.Infra.Data.Mapping
                 .HasForeignKey<int>((Banner x) => x.PageId);
 			base.HasOptional<MenuLink>((Banner x) => x.MenuLink)
                 .WithMany((MenuLink x) => x.Banners)
-                .Map((ForeignKeyAssociationMappingConfiguration m) => m.MapKey(new string[] { "MenuId" }));
+                .Map((ForeignKeyAssociationMappingConfiguration m) 
+                => m.MapKey(new string[] { "MenuId" }));
 		}
 	}
 }

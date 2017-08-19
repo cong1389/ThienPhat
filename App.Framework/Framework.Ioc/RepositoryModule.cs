@@ -26,6 +26,7 @@ using System;
 using App.Infra.Data.Repository.Order;
 using App.Infra.Data.Repository.GenericAttribute;
 using App.Infra.Data.Repository.LocaleStringResource;
+using App.Infra.Data.Repository.GenericControl;
 
 namespace App.Framework.Ioc
 {
@@ -67,10 +68,13 @@ namespace App.Framework.Ioc
             builder.RegisterType<OrderRepository>().As<IOrderRepository>().InstancePerRequest<OrderRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<OrderGalleryRepository>().As<IOrderGalleryRepository>().InstancePerRequest<OrderGalleryRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<OrderItemRepository>().As<IOrderItemRepository>().InstancePerRequest<OrderItemRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
-
             builder.RegisterType<LocalizedPropertyRepository>().As<ILocalizedPropertyRepository>().InstancePerRequest<LocalizedPropertyRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<GenericAttributeRepository>().As<IGenericAttributeRepository>().InstancePerRequest<GenericAttributeRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
             builder.RegisterType<LocaleStringResourceRepository>().As<ILocaleStringResourceRepository>().InstancePerRequest<LocaleStringResourceRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+
+            builder.RegisterType<GenericControlRepository>().As<IGenericControlRepository>().InstancePerRequest<GenericControlRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+            builder.RegisterType<GenericControlValueRepository>().As<IGenericControlValueRepository>().InstancePerRequest<GenericControlValueRepository, ConcreteReflectionActivatorData, SingleRegistrationStyle>(new object[0]);
+
 
         }
     }

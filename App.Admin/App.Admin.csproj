@@ -912,6 +912,13 @@
     <Content Include="Areas\Admin\Views\SlideShow\_CreateOrUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\ContactInformation\_CreateOrUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\SystemSetting\_CreateOrUpdate.cshtml" />
+    <Content Include="Areas\Admin\Views\GenericControl\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\GenericControl\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\GenericControl\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\GenericControlValue\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\GenericControlValue\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\GenericControlValue\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\GenericControl\_CreateOrUpdate.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\admin.pubxml" />
     <Content Include="Content\Site.css" />
@@ -937,6 +944,8 @@
   <ItemGroup>
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GenericControlValueController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GenericControlController.cs" />
     <Compile Include="Areas\Admin\Controllers\AttributeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AttributeValueController.cs" />
     <Compile Include="Areas\Admin\Controllers\BannerController.cs" />

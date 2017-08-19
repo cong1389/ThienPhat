@@ -486,4 +486,16 @@
   <data name="Flag" xml:space="preserve">
     <value>Image</value>
   </data>
+  <data name="GenericControl" xml:space="preserve">
+    <value>Tạo control</value>
+  </data>
+  <data name="GenericControlValue" xml:space="preserve">
+    <value>Tạo giá trị control</value>
+  </data>
+  <data name="GenericControlName" xml:space="preserve">
+    <value>Tên control</value>
+  </data>
+  <data name="Entity" xml:space="preserve">
+    <value>Thực thể</value>
+  </data>
 </root>

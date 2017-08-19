@@ -24,7 +24,10 @@ namespace App.Infra.Data.Mapping
 				x.MapRightKey(new string[] { "RoleId" });
 			});
 			base.HasMany<Claim>((User x) => x.Claims).WithRequired((Claim x) => x.User).HasForeignKey<Guid>((Claim x) => x.UserId);
-			base.HasMany<ExternalLogin>((User x) => x.Logins).WithRequired((ExternalLogin x) => x.User).HasForeignKey<Guid>((ExternalLogin x) => x.UserId);
+
+            base.HasMany<ExternalLogin>((User x) => x.Logins)
+                .WithRequired((ExternalLogin x) => x.User)
+                .HasForeignKey<Guid>((ExternalLogin x) => x.UserId);
 		}
 	}
 }

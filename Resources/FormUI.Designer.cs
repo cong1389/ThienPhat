@@ -313,6 +313,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thực thể.
+        /// </summary>
+        public static string Entity {
+            get {
+                return ResourceManager.GetString("Entity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Facebook Retarget Snippet.
         /// </summary>
         public static string FacebookRetargetSnippet {
@@ -408,6 +417,33 @@ namespace Resources {
         public static string FullName {
             get {
                 return ResourceManager.GetString("FullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tạo control.
+        /// </summary>
+        public static string GenericControl {
+            get {
+                return ResourceManager.GetString("GenericControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên control.
+        /// </summary>
+        public static string GenericControlName {
+            get {
+                return ResourceManager.GetString("GenericControlName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tạo giá trị control.
+        /// </summary>
+        public static string GenericControlValue {
+            get {
+                return ResourceManager.GetString("GenericControlValue", resourceCulture);
             }
         }
         

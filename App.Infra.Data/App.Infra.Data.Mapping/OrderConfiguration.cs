@@ -15,7 +15,11 @@ namespace App.Infra.Data.Mapping
         {
             base.ToTable("Order");
             base.HasKey<int>((Order x) => x.Id).Property<int>((Order x) => x.Id).HasColumnName("Id").HasColumnType("int").HasDatabaseGeneratedOption(new DatabaseGeneratedOption?(DatabaseGeneratedOption.Identity)).IsRequired();
-            base.HasRequired<Brand>((Order x) => x.Brand).WithMany((Brand x) => x.Orders).HasForeignKey<int>((Order x) => x.BrandId).WillCascadeOnDelete(true);
+
+            HasRequired((Order x) => x.Brand)
+                .WithMany((Brand x) => x.Orders)
+                .HasForeignKey((Order x) => x.BrandId)
+                .WillCascadeOnDelete(true);
         }
     }
 }

@@ -37,7 +37,7 @@
                                 <li>
                                     <a href="@Url.Action("Index", "SlideShow")" class="nav-link"> Danh sách slide </a>
                                 </li>
-                                <li class="hidden">
+                                <li class="">
                                     <a href="@Url.Action("Index", "Province")" class="nav-link"> Danh sách tỉnh thành </a>
                                 </li> 
                             </ul>
@@ -67,33 +67,28 @@
             <i class="fa fa-cogs"></i> Hệ thống
             <span class="arrow"></span>
         </a>
-        <ul class="dropdown-menu" style="min-width: 710px">
+        <ul class="dropdown-menu pull-left">
             <li>
-                <div class="mega-menu-content">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <ul class="mega-menu-submenu">
-                                <li>
-                                    <a href="@Url.Action("Index", "SystemSetting")" class="nav-link"> @FormUI.SystemSetting </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "SeoSetting")" class="nav-link"> @FormUI.SettingSeoGlobal </a>
-                                </li>
-                            </ul>
-                        </div>
-                    
-                    </div>
-                </div>
+                <a href="@Url.Action("Index", "SystemSetting")" class="nav-link"> @FormUI.SystemSetting </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "SeoSetting")" class="nav-link"> @FormUI.SettingSeoGlobal </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "GenericControl")" class="nav-link"> @FormUI.GenericControl </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "GenericControlValue")" class="nav-link"> @FormUI.GenericControlValue </a>
             </li>
         </ul>
     </li>
 
-    <li class="menu-dropdown classic-menu-dropdown hidden">
+    <li class="menu-dropdown classic-menu-dropdown">
         <a href="javascript:;">
             <i class="fa fa-map-marker"></i> Quản lý thuộc tính
             <span class="arrow"></span>
         </a>
-        <ul class="dropdown-menu pull-left hidden">
+        <ul class="dropdown-menu pull-left">
             <li>
                 <a href="@Url.Action("Index", "Attribute")" class="nav-link"> @FormUI.Attribute </a>
             </li>
@@ -107,7 +102,7 @@
             <i class="fa fa-file-archive-o"></i>Quản lý bài viết<span class="arrow"></span>
         </a>
         <ul class="dropdown-menu pull-left">
-            <li class="hidden">
+            <li class="">
                 <a href="@Url.Action("Index", "Order")" class="nav-link"> @FormUI.Order </a>
             </li>
             <li>

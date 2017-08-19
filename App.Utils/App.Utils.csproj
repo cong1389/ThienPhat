@@ -93,6 +93,7 @@
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Utils\FormRenderCollection.cs" />
+    <Compile Include="Utils\GenericControlType.cs" />
     <Compile Include="Utils\ModelHelper_T_.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
