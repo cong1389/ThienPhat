@@ -69,6 +69,17 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.ControlTypeId, new { @class = "control-label col-md-3" })
+            @Html.DropDownListFor(model => model.ControlTypeId, new SelectList(new List<SelectListItem>
+               {
+                   new SelectListItem { Text = "TextBox", Value="4"
+                   },new SelectListItem { Text = "Checkboxes", Value="3"}
+
+                 }, "Value", "Text"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ControlTypeId, "", new { @class = "help-block" })
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.OrderDisplay, new { @class = "control-label col-md-3" })
             <div class="col-md-5">
                 @Html.TextBoxFor(model => model.OrderDisplay, new { @class = "form-control" })

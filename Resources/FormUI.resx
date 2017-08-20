@@ -498,4 +498,7 @@
   <data name="GenericControlValue" xml:space="preserve">
     <value>Generic Control Value</value>
   </data>
+  <data name="ControlType" xml:space="preserve">
+    <value>Loại control</value>
+  </data>
 </root>

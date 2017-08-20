@@ -73,7 +73,8 @@
 
                                 @foreach (var item in Model.GenericControls)
                                 {
-                                    @Html.Raw(item.Name)
+                                    Html.RenderPartial("ChoiceTemplates/Choice", item);
+                                    @*@Html.Raw(item.Name)*@
                                 }
 
                             </div>

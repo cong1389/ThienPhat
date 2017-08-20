@@ -1427,6 +1427,9 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\StaticContent\Index.cshtml" />
+    <Content Include="Views\Shared\ChoiceTemplates\Choice.cshtml" />
+    <Content Include="Views\Shared\ChoiceTemplates\Choice.CheckRadio.cshtml" />
+    <Content Include="Views\Shared\ChoiceTemplates\Choice.TextBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

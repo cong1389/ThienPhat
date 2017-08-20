@@ -187,6 +187,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loại control.
+        /// </summary>
+        public static string ControlType {
+            get {
+                return ResourceManager.GetString("ControlType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current address.
         /// </summary>
         public static string CurrentAddress {

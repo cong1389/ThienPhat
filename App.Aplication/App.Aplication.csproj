@@ -41,6 +41,10 @@
       <HintPath>..\App.Front\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.5.2.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.5.2-beta6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.Mvc">
       <HintPath>.\App.AplicationReferences\System.Web.Mvc.dll</HintPath>
@@ -53,7 +57,10 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App.Application.UI\Choices\ChoiceItemModel.cs" />
+    <Compile Include="App.Application.UI\Choices\ChoiceModel.cs" />
     <Compile Include="Extensions\MappingExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>false</AutoGen>
       <DesignTimeSharedInput>false</DesignTimeSharedInput>
@@ -92,6 +99,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +115,11 @@
       <Project>{66967DF3-D493-4C60-ADE9-B3F616F83B8D}</Project>
       <Name>App.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\App.Utils\App.Utils.csproj">
+      <Project>{4AA23151-AEC5-4942-AF34-A2E887F7A585}</Project>
+      <Name>App.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

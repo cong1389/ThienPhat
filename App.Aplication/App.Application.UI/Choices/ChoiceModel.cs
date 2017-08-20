@@ -1,0 +1,90 @@
+﻿using App.Core.Common;
+using App.Extensions;
+using App.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+
+namespace App.Application.UI.Choices
+{
+    public abstract class ChoiceModel : Entity<int>
+    {
+        protected ChoiceModel()
+        {
+            this.AllowedFileExtensions = new List<string>();
+            this.Values = new List<ChoiceItemModel>();
+        }
+
+        public GenericControlType GenericControlType { get; set; }
+
+        public string Alias { get; set; }
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public string TextPrompt { get; set; }
+
+        public bool IsRequired { get; set; }
+
+        public bool IsDisabled { get; set; }
+
+        /// <summary>
+        /// Allowed file extensions for customer uploaded files
+        /// </summary>
+        public IList<string> AllowedFileExtensions { get; set; }
+
+        /// <summary>
+        /// Selected value for textboxes
+        /// </summary>
+        public string TextValue { get; set; }
+        /// <summary>
+        /// Selected day value for datepicker
+        /// </summary>
+        public int? SelectedDay { get; set; }
+        /// <summary>
+        /// Selected month value for datepicker
+        /// </summary>
+        public int? SelectedMonth { get; set; }
+        /// <summary>
+        /// Selected year value for datepicker
+        /// </summary>
+        public int? SelectedYear { get; set; }
+        /// <summary>
+        /// Begin year for datepicker
+        /// </summary>
+        public int? BeginYear { get; set; }
+        /// <summary>
+        /// End year for datepicker
+        /// </summary>
+        public int? EndYear { get; set; }
+
+        public virtual IList<ChoiceItemModel> Values { get; set; }
+
+        public abstract string BuildControlId();
+
+        public virtual string GetLabel()
+        {
+            return TextPrompt.NullEmpty() ?? Name;
+        }
+
+        public virtual string GetDescription()
+        {
+            var desc = Description.RemoveHtml();
+            if (desc.HasValue() && !desc.Trim().IsCaseInsensitiveEqual(GetLabel()))
+            {
+                return Description;
+            }
+
+            return null;
+        }
+
+        public virtual string GetFileUploadUrl(UrlHelper url)
+        {
+            return null;
+        }
+    }
+}

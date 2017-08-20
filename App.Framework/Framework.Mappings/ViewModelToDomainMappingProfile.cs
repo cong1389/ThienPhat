@@ -292,7 +292,7 @@ namespace App.Framework.Mappings
                 .ForMember((App.Domain.Entities.GenericControl.GenericControl x) => (object)x.EntityId, (IMemberConfigurationExpression<GenericControlViewModel> map)
                 => map.MapFrom<int>((GenericControlViewModel vm) => vm.EntityId))
                 .ForMember((App.Domain.Entities.GenericControl.GenericControl x) => (object)x.ControlTypeId, (IMemberConfigurationExpression<GenericControlViewModel> map)
-                => map.MapFrom<int>((GenericControlViewModel vm) => vm.ControlTypeId))
+                => map.MapFrom<int?>((GenericControlViewModel vm) => vm.ControlTypeId))
                 .ForMember((App.Domain.Entities.GenericControl.GenericControl x)
                 => x.GenericControlValues, (IMemberConfigurationExpression<GenericControlViewModel> map) => map.Ignore());
 

@@ -48,6 +48,7 @@ namespace App.FakeEntity.GenericControl
             set;
         }
 
+        [Display(Name = "ControlType", ResourceType = typeof(FormUI))]
         public int ControlTypeId { get; set; }
 
         public IList<GenericControlLocalesViewModel> Locales { get; set; }
@@ -105,6 +106,6 @@ namespace App.FakeEntity.GenericControl
             set;
         }
 
-        public int ControlTypeId { get; set; }
+        public int? ControlTypeId { get; set; }
     }
 }

@@ -50,7 +50,7 @@ namespace App.Domain.Entities.GenericControl
             set;
         }
 
-        public int ControlTypeId { get; set; }
+        public int? ControlTypeId { get; set; }
 
         private ICollection<GenericControlValue> _genericControlValues;
         public virtual ICollection<GenericControlValue> GenericControlValues
@@ -72,6 +72,6 @@ namespace App.Domain.Entities.GenericControl
                 this._genericControlValues = value;
             }
         }
-
+        
     }
 }
