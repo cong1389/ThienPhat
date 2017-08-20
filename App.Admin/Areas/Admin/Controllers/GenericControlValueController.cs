@@ -51,7 +51,7 @@ namespace App.Admin.Controllers
 				{
 					GenericControlValue GenericControlValue1 = Mapper.Map<GenericControlValueViewModel, GenericControlValue>(GenericControlValue);
 					this._GenericControlValueService.Create(GenericControlValue1);
-					base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.CreateSuccess, FormUI.GenericControlValue)));
+					base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.CreateSuccess, FormUI.Name)));
 					if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
 					{
 						action = base.RedirectToAction("Index");
@@ -115,7 +115,7 @@ namespace App.Admin.Controllers
 				{
 					GenericControlValue GenericControlValue1 = Mapper.Map<GenericControlValueViewModel, GenericControlValue>(GenericControlValue);
 					this._GenericControlValueService.Update(GenericControlValue1);
-					base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.UpdateSuccess, FormUI.GenericControlValue)));
+					base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.UpdateSuccess, FormUI.Name)));
 					if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
 					{
 						action = base.RedirectToAction("Index");

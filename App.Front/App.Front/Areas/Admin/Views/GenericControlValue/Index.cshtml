@@ -9,7 +9,7 @@
     <thead class="flip-content">
         <tr>
             <th class="text-center"> @FormUI.GenericControl </th>
-            <th class="text-center"> @FormUI.GenericControlName </th>
+            <th class="text-center"> @FormUI.Name </th>
             <th class="text-center"> @FormUI.OrderDisplay </th>
             <th class="text-center"> @FormUI.Status </th>
             <th class="text-center">
@@ -32,7 +32,7 @@
                             @item.ValueName
                         </a>
                     </td>
-                    <td>@item.GenericControl.GenericControlName</td>
+                    <td>@item.GenericControl.Name</td>
                     <td>@item.OrderDisplay</td>
                     <td>@Html.Raw(item.Status == (int)Status.Disable ? "<span class='label label-sm label-warning'>" + UI.InActive + "</span>" : "<span class='label label-sm label-success'>" + UI.Active + "</span>")</td>
                     <td class="text-center">

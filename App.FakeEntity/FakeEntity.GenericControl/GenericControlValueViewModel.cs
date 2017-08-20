@@ -13,7 +13,7 @@ namespace App.FakeEntity.GenericControl
 			set;
 		}
 
-		[Display(Name="GenericControlName", ResourceType=typeof(FormUI))]
+		[Display(Name="Name", ResourceType=typeof(FormUI))]
 		public int GenericControlId
 		{
 			get;

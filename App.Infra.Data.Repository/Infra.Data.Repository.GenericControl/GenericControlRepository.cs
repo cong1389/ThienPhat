@@ -43,7 +43,7 @@ namespace App.Infra.Data.Repository.GenericControl
 			Expression<Func<App.Domain.Entities.GenericControl.GenericControl, bool>> expression = PredicateBuilder.True<App.Domain.Entities.GenericControl.GenericControl>();
 			if (!string.IsNullOrEmpty(sortBuider.Keywords))
 			{
-				expression = expression.And<App.Domain.Entities.GenericControl.GenericControl>((App.Domain.Entities.GenericControl.GenericControl x) => x.GenericControlName.ToLower().Contains(sortBuider.Keywords.ToLower()) || x.Description.ToLower().Contains(sortBuider.Keywords.ToLower()));
+				expression = expression.And<App.Domain.Entities.GenericControl.GenericControl>((App.Domain.Entities.GenericControl.GenericControl x) => x.Name.ToLower().Contains(sortBuider.Keywords.ToLower()) || x.Description.ToLower().Contains(sortBuider.Keywords.ToLower()));
 			}
 			return this.FindAndSort(expression, sortBuider.Sorts, page);
 		}

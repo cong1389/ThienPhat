@@ -76,7 +76,7 @@ namespace App.Admin.Controllers
                     foreach (var localized in model.Locales)
                     {
                         _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Title, localized.Title, localized.LanguageId);
-                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Address, localized.Address, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Address, localized.Address, localized.LanguageId);                        
                     }
 
                     base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.CreateSuccess, FormUI.ContactInformation)));
@@ -221,13 +221,13 @@ namespace App.Admin.Controllers
                 PageSize = base._pageSize,
                 TotalRecord = 0
             };
-            IEnumerable<ContactInformation> ContactInformations = this._contactInfoService.PagedList(sortingPagingBuilder, paging);
-            if (ContactInformations != null && ContactInformations.Any<ContactInformation>())
+            IEnumerable<ContactInformation> contactInformations = this._contactInfoService.PagedList(sortingPagingBuilder, paging);
+            if (contactInformations != null && contactInformations.Any<ContactInformation>())
             {
                 Helper.PageInfo pageInfo = new Helper.PageInfo(ExtentionUtils.PageSize, page, paging.TotalRecord, (int i) => this.Url.Action("Index", new { page = i, keywords = keywords }));
                 ((dynamic)base.ViewBag).PageInfo = pageInfo;
             }
-            return base.View(ContactInformations);
+            return base.View(contactInformations);
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)

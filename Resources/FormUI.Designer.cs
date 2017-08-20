@@ -430,16 +430,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tên control.
-        /// </summary>
-        public static string GenericControlName {
-            get {
-                return ResourceManager.GetString("GenericControlName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tạo giá trị control.
+        ///   Looks up a localized string similar to Generic Control Value.
         /// </summary>
         public static string GenericControlValue {
             get {
@@ -651,6 +642,15 @@ namespace Resources {
         public static string MobilePhone {
             get {
                 return ResourceManager.GetString("MobilePhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên control.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         

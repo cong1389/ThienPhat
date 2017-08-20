@@ -16,6 +16,21 @@
         $("#mapmarker").on("click", function () {
             window.open("@Url.Action("GoogleMap","Utility")", "_blank", "toolbar=yes,scrollbars=yes, resizable=yes, top=100, left=100, width=1200, height=800");
         });
+
+        //Copy value từ tên sản phẩm bỏ vào group SEO
+        function CopyValue() {
+            $("#Locales_0__Title").change(function () {
+                var name = $("#Locales_0__Title").val();
+                if (name != "") {
+                    $("#Title").val(name);
+                }
+            });
+        }
+
+        $(function () {
+            CopyValue();
+        });
+
     </script>
 }
 

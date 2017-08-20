@@ -489,13 +489,13 @@
   <data name="GenericControl" xml:space="preserve">
     <value>Tạo control</value>
   </data>
-  <data name="GenericControlValue" xml:space="preserve">
-    <value>Tạo giá trị control</value>
-  </data>
-  <data name="GenericControlName" xml:space="preserve">
+  <data name="Name" xml:space="preserve">
     <value>Tên control</value>
   </data>
   <data name="Entity" xml:space="preserve">
     <value>Thực thể</value>
+  </data>
+  <data name="GenericControlValue" xml:space="preserve">
+    <value>Generic Control Value</value>
   </data>
 </root>

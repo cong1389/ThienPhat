@@ -12,6 +12,26 @@
 
     Html.RenderPartial("_CreateOrUpdate", Model);
 }
+@section scripts{
+    <script>
+        //Copy value từ tên sản phẩm bỏ vào group SEO
+        function CopyValue() {
+            $("#Locales_0__Name").change(function () {
+                var name = $("#Locales_0__Name").val();
+                if (name != "") {
+                    $("#Name").val(name);
+                }
+            });
+        }
+
+        $(function () {
+            CopyValue();
+        });
+    </script>
+}
+
+
+
 
 
 

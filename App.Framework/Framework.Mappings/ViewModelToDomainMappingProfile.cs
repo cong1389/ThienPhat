@@ -278,8 +278,8 @@ namespace App.Framework.Mappings
 
             Mapper.CreateMap<GenericControlViewModel, GenericControl>()
                 .ForMember((GenericControl x)
-                => x.GenericControlName, (IMemberConfigurationExpression<GenericControlViewModel> map)
-                => map.MapFrom<string>((GenericControlViewModel vm) => vm.GenericControlName))
+                => x.Name, (IMemberConfigurationExpression<GenericControlViewModel> map)
+                => map.MapFrom<string>((GenericControlViewModel vm) => vm.Name))
                 .ForMember((App.Domain.Entities.GenericControl.GenericControl x)
                 => (object)x.Id, (IMemberConfigurationExpression<GenericControlViewModel> map)
                 => map.MapFrom<int>((GenericControlViewModel vm) => vm.Id))
@@ -291,6 +291,8 @@ namespace App.Framework.Mappings
                 => map.MapFrom<int>((GenericControlViewModel vm) => vm.Status))
                 .ForMember((App.Domain.Entities.GenericControl.GenericControl x) => (object)x.EntityId, (IMemberConfigurationExpression<GenericControlViewModel> map)
                 => map.MapFrom<int>((GenericControlViewModel vm) => vm.EntityId))
+                .ForMember((App.Domain.Entities.GenericControl.GenericControl x) => (object)x.ControlTypeId, (IMemberConfigurationExpression<GenericControlViewModel> map)
+                => map.MapFrom<int>((GenericControlViewModel vm) => vm.ControlTypeId))
                 .ForMember((App.Domain.Entities.GenericControl.GenericControl x)
                 => x.GenericControlValues, (IMemberConfigurationExpression<GenericControlViewModel> map) => map.Ignore());
 

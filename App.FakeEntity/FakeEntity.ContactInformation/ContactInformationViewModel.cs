@@ -119,10 +119,17 @@ namespace App.FakeEntity.ContactInformation
 			set;
 		}
 
+        public List<App.Domain.Entities.GenericControl.GenericControl> GenericControls
+        {
+            get;
+            set;
+        }       
+
         public IList<ContactInformationLocalesViewModel> Locales { get; set; }
 
         public ContactInformationViewModel()
 		{
+            this.GenericControls = new List<App.Domain.Entities.GenericControl.GenericControl>();
             this.Locales = new List<ContactInformationLocalesViewModel>();
         }
 	}
@@ -237,6 +244,12 @@ namespace App.FakeEntity.ContactInformation
 
         [Display(Name = "ContactType", ResourceType = typeof(FormUI))]
         public int Type
+        {
+            get;
+            set;
+        }
+
+        public List<App.Domain.Entities.GenericControl.GenericControl> GenericControls
         {
             get;
             set;

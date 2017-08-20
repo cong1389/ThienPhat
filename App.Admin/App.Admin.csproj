@@ -810,12 +810,6 @@
     <Content Include="Areas\Admin\scripts\respond.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="bin\App.Admin.dll" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\Admin\packages.config" />
     <Content Include="Areas\Admin\web.config" />
     <Content Include="Areas\Admin\Views\Account\Create.cshtml" />
@@ -921,19 +915,9 @@
     <Content Include="Areas\Admin\Views\GenericControl\_CreateOrUpdate.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\admin.pubxml" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.2.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

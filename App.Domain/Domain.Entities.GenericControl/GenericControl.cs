@@ -9,7 +9,7 @@ namespace App.Domain.Entities.GenericControl
 {
 	public class GenericControl : AuditableEntity<int>
 	{
-		public string GenericControlName
+		public string Name
 		{
 			get;
 			set;
@@ -49,6 +49,8 @@ namespace App.Domain.Entities.GenericControl
             get;
             set;
         }
+
+        public int ControlTypeId { get; set; }
 
         private ICollection<GenericControlValue> _genericControlValues;
         public virtual ICollection<GenericControlValue> GenericControlValues

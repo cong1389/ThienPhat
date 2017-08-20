@@ -121,7 +121,7 @@ namespace App.Domain.Entities.GlobalSetting
             set;
         }
 
-        private ICollection<GenericControl.GenericControl> _genericControls;
+        private ICollection<App.Domain.Entities.GenericControl.GenericControl> _genericControls;
         public virtual ICollection<GenericControl.GenericControl> GenericControls
         {
             get

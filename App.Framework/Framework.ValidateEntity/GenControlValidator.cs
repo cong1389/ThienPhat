@@ -9,7 +9,7 @@ namespace App.Framework.ValidateEntity
 	{
 		public GenericControlValidator()
 		{
-			base.RuleFor<string>((GenericControlViewModel x) => x.GenericControlName).NotEmpty<GenericControlViewModel, string>().WithMessage<GenericControlViewModel, string>("Vui lòng nhập tên thuộc tính.");
+			base.RuleFor<string>((GenericControlViewModel x) => x.Name).NotEmpty<GenericControlViewModel, string>().WithMessage<GenericControlViewModel, string>("Vui lòng nhập tên thuộc tính.");
 		}
 	}
 }

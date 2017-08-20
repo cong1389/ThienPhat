@@ -49,6 +49,7 @@
                                             <i class="fa fa-address-book-o fa-fw" aria-hidden="true"></i>@T("DiaChi.Lable")
                                         </span>
                                         : @Model.Address
+
                                     </div>
                                     <div class="footer-address">
                                         <i class="fa fa-codiepie fa-fw" aria-hidden="true"></i>@T("Tax.Lable") :1200653343
@@ -63,11 +64,17 @@
                                         {
                                             @Html.Raw(" - " + Model.Fax)
                                         }
+
                                     </div>
                                     <div class="footer-address">
                                         <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i>@T("Email.Lable") : @Model.Email
                                     </div>
                                 </div>
+
+                                @foreach (var item in Model.GenericControls)
+                                {
+                                    @Html.Raw(item.Name)
+                                }
 
                             </div>
                         </div>
@@ -99,4 +106,3 @@
 
 }
 <!---/GetInformationFooter--->
-

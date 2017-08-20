@@ -218,7 +218,7 @@ namespace App.Front.Controllers
                 ProvinceId = contactInformation.ProvinceId,
                 Title = contactInformation.GetLocalizedByLocaleKey(contactInformation.Title, contactInformation.Id, languageId, "ContactInformation", "Title"),
                 Address = contactInformation.GetLocalizedByLocaleKey(contactInformation.Address, contactInformation.Id, languageId, "ContactInformation", "Address"),
-
+                GenericControls=contactInformation.GenericControls
             };
 
             return base.PartialView(contactInformationLocalize);

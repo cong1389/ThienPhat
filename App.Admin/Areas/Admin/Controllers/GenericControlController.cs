@@ -1,10 +1,13 @@
 using App.Admin.Helpers;
 using App.Core.Utils;
 using App.Domain.Entities.GenericControl;
+using App.Domain.Entities.Language;
 using App.Domain.Interfaces.Services;
 using App.FakeEntity.GenericControl;
 using App.Framework.Ultis;
 using App.Service.GenericControl;
+using App.Service.Language;
+using App.Service.LocalizedProperty;
 using AutoMapper;
 using Resources;
 using System;
@@ -18,17 +21,34 @@ namespace App.Admin.Controllers
 {
 	public class GenericControlController : BaseAdminController
 	{
-		private readonly IGenericControlService _GenericControlService;
+		private readonly IGenericControlService _genericControlService;
 
-		public GenericControlController(IGenericControlService GenericControlService)
+        private readonly ILanguageService _languageService;
+
+        private readonly ILocalizedPropertyService _localizedPropertyService;
+
+        public GenericControlController(IGenericControlService genericControlService
+              , ILanguageService languageService
+             , ILocalizedPropertyService localizedPropertyService)
 		{
-			this._GenericControlService = GenericControlService;
-		}
+			_genericControlService = genericControlService;
+            _languageService = languageService;
+            _localizedPropertyService = localizedPropertyService;
+        }
 
 		[RequiredPermisson(Roles="CreateEditGenericControl")]
 		public ActionResult Create()
-		{
-			return base.View();
+        {
+            var model = new GenericControlViewModel
+            {
+                OrderDisplay = 0,
+                Status = 1
+            };
+
+            //Add locales to model
+            AddLocales(_languageService, model.Locales);
+
+            return base.View(model);
 		}
 
 		[HttpPost]
@@ -47,10 +67,17 @@ namespace App.Admin.Controllers
                 }
 				else
 				{
-					App.Domain.Entities.GenericControl.GenericControl GenericControl = Mapper.Map<GenericControlViewModel, App.Domain.Entities.GenericControl.GenericControl>(model);
-					this._GenericControlService.Create(GenericControl);
+                    GenericControl modelMap = Mapper.Map<GenericControlViewModel, App.Domain.Entities.GenericControl.GenericControl>(model);
+					this._genericControlService.Create(modelMap);
 
-					base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.CreateSuccess, FormUI.GenericControl)));
+                    //Update Localized   
+                    foreach (var localized in model.Locales)
+                    {
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Name, localized.Name, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Description, localized.Description, localized.LanguageId);
+                    }
+
+                    base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.CreateSuccess, FormUI.GenericControl)));
 					if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
 					{
 						action = base.RedirectToAction("Index");
@@ -77,11 +104,19 @@ namespace App.Admin.Controllers
 			{
 				if (ids.Length != 0)
 				{
-					IEnumerable<App.Domain.Entities.GenericControl.GenericControl> GenericControls = 
+					IEnumerable<GenericControl> GenericControls = 
 						from id in ids
-						select this._GenericControlService.GetById(int.Parse(id));
-					this._GenericControlService.BatchDelete(GenericControls);
-				}
+						select this._genericControlService.GetById(int.Parse(id));
+					this._genericControlService.BatchDelete(GenericControls);
+
+                    //Delete localize
+                    for (int i = 0; i < ids.Length; i++)
+                    {
+                        IEnumerable<LocalizedProperty> ieLocalizedProperty
+                           = _localizedPropertyService.GetLocalizedPropertyByEntityId(int.Parse(ids[i]));
+                        this._localizedPropertyService.BatchDelete(ieLocalizedProperty);
+                    }
+                }
 			}
 			catch (Exception exception1)
 			{
@@ -94,8 +129,18 @@ namespace App.Admin.Controllers
 		[RequiredPermisson(Roles="CreateEditGenericControl")]
 		public ActionResult Edit(int Id)
 		{
-			GenericControlViewModel GenericControlViewModel = Mapper.Map<App.Domain.Entities.GenericControl.GenericControl, GenericControlViewModel>(this._GenericControlService.GetById(Id));
-			return base.View(GenericControlViewModel);
+			GenericControlViewModel modelMap = Mapper.Map<App.Domain.Entities.GenericControl.GenericControl, GenericControlViewModel>(this._genericControlService.GetById(Id));
+
+            //Add Locales to model
+            AddLocales(_languageService, modelMap.Locales, (locale, languageId) =>
+            {
+                locale.Id = modelMap.Id;
+                locale.LocalesId = modelMap.Id;
+                locale.Name = modelMap.GetLocalized(x => x.Name, Id, languageId, false, false);
+                locale.Description = modelMap.GetLocalized(x => x.Description, Id, languageId, false, false);
+            });
+
+            return base.View(modelMap);
 		}
 
 		[HttpPost]
@@ -114,10 +159,17 @@ namespace App.Admin.Controllers
                 }
 				else
 				{
-					App.Domain.Entities.GenericControl.GenericControl GenericControl = Mapper.Map<GenericControlViewModel, App.Domain.Entities.GenericControl.GenericControl>(model);
-					this._GenericControlService.Update(GenericControl);
+					App.Domain.Entities.GenericControl.GenericControl modelMap = Mapper.Map<GenericControlViewModel, App.Domain.Entities.GenericControl.GenericControl>(model);
+					this._genericControlService.Update(modelMap);
 
-					base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.UpdateSuccess, FormUI.GenericControl)));
+                    //Update Localized   
+                    foreach (var localized in model.Locales)
+                    {
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Name, localized.Name, localized.LanguageId);
+                        _localizedPropertyService.SaveLocalizedValue(modelMap, x => x.Description, localized.Description, localized.LanguageId);
+                    }
+
+                    base.Response.Cookies.Add(new HttpCookie("system_message", string.Format(MessageUI.UpdateSuccess, FormUI.GenericControl)));
 					if (!base.Url.IsLocalUrl(ReturnUrl) || ReturnUrl.Length <= 1 || !ReturnUrl.StartsWith("/") || ReturnUrl.StartsWith("//") || ReturnUrl.StartsWith("/\\"))
 					{
 						action = base.RedirectToAction("Index");
@@ -156,7 +208,7 @@ namespace App.Admin.Controllers
 				PageSize = base._pageSize,
 				TotalRecord = 0
 			};
-			IEnumerable<App.Domain.Entities.GenericControl.GenericControl> GenericControls = this._GenericControlService.PagedList(sortingPagingBuilder, paging);
+			IEnumerable<App.Domain.Entities.GenericControl.GenericControl> GenericControls = this._genericControlService.PagedList(sortingPagingBuilder, paging);
 			if (GenericControls != null && GenericControls.Any<App.Domain.Entities.GenericControl.GenericControl>())
 			{
 				Helper.PageInfo pageInfo = new Helper.PageInfo(ExtentionUtils.PageSize, page, paging.TotalRecord, (int i) => this.Url.Action("Index", new { page = i, keywords = keywords }));
