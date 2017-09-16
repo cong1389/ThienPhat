@@ -47,6 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library.Service", "Library.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library.Application", "Library.Application", "{A2BD9447-8487-4AAF-A731-F627EDAA9D5E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7692C3F0-3DC1-4760-845F-4B85C46BBC3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

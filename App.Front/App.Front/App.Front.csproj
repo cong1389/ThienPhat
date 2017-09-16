@@ -346,7 +346,6 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerCareController.cs" />
     <Compile Include="Controllers\Custom\MenuNavController.cs" />
-    <Compile Include="Controllers\FlowStepController.cs" />
     <Compile Include="Controllers\FrontBaseController.cs" />
     <Compile Include="Controllers\GoogleMapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1405,7 +1404,7 @@
     <Content Include="Views\Shared\_StyleSheet.cshtml" />
     <Content Include="Views\SlideShow\GetSlideShow.cshtml" />
     <Content Include="Views\StaticContent\GetHomeIntro.cshtml" />
-    <Content Include="Views\StaticContent\GetHomeProduct.cshtml" />
+    <Content Include="Views\Summary\GetHomeProduct.cshtml" />
     <Content Include="Views\StaticContent\GetSlogan.cshtml" />
     <Content Include="Views\Summary\GetAddressInfo.cshtml" />
     <Content Include="Views\Summary\GetContactHeader.cshtml" />
@@ -1430,6 +1429,7 @@
     <Content Include="Views\Shared\ChoiceTemplates\Choice.cshtml" />
     <Content Include="Views\Shared\ChoiceTemplates\Choice.CheckRadio.cshtml" />
     <Content Include="Views\Shared\ChoiceTemplates\Choice.TextBox.cshtml" />
+    <Content Include="Views\StaticContent\GetHomeProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

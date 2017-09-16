@@ -311,6 +311,7 @@ namespace App.Front.Controllers.Custom
                         VirtualId = x.VirtualId,
                         TemplateType = x.TemplateType
                     };
+
                 menuNavs = this.CreateMenuNav(null, menuNav);
             }
             return base.PartialView(menuNavs);

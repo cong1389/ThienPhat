@@ -1,5 +1,6 @@
 using App.Domain.Entities.Data;
 using App.Domain.Entities.Menu;
+using App.Extensions;
 using App.Front.Models;
 using App.Service.Common;
 using App.Service.Language;
@@ -50,40 +51,9 @@ namespace App.Front.Controllers
 
         public ActionResult GetContent(string menu, int page)
         {
-            int languageId = _workContext.WorkingLanguage.Id;
-            
             MenuLink menuLink = this._menuLinkService.Get((MenuLink x) => x.SeoUrl.Equals(menu), true);
-            MenuLink menuLinkLocalized = new MenuLink();
-            if (menuLink !=null)
-            {
-                menuLinkLocalized = new MenuLink
-                {
-                    Id = menuLink.Id,
-                    ParentId = menuLink.ParentId,
-                    Status = menuLink.Status,
-                    TypeMenu = menuLink.TypeMenu,
-                    Position = menuLink.Position,
-                    MenuName = menuLink.GetLocalizedByLocaleKey(menuLink.MenuName, menuLink.Id, languageId, "MenuLink", "MenuName"),
-                    SeoUrl = menuLink.SeoUrl,
-                    OrderDisplay = menuLink.OrderDisplay,
-                    ImageUrl = menuLink.ImageUrl,
-                    Icon1 = menuLink.Icon1,
-                    Icon2 = menuLink.Icon2,
-                    CurrentVirtualId = menuLink.CurrentVirtualId,
-                    VirtualId = menuLink.VirtualId,
-                    TemplateType = menuLink.TemplateType,
-                    MetaTitle = menuLink.GetLocalizedByLocaleKey(menuLink.MetaTitle, menuLink.Id, languageId, "MenuLink", "MetaTitle"),
-                    MetaKeywords = menuLink.GetLocalizedByLocaleKey(menuLink.MetaKeywords, menuLink.Id, languageId, "MenuLink", "MetaKeywords"),
-                    MetaDescription = menuLink.GetLocalizedByLocaleKey(menuLink.MetaDescription, menuLink.Id, languageId, "MenuLink", "MetaDescription"),
-                   
-                    Language = menuLink.Language,
-                    SourceLink = menuLink.SourceLink,
-                    VirtualSeoUrl = menuLink.VirtualSeoUrl,
-                    DisplayOnHomePage = menuLink.DisplayOnHomePage,
-                    DisplayOnMenu = menuLink.DisplayOnMenu,
-                    DisplayOnSearch = menuLink.DisplayOnSearch,
-                }; 
-            }
+
+            var menuLinkLocalized = menuLink.ToModel();
 
             if (menuLinkLocalized != null)
             {
@@ -93,12 +63,14 @@ namespace App.Front.Controllers
                 ((dynamic)base.ViewBag).Description = menuLinkLocalized.MetaDescription;
                 ((dynamic)base.ViewBag).Image = base.Url.Content(string.Concat("~/", menuLinkLocalized.ImageUrl));
             }
+
             if (menuLinkLocalized.TemplateType == 1)
             {
                 dynamic viewBag = base.ViewBag;
                 IMenuLinkService menuLinkService = this._menuLinkService;
                 viewBag.MenuList = menuLinkService.FindBy((MenuLink x) => x.TemplateType == 1, false);
             }
+
             ((dynamic)base.ViewBag).ParentId = menuLinkLocalized.ParentId;
             ((dynamic)base.ViewBag).Attrs = base.Request["attribute"];
             ((dynamic)base.ViewBag).Prices = base.Request["price"];
@@ -109,6 +81,7 @@ namespace App.Front.Controllers
             ((dynamic)base.ViewBag).ImgePath = menuLinkLocalized.ImageUrl;
             ((dynamic)base.ViewBag).PageNumber = page;
             ((dynamic)base.ViewBag).VirtualId = menuLinkLocalized.VirtualId;
+
             return base.View();
         }
 
@@ -146,10 +119,9 @@ namespace App.Front.Controllers
         [ChildActionOnly]
         public ActionResult GetStaticContent(int MenuId, string virtualId, string title)
         {
-            int languageId = _workContext.WorkingLanguage.Id;
-
             List<BreadCrumb> breadCrumbs = new List<BreadCrumb>();
             string[] strArrays = virtualId.Split(new char[] { '/' });
+
             for (int i = 0; i < (int)strArrays.Length; i++)
             {
                 string str = strArrays[i];
@@ -158,17 +130,20 @@ namespace App.Front.Controllers
                 {
                     breadCrumbs.Add(new BreadCrumb()
                     {
-                        Title = menuLink.GetLocalizedByLocaleKey(menuLink.MenuName, menuLink.Id, languageId, "MenuLink", "MenuName"),
+                        Title = menuLink.GetLocalized(x => x.MenuName, menuLink.Id),
+                        //Title = menuLinks.GetLocalized(x => x.MenuName, menuLinks.Id),
                         Current = false,
                         Url = base.Url.Action("GetContent", "Menu", new { area = "", menu = menuLink.SeoUrl })
                     });
                 }
             }
+
             breadCrumbs.Add(new BreadCrumb()
             {
                 Current = true,
                 Title = title
             });
+
             ((dynamic)base.ViewBag).BreadCrumb = breadCrumbs;
             StaticContent staticContent = this._staticContentService.Get((StaticContent x) => x.MenuId == MenuId, true);
             if (staticContent != null)
@@ -182,72 +157,22 @@ namespace App.Front.Controllers
 
         public ActionResult GetStaticContentParent(int menuId, string title, string virtualId)
         {
-            int languageId = _workContext.WorkingLanguage.Id;
-
             List<BreadCrumb> breadCrumbs = new List<BreadCrumb>();
             string[] strArrays = virtualId.Split(new char[] { '/' });
+
             StaticContent staticContent = this._staticContentService.Get((StaticContent x) => x.MenuId == menuId && x.Status == 1, false);
-            if (staticContent == null)
-                return HttpNotFound();
+
+            //Convert to localized
+            var staticContentLocalized = staticContent.ToModel();
 
             dynamic viewBag = base.ViewBag;
-
-            StaticContent staticContentLocalized = new StaticContent
-            {
-                Id = staticContent.Id,
-                MenuId = staticContent.MenuId,
-                VirtualCategoryId = staticContent.VirtualCategoryId,
-                Language = staticContent.Language,
-                Status = staticContent.Status,
-                SeoUrl = staticContent.SeoUrl,
-                ImagePath = staticContent.ImagePath,
-
-                Title = staticContent.GetLocalizedByLocaleKey(staticContent.Title, staticContent.Id, languageId, "StaticContent", "Title"),
-                ShortDesc = staticContent.GetLocalizedByLocaleKey(staticContent.ShortDesc, staticContent.Id, languageId, "StaticContent", "ShortDesc"),
-                Description = staticContent.GetLocalizedByLocaleKey(staticContent.Description, staticContent.Id, languageId, "StaticContent", "Description"),
-                MetaTitle = staticContent.GetLocalizedByLocaleKey(staticContent.MetaTitle, staticContent.Id, languageId, "StaticContent", "MetaTitle"),
-                MetaKeywords = staticContent.GetLocalizedByLocaleKey(staticContent.MetaKeywords, staticContent.Id, languageId, "StaticContent", "MetaKeywords"),
-                MetaDescription = staticContent.GetLocalizedByLocaleKey(staticContent.MetaDescription, staticContent.Id, languageId, "StaticContent", "MetaDescription")
-            };           
-
-            IMenuLinkService menuLinkService = this._menuLinkService;
-            if (menuLinkService == null)
-                return HttpNotFound();
-
-            IEnumerable<MenuLink> menuLinks = menuLinkService.FindBy((MenuLink x) => x.Id == menuId && x.Status == 1, false);
-            if (menuLinks == null)
-                return HttpNotFound();
+            //IMenuLinkService menuLinkService = this._menuLinkService;            
+            IEnumerable<MenuLink> menuLinks = _menuLinkService.FindBy((MenuLink x) => x.Id == menuId && x.Status == 1, false);
+            menuLinks = menuLinks.Select(x => x.ToModel());
 
             if (menuLinks.IsAny<MenuLink>())
             {
-                IEnumerable<MenuLink> ieMenuLink =
-                    from x in menuLinks
-                    select new MenuLink()
-                    {
-                        Id = x.Id,
-                        ParentId = x.ParentId,
-                        SeoUrl = x.SeoUrl,
-                        CurrentVirtualId = x.CurrentVirtualId,
-                        VirtualId = x.VirtualId,
-                        Status = x.Status,
-                        TypeMenu = x.TypeMenu,
-                        Position = x.Position,
-                        TemplateType = x.TemplateType,
-                        Language = x.Language,
-                        OrderDisplay = x.OrderDisplay,
-                        SourceLink = x.SourceLink,
-                        VirtualSeoUrl = x.VirtualSeoUrl,
-                        MetaTitle = x.MetaTitle,
-                        MetaDescription = x.MetaDescription,
-                        DisplayOnHomePage = x.DisplayOnHomePage,
-                        DisplayOnMenu = x.DisplayOnMenu,
-                        Icon1 = x.Icon1,
-                        Icon2 = x.Icon2,
-                        ImageUrl = x.ImageUrl,
-                        MenuName = x.GetLocalizedByLocaleKey(x.MenuName, x.Id, languageId, "MenuLink", "MenuName"),
-                       
-                    };
-                viewBag.ListItems = ieMenuLink;
+                viewBag.ListItems = menuLinks;
             }
 
             string[] strArrays1 = strArrays;
@@ -259,12 +184,13 @@ namespace App.Front.Controllers
                 {
                     breadCrumbs.Add(new BreadCrumb()
                     {
-                        Title = menuLink.MenuName.GetLocalizedByLocaleKey(menuLink.MenuName, menuLink.Id, languageId, "MenuLink", "MenuName"),
+                        Title = menuLink.GetLocalized(x => x.MenuName, menuLink.Id),
                         Current = false,
                         Url = base.Url.Action("GetContent", "Menu", new { area = "", menu = menuLink.SeoUrl })
                     });
                 }
             }
+
             breadCrumbs.Add(new BreadCrumb()
             {
                 Current = true,

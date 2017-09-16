@@ -3,6 +3,7 @@ using App.Domain.Entities.GlobalSetting;
 using App.Domain.Entities.Location;
 using App.Domain.Entities.Menu;
 using App.Domain.Interfaces.Services;
+using App.Extensions;
 using App.FakeEntity.Meu;
 using App.Front.Models;
 using App.Service.Common;
@@ -84,19 +85,18 @@ namespace App.Front.Controllers
         [PartialCache("Short")]
         public ActionResult GetAddressInfo()
         {
-            int languageId = _workContext.WorkingLanguage.Id;
+            //int languageId = _workContext.WorkingLanguage.Id;
 
             ContactInformation contactInformation = this._contactInfoService.Get((ContactInformation x) => x.Status == 1 && x.Type == 1, true);
 
-            if (contactInformation == null)
-                return HttpNotFound();
+            var contactInformationLocalize = contactInformation.ToModel();
 
-            ContactInformation contactInformationLocalize = new ContactInformation
-            {
-                Title = contactInformation.GetLocalizedByLocaleKey(contactInformation.Title, contactInformation.Id, languageId, "ContactInformation", "Title"),
-                Address = contactInformation.GetLocalizedByLocaleKey(contactInformation.Address, contactInformation.Id, languageId, "ContactInformation", "Address"),
+            //ContactInformation contactInformationLocalize = new ContactInformation
+            //{
+            //    Title = contactInformation.GetLocalizedByLocaleKey(contactInformation.Title, contactInformation.Id, languageId, "ContactInformation", "Title"),
+            //    Address = contactInformation.GetLocalizedByLocaleKey(contactInformation.Address, contactInformation.Id, languageId, "ContactInformation", "Address"),
 
-            };
+            //};
 
             return base.PartialView(contactInformationLocalize);
         }
@@ -131,31 +131,30 @@ namespace App.Front.Controllers
         [PartialCache("Short")]
         public ActionResult GetContactHeader()
         {
-            int languageId = _workContext.WorkingLanguage.Id;
+            //int languageId = _workContext./*WorkingLanguage*/.Id;
 
             SystemSetting systemSetting = this._systemSettingService.Get((SystemSetting x) => x.Status == 1, false);
 
-            if (systemSetting == null)
-                return HttpNotFound();
+            var systemSettingLocalized = systemSetting.ToModel();
 
-            SystemSetting systemSettingLocalized = new SystemSetting
-            {
-                Id = systemSetting.Id,
-                Language = systemSetting.Language,
-                Title = systemSetting.GetLocalizedByLocaleKey(systemSetting.Title, systemSetting.Id, languageId, "SystemSetting", "Title"),
-                FooterContent = systemSetting.GetLocalizedByLocaleKey(systemSetting.FooterContent, systemSetting.Id, languageId, "SystemSetting", "FooterContent"),
-                MetaTitle = systemSetting.GetLocalizedByLocaleKey(systemSetting.MetaTitle, systemSetting.Id, languageId, "SystemSetting", "MetaTitle"),
-                MetaDescription = systemSetting.GetLocalizedByLocaleKey(systemSetting.MetaDescription, systemSetting.Id, languageId, "SystemSetting", "MetaDescription"),
-                MetaKeywords = systemSetting.GetLocalizedByLocaleKey(systemSetting.MetaKeywords, systemSetting.Id, languageId, "SystemSetting", "MetaKeywords"),
-                Status = systemSetting.Status,
-                Favicon = systemSetting.Favicon,
-                LogoImage = systemSetting.LogoImage,
-                MaintanceSite = systemSetting.MaintanceSite,
-                Hotline = systemSetting.Hotline,
-                Email = systemSetting.Email,
-                Description = systemSetting.GetLocalizedByLocaleKey(systemSetting.Description, systemSetting.Id, languageId, "SystemSetting", "Description"),
-                TimeWork = systemSetting.TimeWork
-            };
+            //SystemSetting systemSettingLocalized = new SystemSetting
+            //{
+            //    Id = systemSetting.Id,
+            //    Language = systemSetting.Language,
+            //    Title = systemSetting.GetLocalizedByLocaleKey(systemSetting.Title, systemSetting.Id, languageId, "SystemSetting", "Title"),
+            //    FooterContent = systemSetting.GetLocalizedByLocaleKey(systemSetting.FooterContent, systemSetting.Id, languageId, "SystemSetting", "FooterContent"),
+            //    MetaTitle = systemSetting.GetLocalizedByLocaleKey(systemSetting.MetaTitle, systemSetting.Id, languageId, "SystemSetting", "MetaTitle"),
+            //    MetaDescription = systemSetting.GetLocalizedByLocaleKey(systemSetting.MetaDescription, systemSetting.Id, languageId, "SystemSetting", "MetaDescription"),
+            //    MetaKeywords = systemSetting.GetLocalizedByLocaleKey(systemSetting.MetaKeywords, systemSetting.Id, languageId, "SystemSetting", "MetaKeywords"),
+            //    Status = systemSetting.Status,
+            //    Favicon = systemSetting.Favicon,
+            //    LogoImage = systemSetting.LogoImage,
+            //    MaintanceSite = systemSetting.MaintanceSite,
+            //    Hotline = systemSetting.Hotline,
+            //    Email = systemSetting.Email,
+            //    Description = systemSetting.GetLocalizedByLocaleKey(systemSetting.Description, systemSetting.Id, languageId, "SystemSetting", "Description"),
+            //    TimeWork = systemSetting.TimeWork
+            //};
 
             return base.PartialView(systemSettingLocalized);
         }
@@ -164,8 +163,11 @@ namespace App.Front.Controllers
         [PartialCache("Short")]
         public ActionResult GetContactOrder()
         {
-            ContactInformation ContactInformation = this._contactInfoService.Get((ContactInformation x) => x.Status == 1 && x.Type == 1, true);
-            return base.PartialView(ContactInformation);
+            ContactInformation contactInformation = this._contactInfoService.Get((ContactInformation x) => x.Status == 1 && x.Type == 1, true);
+
+            var contactInformationLocalized = contactInformation.ToModel();
+
+            return base.PartialView(contactInformationLocalized);
         }
 
         [ChildActionOnly]
@@ -173,10 +175,14 @@ namespace App.Front.Controllers
         public ContentResult GetContentFooter()
         {
             SystemSetting systemSetting = this._systemSettingService.Get((SystemSetting x) => x.Status == 1, true);
+
+            var systemSettingLocalized = systemSetting.ToModel();
+
             if (systemSetting == null)
             {
                 return base.Content(string.Empty);
             }
+
             return base.Content(systemSetting.FooterContent);
         }
 
@@ -187,9 +193,11 @@ namespace App.Front.Controllers
             {
                 return null;
             }
+
             var byProvinceId =
                 from x in this._districtService.GetByProvinceId(provinceId)
                 select new { Id = x.Id, Name = x.Name };
+
             return base.Json(byProvinceId);
         }
 
@@ -197,60 +205,64 @@ namespace App.Front.Controllers
         [PartialCache("Short")]
         public ActionResult Footer()
         {
-            int languageId = _workContext.WorkingLanguage.Id;
+            //int languageId = _workContext.WorkingLanguage.Id;
 
             ContactInformation contactInformation = this._contactInfoService.Get((ContactInformation x) => x.Status == 1 && x.Type == 1, true);
 
-            if (contactInformation == null)
-                return HttpNotFound();
+            var contactInformationLocalize = contactInformation.ToModel();
 
-            ContactInformation contactInformationLocalize = new ContactInformation
-            {
-                Lag = contactInformation.Lag,
-                Lat = contactInformation.Lat,
-                Type = contactInformation.Type,
-                Status = contactInformation.Status,
-                Email = contactInformation.Email,
-                Hotline = contactInformation.Hotline,
-                MobilePhone = contactInformation.MobilePhone,
-                Fax = contactInformation.Fax,
-                NumberOfStore = contactInformation.NumberOfStore,
-                ProvinceId = contactInformation.ProvinceId,
-                Title = contactInformation.GetLocalizedByLocaleKey(contactInformation.Title, contactInformation.Id, languageId, "ContactInformation", "Title"),
-                Address = contactInformation.GetLocalizedByLocaleKey(contactInformation.Address, contactInformation.Id, languageId, "ContactInformation", "Address"),
-                GenericControls = contactInformation.GenericControls
-            };
+            //if (contactInformation == null)
+            //    return HttpNotFound();
+
+            //ContactInformation contactInformationLocalize = new ContactInformation
+            //{
+            //    Lag = contactInformation.Lag,
+            //    Lat = contactInformation.Lat,
+            //    Type = contactInformation.Type,
+            //    Status = contactInformation.Status,
+            //    Email = contactInformation.Email,
+            //    Hotline = contactInformation.Hotline,
+            //    MobilePhone = contactInformation.MobilePhone,
+            //    Fax = contactInformation.Fax,
+            //    NumberOfStore = contactInformation.NumberOfStore,
+            //    ProvinceId = contactInformation.ProvinceId,
+            //    Title = contactInformation.GetLocalizedByLocaleKey(contactInformation.Title, contactInformation.Id, languageId, "ContactInformation", "Title"),
+            //    Address = contactInformation.GetLocalizedByLocaleKey(contactInformation.Address, contactInformation.Id, languageId, "ContactInformation", "Address"),
+            //    GenericControls = contactInformation.GenericControls
+            //};
 
             return base.PartialView(contactInformationLocalize);
         }
 
         public ActionResult GetLogo()
         {
-            int languageId = _workContext.WorkingLanguage.Id;
+            // int languageId = _workContext.WorkingLanguage.Id;
 
             SystemSetting systemSetting = this._systemSettingService.Get((SystemSetting x) => x.Status == 1, false);
 
-            if (systemSetting == null)
-                return HttpNotFound();
+            var systemSettingLocalized = systemSetting.ToModel();
 
-            SystemSetting systemSettingLocalized = new SystemSetting
-            {
-                Id = systemSetting.Id,
-                Language = systemSetting.Language,
-                Title = systemSetting.GetLocalizedByLocaleKey(systemSetting.Title, systemSetting.Id, languageId, "SystemSetting", "Title"),
-                FooterContent = systemSetting.GetLocalizedByLocaleKey(systemSetting.FooterContent, systemSetting.Id, languageId, "SystemSetting", "FooterContent"),
-                MetaTitle = systemSetting.GetLocalizedByLocaleKey(systemSetting.MetaTitle, systemSetting.Id, languageId, "SystemSetting", "MetaTitle"),
-                MetaDescription = systemSetting.GetLocalizedByLocaleKey(systemSetting.MetaDescription, systemSetting.Id, languageId, "SystemSetting", "MetaDescription"),
-                MetaKeywords = systemSetting.GetLocalizedByLocaleKey(systemSetting.MetaKeywords, systemSetting.Id, languageId, "SystemSetting", "MetaKeywords"),
-                Status = systemSetting.Status,
-                Favicon = systemSetting.Favicon,
-                LogoImage = systemSetting.LogoImage,
-                MaintanceSite = systemSetting.MaintanceSite,
-                Hotline = systemSetting.Hotline,
-                Email = systemSetting.Email,
-                Description = systemSetting.GetLocalizedByLocaleKey(systemSetting.Description, systemSetting.Id, languageId, "SystemSetting", "Description"),
-                TimeWork = systemSetting.TimeWork
-            };
+            //if (systemSetting == null)
+            //    return HttpNotFound();
+
+            //SystemSetting systemSettingLocalized = new SystemSetting
+            //{
+            //    Id = systemSetting.Id,
+            //    Language = systemSetting.Language,
+            //    Title = systemSetting.GetLocalizedByLocaleKey(systemSetting.Title, systemSetting.Id, languageId, "SystemSetting", "Title"),
+            //    FooterContent = systemSetting.GetLocalizedByLocaleKey(systemSetting.FooterContent, systemSetting.Id, languageId, "SystemSetting", "FooterContent"),
+            //    MetaTitle = systemSetting.GetLocalizedByLocaleKey(systemSetting.MetaTitle, systemSetting.Id, languageId, "SystemSetting", "MetaTitle"),
+            //    MetaDescription = systemSetting.GetLocalizedByLocaleKey(systemSetting.MetaDescription, systemSetting.Id, languageId, "SystemSetting", "MetaDescription"),
+            //    MetaKeywords = systemSetting.GetLocalizedByLocaleKey(systemSetting.MetaKeywords, systemSetting.Id, languageId, "SystemSetting", "MetaKeywords"),
+            //    Status = systemSetting.Status,
+            //    Favicon = systemSetting.Favicon,
+            //    LogoImage = systemSetting.LogoImage,
+            //    MaintanceSite = systemSetting.MaintanceSite,
+            //    Hotline = systemSetting.Hotline,
+            //    Email = systemSetting.Email,
+            //    Description = systemSetting.GetLocalizedByLocaleKey(systemSetting.Description, systemSetting.Id, languageId, "SystemSetting", "Description"),
+            //    TimeWork = systemSetting.TimeWork
+            //};
 
             return base.PartialView(systemSettingLocalized);
         }
@@ -260,8 +272,6 @@ namespace App.Front.Controllers
         public ActionResult GetMetaTagsSeo()
         {
             SettingSeoGlobal settingSeoGlobal = this._settingSeoGlobal.Get((SettingSeoGlobal x) => x.Status == 1, false);
-
-
 
             return base.PartialView(settingSeoGlobal);
         }
