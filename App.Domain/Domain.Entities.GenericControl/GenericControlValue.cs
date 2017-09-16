@@ -32,11 +32,11 @@ namespace App.Domain.Entities.GenericControl
 			set;
 		}
 
-		public virtual ICollection<GalleryImage> GalleryImages
-		{
-			get;
-			set;
-		}
+		//public virtual ICollection<GalleryImage> GalleryImages
+		//{
+		//	get;
+		//	set;
+		//}
 
 		public int? OrderDisplay
 		{

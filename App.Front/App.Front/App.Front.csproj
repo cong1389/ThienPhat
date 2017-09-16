@@ -1489,7 +1489,6 @@
     <Folder Include="assets\themes\kuteshop\js\modules\sendtoafriend\" />
     <Folder Include="assets\themes\kuteshop\js\modules\socialsharing\js\" />
     <Folder Include="assets\themes\kuteshop\js\tools\" />
-    <Folder Include="Helpers\" />
     <Folder Include="images\icons\" />
     <Folder Include="images\news\04042017\" />
     <Folder Include="images\news\18042017\" />
